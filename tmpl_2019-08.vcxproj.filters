@@ -17,10 +17,16 @@
     <ClInclude Include="template.h">
       <Filter>template code</Filter>
     </ClInclude>
+    <ClInclude Include="screen.hpp">
+      <Filter>screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
       <UniqueIdentifier>{bf32dd6e-4be7-4889-8ac6-49e7ee163c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="screens">
+      <UniqueIdentifier>{2ad15876-c853-4b87-a567-340cce7c51bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
