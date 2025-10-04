@@ -222,11 +222,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="button.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="button.hpp" />
     <ClInclude Include="game.h" />
     <ClInclude Include="screen.hpp" />
     <ClInclude Include="surface.h" />

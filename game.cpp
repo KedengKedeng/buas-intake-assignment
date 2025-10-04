@@ -1,5 +1,6 @@
 #include "game.h"
 #include "surface.h"
+#include "button.hpp"
 #include <cstdio> //printf
 
 namespace Tmpl8
@@ -27,14 +28,15 @@ namespace Tmpl8
 	void Game::Tick(float deltaTime)
 	{
 		// clear the graphics window
-		screen->Clear(0);
+		screen->Clear(255 << 8);
 		// print something in the graphics window
 		screen->Print("hello world", 2, 2, 0xffffff);
-		// print something to the text window
-		printf("this goes to the console window.\n");
 		// draw a sprite
 		rotatingGun.SetFrame(frame);
 		rotatingGun.Draw(screen, 100, 100);
 		if (++frame == 36) frame = 0;
+
+		Button button = Button(std::string{ "test text" }, 10, 10, 200, 200, 4);
+		button.draw(*screen);
 	}
 };
