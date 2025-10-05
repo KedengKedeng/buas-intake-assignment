@@ -11,6 +11,12 @@
     <ClCompile Include="button.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="keyboardInput.cpp">
+      <Filter>input\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="moveLeftCommand.cpp">
+      <Filter>input\commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -30,7 +36,10 @@
       <Filter>input\keyboard</Filter>
     </ClInclude>
     <ClInclude Include="command.hpp">
-      <Filter>input</Filter>
+      <Filter>input\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="moveLeftCommand.hpp">
+      <Filter>input\commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +57,9 @@
     </Filter>
     <Filter Include="components\screens">
       <UniqueIdentifier>{2ad15876-c853-4b87-a567-340cce7c51bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input\commands">
+      <UniqueIdentifier>{9876e609-8017-487d-8e7c-8860352a1dd0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

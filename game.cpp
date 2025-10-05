@@ -1,7 +1,6 @@
 #include "game.h"
 #include "surface.h"
 #include "button.hpp"
-#include <cstdio> //printf
 
 namespace Tmpl8
 {
@@ -10,6 +9,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
+		keyboardInput = KeyboardInput();
 	}
 	
 	// -----------------------------------------------------------

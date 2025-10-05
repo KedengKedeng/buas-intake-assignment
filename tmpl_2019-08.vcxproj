@@ -224,6 +224,8 @@
   <ItemGroup>
     <ClCompile Include="button.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="keyboardInput.cpp" />
+    <ClCompile Include="moveLeftCommand.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
   </ItemGroup>
@@ -232,6 +234,7 @@
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
     <ClInclude Include="keyboardInput.hpp" />
+    <ClInclude Include="moveLeftCommand.hpp" />
     <ClInclude Include="screen.hpp" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
