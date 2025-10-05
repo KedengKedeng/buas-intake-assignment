@@ -1,0 +1,21 @@
+short term:
+- any way to increase font size?
+- any way to make text center?
+
+todo for mvp:
+- keyboard input handling
+- ability to render multiple screens
+- ability to stack screens on top of each other
+- player character that can move and interact with objects
+- event based architecture?
+
+nice to haves:
+- sound
+- options menu (key rebinding?, volume mixer)
+- i11n (english, dutch, indonesian?)
+- mouse events (click and drag)
+- title menu
+
+implementation details to keep in mind:
+- we need a signal class for links between objects and events
+- in case keyboard rebinding is added we should use the command pattern

@@ -21,26 +21,43 @@
       <Filter>template code</Filter>
     </ClInclude>
     <ClInclude Include="screen.hpp">
-      <Filter>screens</Filter>
+      <Filter>components\screens</Filter>
     </ClInclude>
     <ClInclude Include="button.hpp">
       <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboardInput.hpp">
+      <Filter>input\keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="command.hpp">
+      <Filter>input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
       <UniqueIdentifier>{bf32dd6e-4be7-4889-8ac6-49e7ee163c40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="screens">
-      <UniqueIdentifier>{2ad15876-c853-4b87-a567-340cce7c51bf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="components">
       <UniqueIdentifier>{0addb362-fc74-43a8-9f28-ea4e09f94dda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input">
+      <UniqueIdentifier>{eefdbe30-9fe1-43bb-95bd-6e7d99386ceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input\keyboard">
+      <UniqueIdentifier>{d163f8d1-af90-41d9-8442-93145c9740ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\screens">
+      <UniqueIdentifier>{2ad15876-c853-4b87-a567-340cce7c51bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="_readme.txt">
       <Filter>template code</Filter>
     </Text>
+    <Text Include="todo.txt" />
+    <Text Include="sources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.md" />
   </ItemGroup>
 </Project>

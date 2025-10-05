@@ -229,13 +229,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="button.hpp" />
+    <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="keyboardInput.hpp" />
     <ClInclude Include="screen.hpp" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="sources.txt" />
+    <Text Include="todo.txt" />
     <Text Include="_readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,3 @@
+design patterns:
+- https://gameprogrammingpatterns.com/
+- https://refactoring.guru/design-patterns
