@@ -14,14 +14,14 @@
     <ClCompile Include="keyboardInput.cpp">
       <Filter>input\keyboard</Filter>
     </ClCompile>
-    <ClCompile Include="moveLeftCommand.cpp">
-      <Filter>input\commands</Filter>
-    </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>objects</Filter>
     </ClCompile>
     <ClCompile Include="playScreen.cpp">
       <Filter>components\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="playerSignals.cpp">
+      <Filter>signals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +56,9 @@
     <ClInclude Include="playScreen.hpp">
       <Filter>components\screens</Filter>
     </ClInclude>
+    <ClInclude Include="playerSignals.hpp">
+      <Filter>signals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
@@ -78,6 +81,9 @@
     </Filter>
     <Filter Include="objects">
       <UniqueIdentifier>{8d9fc896-de6b-4621-9c13-d81c1be7fc81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="signals">
+      <UniqueIdentifier>{41334dba-d772-49e7-ab29-8518734ccd3a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

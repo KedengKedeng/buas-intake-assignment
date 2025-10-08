@@ -13,7 +13,7 @@ std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
 	switch (keyCode)
 	{
 	case KeyCodes::LEFT:
-		return std::make_unique<MoveLeftCommand>();
+		return std::make_unique<StartMoveLeftCommand>();
 		break;
 	default:
 		return std::make_unique<Command>();
@@ -24,6 +24,9 @@ std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
 std::unique_ptr<Command> KeyboardInput::keyUp(int keyCode) {
 	switch (keyCode)
 	{
+	case KeyCodes::LEFT:
+		return std::make_unique<EndMoveLeftCommand>();
+		break;
 	default:
 		return std::make_unique<Command>();
 		break;

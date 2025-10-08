@@ -1,5 +1,6 @@
 #pragma once
 #include "object.hpp"
+#include "playerSignals.hpp"
 
 struct Velocity {
 	int x;
@@ -8,7 +9,9 @@ struct Velocity {
 
 class Player: public Object {
 public:
-	Player(Tmpl8::Sprite& sprite, int x, int y): Object(sprite, x, y) {};
+	Player(Tmpl8::Sprite& sprite, int x, int y): Object(sprite, x, y) {
+		WalkLeftSignal::subscribe([this](int x) { addVelocityX(x); });
+	};
 
 	void move();
 	void addVelocityX(int x) { velocity.x += x; }

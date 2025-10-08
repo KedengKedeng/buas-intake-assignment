@@ -1,7 +1,15 @@
 #pragma once
 #include "command.hpp"
+#include "playerSignals.hpp"
 
-class MoveLeftCommand : public Command {
+//TODO: Dont make player velocity hardcoded?
+
+class StartMoveLeftCommand : public Command {
 public:
-	void fire() override;
+	void fire() override { WalkLeftSignal::emit(-10); }
+};
+
+class EndMoveLeftCommand : public Command {
+public:
+	void fire() override { WalkLeftSignal::emit(10); }
 };

@@ -225,8 +225,8 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="keyboardInput.cpp" />
-    <ClCompile Include="moveLeftCommand.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerSignals.cpp" />
     <ClCompile Include="playScreen.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
@@ -239,6 +239,7 @@
     <ClInclude Include="moveLeftCommand.hpp" />
     <ClInclude Include="object.hpp" />
     <ClInclude Include="player.hpp" />
+    <ClInclude Include="playerSignals.hpp" />
     <ClInclude Include="playScreen.hpp" />
     <ClInclude Include="screen.hpp" />
     <ClInclude Include="surface.h" />

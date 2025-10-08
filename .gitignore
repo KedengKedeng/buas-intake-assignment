@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 *.exe
+/tmpl_2019-08_x64_debug.exe
