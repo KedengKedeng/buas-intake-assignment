@@ -1,3 +1,12 @@
 design patterns:
 - https://gameprogrammingpatterns.com/
 - https://refactoring.guru/design-patterns
+
+player movement:
+- https://docs.godotengine.org/en/4.4/getting_started/first_2d_game/03.coding_the_player.html#choosing-animations
+
+process function concept:
+- https://docs.godotengine.org/en/4.4/tutorials/scripting/idle_and_physics_processing.html
+
+collision:
+- https://github.com/jpvanoosten/SoftwareRasterizer

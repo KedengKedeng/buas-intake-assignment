@@ -17,6 +17,12 @@
     <ClCompile Include="moveLeftCommand.cpp">
       <Filter>input\commands</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="playScreen.cpp">
+      <Filter>components\screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -41,6 +47,15 @@
     <ClInclude Include="moveLeftCommand.hpp">
       <Filter>input\commands</Filter>
     </ClInclude>
+    <ClInclude Include="player.hpp">
+      <Filter>objects</Filter>
+    </ClInclude>
+    <ClInclude Include="object.hpp">
+      <Filter>objects</Filter>
+    </ClInclude>
+    <ClInclude Include="playScreen.hpp">
+      <Filter>components\screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
@@ -60,6 +75,9 @@
     </Filter>
     <Filter Include="input\commands">
       <UniqueIdentifier>{9876e609-8017-487d-8e7c-8860352a1dd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="objects">
+      <UniqueIdentifier>{8d9fc896-de6b-4621-9c13-d81c1be7fc81}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

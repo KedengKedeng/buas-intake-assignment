@@ -1,5 +1,7 @@
 #pragma once
 #include "keyboardInput.hpp"
+#include "screen.hpp"
+
 
 namespace Tmpl8 {
 
@@ -7,7 +9,7 @@ class Surface;
 class Game
 {
 public:
-	void SetTarget( Surface* surface ) { screen = surface; }
+	void SetTarget( Surface* surface ) { surface_ = surface; }
 	void SetKeyboardInput(KeyboardInput input) { keyboardInput = input; }
 	void Init();
 	void Shutdown();
@@ -18,7 +20,9 @@ public:
 	void KeyUp(int key) { keyboardInput.keyUp(key)->fire(); }
 	void KeyDown(int key) { keyboardInput.keyDown(key)->fire(); }
 private:
-	Surface* screen;
+	Screen* screens[1];
+	Screen* currentScreen;
+	Surface* surface_;
 	KeyboardInput keyboardInput;
 };
 
