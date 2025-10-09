@@ -1,11 +1,10 @@
 short term:
-- change x and y in move commands and player class to a vector type
 - any way to increase font size?
 - any way to make text center?
 
 todo for mvp:
-- keyboard input handling
-- ability to render multiple screens
+- keyboard input handling (done)
+- ability to render multiple screens (should be done?)
 - ability to stack screens on top of each other
 - player character that can move and interact with objects
 - event based architecture?

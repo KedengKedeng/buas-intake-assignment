@@ -6,7 +6,7 @@
 class MoveCommand : public Command {
 public:
 	MoveCommand(Vector2 delta): delta_(delta) {};
-	void fire() override { WalkSignal::emit(delta_); }
+	void fire() override { walkSignal.emit(delta_); }
 private:
 	Vector2 delta_;
 };

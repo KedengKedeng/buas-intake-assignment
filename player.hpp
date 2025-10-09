@@ -6,7 +6,7 @@
 class Player: public Object {
 public:
 	Player(Tmpl8::Sprite& sprite, int x, int y): Object(sprite, x, y) {
-		WalkSignal::subscribe([this](Vector2 delta) { 
+		walkSignal.subscribe([this](Vector2 delta) {
 			addDeltaX(delta.x); 
 			addDeltaY(delta.y);
 		});

@@ -17,11 +17,11 @@
     <ClCompile Include="playScreen.cpp">
       <Filter>components\screens</Filter>
     </ClCompile>
-    <ClCompile Include="playerSignals.cpp">
-      <Filter>signals</Filter>
-    </ClCompile>
     <ClCompile Include="keyboardInput.cpp">
       <Filter>input\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="playerSignals.cpp">
+      <Filter>signals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="vector2.hpp">
       <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="signal.hpp">
+      <Filter>signals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
