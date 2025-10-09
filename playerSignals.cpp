@@ -1,8 +1,8 @@
 #include "playerSignals.hpp"
 
-void WalkSignal::emit(int x, int y){
+void WalkSignal::emit(Vector2 delta){
 	for (auto& subscriber : subscribers)
-		subscriber(x, y);
+		subscriber(delta);
 }
 
-std::vector<std::function<void(int, int)>> WalkSignal::subscribers;
+std::vector<std::function<void(Vector2)>> WalkSignal::subscribers;

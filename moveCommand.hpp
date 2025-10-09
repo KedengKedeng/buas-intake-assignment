@@ -1,13 +1,12 @@
 #pragma once
 #include "command.hpp"
 #include "playerSignals.hpp"
-#include <cstdio>
+#include "vector2.hpp"
 
 class MoveCommand : public Command {
 public:
-	MoveCommand(int x, int y): x_(x), y_(y) {};
-	void fire() override { WalkSignal::emit(x_, y_); }
+	MoveCommand(Vector2 delta): delta_(delta) {};
+	void fire() override { WalkSignal::emit(delta_); }
 private:
-	int x_;
-	int y_;
+	Vector2 delta_;
 };
