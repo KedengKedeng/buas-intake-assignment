@@ -1,12 +1,12 @@
 #pragma once
 #include "object.hpp"
 #include "playerSignals.hpp"
-#include "vector2.hpp"
+#include "template.h"
 
 class Player: public Object {
 public:
 	Player(Tmpl8::Sprite& sprite, int x, int y): Object(sprite, x, y) {
-		walkSignal.subscribe([this](Vector2 delta) {
+		walkSignal.subscribe([this](Tmpl8::vec2 delta) {
 			addDeltaX(delta.x); 
 			addDeltaY(delta.y);
 		});
@@ -18,6 +18,6 @@ public:
 
 	void process() override;
 private:
-	Vector2 velocity = {10, 10};
-	Vector2 delta = { 0, 0 };
+	Tmpl8::vec2 velocity = {10, 10};
+	Tmpl8::vec2 delta = { 0, 0 };
 };

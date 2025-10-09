@@ -5,7 +5,7 @@ void PlayScreen::draw() {
 }
 
 void PlayScreen::process() {
-	surface_->Clear(255 << 8);
 	player.process();
+	surface_->Clear(255 << 8);
 	draw();
 }

@@ -1,6 +1,6 @@
 #include "keyboardInput.hpp"
 #include "moveCommand.hpp"
-#include "vector2.hpp"
+#include "template.h"
 
 enum KeyCodes
 {
@@ -22,16 +22,16 @@ std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
 	switch (keyCode)
 	{
 	case KeyCodes::LEFT:
-		return std::make_unique<MoveCommand>(Vector2{ -1, 0 });
+		return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 });
 		break;
 	case KeyCodes::UP:
-		return std::make_unique<MoveCommand>(Vector2{ 0, -1 });
+		return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 });
 		break;
 	case KeyCodes::DOWN:
-		return std::make_unique<MoveCommand>(Vector2{ 0, 1 });
+		return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 });
 		break;
 	case KeyCodes::RIGHT:
-		return std::make_unique<MoveCommand>(Vector2{ 1, 0 });
+		return std::make_unique<MoveCommand>(Tmpl8::vec2{ 1, 0 });
 		break;
 	default:
 		return std::make_unique<Command>();
@@ -45,16 +45,16 @@ std::unique_ptr<Command> KeyboardInput::keyUp(int keyCode) {
 	switch (keyCode)
 	{
 	case KeyCodes::LEFT:
-		return std::make_unique<MoveCommand>(Vector2{ 1, 0 });
+		return std::make_unique<MoveCommand>(Tmpl8::vec2{ 1, 0 });
 		break;
 	case KeyCodes::UP:
-		return std::make_unique<MoveCommand>(Vector2{ 0, 1 });
+		return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 });
 		break;
 	case KeyCodes::DOWN:
-		return std::make_unique<MoveCommand>(Vector2{ 0, -1 });
+		return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 });
 		break;
 	case KeyCodes::RIGHT:
-		return std::make_unique<MoveCommand>(Vector2{ -1, 0 });
+		return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 });
 		break;
 	default:
 		return std::make_unique<Command>();

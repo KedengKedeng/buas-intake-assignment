@@ -59,9 +59,6 @@
     <ClInclude Include="playerSignals.hpp">
       <Filter>signals</Filter>
     </ClInclude>
-    <ClInclude Include="vector2.hpp">
-      <Filter>math</Filter>
-    </ClInclude>
     <ClInclude Include="signal.hpp">
       <Filter>signals</Filter>
     </ClInclude>
@@ -90,9 +87,6 @@
     </Filter>
     <Filter Include="signals">
       <UniqueIdentifier>{41334dba-d772-49e7-ab29-8518734ccd3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="math">
-      <UniqueIdentifier>{7ea1b1b8-fb88-4722-8344-4b716e4a1292}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

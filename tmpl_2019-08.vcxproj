@@ -245,7 +245,6 @@
     <ClInclude Include="signal.hpp" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
-    <ClInclude Include="vector2.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="sources.txt" />

@@ -1,3 +1,3 @@
 #include "playerSignals.hpp"
 
-Signal<Vector2> walkSignal{};
+Signal<Tmpl8::vec2> walkSignal{};

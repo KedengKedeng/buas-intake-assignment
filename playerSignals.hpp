@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <functional>
-#include "vector2.hpp"
+#include "template.h"
 #include "signal.hpp"
 
-extern Signal<Vector2> walkSignal;
+extern Signal<Tmpl8::vec2> walkSignal;
