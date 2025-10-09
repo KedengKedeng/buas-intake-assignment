@@ -3,8 +3,6 @@
 #include "playerSignals.hpp"
 #include <cstdio>
 
-//TODO: Dont make player velocity hardcoded?
-
 class MoveCommand : public Command {
 public:
 	MoveCommand(int x, int y): x_(x), y_(y) {};

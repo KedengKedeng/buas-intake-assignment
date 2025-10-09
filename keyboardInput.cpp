@@ -10,6 +10,14 @@ enum KeyCodes
 };
 
 std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
+	// If we dont do this commands will continuously get triggered
+	// by holding down a key.
+	auto exists = keysDown.find(keyCode);
+	if (exists != keysDown.end())
+		return std::make_unique<Command>();
+	else
+		keysDown.insert(keyCode);
+
 	switch (keyCode)
 	{
 	case KeyCodes::LEFT:
@@ -31,6 +39,8 @@ std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
 }
 
 std::unique_ptr<Command> KeyboardInput::keyUp(int keyCode) {
+	keysDown.erase(keyCode);
+
 	switch (keyCode)
 	{
 	case KeyCodes::LEFT:
