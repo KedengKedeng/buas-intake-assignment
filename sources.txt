@@ -10,3 +10,6 @@ process function concept:
 
 collision:
 - https://github.com/jpvanoosten/SoftwareRasterizer
+
+general c++:
+- https://en.cppreference.com

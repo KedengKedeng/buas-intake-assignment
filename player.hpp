@@ -10,7 +10,10 @@ struct Velocity {
 class Player: public Object {
 public:
 	Player(Tmpl8::Sprite& sprite, int x, int y): Object(sprite, x, y) {
-		WalkLeftSignal::subscribe([this](int x) { addVelocityX(x); });
+		WalkSignal::subscribe([this](int x, int y) { 
+			addVelocityX(x); 
+			addVelocityY(y);
+		});
 	};
 
 	void move();

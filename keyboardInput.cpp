@@ -1,5 +1,5 @@
 #include "keyboardInput.hpp"
-#include "moveLeftCommand.hpp"
+#include "moveCommand.hpp"
 
 enum KeyCodes
 {
@@ -13,7 +13,16 @@ std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
 	switch (keyCode)
 	{
 	case KeyCodes::LEFT:
-		return std::make_unique<StartMoveLeftCommand>();
+		return std::make_unique<MoveCommand>(-10, 0);
+		break;
+	case KeyCodes::UP:
+		return std::make_unique<MoveCommand>(0, -10);
+		break;
+	case KeyCodes::DOWN:
+		return std::make_unique<MoveCommand>(0, 10);
+		break;
+	case KeyCodes::RIGHT:
+		return std::make_unique<MoveCommand>(10, 0);
 		break;
 	default:
 		return std::make_unique<Command>();
@@ -25,7 +34,16 @@ std::unique_ptr<Command> KeyboardInput::keyUp(int keyCode) {
 	switch (keyCode)
 	{
 	case KeyCodes::LEFT:
-		return std::make_unique<EndMoveLeftCommand>();
+		return std::make_unique<MoveCommand>(10, 0);
+		break;
+	case KeyCodes::UP:
+		return std::make_unique<MoveCommand>(0, 10);
+		break;
+	case KeyCodes::DOWN:
+		return std::make_unique<MoveCommand>(0, -10);
+		break;
+	case KeyCodes::RIGHT:
+		return std::make_unique<MoveCommand>(-10, 0);
 		break;
 	default:
 		return std::make_unique<Command>();

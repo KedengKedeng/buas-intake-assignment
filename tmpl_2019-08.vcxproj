@@ -236,7 +236,7 @@
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
     <ClInclude Include="keyboardInput.hpp" />
-    <ClInclude Include="moveLeftCommand.hpp" />
+    <ClInclude Include="moveCommand.hpp" />
     <ClInclude Include="object.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="playerSignals.hpp" />
