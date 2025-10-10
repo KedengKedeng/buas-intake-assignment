@@ -23,6 +23,12 @@
     <ClCompile Include="playerSignals.cpp">
       <Filter>signals</Filter>
     </ClCompile>
+    <ClCompile Include="boundingBox.cpp">
+      <Filter>objects\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="testWall.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -62,6 +68,12 @@
     <ClInclude Include="signal.hpp">
       <Filter>signals</Filter>
     </ClInclude>
+    <ClInclude Include="boundingBox.hpp">
+      <Filter>objects\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="testWall.hpp">
+      <Filter>objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
@@ -87,6 +99,9 @@
     </Filter>
     <Filter Include="signals">
       <UniqueIdentifier>{41334dba-d772-49e7-ab29-8518734ccd3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="objects\collision">
+      <UniqueIdentifier>{2de750f0-e8e2-4f3d-bdd7-23ef42d349f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

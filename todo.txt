@@ -1,4 +1,5 @@
 short term:
+- unsubscribe function in signals
 - any way to increase font size?
 - any way to make text center?
 

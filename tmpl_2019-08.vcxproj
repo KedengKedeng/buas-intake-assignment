@@ -222,6 +222,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="boundingBox.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="keyboardInput.cpp" />
@@ -230,8 +231,10 @@
     <ClCompile Include="playScreen.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
+    <ClCompile Include="testWall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="boundingBox.hpp" />
     <ClInclude Include="button.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
@@ -245,6 +248,7 @@
     <ClInclude Include="signal.hpp" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
+    <ClInclude Include="testWall.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="sources.txt" />

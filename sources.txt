@@ -10,6 +10,7 @@ process function concept:
 
 collision:
 - https://github.com/jpvanoosten/SoftwareRasterizer
+- https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 
 general c++:
 - https://en.cppreference.com
