@@ -1,6 +1,7 @@
 #pragma once
 #include "template.h"
 #include "signal.hpp"
+#include "template.h"
 
 class BoundingBox {
 public:

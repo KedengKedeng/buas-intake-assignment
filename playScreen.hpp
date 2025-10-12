@@ -1,6 +1,7 @@
 #pragma once
 #include "screen.hpp"
 #include "player.hpp"
+#include "playerSignals.hpp"
 #include <memory>
 #include "testWall.hpp"
 
@@ -8,15 +9,33 @@ static Tmpl8::Sprite rotatingGun(new Tmpl8::Surface("assets/aagun.tga"), 36);
 
 class PlayScreen : public Screen {
 public:
-	PlayScreen(Tmpl8::Surface* surface) : Screen(surface) {
-		objects.push_back(std::make_unique<Player>(rotatingGun, 10, 10));
-		objects.push_back(std::make_unique<TestWall>(100, 100));
+	PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(rotatingGun, 10, 10) {
+		objects.push_back(std::make_unique<TestWall>(0, 0, 5, surface->GetHeight()));
+		objects.push_back(std::make_unique<TestWall>(0, 0, surface->GetWidth(), 5));
+		objects.push_back(std::make_unique<TestWall>(0, surface->GetHeight() - 5, surface->GetWidth(), 5));
+		objects.push_back(std::make_unique<TestWall>(surface->GetWidth() - 5, 0, 5, surface->GetHeight()));
+
+		requestMove.subscribe([this](Tmpl8::vec2 oldPos, Tmpl8::vec2 newPos, Player& player) {
+			BoundingBox bounds = player.getBounds();
+
+			bounds.setPos(Tmpl8::vec2(newPos.x, oldPos.y));
+			bool collidesX = objectsCollideWithBounds(bounds);
+
+			bounds.setPos(Tmpl8::vec2(oldPos.x, newPos.y));
+			bool collidesY = objectsCollideWithBounds(bounds);
+
+			if (static_cast<int>(collidesX)) newPos.x = oldPos.x;
+			if (static_cast<int>(collidesY)) newPos.y = oldPos.y;
+
+			player.move(newPos);
+		});
 	};
 
 	void process() override;
 	void draw() override;
 
-	void collisionCheck();
+	bool objectsCollideWithBounds(BoundingBox& bounds);
 private:
+	Player player_;
 	std::vector<std::unique_ptr<Object>> objects = {};
 };

@@ -2,13 +2,21 @@
 #include <algorithm>
 #include <cmath>
 
-void Player::move() {
+void Player::calculateMove() {
 	// Make movement in each direction a lower speed
 	// when diagonal movement is detected.
-	float sidewardsPenalty = std::sqrt(std::max(std::abs(delta.x) + std::abs(delta.y), 1.0f));
+	float sidewardsPenalty = std::sqrt(std::max(std::abs(delta_.x) + std::abs(delta_.y), 1.0f));
 
-	x_ += static_cast<int>(velocity.x / sidewardsPenalty * delta.x);
-	y_ += static_cast<int>(velocity.y / sidewardsPenalty * delta.y);
+	int newX = x_ + static_cast<int>(velocity.x / sidewardsPenalty * delta_.x);
+	int newY = y_ + static_cast<int>(velocity.y / sidewardsPenalty * delta_.y);
+
+	if (newX != x_ || newY != y_)
+		requestMove.emit(Tmpl8::vec2(x_, y_), Tmpl8::vec2(newX, newY), *this);
+}
+
+void Player::move(Tmpl8::vec2 newPos) {
+	x_ = newPos.x;
+	y_ = newPos.y;
 
 	boundingBox_.setPos(Tmpl8::vec2(x_, y_));
 }
@@ -18,5 +26,5 @@ void Player::draw(Tmpl8::Surface* surface) {
 };
 
 void Player::process() {
-	move();
+	calculateMove();
 }

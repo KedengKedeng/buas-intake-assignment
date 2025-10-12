@@ -9,7 +9,7 @@ public:
 
 	void setX(int x) { x_ = x; }
 	void setY(int y) { y_ = y; }
-	BoundingBox& getBounds() { return boundingBox_; }
+	BoundingBox getBounds() { return boundingBox_; }
 
 	virtual void draw(Tmpl8::Surface* surface) = 0;
 	virtual void process() = 0;

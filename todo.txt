@@ -1,5 +1,7 @@
 short term:
 - unsubscribe function in signals
+- any reason to check for collision between objects?
+  nothing moves besides the player so checking every tick is unneeded.
 - any way to increase font size?
 - any way to make text center?
 
