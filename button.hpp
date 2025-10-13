@@ -2,7 +2,6 @@
 #include "surface.h"
 #include <string>
 
-
 class Button {
 	int x_;
 	int y_;
@@ -32,5 +31,5 @@ public:
 		color_(color),
 		borderColor_(borderColor) {};
 
-	void draw(Tmpl8::Surface& surface);
+	void draw(Tmpl8::Surface* surface);
 };

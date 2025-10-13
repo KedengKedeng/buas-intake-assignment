@@ -2,6 +2,7 @@
 #include "surface.h"
 #include "button.hpp"
 #include "playScreen.hpp"
+#include "startScreen.hpp"
 
 namespace Tmpl8
 {
@@ -12,7 +13,8 @@ namespace Tmpl8
 	{
 		keyboardInput = KeyboardInput();
 		screens[0] = new PlayScreen(surface_);
-		currentScreen = screens[0];
+		screens[1] = new StartScreen(surface_);
+		currentScreen = screens[1];
 	}
 	
 	// -----------------------------------------------------------
@@ -37,8 +39,5 @@ namespace Tmpl8
 		//rotatingGun.SetFrame(frame);
 		//rotatingGun.Draw(surface_, 100, 100);
 		//if (++frame == 36) frame = 0;
-
-		/*Button button = Button(std::string{ "test text" }, 10, 10, 200, 200, 4);
-		button.draw(*screen);*/
 	}
 };

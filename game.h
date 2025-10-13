@@ -1,7 +1,7 @@
 #pragma once
 #include "keyboardInput.hpp"
 #include "screen.hpp"
-
+#include "template.h"
 
 namespace Tmpl8 {
 
@@ -16,11 +16,12 @@ public:
 	void Tick( float deltaTime );
 	void MouseUp( int button ) { /* implement if you want to detect mouse button presses */ }
 	void MouseDown( int button ) { /* implement if you want to detect mouse button presses */ }
-	void MouseMove( int x, int y ) { /* implement if you want to detect mouse movement */ }
+	void MouseMove(int x, int y) { mousePos = Tmpl8::vec2(x, y); }
 	void KeyUp(int key) { keyboardInput.keyUp(key)->fire(); }
 	void KeyDown(int key) { keyboardInput.keyDown(key)->fire(); }
 private:
-	Screen* screens[1];
+	Tmpl8::vec2 mousePos = { 0, 0 };
+	Screen* screens[2];
 	Screen* currentScreen;
 	Surface* surface_;
 	KeyboardInput keyboardInput;

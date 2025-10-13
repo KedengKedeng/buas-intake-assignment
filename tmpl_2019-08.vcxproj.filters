@@ -29,6 +29,9 @@
     <ClCompile Include="testWall.cpp">
       <Filter>objects</Filter>
     </ClCompile>
+    <ClCompile Include="startScreen.cpp">
+      <Filter>components\screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="testWall.hpp">
       <Filter>objects</Filter>
+    </ClInclude>
+    <ClInclude Include="startScreen.hpp">
+      <Filter>components\screens</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
