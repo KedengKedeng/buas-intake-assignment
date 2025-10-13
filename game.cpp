@@ -12,9 +12,11 @@ namespace Tmpl8
 	void Game::Init()
 	{
 		keyboardInput = KeyboardInput();
+		mouseInput = MouseInput();
+
 		screens[0] = new PlayScreen(surface_);
 		screens[1] = new StartScreen(surface_);
-		currentScreen = screens[1];
+		currentScreen = screens[0];
 	}
 	
 	// -----------------------------------------------------------

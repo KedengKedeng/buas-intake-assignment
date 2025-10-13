@@ -32,6 +32,9 @@
     <ClCompile Include="startScreen.cpp">
       <Filter>components\screens</Filter>
     </ClCompile>
+    <ClCompile Include="mouseInput.cpp">
+      <Filter>input\mouse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -80,6 +83,9 @@
     <ClInclude Include="startScreen.hpp">
       <Filter>components\screens</Filter>
     </ClInclude>
+    <ClInclude Include="mouseInput.hpp">
+      <Filter>input\mouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
@@ -108,6 +114,9 @@
     </Filter>
     <Filter Include="objects\collision">
       <UniqueIdentifier>{2de750f0-e8e2-4f3d-bdd7-23ef42d349f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input\mouse">
+      <UniqueIdentifier>{4588dd8c-1bca-4a6e-abd2-fb0851143d84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

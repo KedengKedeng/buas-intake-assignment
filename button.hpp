@@ -11,6 +11,9 @@ class Button {
 	Tmpl8::Pixel color_;
 	Tmpl8::Pixel borderColor_;
 	std::string text_;
+
+	bool active = false;
+	bool hover = false;
 public:
 	Button(
 		std::string& text,
