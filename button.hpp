@@ -25,10 +25,10 @@ public:
 		borderColor_(borderColor) 
 	{
 		mousePressed.subscribe([this](int x, int y) {
-			BoundingBox bounds = BoundingBox(Tmpl8::vec2(0, 0), Tmpl8::vec2(1, 1));
-			bounds.setPos(Tmpl8::vec2(x, y));
+			BoundingBox absolutePosBounds = boundingBox_.at(Tmpl8::vec2(x_, y_));
+			BoundingBox mouseBounds = BoundingBox(Tmpl8::vec2(x, y), Tmpl8::vec2(1, 1));
 
-			if (boundingBox_.isInBounds(bounds))
+			if (absolutePosBounds.isInBounds(mouseBounds))
 				active = true;
 		});
 

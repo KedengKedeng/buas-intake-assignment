@@ -19,11 +19,8 @@ public:
 			//TODO: Move this stuff to the player class itself?
 			BoundingBox bounds = player.getBounds();
 
-			bounds.setPos(Tmpl8::vec2(newPos.x, oldPos.y));
-			bool collidesX = objectsCollideWithBounds(bounds);
-
-			bounds.setPos(Tmpl8::vec2(oldPos.x, newPos.y));
-			bool collidesY = objectsCollideWithBounds(bounds);
+			bool collidesX = objectsCollideWithBounds(bounds.at(Tmpl8::vec2(newPos.x, oldPos.y)));
+			bool collidesY = objectsCollideWithBounds(bounds.at(Tmpl8::vec2(oldPos.x, newPos.y)));
 
 			if (collidesX) newPos.x = oldPos.x;
 			if (collidesY) newPos.y = oldPos.y;

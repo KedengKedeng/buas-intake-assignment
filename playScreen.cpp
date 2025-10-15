@@ -18,7 +18,7 @@ void PlayScreen::process() {
 
 bool PlayScreen::objectsCollideWithBounds(BoundingBox& bounds) {
 	for (auto& it = objects.begin(); it != objects.end(); it++) {
-		bool collides = it->get()->getBounds().isInBounds(bounds);
+		bool collides = it->get()->getAbsoluteBounds().isInBounds(bounds);
 		if (collides) return true;
 	}
 

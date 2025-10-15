@@ -17,8 +17,6 @@ void Player::calculateMove() {
 void Player::move(Tmpl8::vec2 newPos) {
 	x_ = newPos.x;
 	y_ = newPos.y;
-
-	boundingBox_.setPos(Tmpl8::vec2(x_, y_));
 }
 
 void Player::draw(Tmpl8::Surface* surface) {
