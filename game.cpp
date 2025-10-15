@@ -3,6 +3,7 @@
 #include "button.hpp"
 #include "playScreen.hpp"
 #include "startScreen.hpp"
+#include "screenSignals.hpp"
 
 namespace Tmpl8
 {
@@ -16,7 +17,9 @@ namespace Tmpl8
 
 		screens[0] = new PlayScreen(surface_);
 		screens[1] = new StartScreen(surface_);
-		currentScreen = screens[0];
+		currentScreen = screens[1];
+
+		changeScreen.subscribe([this](int screenIndex) { currentScreen = screens[screenIndex]; });
 	}
 	
 	// -----------------------------------------------------------

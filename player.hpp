@@ -8,7 +8,7 @@ class Player : public Object {
 public:
 	Player(Tmpl8::Sprite& sprite, int x, int y) :
 		Object(x, y, BoundingBox(Tmpl8::vec2(0, 0), Tmpl8::vec2(sprite.GetWidth(), sprite.GetHeight()))), sprite_(sprite) {
-		walkSignal.subscribe([this](Tmpl8::vec2 delta) {
+		walkSignal.subscribe([this](Tmpl8::vec2& delta) {
 			addDeltaX(delta.x);
 			addDeltaY(delta.y);
 		});

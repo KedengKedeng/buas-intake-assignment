@@ -6,13 +6,13 @@
 template<typename... Args>
 class Signal {
 public:
-	void emit(Args&... args) {
+	void emit(Args... args) {
 		for (auto& subscriber : subscribers)
 			subscriber(args...);
 	}
-	void subscribe(std::function<void(Args&...)> func) {
+	void subscribe(std::function<void(Args...)> func) {
 		subscribers.push_back(func);
 	}
 private:
-	std::vector<std::function<void(Args&...)>> subscribers;
+	std::vector<std::function<void(Args...)>> subscribers;
 };

@@ -20,9 +20,6 @@
     <ClCompile Include="keyboardInput.cpp">
       <Filter>input\keyboard</Filter>
     </ClCompile>
-    <ClCompile Include="playerSignals.cpp">
-      <Filter>signals</Filter>
-    </ClCompile>
     <ClCompile Include="boundingBox.cpp">
       <Filter>objects\collision</Filter>
     </ClCompile>
@@ -34,6 +31,15 @@
     </ClCompile>
     <ClCompile Include="mouseInput.cpp">
       <Filter>input\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="mouseSignals.cpp">
+      <Filter>signals</Filter>
+    </ClCompile>
+    <ClCompile Include="playerSignals.cpp">
+      <Filter>signals</Filter>
+    </ClCompile>
+    <ClCompile Include="screenSignals.cpp">
+      <Filter>signals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,14 +83,26 @@
     <ClInclude Include="boundingBox.hpp">
       <Filter>objects\collision</Filter>
     </ClInclude>
-    <ClInclude Include="testWall.hpp">
-      <Filter>objects</Filter>
-    </ClInclude>
     <ClInclude Include="startScreen.hpp">
       <Filter>components\screens</Filter>
     </ClInclude>
     <ClInclude Include="mouseInput.hpp">
       <Filter>input\mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="mouseSignals.hpp">
+      <Filter>signals</Filter>
+    </ClInclude>
+    <ClInclude Include="mousePressedCommand.hpp">
+      <Filter>input\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="mouseReleasedCommand.hpp">
+      <Filter>input\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="testWall.hpp">
+      <Filter>objects</Filter>
+    </ClInclude>
+    <ClInclude Include="screenSignals.hpp">
+      <Filter>signals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

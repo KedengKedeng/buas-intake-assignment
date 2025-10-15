@@ -15,7 +15,8 @@ public:
 		objects.push_back(std::make_unique<TestWall>(0, surface->GetHeight() - 5, surface->GetWidth(), 5));
 		objects.push_back(std::make_unique<TestWall>(surface->GetWidth() - 5, 0, 5, surface->GetHeight()));
 
-		requestMove.subscribe([this](Tmpl8::vec2 oldPos, Tmpl8::vec2 newPos, Player& player) {
+		requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& newPos, Player& player) {
+			//TODO: Move this stuff to the player class itself?
 			BoundingBox bounds = player.getBounds();
 
 			bounds.setPos(Tmpl8::vec2(newPos.x, oldPos.y));
@@ -24,8 +25,8 @@ public:
 			bounds.setPos(Tmpl8::vec2(oldPos.x, newPos.y));
 			bool collidesY = objectsCollideWithBounds(bounds);
 
-			if (static_cast<int>(collidesX)) newPos.x = oldPos.x;
-			if (static_cast<int>(collidesY)) newPos.y = oldPos.y;
+			if (collidesX) newPos.x = oldPos.x;
+			if (collidesY) newPos.y = oldPos.y;
 
 			player.move(newPos);
 		});

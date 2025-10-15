@@ -2,7 +2,7 @@
 
 void StartScreen::draw() {
 	for (auto& button : buttons_)
-		button.draw(surface_);
+		button->draw(surface_);
 }
 
 void StartScreen::process() {

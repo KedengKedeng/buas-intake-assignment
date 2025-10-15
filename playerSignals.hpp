@@ -5,8 +5,8 @@
 #include "signal.hpp"
 
 class Player;
-extern Signal<Tmpl8::vec2> walkSignal;
+extern Signal<Tmpl8::vec2&> walkSignal;
 
 #include "player.hpp"
 
-extern Signal<Tmpl8::vec2, Tmpl8::vec2, Player> requestMove;
+extern Signal<Tmpl8::vec2&, Tmpl8::vec2&, Player&> requestMove;

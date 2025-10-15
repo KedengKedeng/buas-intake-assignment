@@ -3,6 +3,7 @@ short term:
 - base input class
 - any way to increase font size?
 - any way to make text center?
+- enum for screens
 
 todo for mvp:
 - keyboard input handling (done)
