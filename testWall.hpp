@@ -3,7 +3,7 @@
 
 class TestWall : public Object {
 public:
-	TestWall(int x, int y, int width, int height) : Object(x, y, BoundingBox(Tmpl8::vec2(0, 0), Tmpl8::vec2(width, height))) {};
+	TestWall(Tmpl8::vec2 pos, Tmpl8::vec2 size) : Object(pos, BoundingBox(Tmpl8::vec2(0, 0), size)) {};
 	void draw(Tmpl8::Surface* surface) override;
 	void process() override {};
 };

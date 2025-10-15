@@ -17,7 +17,7 @@ public:
 	void Tick( float deltaTime );
 	void MouseUp(int button) { mouseInput.mouseUp(button)->execute(); }
 	void MouseDown(int button) { mouseInput.mouseDown(button)->execute(); }
-	void MouseMove(int x, int y) { mouseInput.setMousePos(x, y)->execute(); }
+	void MouseMove(int x, int y) { mouseInput.setMousePos(Tmpl8::vec2(x, y))->execute(); }
 	void KeyUp(int key) { keyboardInput.keyUp(key)->execute(); }
 	void KeyDown(int key) { keyboardInput.keyDown(key)->execute(); }
 private:

@@ -83,10 +83,13 @@ public:
 	vec2() {}
 	vec2( float v ) : x( v ), y( v ) {}
 	vec2( float x, float y ) : x( x ), y( y ) {}
+	vec2(int x, int y) : x(static_cast<float>(x)), y(static_cast<float>(y)) {}
 	vec2 operator - () const { return vec2( -x, -y ); }
 	vec2 operator + ( const vec2& addOperand ) const { return vec2( x + addOperand.x, y + addOperand.y ); }
 	vec2 operator - ( const vec2& operand ) const { return vec2( x - operand.x, y - operand.y ); }
 	vec2 operator * ( const vec2& operand ) const { return vec2( x * operand.x, y * operand.y ); }
+	vec2 operator / (const vec2& operand) const { return vec2(x / operand.x, y / operand.y); }
+	vec2 operator / (float operand) const { return vec2(x / operand, y / operand); }
 	vec2 operator * ( float operand ) const { return vec2( x * operand, y * operand ); }
 	void operator -= ( const vec2& a ) { x -= a.x; y -= a.y; }
 	void operator += ( const vec2& a ) { x += a.x; y += a.y; }

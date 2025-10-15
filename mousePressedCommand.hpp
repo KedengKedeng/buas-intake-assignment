@@ -1,12 +1,12 @@
 #pragma once
 #include "command.hpp"
 #include "mouseSignals.hpp"
+#include "template.h"
 
 class MousePressedCommand : public Command {
 public:
-	MousePressedCommand(int x, int y) : x_(x), y_(y) {}
-	void execute() override { mousePressed.emit(x_, y_); }
+	MousePressedCommand(Tmpl8::vec2 pos) : pos_(pos) {}
+	void execute() override { mousePressed.emit(pos_); }
 private:
-	int x_;
-	int y_;
+	Tmpl8::vec2 pos_;
 };

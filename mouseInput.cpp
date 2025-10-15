@@ -12,7 +12,7 @@ std::unique_ptr<Command> MouseInput::mouseDown(int button) {
 	switch (button)
 	{
 	case 1:
-		return std::make_unique<MousePressedCommand>(x_, y_);
+		return std::make_unique<MousePressedCommand>(pos_);
 		break;
 	default:
 		return std::make_unique<Command>();
@@ -34,8 +34,7 @@ std::unique_ptr<Command> MouseInput::mouseUp(int button) {
 	}
 }
 
-std::unique_ptr<Command> MouseInput::setMousePos(int x, int y) {
-	x_ = x;
-	y_ = y;
+std::unique_ptr<Command> MouseInput::setMousePos(Tmpl8::vec2 pos) {
+	pos_ = pos;
 	return std::make_unique<Command>();
 }

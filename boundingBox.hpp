@@ -6,9 +6,6 @@ class BoundingBox {
 public:
 	BoundingBox(Tmpl8::vec2 pos, Tmpl8::vec2 size): pos_(pos), size_(size) {};
 
-	Signal<> onCollisionStart = Signal<>();
-	Signal<> onCollisionEnd = Signal<>();
-
 	Tmpl8::vec2 getPos() { return pos_; }
 	Tmpl8::vec2 getSize() { return size_; }
 

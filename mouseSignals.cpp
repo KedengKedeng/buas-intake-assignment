@@ -1,4 +1,4 @@
 #include "mouseSignals.hpp"
 
-Signal<int, int> mousePressed{};
+Signal<Tmpl8::vec2&> mousePressed{};
 Signal<> mouseReleased{};

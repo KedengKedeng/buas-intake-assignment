@@ -9,11 +9,11 @@ static Tmpl8::Sprite rotatingGun(new Tmpl8::Surface("assets/aagun.tga"), 36);
 
 class PlayScreen : public Screen {
 public:
-	PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(rotatingGun, 10, 10) {
-		objects.push_back(std::make_unique<TestWall>(0, 0, 5, surface->GetHeight()));
-		objects.push_back(std::make_unique<TestWall>(0, 0, surface->GetWidth(), 5));
-		objects.push_back(std::make_unique<TestWall>(0, surface->GetHeight() - 5, surface->GetWidth(), 5));
-		objects.push_back(std::make_unique<TestWall>(surface->GetWidth() - 5, 0, 5, surface->GetHeight()));
+	PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(rotatingGun, (10, 10)) {
+		objects.push_back(std::make_unique<TestWall>(Tmpl8::vec2(0, 0), Tmpl8::vec2(5, surface->GetHeight())));
+		objects.push_back(std::make_unique<TestWall>(Tmpl8::vec2(0, 0), Tmpl8::vec2(surface->GetWidth(), 5)));
+		objects.push_back(std::make_unique<TestWall>(Tmpl8::vec2(0, surface->GetHeight() - 5), Tmpl8::vec2(surface->GetWidth(), 5)));
+		objects.push_back(std::make_unique<TestWall>(Tmpl8::vec2(surface->GetWidth() - 5, 0), Tmpl8::vec2(5, surface->GetHeight())));
 
 		requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& newPos, Player& player) {
 			//TODO: Move this stuff to the player class itself?

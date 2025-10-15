@@ -7,20 +7,18 @@ void Player::calculateMove() {
 	// when diagonal movement is detected.
 	float sidewardsPenalty = std::sqrt(std::max(std::abs(delta_.x) + std::abs(delta_.y), 1.0f));
 
-	int newX = x_ + static_cast<int>(velocity.x / sidewardsPenalty * delta_.x);
-	int newY = y_ + static_cast<int>(velocity.y / sidewardsPenalty * delta_.y);
+	Tmpl8::vec2 newPos = pos_ + velocity / sidewardsPenalty * delta_;
 
-	if (newX != x_ || newY != y_)
-		requestMove.emit(Tmpl8::vec2(x_, y_), Tmpl8::vec2(newX, newY), *this);
+	if (newPos.x != pos_.x || newPos.y != pos_.y)
+		requestMove.emit(pos_, newPos, *this);
 }
 
 void Player::move(Tmpl8::vec2 newPos) {
-	x_ = newPos.x;
-	y_ = newPos.y;
+	pos_ = newPos;
 }
 
 void Player::draw(Tmpl8::Surface* surface) {
-	sprite_.Draw(surface, x_, y_);
+	sprite_.Draw(surface, pos_.x, pos_.y);
 };
 
 void Player::process() {
