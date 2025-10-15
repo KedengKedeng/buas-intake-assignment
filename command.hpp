@@ -2,5 +2,5 @@
 
 class Command {
 public:
-	virtual void fire() {};
+	virtual void execute() {};
 };

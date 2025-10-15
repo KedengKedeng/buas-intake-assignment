@@ -15,11 +15,11 @@ public:
 	void Init();
 	void Shutdown();
 	void Tick( float deltaTime );
-	void MouseUp(int button) { mouseInput.mouseUp(button)->fire(); }
-	void MouseDown(int button) { mouseInput.mouseDown(button)->fire(); }
-	void MouseMove(int x, int y) { mouseInput.setMousePos(x, y)->fire(); }
-	void KeyUp(int key) { keyboardInput.keyUp(key)->fire(); }
-	void KeyDown(int key) { keyboardInput.keyDown(key)->fire(); }
+	void MouseUp(int button) { mouseInput.mouseUp(button)->execute(); }
+	void MouseDown(int button) { mouseInput.mouseDown(button)->execute(); }
+	void MouseMove(int x, int y) { mouseInput.setMousePos(x, y)->execute(); }
+	void KeyUp(int key) { keyboardInput.keyUp(key)->execute(); }
+	void KeyDown(int key) { keyboardInput.keyDown(key)->execute(); }
 private:
 	Screen* screens[2];
 	Screen* currentScreen;

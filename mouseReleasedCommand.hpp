@@ -4,5 +4,5 @@
 
 class MouseReleasedCommand : public Command {
 public:
-	void fire() override { mouseReleased.emit(); }
+	void execute() override { mouseReleased.emit(); }
 };
