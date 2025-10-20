@@ -235,7 +235,7 @@
     <ClCompile Include="startScreen.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
-    <ClCompile Include="testWall.cpp" />
+    <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boundingBox.hpp" />
@@ -258,7 +258,7 @@
     <ClInclude Include="startScreen.hpp" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
-    <ClInclude Include="testWall.hpp" />
+    <ClInclude Include="wall.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="sources.txt" />

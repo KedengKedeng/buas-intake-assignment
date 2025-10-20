@@ -23,7 +23,7 @@
     <ClCompile Include="boundingBox.cpp">
       <Filter>objects\collision</Filter>
     </ClCompile>
-    <ClCompile Include="testWall.cpp">
+    <ClCompile Include="wall.cpp">
       <Filter>objects</Filter>
     </ClCompile>
     <ClCompile Include="startScreen.cpp">
@@ -98,7 +98,7 @@
     <ClInclude Include="mouseReleasedCommand.hpp">
       <Filter>input\commands</Filter>
     </ClInclude>
-    <ClInclude Include="testWall.hpp">
+    <ClInclude Include="wall.hpp">
       <Filter>objects</Filter>
     </ClInclude>
     <ClInclude Include="screenSignals.hpp">
