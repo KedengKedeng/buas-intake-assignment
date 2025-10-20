@@ -104,6 +104,9 @@
     <ClInclude Include="screenSignals.hpp">
       <Filter>signals</Filter>
     </ClInclude>
+    <ClInclude Include="spriteObject.hpp">
+      <Filter>objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

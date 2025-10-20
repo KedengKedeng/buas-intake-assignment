@@ -1,13 +1,13 @@
 #pragma once
-#include "object.hpp"
+#include "spriteObject.hpp"
 #include "playerSignals.hpp"
 #include "template.h"
 #include <cstdio>
 
-class Player : public Object {
+class Player : public SpriteObject {
 public:
 	Player(Tmpl8::Sprite& sprite, Tmpl8::vec2 pos) :
-		Object(pos, BoundingBox(Tmpl8::vec2(0, 0), Tmpl8::vec2(sprite.GetWidth(), sprite.GetHeight()))), sprite_(sprite) {
+		SpriteObject(pos, BoundingBox(Tmpl8::vec2(0, 0), Tmpl8::vec2(sprite.GetWidth(), sprite.GetHeight())), sprite) {
 		walkSignal.subscribe([this](Tmpl8::vec2& delta) {
 			addDelta(delta);
 		});
@@ -19,10 +19,8 @@ public:
 
 	void addDelta(Tmpl8::vec2 delta) { delta_ += delta; }
 
-	void draw(Tmpl8::Surface* surface) override;
 	void process() override;
 private:
-	Tmpl8::Sprite sprite_;
 	Tmpl8::vec2 velocity = { 10, 10 };
 	Tmpl8::vec2 delta_ = { 0, 0 };
 };

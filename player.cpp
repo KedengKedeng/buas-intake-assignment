@@ -17,10 +17,6 @@ void Player::move(Tmpl8::vec2 newPos) {
 	pos_ = newPos;
 }
 
-void Player::draw(Tmpl8::Surface* surface) {
-	sprite_.Draw(surface, pos_.x, pos_.y);
-};
-
 void Player::process() {
 	calculateMove();
 }
