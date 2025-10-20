@@ -16,11 +16,14 @@ void PlayScreen::process() {
 	draw();
 }
 
-bool PlayScreen::objectsCollideWithBounds(BoundingBox& bounds) {
+Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2 velocity) {
+	Tmpl8::vec2 collisionVec(1, 1);
+
 	for (auto& it = objects.begin(); it != objects.end(); it++) {
-		bool collides = it->get()->getAbsoluteBounds().isInBounds(bounds);
-		if (collides) return true;
+		Tmpl8::vec2 collides = bounds.swept(it->get()->getAbsoluteBounds(), velocity);
+		if (collides.x != 1.0f) collisionVec.x = collides.x;
+		if (collides.y != 1.0f) collisionVec.y = collides.y;
 	}
 
-	return false;
+	return collisionVec;
 }

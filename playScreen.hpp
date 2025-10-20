@@ -15,24 +15,18 @@ public:
 		objects.push_back(std::make_unique<TestWall>(Tmpl8::vec2(0, surface->GetHeight() - 5), Tmpl8::vec2(surface->GetWidth(), 5)));
 		objects.push_back(std::make_unique<TestWall>(Tmpl8::vec2(surface->GetWidth() - 5, 0), Tmpl8::vec2(5, surface->GetHeight())));
 
-		requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& newPos, Player& player) {
-			//TODO: Move this stuff to the player class itself?
+		requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Player& player) {
 			BoundingBox bounds = player.getBounds();
+			Tmpl8::vec2 collides = objectsCollideWithBounds(bounds.at(oldPos), velocity);
 
-			bool collidesX = objectsCollideWithBounds(bounds.at(Tmpl8::vec2(newPos.x, oldPos.y)));
-			bool collidesY = objectsCollideWithBounds(bounds.at(Tmpl8::vec2(oldPos.x, newPos.y)));
-
-			if (collidesX) newPos.x = oldPos.x;
-			if (collidesY) newPos.y = oldPos.y;
-
-			player.move(newPos);
+			player.move(oldPos + velocity * collides);
 		});
 	};
 
 	void process() override;
 	void draw() override;
 
-	bool objectsCollideWithBounds(BoundingBox& bounds);
+	Tmpl8::vec2 objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2 velocity);
 private:
 	Player player_;
 	std::vector<std::unique_ptr<Object>> objects = {};
