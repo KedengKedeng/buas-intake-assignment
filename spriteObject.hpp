@@ -1,3 +1,4 @@
+#pragma once
 #include "object.hpp"
 
 class SpriteObject : public Object {

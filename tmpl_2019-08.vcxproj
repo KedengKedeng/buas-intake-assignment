@@ -240,6 +240,7 @@
   <ItemGroup>
     <ClInclude Include="boundingBox.hpp" />
     <ClInclude Include="button.hpp" />
+    <ClInclude Include="cauldron.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
     <ClInclude Include="keyboardInput.hpp" />

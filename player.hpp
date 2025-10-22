@@ -13,7 +13,6 @@ public:
 		});
 	};
 
-
 	void move(Tmpl8::vec2 newPos);
 	void calculateMove();
 

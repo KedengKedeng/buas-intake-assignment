@@ -107,6 +107,9 @@
     <ClInclude Include="spriteObject.hpp">
       <Filter>objects</Filter>
     </ClInclude>
+    <ClInclude Include="cauldron.hpp">
+      <Filter>objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
