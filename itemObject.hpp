@@ -5,7 +5,9 @@
 class ItemObject : public Object {
 public:
 	ItemObject(Tmpl8::vec2 pos, std::string itemName) : 
-		Object(pos, BoundingBox(Tmpl8::vec2(0,0), Tmpl8::vec2(0, 0))), item_(itemRepository.get(itemName)) {}
+		Object(pos, BoundingBox(Tmpl8::vec2(0,0), Tmpl8::vec2(0, 0))), item_(itemRepository.get(itemName)) {
+		allowCollision = false;
+	}
 
 	void draw(Tmpl8::Surface* surface);
 	void process() override {};

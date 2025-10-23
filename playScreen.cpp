@@ -20,6 +20,7 @@ Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec
 	Tmpl8::vec2 collisionVec = velocity;
 
 	for (auto& it = objects.begin(); it != objects.end(); it++) {
+		if (!it->get()->isCollisionAllowed()) continue;
 		CollisionResult result = bounds.swept(it->get()->getAbsoluteBounds(), velocity);
         if (result.collision) {
             Tmpl8::vec2 allowedMovement(0, 0);

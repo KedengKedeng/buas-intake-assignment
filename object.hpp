@@ -11,6 +11,7 @@ public:
 
 	BoundingBox getBounds() { return boundingBox_; }
 	BoundingBox getAbsoluteBounds() { return boundingBox_.at(pos_); }
+	bool isCollisionAllowed() { return allowCollision; }
 
 	virtual void draw(Tmpl8::Surface* surface) = 0;
 	virtual void process() = 0;
@@ -18,4 +19,5 @@ protected:
 	Tmpl8::vec2 pos_;
 
 	BoundingBox boundingBox_;
+	bool allowCollision = true;
 };
