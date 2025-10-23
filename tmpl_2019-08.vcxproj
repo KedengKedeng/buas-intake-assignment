@@ -226,7 +226,7 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="itemObject.cpp" />
-    <ClCompile Include="itemRegistry.cpp" />
+    <ClCompile Include="itemRepository.cpp" />
     <ClCompile Include="keyboardInput.cpp" />
     <ClCompile Include="mouseInput.cpp" />
     <ClCompile Include="mouseSignals.cpp" />
@@ -234,6 +234,8 @@
     <ClCompile Include="playerSignals.cpp" />
     <ClCompile Include="playScreen.cpp" />
     <ClCompile Include="screenSignals.cpp" />
+    <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="spriteRepository.cpp" />
     <ClCompile Include="startScreen.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
@@ -246,8 +248,9 @@
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
     <ClInclude Include="item.hpp" />
+    <ClInclude Include="itemList.hpp" />
     <ClInclude Include="itemObject.hpp" />
-    <ClInclude Include="itemsRegistry.hpp" />
+    <ClInclude Include="itemsRepository.hpp" />
     <ClInclude Include="keyboardInput.hpp" />
     <ClInclude Include="mouseInput.hpp" />
     <ClInclude Include="mousePressedCommand.hpp" />
@@ -261,7 +264,10 @@
     <ClInclude Include="screen.hpp" />
     <ClInclude Include="screenSignals.hpp" />
     <ClInclude Include="signal.hpp" />
+    <ClInclude Include="sprite.hpp" />
+    <ClInclude Include="spriteList.hpp" />
     <ClInclude Include="spriteObject.hpp" />
+    <ClInclude Include="spriteRepository.hpp" />
     <ClInclude Include="startScreen.hpp" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />

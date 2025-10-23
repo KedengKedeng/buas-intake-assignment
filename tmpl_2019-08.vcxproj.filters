@@ -41,11 +41,17 @@
     <ClCompile Include="wall.cpp">
       <Filter>objects\world objects</Filter>
     </ClCompile>
-    <ClCompile Include="itemRegistry.cpp">
+    <ClCompile Include="itemRepository.cpp">
       <Filter>items</Filter>
     </ClCompile>
     <ClCompile Include="itemObject.cpp">
       <Filter>objects\world objects</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteRepository.cpp">
+      <Filter>components\sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="sprite.cpp">
+      <Filter>components\sprites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,11 +125,23 @@
     <ClInclude Include="item.hpp">
       <Filter>items</Filter>
     </ClInclude>
-    <ClInclude Include="itemsRegistry.hpp">
+    <ClInclude Include="itemsRepository.hpp">
       <Filter>items</Filter>
     </ClInclude>
     <ClInclude Include="itemObject.hpp">
       <Filter>objects\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="sprite.hpp">
+      <Filter>components\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteRepository.hpp">
+      <Filter>components\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="itemList.hpp">
+      <Filter>items</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteList.hpp">
+      <Filter>components\sprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +180,9 @@
     </Filter>
     <Filter Include="items">
       <UniqueIdentifier>{0569b2f3-5705-4e9e-8eaf-5635ae495ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\sprites">
+      <UniqueIdentifier>{9e228cc3-d583-4185-8876-f5186ad6a148}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

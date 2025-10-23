@@ -1,7 +1,7 @@
 #include "itemObject.hpp"
 
 void ItemObject::draw(Tmpl8::Surface* surface) {
-	item_->sprite.Draw(surface, pos_.x, pos_.y + drawOffset);
+	item_->sprite.draw(surface, pos_.x, pos_.y + drawOffset);
 
 	// Get item to bob up and down.
 	if (drawOffset >= maxDrawOffset) drawOffsetStep = -0.5f;

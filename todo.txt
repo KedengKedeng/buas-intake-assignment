@@ -4,10 +4,12 @@ short term:
 - any way to increase font size?
 - any way to make text center?
 - enum for screens
+- find a better folder structure
+- combine item and sprite repositories into a class
 
 todo for mvp:
 - keyboard input handling (done)
-- ability to render multiple screens (should be done?)
+- ability to render multiple screens (done)
 - ability to stack screens on top of each other
 - player character that can move and interact with objects
 - event based architecture?
