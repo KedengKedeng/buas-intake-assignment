@@ -40,7 +40,6 @@ CollisionResult BoundingBox::swept(BoundingBox& box, Tmpl8::vec2 velocity) {
 
 SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity) {
     Tmpl8::vec2 difference(0, 0);
-
     Tmpl8::vec2 timings(
         -std::numeric_limits<float>::infinity(),
         std::numeric_limits<float>::infinity()

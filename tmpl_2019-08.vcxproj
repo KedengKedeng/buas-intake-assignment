@@ -225,6 +225,8 @@
     <ClCompile Include="boundingBox.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="itemObject.cpp" />
+    <ClCompile Include="itemRegistry.cpp" />
     <ClCompile Include="keyboardInput.cpp" />
     <ClCompile Include="mouseInput.cpp" />
     <ClCompile Include="mouseSignals.cpp" />
@@ -243,6 +245,9 @@
     <ClInclude Include="cauldron.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="item.hpp" />
+    <ClInclude Include="itemObject.hpp" />
+    <ClInclude Include="itemsRegistry.hpp" />
     <ClInclude Include="keyboardInput.hpp" />
     <ClInclude Include="mouseInput.hpp" />
     <ClInclude Include="mousePressedCommand.hpp" />

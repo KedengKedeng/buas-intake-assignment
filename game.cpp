@@ -4,6 +4,9 @@
 #include "playScreen.hpp"
 #include "startScreen.hpp"
 #include "screenSignals.hpp"
+#include "itemsRegistry.hpp"
+
+Tmpl8::Sprite waterBottle(new Tmpl8::Surface("assets/mcwaterbottle.png"), 1);
 
 namespace Tmpl8
 {
@@ -12,6 +15,15 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
+		itemRegistry.insert(std::make_shared<Item>(Item{
+			ItemTypes::Animal,
+			0xffffff,
+			2.5,
+			1.35,
+			std::string("testItem"),
+			waterBottle
+		}));
+
 		keyboardInput = KeyboardInput();
 		mouseInput = MouseInput();
 

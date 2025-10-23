@@ -11,9 +11,6 @@
     <ClCompile Include="button.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>objects</Filter>
-    </ClCompile>
     <ClCompile Include="playScreen.cpp">
       <Filter>components\screens</Filter>
     </ClCompile>
@@ -22,9 +19,6 @@
     </ClCompile>
     <ClCompile Include="boundingBox.cpp">
       <Filter>objects\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="wall.cpp">
-      <Filter>objects</Filter>
     </ClCompile>
     <ClCompile Include="startScreen.cpp">
       <Filter>components\screens</Filter>
@@ -40,6 +34,18 @@
     </ClCompile>
     <ClCompile Include="screenSignals.cpp">
       <Filter>signals</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>objects\world objects</Filter>
+    </ClCompile>
+    <ClCompile Include="wall.cpp">
+      <Filter>objects\world objects</Filter>
+    </ClCompile>
+    <ClCompile Include="itemRegistry.cpp">
+      <Filter>items</Filter>
+    </ClCompile>
+    <ClCompile Include="itemObject.cpp">
+      <Filter>objects\world objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +71,6 @@
     <ClInclude Include="moveCommand.hpp">
       <Filter>input\commands</Filter>
     </ClInclude>
-    <ClInclude Include="player.hpp">
-      <Filter>objects</Filter>
-    </ClInclude>
     <ClInclude Include="object.hpp">
       <Filter>objects</Filter>
     </ClInclude>
@@ -83,9 +86,6 @@
     <ClInclude Include="boundingBox.hpp">
       <Filter>objects\collision</Filter>
     </ClInclude>
-    <ClInclude Include="startScreen.hpp">
-      <Filter>components\screens</Filter>
-    </ClInclude>
     <ClInclude Include="mouseInput.hpp">
       <Filter>input\mouse</Filter>
     </ClInclude>
@@ -98,9 +98,6 @@
     <ClInclude Include="mouseReleasedCommand.hpp">
       <Filter>input\commands</Filter>
     </ClInclude>
-    <ClInclude Include="wall.hpp">
-      <Filter>objects</Filter>
-    </ClInclude>
     <ClInclude Include="screenSignals.hpp">
       <Filter>signals</Filter>
     </ClInclude>
@@ -108,7 +105,25 @@
       <Filter>objects</Filter>
     </ClInclude>
     <ClInclude Include="cauldron.hpp">
-      <Filter>objects</Filter>
+      <Filter>objects\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="player.hpp">
+      <Filter>objects\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="wall.hpp">
+      <Filter>objects\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="startScreen.hpp">
+      <Filter>components\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="item.hpp">
+      <Filter>items</Filter>
+    </ClInclude>
+    <ClInclude Include="itemsRegistry.hpp">
+      <Filter>items</Filter>
+    </ClInclude>
+    <ClInclude Include="itemObject.hpp">
+      <Filter>objects\world objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +156,12 @@
     </Filter>
     <Filter Include="input\mouse">
       <UniqueIdentifier>{4588dd8c-1bca-4a6e-abd2-fb0851143d84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="objects\world objects">
+      <UniqueIdentifier>{87c7c49a-e04e-4594-9e91-442fa62993a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="items">
+      <UniqueIdentifier>{0569b2f3-5705-4e9e-8eaf-5635ae495ae1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

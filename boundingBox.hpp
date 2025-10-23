@@ -3,10 +3,10 @@
 #include "signal.hpp"
 
 struct CollisionResult {
-	bool collision;      // True if collision occurs
-	float normalX;       // Collision normal X (-1, 0, or 1)
-	float normalY;       // Collision normal Y (-1, 0, or 1)
-	float time;          // Time of collision (0 to 1)
+	bool collision;
+	float normalX;
+	float normalY;
+	float time;
 };
 
 struct SweptAxisResult {
