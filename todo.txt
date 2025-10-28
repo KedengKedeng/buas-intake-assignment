@@ -6,6 +6,8 @@ short term:
 - enum for screens
 - find a better folder structure
 - combine item and sprite repositories into a class
+- move constructors from hpp to cpp files
+- std::string to const char * in item and sprite repos
 
 todo for mvp:
 - keyboard input handling (done)

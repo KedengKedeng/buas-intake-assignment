@@ -258,6 +258,7 @@
     <ClInclude Include="mouseSignals.hpp" />
     <ClInclude Include="moveCommand.hpp" />
     <ClInclude Include="object.hpp" />
+    <ClInclude Include="observableBoundingBox.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="playerSignals.hpp" />
     <ClInclude Include="playScreen.hpp" />

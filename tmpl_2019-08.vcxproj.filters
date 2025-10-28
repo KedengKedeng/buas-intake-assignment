@@ -143,6 +143,9 @@
     <ClInclude Include="spriteList.hpp">
       <Filter>components\sprites</Filter>
     </ClInclude>
+    <ClInclude Include="observableBoundingBox.hpp">
+      <Filter>objects\collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

@@ -44,3 +44,7 @@ Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec
 
 	return collisionVec;
 }
+
+void PlayScreen::interactionCheck(ObservableBoundingBox& bounds){
+
+}

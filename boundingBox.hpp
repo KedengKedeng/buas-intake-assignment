@@ -16,6 +16,7 @@ struct SweptAxisResult {
 
 class BoundingBox {
 public:
+	BoundingBox() : pos_(Tmpl8::vec2(0)), size_(Tmpl8::vec2(0)) {}
 	BoundingBox(Tmpl8::vec2 pos, Tmpl8::vec2 size): pos_(pos), size_(size) {};
 
 	Tmpl8::vec2 getPos() { return pos_; }
@@ -23,9 +24,9 @@ public:
 
 	BoundingBox at(Tmpl8::vec2 pos) { return BoundingBox(pos + pos_, size_); }
 
-	bool isInBounds(BoundingBox& box);
-	CollisionResult swept(BoundingBox& box, Tmpl8::vec2 velocity);
-private:
+	virtual bool isInBounds(BoundingBox& box);
+	virtual CollisionResult swept(BoundingBox& box, Tmpl8::vec2 velocity);
+protected:
 	SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity);
 
 	Tmpl8::vec2 pos_;

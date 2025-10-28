@@ -4,10 +4,17 @@
 #include "template.h"
 #include <cstdio>
 
+const int playerInteractionOffset = 10;
+
 class Player : public SpriteObject {
 public:
 	Player(Sprite& sprite, Tmpl8::vec2 pos) :
-		SpriteObject(pos, BoundingBox(Tmpl8::vec2(0, 0), Tmpl8::vec2(sprite.getWidth(), sprite.getHeight())), sprite) {
+		SpriteObject(
+			pos, 
+			BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(sprite.getWidth(), sprite.getHeight())), 
+			ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(sprite.getWidth() + playerInteractionOffset, sprite.getHeight() + playerInteractionOffset)), 
+			sprite
+		) {
 		walkSignal.subscribe([this](Tmpl8::vec2& delta) {
 			addDelta(delta);
 		});
