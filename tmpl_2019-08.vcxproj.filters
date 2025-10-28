@@ -53,6 +53,9 @@
     <ClCompile Include="sprite.cpp">
       <Filter>components\sprites</Filter>
     </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />

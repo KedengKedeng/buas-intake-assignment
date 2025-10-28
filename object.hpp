@@ -5,11 +5,7 @@
 
 class Object {
 public:
-	Object(Tmpl8::vec2 pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox) :
-		pos_(pos), boundingBox_(boundingBox), interactionBoundingBox_(interactionBoundingBox) { 
-		interactionBoundingBox_.onIntersectStart.subscribe([this]() {onInteractStart(); });
-		interactionBoundingBox_.onIntersectEnd.subscribe([this]() {onInteractEnd(); });
-	};
+	Object(Tmpl8::vec2 pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
 
 	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
 

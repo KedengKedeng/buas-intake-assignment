@@ -230,6 +230,7 @@
     <ClCompile Include="keyboardInput.cpp" />
     <ClCompile Include="mouseInput.cpp" />
     <ClCompile Include="mouseSignals.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSignals.cpp" />
     <ClCompile Include="playScreen.cpp" />

@@ -1,6 +1,21 @@
 #include "player.hpp"
+#include "playerSignals.hpp"
 #include <algorithm>
 #include <cmath>
+
+const int playerInteractionOffset = 10;
+
+Player::Player(Sprite& sprite, Tmpl8::vec2 pos) :
+	SpriteObject(
+		pos,
+		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(sprite.getWidth(), sprite.getHeight())),
+		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(sprite.getWidth() + playerInteractionOffset, sprite.getHeight() + playerInteractionOffset)),
+		sprite
+	) {
+	walkSignal.subscribe([this](Tmpl8::vec2& delta) {
+		addDelta(delta);
+		});
+};
 
 void Player::calculateMove() {
 	// Make movement in each direction a lower speed
