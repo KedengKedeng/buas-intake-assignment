@@ -263,6 +263,7 @@
     <ClInclude Include="player.hpp" />
     <ClInclude Include="playerSignals.hpp" />
     <ClInclude Include="playScreen.hpp" />
+    <ClInclude Include="random.hpp" />
     <ClInclude Include="screen.hpp" />
     <ClInclude Include="screenSignals.hpp" />
     <ClInclude Include="signal.hpp" />

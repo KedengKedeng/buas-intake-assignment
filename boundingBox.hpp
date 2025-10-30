@@ -20,7 +20,9 @@ public:
 	BoundingBox(Tmpl8::vec2 pos, Tmpl8::vec2 size): pos_(pos), size_(size) {};
 
 	Tmpl8::vec2 getPos() { return pos_; }
+	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
 	Tmpl8::vec2 getSize() { return size_; }
+	void setSize(Tmpl8::vec2 size) { size_ = size; }
 
 	BoundingBox at(Tmpl8::vec2 pos) { return BoundingBox(pos + pos_, size_); }
 

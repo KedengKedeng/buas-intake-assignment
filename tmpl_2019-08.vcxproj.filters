@@ -149,6 +149,9 @@
     <ClInclude Include="observableBoundingBox.hpp">
       <Filter>objects\collision</Filter>
     </ClInclude>
+    <ClInclude Include="random.hpp">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
@@ -189,6 +192,9 @@
     </Filter>
     <Filter Include="components\sprites">
       <UniqueIdentifier>{9e228cc3-d583-4185-8876-f5186ad6a148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{2619b8e0-ccb1-4002-aafc-d9f0aa1eadde}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -9,9 +9,9 @@ public:
 
 	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
 
-	BoundingBox getBounds() { return boundingBox_; }
+	BoundingBox& getBounds() { return boundingBox_; }
 	BoundingBox getAbsoluteBounds() { return boundingBox_.at(pos_); }
-	ObservableBoundingBox getInteractionBounds() { return interactionBoundingBox_; }
+	ObservableBoundingBox& getInteractionBounds() { return interactionBoundingBox_; }
 	ObservableBoundingBox getAbsoluteInteractionBounds() { return interactionBoundingBox_.at(pos_); }
 	bool isCollisionAllowed() { return allowCollision; }
 	bool isInteractionAllowed() { return allowInteraction; }

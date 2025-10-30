@@ -1,6 +1,7 @@
 #pragma once
 #include "object.hpp"
 #include "itemsRepository.hpp"
+#include <cstdio>
 
 class ItemObject : public Object {
 public:
@@ -8,6 +9,10 @@ public:
 
 	void draw(Tmpl8::Surface* surface);
 	void process() override {};
+
+protected:
+	void onInteractStart() override { printf("interaction started\n"); }
+	void onInteractEnd() override { printf("interaction ended\n"); }
 private:
 	std::shared_ptr<Item> item_;
 
