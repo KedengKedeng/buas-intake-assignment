@@ -12,7 +12,12 @@ public:
 	void addDelta(Tmpl8::vec2 delta) { delta_ += delta; }
 
 	void process() override;
+
+	void subscribe() override;
+	void unsubscribe() override;
 private:
 	Tmpl8::vec2 velocity = { 10, 10 };
 	Tmpl8::vec2 delta_ = { 0, 0 };
+
+	std::function<void()> walkSignalUnsub;
 };

@@ -18,6 +18,9 @@ public:
 
 	void draw(Tmpl8::Surface* surface) override;
 	void process() override {}
+
+	void subscribe() override;
+	void unsubscribe() override;
 private:
 	std::function<void()> handler_;
 
@@ -28,4 +31,7 @@ private:
 
 	bool active = false;
 	bool hover = false;
+
+	std::function<void()> mousePressedUnsub;
+	std::function<void()> mouseReleasedUnsub;
 };

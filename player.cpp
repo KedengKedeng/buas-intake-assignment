@@ -12,10 +12,22 @@ Player::Player(Sprite& sprite, Tmpl8::vec2 pos) :
 		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(sprite.getWidth() + playerInteractionOffset, sprite.getHeight() + playerInteractionOffset)),
 		sprite
 	) {
-	walkSignal.subscribe([this](Tmpl8::vec2& delta) {
-		addDelta(delta);
-		});
+	subscribe();
 };
+
+void Player::subscribe() {
+	SpriteObject::subscribe();
+
+	walkSignalUnsub = walkSignal.subscribe([this](Tmpl8::vec2& delta) {
+		addDelta(delta);
+	});
+}
+
+void Player::unsubscribe() {
+	SpriteObject::unsubscribe();
+
+	walkSignalUnsub();
+}
 
 void Player::calculateMove() {
 	// Make movement in each direction a lower speed

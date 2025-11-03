@@ -6,6 +6,7 @@
 class Object {
 public:
 	Object(Tmpl8::vec2 pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
+	~Object();
 
 	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
 
@@ -16,6 +17,9 @@ public:
 	bool isCollisionAllowed() { return allowCollision; }
 	bool isInteractionAllowed() { return allowInteraction; }
 
+	virtual void subscribe();
+	virtual void unsubscribe();
+
 	virtual void draw(Tmpl8::Surface* surface) = 0;
 	virtual void process() = 0;
 protected:
@@ -25,6 +29,9 @@ protected:
 	ObservableBoundingBox interactionBoundingBox_;
 	virtual void onInteractStart() {}
 	virtual void onInteractEnd() {}
+
+	std::function<void()> onInteractionStartUnsub;
+	std::function<void()> onInteractionEndUnsub;
 
 	bool allowCollision = true;
 	bool allowInteraction = true;
