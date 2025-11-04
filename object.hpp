@@ -6,7 +6,7 @@
 class Object {
 public:
 	Object(Tmpl8::vec2 pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
-	~Object();
+	virtual ~Object();
 
 	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
 

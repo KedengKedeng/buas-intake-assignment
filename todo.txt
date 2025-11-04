@@ -5,7 +5,6 @@ short term:
 - enum for screens
 - find a better folder structure
 - combine item and sprite repositories into a class
-- create enter signal for picking up items
 - create picking up items
 - remove item on ground after pickup
 - allow dropping item into cauldron

@@ -1,5 +1,6 @@
 #include "keyboardInput.hpp"
 #include "moveCommand.hpp"
+#include "interactionCommand.hpp"
 #include "template.h"
 
 enum KeyCodes
@@ -7,7 +8,8 @@ enum KeyCodes
 	LEFT = 4,
 	UP = 26,
 	DOWN = 22,
-	RIGHT = 7
+	RIGHT = 7,
+	INTERACT = 40
 };
 
 std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
@@ -33,7 +35,11 @@ std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
 	case KeyCodes::RIGHT:
 		return std::make_unique<MoveCommand>(Tmpl8::vec2{ 1, 0 });
 		break;
+	case KeyCodes::INTERACT:
+		return std::make_unique<InteractionCommand>();
+		break;
 	default:
+		printf("keycode: %d\n", keyCode);
 		return std::make_unique<Command>();
 		break;
 	}

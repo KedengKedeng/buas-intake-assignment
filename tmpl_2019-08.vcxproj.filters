@@ -56,6 +56,12 @@
     <ClCompile Include="object.cpp">
       <Filter>objects</Filter>
     </ClCompile>
+    <ClCompile Include="interactionCommand.hpp">
+      <Filter>input\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="interactionSignal.cpp">
+      <Filter>signals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -151,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="random.hpp">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="interactionSignal.hpp">
+      <Filter>signals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
