@@ -5,14 +5,15 @@
 
 class ItemObject : public Object {
 public:
-	ItemObject(Tmpl8::vec2 pos, std::string& itemName);
+	ItemObject(int64_t id, Tmpl8::vec2 pos, std::string& itemName);
+	~ItemObject();
 
 	void draw(Tmpl8::Surface* surface);
 	void process() override {};
 
 protected:
-	void onInteractStart() override { printf("interaction started\n"); }
-	void onInteractEnd() override { printf("interaction ended\n"); }
+	void onInteractStart() override;
+	void onInteractEnd() override;
 private:
 	std::shared_ptr<Item> item_;
 
@@ -21,4 +22,6 @@ private:
 	float minDrawOffset = 0;
 	float maxDrawOffset = 20;
 	float drawOffsetStep = 0.5f;
+
+	std::function<void()> interactionSignalUnsub;
 };

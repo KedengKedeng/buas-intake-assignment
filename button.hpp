@@ -7,6 +7,7 @@
 class Button : public Object {
 public:
 	Button(
+		int64_t id,
 		std::function<void()> handler,
 		std::string& text,
 		Tmpl8::vec2 pos = Tmpl8::vec2(0),

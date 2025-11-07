@@ -7,6 +7,8 @@ class PlayScreen : public Screen {
 public:
 	PlayScreen(Tmpl8::Surface* surface);
 
+	void deleteObject(int64_t id);
+
 	void process() override;
 	void draw() override;
 	void insertObject(std::unique_ptr<Object> object);

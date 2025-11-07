@@ -6,14 +6,24 @@
 #include "itemObject.hpp"
 #include "sprite.hpp"
 #include "random.hpp"
+#include "objectSignals.hpp"
+#include "itemSignals.hpp"
 
-PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(Sprite(std::string("rotatingGun"), 1), Tmpl8::vec2(10)) {
-	insertObject(std::make_unique<Wall>(Tmpl8::vec2(0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_unique<Wall>(Tmpl8::vec2(0), Tmpl8::vec2(surface->GetWidth(), 1)));
-	insertObject(std::make_unique<Wall>(Tmpl8::vec2(0, surface->GetHeight() - 1), Tmpl8::vec2(surface->GetWidth(), 1)));
-	insertObject(std::make_unique<Wall>(Tmpl8::vec2(surface->GetWidth() - 1, 0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_unique<Cauldron>(Sprite(std::string("cauldron"), 1), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2)));
-	insertObject(std::make_unique<ItemObject>(Tmpl8::vec2(500, 200), std::string("testItem")));
+PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Sprite(std::string("rotatingGun"), 1), Tmpl8::vec2(10)) {
+	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(1, surface->GetHeight())));
+	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(surface->GetWidth(), 1)));
+	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight() - 1), Tmpl8::vec2(surface->GetWidth(), 1)));
+	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() - 1, 0), Tmpl8::vec2(1, surface->GetHeight())));
+	insertObject(std::make_unique<Cauldron>(getRandomNum(), Sprite(std::string("cauldron"), 1), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2)));
+	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(500, 200), std::string("testItem")));
+
+	deleteObjectSignal.subscribe([this](int64_t id) {
+		queue.push([this, id]() {deleteObject(id); });
+	});
+
+	itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
+		
+	});
 
 	requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Player& player) {
 		BoundingBox bounds = player.getBounds();
@@ -26,6 +36,10 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(Sprit
 			interactionCheck(player.getAbsoluteInteractionBounds());
 		}
 	});
+}
+
+void PlayScreen::deleteObject(int64_t id) {
+	objects.erase(id);
 }
 
 void PlayScreen::draw() {
@@ -41,12 +55,13 @@ void PlayScreen::process() {
 	for (auto& object : objects)
 		object.second->process();
 
+	Screen::process();
 	draw();
 }
 
 void PlayScreen::insertObject(std::unique_ptr<Object> object) {
-	int randNum = getRandomNum();
-	objects[randNum] = std::move(object);
+	int64_t id = object->getId();
+	objects[id] = std::move(object);
 }
 
 Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2 velocity) {

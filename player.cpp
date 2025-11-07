@@ -5,8 +5,9 @@
 
 const int playerInteractionOffset = 10;
 
-Player::Player(Sprite& sprite, Tmpl8::vec2 pos) :
+Player::Player(int64_t id, Sprite& sprite, Tmpl8::vec2 pos) :
 	SpriteObject(
+		id,
 		pos,
 		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(sprite.getWidth(), sprite.getHeight())),
 		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(sprite.getWidth() + playerInteractionOffset, sprite.getHeight() + playerInteractionOffset)),

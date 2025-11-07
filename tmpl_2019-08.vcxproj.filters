@@ -62,6 +62,15 @@
     <ClCompile Include="interactionSignal.cpp">
       <Filter>signals</Filter>
     </ClCompile>
+    <ClCompile Include="itemSignals.cpp">
+      <Filter>signals</Filter>
+    </ClCompile>
+    <ClCompile Include="objectSignals.cpp">
+      <Filter>signals</Filter>
+    </ClCompile>
+    <ClCompile Include="screen.cpp">
+      <Filter>components\screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -159,6 +168,12 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="interactionSignal.hpp">
+      <Filter>signals</Filter>
+    </ClInclude>
+    <ClInclude Include="itemSignals.hpp">
+      <Filter>signals</Filter>
+    </ClInclude>
+    <ClInclude Include="objectSignals.hpp">
       <Filter>signals</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,10 +6,10 @@ short term:
 - find a better folder structure
 - combine item and sprite repositories into a class
 - create picking up items
-- remove item on ground after pickup
 - allow dropping item into cauldron
 - allow stacking of screens (use a stack?)
 - allow interacting with cauldron after dropping item in
+- add sub and unsub funcs to screens
 
 todo for mvp:
 - keyboard input handling (done)

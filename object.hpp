@@ -5,8 +5,10 @@
 
 class Object {
 public:
-	Object(Tmpl8::vec2 pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
+	Object(int64_t id, Tmpl8::vec2 pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
 	virtual ~Object();
+
+	int64_t getId() { return id_; }
 
 	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
 
@@ -35,4 +37,6 @@ protected:
 
 	bool allowCollision = true;
 	bool allowInteraction = true;
+private:
+	int64_t id_;
 };

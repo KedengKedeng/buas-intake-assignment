@@ -1,6 +1,7 @@
 #include "button.hpp"
 
 Button::Button(
+	int64_t id,
 	std::function<void()> handler,
 	std::string& text,
 	Tmpl8::vec2 pos,
@@ -9,7 +10,7 @@ Button::Button(
 	Tmpl8::Pixel color,
 	Tmpl8::Pixel borderColor
 ) :
-	Object(pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox()),
+	Object(id, pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox()),
 	handler_(handler),
 	text_(text),
 	borderWidth_(borderWidth),
