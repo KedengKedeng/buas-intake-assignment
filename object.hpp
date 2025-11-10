@@ -11,6 +11,7 @@ public:
 	int64_t getId() { return id_; }
 
 	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
+	Tmpl8::vec2 getPos() { return pos_; }
 
 	BoundingBox& getBounds() { return boundingBox_; }
 	BoundingBox getAbsoluteBounds() { return boundingBox_.at(pos_); }

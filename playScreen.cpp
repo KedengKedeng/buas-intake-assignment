@@ -8,6 +8,8 @@
 #include "random.hpp"
 #include "objectSignals.hpp"
 #include "itemSignals.hpp"
+#include "interactionSignal.hpp"
+#include "itemsRepository.hpp"
 
 PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Sprite(std::string("rotatingGun"), 1), Tmpl8::vec2(10)) {
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(1, surface->GetHeight())));
@@ -15,14 +17,25 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Sp
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight() - 1), Tmpl8::vec2(surface->GetWidth(), 1)));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() - 1, 0), Tmpl8::vec2(1, surface->GetHeight())));
 	insertObject(std::make_unique<Cauldron>(getRandomNum(), Sprite(std::string("cauldron"), 1), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2)));
-	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(500, 200), std::string("testItem")));
+	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(500, 200), itemRepository.get(std::string("testItem"))));
 
 	deleteObjectSignal.subscribe([this](int64_t id) {
 		queue.push([this, id]() {deleteObject(id); });
 	});
 
 	itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
-		
+		player_.setItem(item);
+	});
+
+	interactionSignal.subscribe([this]() {
+		auto item = player_.getItem();
+
+		if (item.get() == nullptr) return;
+
+		if (itemDropped.getListenerCount() == 0) insertObject(std::make_unique<ItemObject>(getRandomNum(), player_.getPos(), item));
+		else itemDropped.emit(item);
+
+		player_.clearItem();
 	});
 
 	requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Player& player) {
@@ -103,12 +116,13 @@ void PlayScreen::interactionCheck(ObservableBoundingBox& bounds){
 		ObservableBoundingBox& objectBounds = object->getInteractionBounds();
 		bool result = bounds.isInBounds(object->getAbsoluteInteractionBounds());
 
-		if (result && alreadyInteracting.find(it->first) == alreadyInteracting.end()) {
+		bool foundInteractingObject = alreadyInteracting.find(it->first) != alreadyInteracting.end();
+		if (result && !foundInteractingObject) {
 			alreadyInteracting.insert(it->first);
 			objectBounds.onIntersectStart.emit();
 		}
 
-		if (!result && alreadyInteracting.find(it->first) != alreadyInteracting.end()) {
+		if (!result && foundInteractingObject) {
 			alreadyInteracting.erase(it->first);
 			objectBounds.onIntersectEnd.emit();
 		}

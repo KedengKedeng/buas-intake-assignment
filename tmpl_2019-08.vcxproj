@@ -282,6 +282,7 @@
     <ClInclude Include="startScreen.hpp" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
+    <ClInclude Include="terminatableSignal.hpp" />
     <ClInclude Include="wall.hpp" />
   </ItemGroup>
   <ItemGroup>

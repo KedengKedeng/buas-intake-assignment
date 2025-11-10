@@ -9,6 +9,7 @@ public:
 	Sprite(std::string& name, float scale) : sprite_(spriteRepository.get(name, scale)), scale_(scale), maxFrames_(sprite_->Frames()) {};
 
 	void draw(Tmpl8::Surface* surface, int x, int y) { sprite_->DrawScaled(x, y, getWidth(), getHeight(), surface); }
+	void drawScaled(Tmpl8::Surface* surface, int x, int y, float scale) { sprite_->DrawScaled(x, y, getWidth() * scale, getHeight() * scale, surface); }
 
 	void setFrame(unsigned int index);
 	unsigned int getFrames() { return sprite_->Frames(); }

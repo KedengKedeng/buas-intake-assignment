@@ -176,6 +176,9 @@
     <ClInclude Include="objectSignals.hpp">
       <Filter>signals</Filter>
     </ClInclude>
+    <ClInclude Include="terminatableSignal.hpp">
+      <Filter>signals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

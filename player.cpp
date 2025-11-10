@@ -37,8 +37,7 @@ void Player::calculateMove() {
 
 	Tmpl8::vec2 calculatedVelocity = velocity / sidewardsPenalty * delta_;
 
-	if (calculatedVelocity.x != 0.0f || calculatedVelocity.y != 0.0f)
-		requestMove.emit(pos_, calculatedVelocity, *this);
+	requestMove.emit(pos_, calculatedVelocity, *this);
 }
 
 void Player::move(Tmpl8::vec2 newPos) {
@@ -47,4 +46,15 @@ void Player::move(Tmpl8::vec2 newPos) {
 
 void Player::process() {
 	calculateMove();
+}
+
+void Player::draw(Tmpl8::Surface* surface) {
+	SpriteObject::draw(surface);
+
+	if (item_ != nullptr) {
+		Tmpl8::vec2 playerSize = boundingBox_.getSize();
+		float xPos = pos_.x + playerSize.x - (item_->sprite.getWidth() * 0.5) / 3;
+		float yPos = pos_.y + playerSize.y / 2 - (item_->sprite.getHeight() * 0.5) / 2;
+		item_->sprite.drawScaled(surface, xPos, yPos, 0.5);
+	}
 }

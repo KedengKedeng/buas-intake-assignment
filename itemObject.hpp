@@ -1,11 +1,11 @@
 #pragma once
 #include "object.hpp"
-#include "itemsRepository.hpp"
+#include "item.hpp"
 #include <cstdio>
 
 class ItemObject : public Object {
 public:
-	ItemObject(int64_t id, Tmpl8::vec2 pos, std::string& itemName);
+	ItemObject(int64_t id, Tmpl8::vec2 pos, std::shared_ptr<Item> item);
 	~ItemObject();
 
 	void draw(Tmpl8::Surface* surface);
