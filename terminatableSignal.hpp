@@ -18,7 +18,10 @@ public:
 		auto it = subscribers.insert(subscribers.end(), func);
 		return [this, it]() {
 			subscribers.erase(it);
-			};
+
+			// See signal.hpp for explenation.
+			return emptyFunc;
+		};
 	}
 
 	int getListenerCount() { return subscribers.size(); }

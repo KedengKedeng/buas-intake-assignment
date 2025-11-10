@@ -224,6 +224,7 @@
   <ItemGroup>
     <ClCompile Include="boundingBox.cpp" />
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="cauldron.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="interactionCommand.hpp" />
     <ClCompile Include="interactionSignal.cpp" />

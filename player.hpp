@@ -27,5 +27,5 @@ private:
 
 	std::shared_ptr<Item> item_;
 
-	std::function<void()> walkSignalUnsub;
+	std::function<void()> walkSignalUnsub = []() {};
 };

@@ -33,6 +33,6 @@ private:
 	bool active = false;
 	bool hover = false;
 
-	std::function<void()> mousePressedUnsub;
-	std::function<void()> mouseReleasedUnsub;
+	std::function<void()> mousePressedUnsub = []() {};
+	std::function<void()> mouseReleasedUnsub = []() {};
 };

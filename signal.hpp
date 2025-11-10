@@ -2,6 +2,7 @@
 #include <functional>
 #include <vector>
 #include <forward_list>
+#include <memory>
 
 template<typename... Args>
 class Signal {
@@ -12,8 +13,11 @@ public:
 	}
 
 	std::function<void()> subscribe(std::function<void(Args...)> func) {
+		std::shared_ptr<bool> valid = std::make_shared<bool>(true);
 		auto it = subscribers.insert(subscribers.end(), func);
-		return [this, it]() {
+		return [this, it, valid]() {
+			if (!*valid) return;
+			*valid = false;
 			subscribers.erase(it);
 		};
 	}

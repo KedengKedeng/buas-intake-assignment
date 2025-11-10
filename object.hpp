@@ -24,7 +24,7 @@ public:
 	virtual void unsubscribe();
 
 	virtual void draw(Tmpl8::Surface* surface) = 0;
-	virtual void process() = 0;
+	virtual void process() {};
 protected:
 	Tmpl8::vec2 pos_;
 
@@ -33,8 +33,8 @@ protected:
 	virtual void onInteractStart() {}
 	virtual void onInteractEnd() {}
 
-	std::function<void()> onInteractionStartUnsub;
-	std::function<void()> onInteractionEndUnsub;
+	std::function<void()> onInteractionStartUnsub = []() {};
+	std::function<void()> onInteractionEndUnsub = []() {};
 
 	bool allowCollision = true;
 	bool allowInteraction = true;

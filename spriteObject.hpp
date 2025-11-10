@@ -8,7 +8,6 @@ public:
 		Object(id, pos, boundingBox, interactionBoundingBox), sprite_(sprite) {}
 	
 	virtual void draw(Tmpl8::Surface* surface) override { sprite_.draw(surface, static_cast<int>(pos_.x), static_cast<int>(pos_.y)); };
-	virtual void process() = 0;
 protected:
 	Sprite sprite_;
 };

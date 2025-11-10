@@ -7,6 +7,7 @@ public:
 		Object(id, pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox()) {
 		allowInteraction = false;
 	};
+
 	void draw(Tmpl8::Surface* surface) override;
 	void process() override {};
 };

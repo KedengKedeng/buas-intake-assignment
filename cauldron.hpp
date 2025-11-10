@@ -1,15 +1,17 @@
 #pragma once
 #include "spriteObject.hpp"
+#include "item.hpp"
+#include <vector>
 
 class Cauldron : public SpriteObject {
 public:
-	Cauldron(int64_t id, Sprite& sprite, Tmpl8::vec2 pos) :
-		SpriteObject(
-			id,
-			pos, 
-			BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(sprite.getWidth(), sprite.getHeight())), 
-			ObservableBoundingBox(Tmpl8::vec2(-10), Tmpl8::vec2(sprite.getWidth() + 10, sprite.getHeight() + 10)),
-			sprite
-		) {}
-	void process() override {}
+	Cauldron(int64_t id, Sprite& sprite, Tmpl8::vec2 pos);
+	~Cauldron();
+
+	void onInteractStart() override;
+	void onInteractEnd() override;
+private:
+	std::vector<std::shared_ptr<Item>> items_ = {};
+
+	std::function<void()> itemDroppedUnsub = []() {};
 };

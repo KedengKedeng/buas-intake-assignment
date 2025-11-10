@@ -23,5 +23,5 @@ private:
 	float maxDrawOffset = 20;
 	float drawOffsetStep = 0.5f;
 
-	std::function<void()> interactionSignalUnsub;
+	std::function<void()> interactionSignalUnsub = []() {};
 };

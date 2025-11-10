@@ -71,6 +71,9 @@
     <ClCompile Include="screen.cpp">
       <Filter>components\screens</Filter>
     </ClCompile>
+    <ClCompile Include="cauldron.cpp">
+      <Filter>objects\world objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
