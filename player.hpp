@@ -5,7 +5,7 @@
 
 class Player : public SpriteObject {
 public:
-	Player(int64_t id, Sprite& sprite, Tmpl8::vec2 pos);
+	Player(int64_t id, Tmpl8::vec2 pos);
 
 	void move(Tmpl8::vec2 newPos);
 	void calculateMove();

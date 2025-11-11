@@ -16,3 +16,6 @@ collision:
 
 general c++:
 - https://en.cppreference.com
+
+DrawScaled function bugs (no clip checking, not taking current frame into account):
+- Jeramiah van Oosten

@@ -6,9 +6,11 @@ short term:
 - find a better folder structure
 - combine item and sprite repositories into a class
 - allow stacking of screens (use a stack?)
-- allow interacting with cauldron after dropping item in
+- allow interacting with cauldron which changes screens while not throwing in items
 - add sub and unsub funcs to screens
 - change interaction signal to be terminatable
+- move funcs in spriteObject.hpp to cpp file
+- fix drawScaled function
 
 todo for mvp:
 - keyboard input handling (done)

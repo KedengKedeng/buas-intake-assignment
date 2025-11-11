@@ -2,17 +2,21 @@
 #include "playerSignals.hpp"
 #include <algorithm>
 #include <cmath>
+#include "spriteRepository.hpp"
 
 const int playerInteractionOffset = 10;
 
-Player::Player(int64_t id, Sprite& sprite, Tmpl8::vec2 pos) :
+Player::Player(int64_t id, Tmpl8::vec2 pos) :
 	SpriteObject(
 		id,
 		pos,
-		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(sprite.getWidth(), sprite.getHeight())),
-		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(sprite.getWidth() + playerInteractionOffset, sprite.getHeight() + playerInteractionOffset)),
-		sprite
+		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0)),
+		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(0))
 	) {
+	sprites_.push_back(Sprite(std::string("playeridleleft"), 1));
+	boundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth(), sprites_[0].getHeight()));
+	interactionBoundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth() + playerInteractionOffset, sprites_[0].getHeight() + playerInteractionOffset));
+
 	subscribe();
 };
 
