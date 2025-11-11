@@ -10,7 +10,6 @@ short term:
 - add sub and unsub funcs to screens
 - change interaction signal to be terminatable
 - move funcs in spriteObject.hpp to cpp file
-- fix drawScaled function
 
 todo for mvp:
 - keyboard input handling (done)
