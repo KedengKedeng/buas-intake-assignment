@@ -74,6 +74,9 @@
     <ClCompile Include="cauldron.cpp">
       <Filter>objects\world objects</Filter>
     </ClCompile>
+    <ClCompile Include="spriteObject.cpp">
+      <Filter>objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />

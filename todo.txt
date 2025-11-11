@@ -9,7 +9,6 @@ short term:
 - allow interacting with cauldron which changes screens while not throwing in items
 - add sub and unsub funcs to screens
 - change interaction signal to be terminatable
-- move funcs in spriteObject.hpp to cpp file
 
 todo for mvp:
 - keyboard input handling (done)

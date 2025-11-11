@@ -242,6 +242,7 @@
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="screenSignals.cpp" />
     <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="spriteObject.cpp" />
     <ClCompile Include="spriteRepository.cpp" />
     <ClCompile Include="startScreen.cpp" />
     <ClCompile Include="surface.cpp" />

@@ -13,7 +13,7 @@ Player::Player(int64_t id, Tmpl8::vec2 pos) :
 		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0)),
 		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(0))
 	) {
-	sprites_.push_back(Sprite(std::string("playeridleleft"), 1));
+	sprites_.push_back(Sprite(std::string("playeridleleft"), 2.5));
 	boundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth(), sprites_[0].getHeight()));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth() + playerInteractionOffset, sprites_[0].getHeight() + playerInteractionOffset));
 

@@ -441,7 +441,7 @@ void Sprite::DrawScaled( int a_X, int a_Y, int a_Width, int a_Height, Surface* a
 		{
 			int u = (int)((float)x * ((float)m_Width / (float)a_Width));
 			const Pixel color = *(spriteBuffer + u + v * m_Pitch);
-			if (color & 0xffffff) targetBuffer[a_X + x + ((a_Y + y) * targetPitch)] = color;
+			if (color) targetBuffer[a_X + x + ((a_Y + y) * targetPitch)] = color;
 		}
 	}
 }
