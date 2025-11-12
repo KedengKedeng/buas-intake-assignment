@@ -5,6 +5,7 @@
 #include "spriteRepository.hpp"
 
 const int playerInteractionOffset = 10;
+const float playerSpriteScale = 2.5f;
 
 Player::Player(int64_t id, Tmpl8::vec2 pos) :
 	SpriteObject(
@@ -13,7 +14,11 @@ Player::Player(int64_t id, Tmpl8::vec2 pos) :
 		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0)),
 		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(0))
 	) {
-	sprites_.push_back(Sprite(std::string("playeridleleft"), 2.5));
+	sprites_.push_back(Sprite(std::string("playeridleleft"), playerSpriteScale));
+	sprites_.push_back(Sprite(std::string("playeridleright"), playerSpriteScale));
+	sprites_.push_back(Sprite(std::string("playerwalkleft"), playerSpriteScale));
+	sprites_.push_back(Sprite(std::string("playerwalkright"), playerSpriteScale));
+
 	boundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth(), sprites_[0].getHeight()));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth() + playerInteractionOffset, sprites_[0].getHeight() + playerInteractionOffset));
 
@@ -25,6 +30,9 @@ void Player::subscribe() {
 
 	walkSignalUnsub = walkSignal.subscribe([this](Tmpl8::vec2& delta) {
 		addDelta(delta);
+
+		if (delta_.x < 0) lookDirection = 0;
+		if (delta_.x > 0) lookDirection = 1;
 	});
 }
 
@@ -53,6 +61,9 @@ void Player::process() {
 }
 
 void Player::draw(Tmpl8::Surface* surface) {
+	if (delta_.x || delta_.y) currentSprite_ = lookDirection + 2; // set to running animations
+	else currentSprite_ = lookDirection; // set to idle animations
+
 	SpriteObject::draw(surface);
 
 	if (item_ != nullptr) {

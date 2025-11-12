@@ -22,10 +22,12 @@ public:
 	void subscribe() override;
 	void unsubscribe() override;
 private:
-	Tmpl8::vec2 velocity = { 10, 10 };
+	Tmpl8::vec2 velocity = { 6, 6 };
 	Tmpl8::vec2 delta_ = { 0, 0 };
 
 	std::shared_ptr<Item> item_;
+
+	int lookDirection = 0;
 
 	std::function<void()> walkSignalUnsub = []() {};
 };
