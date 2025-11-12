@@ -48,14 +48,19 @@ void Button::unsubscribe() {
 
 void Button::draw(Tmpl8::Surface* surface) {
 	Tmpl8::vec2 size = boundingBox_.getSize();
-	surface->Bar(pos_.x, pos_.y, pos_.x + size.x, pos_.y + size.y, borderColor_);
+
+	int left = static_cast<int>(pos_.x);
+	int top = static_cast<int>(pos_.y);
+	int right = static_cast<int>(pos_.x + size.x);
+	int bottom = static_cast<int>(pos_.y + size.y);
+	surface->Bar(left, top, right, bottom, borderColor_);
 	surface->Bar(
-		pos_.x + borderWidth_, 
-		pos_.y + borderWidth_, 
-		pos_.x + size.x - borderWidth_, 
-		pos_.y + size.y - borderWidth_, 
+		left + borderWidth_, 
+		top + borderWidth_, 
+		right - borderWidth_, 
+		bottom - borderWidth_, 
 		color_
 	);
 
-	surface->Print(const_cast<char*>(text_.c_str()), pos_.x, pos_.y, 0x000000);
+	surface->Print(const_cast<char*>(text_.c_str()), left, top, 0x000000);
 }

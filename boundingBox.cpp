@@ -32,8 +32,8 @@ CollisionResult BoundingBox::swept(BoundingBox& box, Tmpl8::vec2 velocity) {
         return { false, 0, 0, 0 };
 
     float normalX = 0, normalY = 0;
-    if (resultX.timings.x > resultY.timings.x) normalX = (velocity.x > 0) ? -1 : 1;
-    else normalY = (velocity.y > 0) ? -1 : 1;
+    if (resultX.timings.x > resultY.timings.x) normalX = (velocity.x > 0) ? -1.0f : 1.0f;
+    else normalY = (velocity.y > 0) ? -1.0f : 1.0f;
 
     return { true, normalX, normalY, entryTime };
 }

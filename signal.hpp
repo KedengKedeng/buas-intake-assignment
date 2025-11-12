@@ -22,7 +22,7 @@ public:
 		};
 	}
 
-	int getListenerCount() { return subscribers.size(); }
+	int getListenerCount() { return static_cast<int>(subscribers.size()); }
 private:
 	std::vector<std::function<void(Args...)>> subscribers;
 };

@@ -15,8 +15,8 @@ public:
 private:
 	Tmpl8::vec2 objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2 velocity);
 	void interactionCheck(ObservableBoundingBox& bounds);
-	std::set<int> alreadyInteracting = {};
+	std::set<int64_t> alreadyInteracting = {};
 
 	Player player_;
-	std::map<int, std::unique_ptr<Object>> objects = {};
+	std::map<int64_t, std::unique_ptr<Object>> objects = {};
 };
