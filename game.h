@@ -21,8 +21,8 @@ public:
 	void KeyUp(int key) { keyboardInput.keyUp(key)->execute(); }
 	void KeyDown(int key) { keyboardInput.keyDown(key)->execute(); }
 private:
-	Screen* screens[2];
-	Screen* currentScreen;
+	std::shared_ptr<Screen> screens[2];
+	std::shared_ptr<Screen> currentScreen;
 	Surface* surface_;
 	KeyboardInput keyboardInput;
 	MouseInput mouseInput;

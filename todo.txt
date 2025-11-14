@@ -2,7 +2,6 @@ short term:
 - base input class
 - any way to increase font size?
 - any way to make text center?
-- enum for screens
 - find a better folder structure
 - combine item and sprite repositories into a class
 - allow stacking of screens (use a stack?)

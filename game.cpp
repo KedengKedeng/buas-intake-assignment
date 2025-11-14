@@ -20,9 +20,9 @@ namespace Tmpl8
 		keyboardInput = KeyboardInput();
 		mouseInput = MouseInput();
 
-		screens[0] = new PlayScreen(surface_);
-		screens[1] = new StartScreen(surface_);
-		currentScreen = screens[1];
+		screens[0] = std::make_shared<StartScreen>(surface_);
+		screens[1] = std::make_shared<PlayScreen>(surface_);
+		currentScreen = screens[0];
 
 		changeScreen.subscribe([this](int screenIndex) { 
 			currentScreen->unsubscribe();
@@ -46,12 +46,5 @@ namespace Tmpl8
 	void Game::Tick(float deltaTime)
 	{
 		currentScreen->process();
-		// clear the graphics window
-		// print something in the graphics window
-		//surface_->Print("hello world", 2, 2, 0xffffff);
-		//// draw a sprite
-		//rotatingGun.SetFrame(frame);
-		//rotatingGun.Draw(surface_, 100, 100);
-		//if (++frame == 36) frame = 0;
 	}
 };
