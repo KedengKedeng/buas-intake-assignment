@@ -21,3 +21,11 @@ void StartScreen::process() {
 
 	draw();
 }
+
+void StartScreen::subscribe() {
+	for (auto& button : buttons_) button->subscribe();
+}
+
+void StartScreen::unsubscribe() {
+	for (auto& button : buttons_) button->unsubscribe();
+}

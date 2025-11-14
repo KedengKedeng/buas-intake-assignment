@@ -24,7 +24,11 @@ namespace Tmpl8
 		screens[1] = new StartScreen(surface_);
 		currentScreen = screens[1];
 
-		changeScreen.subscribe([this](int screenIndex) { currentScreen = screens[screenIndex]; });
+		changeScreen.subscribe([this](int screenIndex) { 
+			currentScreen->unsubscribe();
+			currentScreen = screens[screenIndex]; 
+			currentScreen->subscribe();
+		});
 	}
 	
 	// -----------------------------------------------------------

@@ -1,9 +1,8 @@
 #include "screen.hpp"
 
 void Screen::process() {
-	while (!queue.empty()) {
-		auto func = queue.top();
+	for (; !queue.empty(); queue.pop()) {
+		auto func = queue.front();
 		func();
-		queue.pop();
 	}
 }

@@ -11,6 +11,9 @@ public:
 
 	void draw() override;
 	void process() override;
+
+	void subscribe() override;
+	void unsubscribe() override;
 private:
 	std::vector<std::unique_ptr<Button>> buttons_ = {};
 };

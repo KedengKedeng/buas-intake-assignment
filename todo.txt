@@ -7,8 +7,8 @@ short term:
 - combine item and sprite repositories into a class
 - allow stacking of screens (use a stack?)
 - allow interacting with cauldron which changes screens while not throwing in items
-- add sub and unsub funcs to screens
 - change interaction signal to be terminatable
+- combine screen object lists into the screen base object
 
 todo for mvp:
 - keyboard input handling (done)

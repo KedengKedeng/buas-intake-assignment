@@ -1,6 +1,6 @@
 #pragma once
 #include "surface.h"
-#include <stack>
+#include <queue>
 #include <functional>
 
 class Screen {
@@ -11,7 +11,10 @@ public:
 
 	virtual void draw() = 0;
 	virtual void process();
+
+	virtual void subscribe() = 0;
+	virtual void unsubscribe() = 0;
 protected:
 	Tmpl8::Surface* surface_;
-	std::stack<std::function<void()>> queue = {};
+	std::queue<std::function<void()>> queue = {};
 };
