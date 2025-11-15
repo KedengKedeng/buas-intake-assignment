@@ -32,12 +32,9 @@ void PlayScreen::draw(Tmpl8::Surface* surface) {
 }
 
 void PlayScreen::process() {
-	surface_->Clear(255 << 8);
-
 	player_.process();
 
 	Screen::process();
-	draw(surface_);
 }
 
 Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2 velocity) {

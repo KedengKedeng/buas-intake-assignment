@@ -22,7 +22,7 @@ public:
 	void KeyDown(int key) { keyboardInput.keyDown(key)->execute(); }
 private:
 	std::shared_ptr<Screen> screens[2];
-	std::shared_ptr<Screen> currentScreen;
+	std::vector<std::shared_ptr<Screen>> currentScreens;
 	Surface* surface_;
 	KeyboardInput keyboardInput;
 	MouseInput mouseInput;

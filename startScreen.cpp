@@ -5,7 +5,7 @@
 StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	auto container = std::make_unique<Container>(
 		getRandomNum(),
-		Tmpl8::vec2(surface_->GetWidth() / 2 - 30, surface_->GetHeight() / 2 - 25),
+		Tmpl8::vec2(surface->GetWidth() / 2 - 30, surface->GetHeight() / 2 - 25),
 		Tmpl8::vec2(60, 50),
 		Justification::VERTICAL
 	);
@@ -30,11 +30,3 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 
 	insertObject(std::move(container));
 };
-
-void StartScreen::process() {
-	surface_->Clear(255);
-
-	Screen::process();
-
-	draw(surface_);
-}

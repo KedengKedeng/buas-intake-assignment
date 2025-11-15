@@ -4,11 +4,9 @@ short term:
 - any way to make text center?
 - find a better folder structure
 - combine item and sprite repositories into a class
-- allow stacking of screens (use a stack?)
 - allow interacting with cauldron which changes screens while not throwing in items
 - change interaction signal to be terminatable
 - turn all Tmpl8::vec2 in constructors into references
-- move surface and surface operations like clear outside of screens and into tick function
 - create exit game signal
 - if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
 
@@ -16,7 +14,7 @@ todo for mvp:
 - keyboard input handling (done)
 - ability to render multiple screens (done)
 - ability to stack screens on top of each other
-- player character that can move and interact with objects
+- player character that can move and interact with objects (done)
 - event based architecture?
 
 nice to haves:

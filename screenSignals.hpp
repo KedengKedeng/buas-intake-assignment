@@ -2,3 +2,4 @@
 #include "signal.hpp"
 
 extern Signal<int> changeScreen;
+extern Signal<int> stackScreen;

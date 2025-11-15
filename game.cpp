@@ -22,14 +22,23 @@ namespace Tmpl8
 
 		screens[0] = std::make_shared<StartScreen>(surface_);
 		screens[1] = std::make_shared<PlayScreen>(surface_);
-		currentScreen = screens[0];
-		currentScreen->subscribe();
+		currentScreens.push_back(screens[0]);
+		screens[0]->subscribe();
 
 		changeScreen.subscribe([this](int screenIndex) { 
 			queue.push([this, screenIndex]() {
-				currentScreen->unsubscribe();
-				currentScreen = screens[screenIndex];
-				currentScreen->subscribe();
+				for (auto& screen : currentScreens) screen->unsubscribe();
+				currentScreens.clear();
+				currentScreens.push_back(screens[screenIndex]);
+				currentScreens[0]->subscribe();
+			});
+		});
+
+		stackScreen.subscribe([this](int screenIndex) {
+			queue.push([this, screenIndex]() {
+				for (auto& screen : currentScreens) screen->unsubscribe();
+				currentScreens.push_back(screens[screenIndex]);
+				currentScreens[0]->subscribe();
 			});
 		});
 	}
@@ -48,11 +57,15 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		currentScreen->process();
+		surface_->Clear(255 << 8);
+
+		for (auto& screen : currentScreens) screen->process();
 
 		for (; !queue.empty(); queue.pop()) {
 			auto func = queue.front();
 			func();
 		}
+
+		for (auto& screen : currentScreens) screen->draw(surface_);
 	}
 };
