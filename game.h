@@ -26,6 +26,7 @@ private:
 	Surface* surface_;
 	KeyboardInput keyboardInput;
 	MouseInput mouseInput;
+	std::queue<std::function<void()>> queue = {};
 };
 
 }; // namespace Tmpl8

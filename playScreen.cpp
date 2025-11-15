@@ -1,11 +1,9 @@
 #include "playScreen.hpp"
 #include "playerSignals.hpp"
-#include <memory>
 #include "wall.hpp"
 #include "cauldron.hpp"
 #include "itemObject.hpp"
 #include "sprite.hpp"
-#include "random.hpp"
 #include "objectSignals.hpp"
 #include "itemSignals.hpp"
 #include "interactionSignal.hpp"
@@ -25,35 +23,27 @@ PlayScreen::~PlayScreen() {
 }
 
 void PlayScreen::deleteObject(int64_t id) {
-	objects.erase(id);
+	objects_.erase(id);
 }
 
-void PlayScreen::draw() {
-	player_.draw(surface_);
-	for (auto& object : objects)
-		object.second->draw(surface_);
+void PlayScreen::draw(Tmpl8::Surface* surface) {
+	Screen::draw(surface);
+	player_.draw(surface);
 }
 
 void PlayScreen::process() {
 	surface_->Clear(255 << 8);
 
 	player_.process();
-	for (auto& object : objects)
-		object.second->process();
 
 	Screen::process();
-	draw();
-}
-
-void PlayScreen::insertObject(std::unique_ptr<Object> object) {
-	int64_t id = object->getId();
-	objects[id] = std::move(object);
+	draw(surface_);
 }
 
 Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2 velocity) {
 	Tmpl8::vec2 collisionVec = velocity;
 
-	for (auto& it = objects.begin(); it != objects.end(); it++) {
+	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
 		auto object = it->second.get();
 		if (!object->isCollisionAllowed()) continue;
 
@@ -82,7 +72,7 @@ Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec
 }
 
 void PlayScreen::interactionCheck(ObservableBoundingBox& bounds){
-	for (auto& it = objects.begin(); it != objects.end(); it++) {
+	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
 		auto object = it->second.get();
 		if (!object->isInteractionAllowed()) continue;
 
@@ -103,9 +93,9 @@ void PlayScreen::interactionCheck(ObservableBoundingBox& bounds){
 }
 
 void PlayScreen::subscribe() {
-	player_.subscribe();
+	Screen::subscribe();
 
-	for (auto& object : objects) object.second->subscribe();
+	player_.subscribe();
 
 	deleteObjectSignalUnsub = deleteObjectSignal.subscribe([this](int64_t id) {
 		queue.push([this, id]() {deleteObject(id); });
@@ -140,9 +130,9 @@ void PlayScreen::subscribe() {
 }
 
 void PlayScreen::unsubscribe() {
-	player_.unsubscribe();
+	Screen::unsubscribe();
 
-	for (auto& object : objects) object.second->unsubscribe();
+	player_.unsubscribe();
 
 	deleteObjectSignalUnsub();
 	itemPickedUpUnsub();

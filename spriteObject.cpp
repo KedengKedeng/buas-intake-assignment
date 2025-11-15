@@ -7,7 +7,7 @@ void SpriteObject::draw(Tmpl8::Surface* surface) {
 
 	sprites_[currentSprite_].setFrame(static_cast<int>(currentFrame_));
 
-	sprites_[currentSprite_].draw(surface, static_cast<int>(pos_.x), static_cast<int>(pos_.y));
+	sprites_[currentSprite_].draw(surface, pos_.x, pos_.y);
 
 	currentFrame_ += 0.1f;
 };

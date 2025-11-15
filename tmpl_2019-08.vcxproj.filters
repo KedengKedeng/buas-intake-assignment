@@ -77,6 +77,12 @@
     <ClCompile Include="spriteObject.cpp">
       <Filter>objects</Filter>
     </ClCompile>
+    <ClCompile Include="random.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="container.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -184,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="terminatableSignal.hpp">
       <Filter>signals</Filter>
+    </ClInclude>
+    <ClInclude Include="container.hpp">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

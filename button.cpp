@@ -16,9 +16,7 @@ Button::Button(
 	borderWidth_(borderWidth),
 	color_(color),
 	borderColor_(borderColor)
-{
-	subscribe();
-};
+{};
 
 void Button::subscribe() {
 	Object::subscribe();
@@ -32,8 +30,9 @@ void Button::subscribe() {
 		});
 
 	mouseReleasedUnsub = mouseReleased.subscribe([this]() {
-		if (active)
+		if (active) {
 			handler_();
+		}
 
 		active = false;
 		});

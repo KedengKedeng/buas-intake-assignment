@@ -1,6 +1,6 @@
 #pragma once
 #include <functional>
-#include <vector>
+#include <list>
 #include <forward_list>
 #include <memory>
 
@@ -24,5 +24,5 @@ public:
 
 	int getListenerCount() { return static_cast<int>(subscribers.size()); }
 private:
-	std::vector<std::function<void(Args...)>> subscribers;
+	std::list<std::function<void(Args...)>> subscribers;
 };

@@ -11,8 +11,7 @@ public:
 	void deleteObject(int64_t id);
 
 	void process() override;
-	void draw() override;
-	void insertObject(std::unique_ptr<Object> object);
+	void draw(Tmpl8::Surface* surface) override;
 
 	void subscribe() override;
 	void unsubscribe() override;
@@ -22,7 +21,6 @@ private:
 	std::set<int64_t> alreadyInteracting = {};
 
 	Player player_;
-	std::map<int64_t, std::unique_ptr<Object>> objects = {};
 
 	std::function<void()> deleteObjectSignalUnsub = []() {};
 	std::function<void()> itemPickedUpUnsub = []() {};

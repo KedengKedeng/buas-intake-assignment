@@ -7,7 +7,10 @@ short term:
 - allow stacking of screens (use a stack?)
 - allow interacting with cauldron which changes screens while not throwing in items
 - change interaction signal to be terminatable
-- combine screen object lists into the screen base object
+- turn all Tmpl8::vec2 in constructors into references
+- move surface and surface operations like clear outside of screens and into tick function
+- create exit game signal
+- if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
 
 todo for mvp:
 - keyboard input handling (done)

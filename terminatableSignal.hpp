@@ -1,6 +1,6 @@
 #pragma once
 #include <functional>
-#include <vector>
+#include <list>
 #include <forward_list>
 
 template<typename... Args>
@@ -26,5 +26,5 @@ public:
 
 	int getListenerCount() { return subscribers.size(); }
 private:
-	std::vector<std::function<bool(Args...)>> subscribers;
+	std::list<std::function<bool(Args...)>> subscribers;
 };
