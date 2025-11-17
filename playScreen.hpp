@@ -26,4 +26,5 @@ private:
 	std::function<void()> itemPickedUpUnsub = []() {};
 	std::function<void()> interactionSignalUnsub = []() {};
 	std::function<void()> requestMoveUnsub = []() {};
+	std::function<void()> escapePressedUnsub = []() {};
 };

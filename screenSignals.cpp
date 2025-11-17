@@ -2,3 +2,4 @@
 
 Signal<int> changeScreen{};
 Signal<int> stackScreen{};
+Signal<> closeScreen{};

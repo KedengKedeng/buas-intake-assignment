@@ -3,6 +3,7 @@
 #include "button.hpp"
 #include "playScreen.hpp"
 #include "startScreen.hpp"
+#include "settingsScreen.hpp"
 #include "screenSignals.hpp"
 #include "itemList.hpp"
 #include "spriteList.hpp"
@@ -22,6 +23,7 @@ namespace Tmpl8
 
 		screens[0] = std::make_shared<StartScreen>(surface_);
 		screens[1] = std::make_shared<PlayScreen>(surface_);
+		screens[2] = std::make_shared<SettingsScreen>(surface_);
 		currentScreens.push_back(screens[0]);
 		screens[0]->subscribe();
 
@@ -38,7 +40,16 @@ namespace Tmpl8
 			queue.push([this, screenIndex]() {
 				for (auto& screen : currentScreens) screen->unsubscribe();
 				currentScreens.push_back(screens[screenIndex]);
-				currentScreens[0]->subscribe();
+				auto screen = currentScreens.end() - 1;
+				screen->get()->subscribe();
+			});
+		});
+
+		closeScreen.subscribe([this]() {
+			queue.push([this]() {
+				(currentScreens.end() - 1)->get()->unsubscribe();
+				currentScreens.pop_back();
+				(currentScreens.end() - 1)->get()->subscribe();
 			});
 		});
 	}

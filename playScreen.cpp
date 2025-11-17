@@ -8,6 +8,8 @@
 #include "itemSignals.hpp"
 #include "interactionSignal.hpp"
 #include "itemsRepository.hpp"
+#include "keyboardSignals.hpp"
+#include "screenSignals.hpp"
 
 PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tmpl8::vec2(10)) {
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(1, surface->GetHeight())));
@@ -124,6 +126,10 @@ void PlayScreen::subscribe() {
 			interactionCheck(player.getAbsoluteInteractionBounds());
 		}
 		});
+
+	escapePressedUnsub = escapePressed.subscribe([]() {
+		stackScreen.emit(2);
+		});
 }
 
 void PlayScreen::unsubscribe() {
@@ -135,4 +141,5 @@ void PlayScreen::unsubscribe() {
 	itemPickedUpUnsub();
 	interactionSignalUnsub();
 	requestMoveUnsub();
+	escapePressedUnsub();
 }

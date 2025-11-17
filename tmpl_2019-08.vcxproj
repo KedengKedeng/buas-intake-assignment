@@ -233,6 +233,7 @@
     <ClCompile Include="itemRepository.cpp" />
     <ClCompile Include="itemSignals.cpp" />
     <ClCompile Include="keyboardInput.cpp" />
+    <ClCompile Include="keyboardSignals.cpp" />
     <ClCompile Include="mouseInput.cpp" />
     <ClCompile Include="mouseSignals.cpp" />
     <ClCompile Include="object.cpp" />
@@ -243,6 +244,7 @@
     <ClCompile Include="random.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="screenSignals.cpp" />
+    <ClCompile Include="settingsScreen.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="spriteObject.cpp" />
     <ClCompile Include="spriteRepository.cpp" />
@@ -264,7 +266,9 @@
     <ClInclude Include="itemObject.hpp" />
     <ClInclude Include="itemSignals.hpp" />
     <ClInclude Include="itemsRepository.hpp" />
+    <ClInclude Include="keyboardCommand.hpp" />
     <ClInclude Include="keyboardInput.hpp" />
+    <ClInclude Include="keyboardSignals.hpp" />
     <ClInclude Include="mouseInput.hpp" />
     <ClInclude Include="mousePressedCommand.hpp" />
     <ClInclude Include="mouseReleasedCommand.hpp" />
@@ -279,6 +283,7 @@
     <ClInclude Include="random.hpp" />
     <ClInclude Include="screen.hpp" />
     <ClInclude Include="screenSignals.hpp" />
+    <ClInclude Include="settingsScreen.hpp" />
     <ClInclude Include="signal.hpp" />
     <ClInclude Include="sprite.hpp" />
     <ClInclude Include="spriteList.hpp" />

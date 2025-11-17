@@ -83,6 +83,12 @@
     <ClCompile Include="container.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="settingsScreen.cpp">
+      <Filter>components\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboardSignals.cpp">
+      <Filter>signals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -193,6 +199,15 @@
     </ClInclude>
     <ClInclude Include="container.hpp">
       <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="settingsScreen.hpp">
+      <Filter>components\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboardSignals.hpp">
+      <Filter>signals</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboardCommand.hpp">
+      <Filter>input\commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

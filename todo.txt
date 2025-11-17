@@ -9,13 +9,14 @@ short term:
 - turn all Tmpl8::vec2 in constructors into references
 - create exit game signal
 - if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
+- make elements in containers have relative positions
 
 todo for mvp:
 - keyboard input handling (done)
 - ability to render multiple screens (done)
-- ability to stack screens on top of each other
+- ability to stack screens on top of each other (done)
 - player character that can move and interact with objects (done)
-- event based architecture?
+- event based architecture? (done)
 
 nice to haves:
 - sound
@@ -23,7 +24,3 @@ nice to haves:
 - i11n (english, dutch, indonesian?)
 - mouse events (click and drag)
 - title menu
-
-implementation details to keep in mind:
-- we need a signal class for links between objects and events
-- in case keyboard rebinding is added we should use the command pattern
