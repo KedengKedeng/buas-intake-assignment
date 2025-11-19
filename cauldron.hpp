@@ -5,7 +5,7 @@
 
 class Cauldron : public SpriteObject {
 public:
-	Cauldron(int64_t id, Tmpl8::vec2 pos);
+	Cauldron(int64_t id, Tmpl8::vec2& pos);
 	~Cauldron();
 
 	void draw(Tmpl8::Surface* surface) override;

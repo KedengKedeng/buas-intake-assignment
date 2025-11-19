@@ -5,12 +5,12 @@
 
 class Player : public SpriteObject {
 public:
-	Player(int64_t id, Tmpl8::vec2 pos);
+	Player(int64_t id, Tmpl8::vec2& pos);
 
-	void move(Tmpl8::vec2 newPos);
+	void move(Tmpl8::vec2& newPos);
 	void calculateMove();
 
-	void addDelta(Tmpl8::vec2 delta) { delta_ += delta; }
+	void addDelta(Tmpl8::vec2& delta) { delta_ += delta; }
 
 	void setItem(std::shared_ptr<Item> item) { item_ = item; }
 	void clearItem() { item_.reset(); }

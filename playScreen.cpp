@@ -39,7 +39,7 @@ void PlayScreen::process() {
 	Screen::process();
 }
 
-Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2 velocity) {
+Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2& velocity) {
 	Tmpl8::vec2 collisionVec = velocity;
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {

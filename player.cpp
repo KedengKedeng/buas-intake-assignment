@@ -7,7 +7,7 @@
 const int playerInteractionOffset = 10;
 const float playerSpriteScale = 2.5f;
 
-Player::Player(int64_t id, Tmpl8::vec2 pos) :
+Player::Player(int64_t id, Tmpl8::vec2& pos) :
 	SpriteObject(
 		id,
 		pos,
@@ -50,7 +50,7 @@ void Player::calculateMove() {
 	requestMove.emit(pos_, calculatedVelocity, *this);
 }
 
-void Player::move(Tmpl8::vec2 newPos) {
+void Player::move(Tmpl8::vec2& newPos) {
 	pos_ = newPos;
 }
 

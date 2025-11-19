@@ -14,7 +14,7 @@ bool BoundingBox::isInBounds(BoundingBox& box) {
 	);
 }
 
-CollisionResult BoundingBox::swept(BoundingBox& box, Tmpl8::vec2 velocity) {
+CollisionResult BoundingBox::swept(BoundingBox& box, Tmpl8::vec2& velocity) {
     Tmpl8::vec2 firstPos = getPos();
     Tmpl8::vec2 firstSize = getSize();
     Tmpl8::vec2 secondPos = box.getPos();

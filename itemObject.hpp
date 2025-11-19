@@ -5,7 +5,7 @@
 
 class ItemObject : public Object {
 public:
-	ItemObject(int64_t id, Tmpl8::vec2 pos, std::shared_ptr<Item> item);
+	ItemObject(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Item> item);
 	~ItemObject();
 
 	void draw(Tmpl8::Surface* surface);

@@ -17,17 +17,17 @@ struct SweptAxisResult {
 class BoundingBox {
 public:
 	BoundingBox() : pos_(Tmpl8::vec2(0)), size_(Tmpl8::vec2(0)) {}
-	BoundingBox(Tmpl8::vec2 pos, Tmpl8::vec2 size): pos_(pos), size_(size) {};
+	BoundingBox(Tmpl8::vec2& pos, Tmpl8::vec2& size): pos_(pos), size_(size) {};
 
 	Tmpl8::vec2 getPos() { return pos_; }
-	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
+	void setPos(Tmpl8::vec2& pos) { pos_ = pos; }
 	Tmpl8::vec2 getSize() { return size_; }
-	void setSize(Tmpl8::vec2 size) { size_ = size; }
+	void setSize(Tmpl8::vec2& size) { size_ = size; }
 
-	BoundingBox at(Tmpl8::vec2 pos) { return BoundingBox(pos + pos_, size_); }
+	BoundingBox at(Tmpl8::vec2& pos) { return BoundingBox(pos + pos_, size_); }
 
 	virtual bool isInBounds(BoundingBox& box);
-	virtual CollisionResult swept(BoundingBox& box, Tmpl8::vec2 velocity);
+	virtual CollisionResult swept(BoundingBox& box, Tmpl8::vec2& velocity);
 protected:
 	SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity);
 

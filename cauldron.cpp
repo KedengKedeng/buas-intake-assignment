@@ -1,7 +1,7 @@
 #include "cauldron.hpp"
 #include "itemSignals.hpp"
 
-Cauldron::Cauldron(int64_t id, Tmpl8::vec2 pos) :
+Cauldron::Cauldron(int64_t id, Tmpl8::vec2& pos) :
 	SpriteObject(
 		id,
 		pos,

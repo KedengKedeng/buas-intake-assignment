@@ -6,7 +6,6 @@ short term:
 - combine item and sprite repositories into a class
 - allow interacting with cauldron which changes screens while not throwing in items
 - change interaction signal to be terminatable
-- turn all Tmpl8::vec2 in constructors into references
 - create exit game signal
 - if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
 - make elements in containers have relative positions

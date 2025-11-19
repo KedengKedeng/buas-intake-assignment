@@ -4,8 +4,8 @@ Button::Button(
 	int64_t id,
 	std::function<void()> handler,
 	std::string& text,
-	Tmpl8::vec2 pos,
-	Tmpl8::vec2 size,
+	Tmpl8::vec2& pos,
+	Tmpl8::vec2& size,
 	int borderWidth,
 	Tmpl8::Pixel color,
 	Tmpl8::Pixel borderColor

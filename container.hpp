@@ -12,8 +12,8 @@ class Container : public Object {
 public:
 	Container(
 		int64_t id, 
-		Tmpl8::vec2 pos, 
-		Tmpl8::vec2 size,
+		Tmpl8::vec2& pos, 
+		Tmpl8::vec2& size,
 		Justification justification
 	);
 

@@ -10,8 +10,8 @@ public:
 		int64_t id,
 		std::function<void()> handler,
 		std::string& text,
-		Tmpl8::vec2 pos = Tmpl8::vec2(0),
-		Tmpl8::vec2 size = Tmpl8::vec2(0),
+		Tmpl8::vec2& pos = Tmpl8::vec2(0),
+		Tmpl8::vec2& size = Tmpl8::vec2(0),
 		int borderWidth = 1,
 		Tmpl8::Pixel color = 0xffffff,
 		Tmpl8::Pixel borderColor = 0x000000

@@ -5,12 +5,12 @@
 
 class Object {
 public:
-	Object(int64_t id, Tmpl8::vec2 pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
+	Object(int64_t id, Tmpl8::vec2& pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
 	virtual ~Object();
 
 	int64_t getId() { return id_; }
 
-	void setPos(Tmpl8::vec2 pos) { pos_ = pos; }
+	void setPos(Tmpl8::vec2& pos) { pos_ = pos; }
 	Tmpl8::vec2 getPos() { return pos_; }
 
 	BoundingBox& getBounds() { return boundingBox_; }

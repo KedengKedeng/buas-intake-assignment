@@ -2,8 +2,8 @@
 
 Container::Container(
 	int64_t id,
-	Tmpl8::vec2 pos,
-	Tmpl8::vec2 size,
+	Tmpl8::vec2& pos,
+	Tmpl8::vec2& size,
 	Justification justification
 )
 	: Object(id, pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0))), justification_(justification) { };
