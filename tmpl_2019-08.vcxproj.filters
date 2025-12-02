@@ -107,6 +107,9 @@
     <ClCompile Include="spriteStack.cpp">
       <Filter>components\sprites</Filter>
     </ClCompile>
+    <ClCompile Include="mouseMoveHandler.cpp">
+      <Filter>input\mouse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="spriteStack.hpp">
       <Filter>components\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="mouseMoveHandler.hpp">
+      <Filter>input\mouse</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

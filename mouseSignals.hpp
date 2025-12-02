@@ -4,3 +4,4 @@
 
 extern Signal<Tmpl8::vec2&> mousePressed;
 extern Signal<> mouseReleased;
+extern Signal<Tmpl8::vec2&> mouseMoved;

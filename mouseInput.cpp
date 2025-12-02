@@ -36,5 +36,6 @@ std::unique_ptr<Command> MouseInput::mouseUp(int button) {
 
 std::unique_ptr<Command> MouseInput::setMousePos(Tmpl8::vec2& pos) {
 	pos_ = pos;
+	mouseMoved.emit(pos);
 	return std::make_unique<Command>();
 }
