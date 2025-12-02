@@ -228,6 +228,7 @@
     <ClCompile Include="cookingScreen.cpp" />
     <ClCompile Include="mouseMoveHandler.cpp" />
     <ClCompile Include="objectList.cpp" />
+    <ClCompile Include="spoon.cpp" />
     <ClCompile Include="spriteStack.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
     <ClCompile Include="container.cpp" />
@@ -268,6 +269,7 @@
     <ClInclude Include="cookingCauldron.hpp" />
     <ClInclude Include="cookingScreen.hpp" />
     <ClInclude Include="mouseMoveHandler.hpp" />
+    <ClInclude Include="spoon.hpp" />
     <ClInclude Include="spriteStack.hpp" />
     <ClInclude Include="worldCauldron.hpp" />
     <ClInclude Include="command.hpp" />

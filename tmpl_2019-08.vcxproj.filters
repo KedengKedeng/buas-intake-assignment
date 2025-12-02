@@ -110,6 +110,9 @@
     <ClCompile Include="mouseMoveHandler.cpp">
       <Filter>input\mouse</Filter>
     </ClCompile>
+    <ClCompile Include="spoon.cpp">
+      <Filter>objects\world objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="mouseMoveHandler.hpp">
       <Filter>input\mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="spoon.hpp">
+      <Filter>objects\world objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

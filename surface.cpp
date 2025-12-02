@@ -403,48 +403,48 @@ void Sprite::Draw( Surface* a_Target, int a_X, int a_Y )
 	}
 }
 
-void Sprite::DrawScaled( int a_X, int a_Y, int a_Width, int a_Height, Surface* a_Target )
+void Sprite::DrawScaled(int a_X, int a_Y, int a_Width, int a_Height, Surface* a_Target)
 {
-	if ((a_Width == 0) || (a_Height == 0)) return;
-	if ((a_X < -a_Width) || (a_X > (a_Target->GetWidth() + a_Width))) return;
-	if ((a_Y < -a_Height) || (a_Y > (a_Target->GetHeight() + a_Height))) return;
+	if (a_Width == 0 || a_Height == 0) return;
 
-	int x1 = a_X, x2 = a_X + a_Width;
-	int y1 = a_Y, y2 = a_Y + a_Height;
+	int x1 = a_X;
+	int y1 = a_Y;
+	int x2 = a_X + a_Width;
+	int y2 = a_Y + a_Height;
+
+	int targetW = a_Target->GetWidth();
+	int targetH = a_Target->GetHeight();
+
+	int sx1 = 0, sy1 = 0;
+	if (x1 < 0) { sx1 = -x1; x1 = 0; }
+	if (y1 < 0) { sy1 = -y1; y1 = 0; }
+	if (x2 > targetW) x2 = targetW;
+	if (y2 > targetH) y2 = targetH;
+
+	if (x1 >= x2 || y1 >= y2) return;
+
 	Pixel* spriteBuffer = GetBuffer() + m_CurrentFrame * m_Width;
 
-	int targetWidth = a_Target->GetWidth();
-	int targetHeight = a_Target->GetHeight();
-	if (x1 < 0)
-	{
-		spriteBuffer += -x1;
-		x1 = 0;
-	}
-	if (x2 > targetWidth) x2 = targetWidth;
-
-	if (y1 < 0)
-	{
-		spriteBuffer += -y1 * m_Pitch;
-		y1 = 0;
-	}
-	if (y2 > targetHeight) y2 = targetHeight;
-
-	if (!(x2 > x1) && (y2 > y1)) return;
-
 	Pixel* targetBuffer = a_Target->GetBuffer();
-	const int targetPitch = a_Target->GetPitch();
+	int targetPitch = a_Target->GetPitch();
 
-	for (int y = 0; y < a_Height; y++)
+	for (int ty = y1; ty < y2; ty++)
 	{
-		int v = (int)((float)y * ((float)m_Height / (float)a_Height));
-		for (int x = 0; x < a_Width; x++)
+		float v = (float)(ty - a_Y) / a_Height;
+		int sy = (int)(v * m_Height);
+
+		for (int tx = x1; tx < x2; tx++)
 		{
-			int u = (int)((float)x * ((float)m_Width / (float)a_Width));
-			const Pixel color = *(spriteBuffer + u + v * m_Pitch);
-			if (color) targetBuffer[a_X + x + ((a_Y + y) * targetPitch)] = color;
+			float u = (float)(tx - a_X) / a_Width;
+			int sx = (int)(u * m_Width);
+
+			Pixel color = spriteBuffer[sx + sy * m_Pitch];
+
+			if (color) targetBuffer[tx + ty * targetPitch] = color;
 		}
 	}
 }
+
 
 void Sprite::InitializeStartData()
 {
