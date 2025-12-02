@@ -1,16 +1,14 @@
 #pragma once
 #include "object.hpp"
 #include "sprite.hpp"
+#include "spriteStack.hpp"
 #include <vector>
 
-class SpriteObject : public Object {
+class SpriteObject : public Object, public SpriteStack {
 public:
 	SpriteObject(int64_t id, Tmpl8::vec2& pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox):
-		Object(id, pos, boundingBox, interactionBoundingBox) {}
+		Object(id, pos, boundingBox, interactionBoundingBox), SpriteStack(std::vector<Sprite>()) {
+	}
 	
 	virtual void draw(Tmpl8::Surface* surface) override;
-protected:
-	float currentFrame_ = 1;
-	int currentSprite_ = 0;
-	std::vector<Sprite> sprites_ = {};
 };

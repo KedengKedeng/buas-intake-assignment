@@ -224,7 +224,11 @@
   <ItemGroup>
     <ClCompile Include="boundingBox.cpp" />
     <ClCompile Include="button.cpp" />
-    <ClCompile Include="cauldron.cpp" />
+    <ClCompile Include="cookingCauldron.cpp" />
+    <ClCompile Include="cookingScreen.cpp" />
+    <ClCompile Include="objectList.cpp" />
+    <ClCompile Include="spriteStack.cpp" />
+    <ClCompile Include="worldCauldron.cpp" />
     <ClCompile Include="container.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="interactionCommand.hpp" />
@@ -237,6 +241,8 @@
     <ClCompile Include="mouseInput.cpp" />
     <ClCompile Include="mouseSignals.cpp" />
     <ClCompile Include="object.cpp" />
+    <ClCompile Include="objectList.hpp" />
+    <ClCompile Include="objectRepository.cpp" />
     <ClCompile Include="objectSignals.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSignals.cpp" />
@@ -256,8 +262,12 @@
   <ItemGroup>
     <ClInclude Include="boundingBox.hpp" />
     <ClInclude Include="button.hpp" />
-    <ClInclude Include="container.hpp" />
     <ClInclude Include="cauldron.hpp" />
+    <ClInclude Include="container.hpp" />
+    <ClInclude Include="cookingCauldron.hpp" />
+    <ClInclude Include="cookingScreen.hpp" />
+    <ClInclude Include="spriteStack.hpp" />
+    <ClInclude Include="worldCauldron.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
     <ClInclude Include="interactionSignal.hpp" />
@@ -275,6 +285,7 @@
     <ClInclude Include="mouseSignals.hpp" />
     <ClInclude Include="moveCommand.hpp" />
     <ClInclude Include="object.hpp" />
+    <ClInclude Include="objectRepository.hpp" />
     <ClInclude Include="objectSignals.hpp" />
     <ClInclude Include="observableBoundingBox.hpp" />
     <ClInclude Include="player.hpp" />

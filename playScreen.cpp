@@ -1,7 +1,7 @@
 #include "playScreen.hpp"
 #include "playerSignals.hpp"
 #include "wall.hpp"
-#include "cauldron.hpp"
+#include "worldCauldron.hpp"
 #include "itemObject.hpp"
 #include "sprite.hpp"
 #include "objectSignals.hpp"
@@ -16,7 +16,7 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tm
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(surface->GetWidth(), 1)));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight() - 1), Tmpl8::vec2(surface->GetWidth(), 1)));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() - 1, 0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_unique<Cauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2)));
+	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2)));
 	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(500, 200), itemRepository.get(std::string("testItem"))));
 }
 
@@ -98,22 +98,26 @@ void PlayScreen::subscribe() {
 
 	deleteObjectSignalUnsub = deleteObjectSignal.subscribe([this](int64_t id) {
 		queue.push([this, id]() {deleteObject(id); });
-		});
+	});
 
 	itemPickedUpUnsub = itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
 		player_.setItem(item);
-		});
+	});
 
 	interactionSignalUnsub = interactionSignal.subscribe([this]() {
 		auto item = player_.getItem();
 
 		if (item.get() == nullptr) return;
 
-		if (itemDropped.getListenerCount() == 0) insertObject(std::make_unique<ItemObject>(getRandomNum(), player_.getPos(), item));
+		if (itemDropped.getListenerCount() == 0) {
+			std::unique_ptr<ItemObject> itemObject = std::make_unique<ItemObject>(getRandomNum(), player_.getPos(), item);
+			itemObject->subscribe();
+			insertObject(std::move(itemObject));
+		}
 		else itemDropped.emit(item);
 
 		player_.clearItem();
-		});
+	});
 
 	requestMoveUnsub = requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Player& player) {
 		BoundingBox bounds = player.getBounds();
@@ -125,11 +129,15 @@ void PlayScreen::subscribe() {
 			player.move(oldPos + collides);
 			interactionCheck(player.getAbsoluteInteractionBounds());
 		}
-		});
+	});
 
 	escapePressedUnsub = escapePressed.subscribe([]() {
 		stackScreen.emit(2);
-		});
+	});
+
+	cauldronInteractedUnsub = cauldronInteracted.subscribe([this]() {
+		changeScreen.emit(3);
+	});
 }
 
 void PlayScreen::unsubscribe() {
@@ -142,4 +150,5 @@ void PlayScreen::unsubscribe() {
 	interactionSignalUnsub();
 	requestMoveUnsub();
 	escapePressedUnsub();
+	cauldronInteractedUnsub();
 }

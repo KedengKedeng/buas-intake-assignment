@@ -11,6 +11,7 @@ public:
 	void draw(Tmpl8::Surface* surface, float x, float y) { 
 		drawScaled(surface, x, y, 1.0f);
 	}
+
 	void drawScaled(Tmpl8::Surface* surface, float x, float y, float scale) {
 		sprite_->DrawScaled(
 			static_cast<int>(x), 

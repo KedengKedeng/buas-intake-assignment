@@ -4,9 +4,13 @@
 #include "playScreen.hpp"
 #include "startScreen.hpp"
 #include "settingsScreen.hpp"
+#include "cookingScreen.hpp"
 #include "screenSignals.hpp"
 #include "itemList.hpp"
 #include "spriteList.hpp"
+#include "objectList.hpp"
+
+extern void setupObjectList();
 
 namespace Tmpl8
 {
@@ -17,6 +21,7 @@ namespace Tmpl8
 	{
 		setupSpriteList();
 		setupItemList();
+		setupObjectList();
 
 		keyboardInput = KeyboardInput();
 		mouseInput = MouseInput();
@@ -24,6 +29,7 @@ namespace Tmpl8
 		screens[0] = std::make_shared<StartScreen>(surface_);
 		screens[1] = std::make_shared<PlayScreen>(surface_);
 		screens[2] = std::make_shared<SettingsScreen>(surface_);
+		screens[3] = std::make_shared<CookingScreen>(surface_);
 		currentScreens.push_back(screens[0]);
 		screens[0]->subscribe();
 

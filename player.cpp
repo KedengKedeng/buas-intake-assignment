@@ -14,13 +14,15 @@ Player::Player(int64_t id, Tmpl8::vec2& pos) :
 		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0)),
 		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(0))
 	) {
-	sprites_.push_back(Sprite(std::string("playeridleleft"), playerSpriteScale));
-	sprites_.push_back(Sprite(std::string("playeridleright"), playerSpriteScale));
-	sprites_.push_back(Sprite(std::string("playerwalkleft"), playerSpriteScale));
-	sprites_.push_back(Sprite(std::string("playerwalkright"), playerSpriteScale));
+	Sprite sprite = Sprite(std::string("playeridleleft"), playerSpriteScale);
 
-	boundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth(), sprites_[0].getHeight()));
-	interactionBoundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth() + playerInteractionOffset, sprites_[0].getHeight() + playerInteractionOffset));
+	addSprite(sprite);
+	addSprite(Sprite(std::string("playeridleright"), playerSpriteScale));
+	addSprite(Sprite(std::string("playerwalkleft"), playerSpriteScale));
+	addSprite(Sprite(std::string("playerwalkright"), playerSpriteScale));
+
+	boundingBox_.setSize(Tmpl8::vec2(sprite.getWidth(), sprite.getHeight()));
+	interactionBoundingBox_.setSize(Tmpl8::vec2(sprite.getWidth() + playerInteractionOffset, sprite.getHeight() + playerInteractionOffset));
 };
 
 void Player::subscribe() {
@@ -59,8 +61,8 @@ void Player::process() {
 }
 
 void Player::draw(Tmpl8::Surface* surface) {
-	if (delta_.x || delta_.y) currentSprite_ = lookDirection + 2; // set to running animations
-	else currentSprite_ = lookDirection; // set to idle animations
+	if (delta_.x || delta_.y) setSprite(lookDirection + 2); // set to running animations
+	else setSprite(lookDirection); // set to idle animations
 
 	SpriteObject::draw(surface);
 

@@ -71,9 +71,6 @@
     <ClCompile Include="screen.cpp">
       <Filter>components\screens</Filter>
     </ClCompile>
-    <ClCompile Include="cauldron.cpp">
-      <Filter>objects\world objects</Filter>
-    </ClCompile>
     <ClCompile Include="spriteObject.cpp">
       <Filter>objects</Filter>
     </ClCompile>
@@ -88,6 +85,27 @@
     </ClCompile>
     <ClCompile Include="keyboardSignals.cpp">
       <Filter>signals</Filter>
+    </ClCompile>
+    <ClCompile Include="objectRepository.cpp">
+      <Filter>objects\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="objectList.hpp">
+      <Filter>objects\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="worldCauldron.cpp">
+      <Filter>objects\world objects\cauldron</Filter>
+    </ClCompile>
+    <ClCompile Include="cookingScreen.cpp">
+      <Filter>components\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="objectList.cpp">
+      <Filter>objects\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="cookingCauldron.cpp">
+      <Filter>objects\world objects\cauldron</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteStack.cpp">
+      <Filter>components\sprites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,12 +164,6 @@
     <ClInclude Include="spriteObject.hpp">
       <Filter>objects</Filter>
     </ClInclude>
-    <ClInclude Include="cauldron.hpp">
-      <Filter>objects\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="player.hpp">
-      <Filter>objects\world objects</Filter>
-    </ClInclude>
     <ClInclude Include="wall.hpp">
       <Filter>objects\world objects</Filter>
     </ClInclude>
@@ -209,6 +221,27 @@
     <ClInclude Include="keyboardCommand.hpp">
       <Filter>input\commands</Filter>
     </ClInclude>
+    <ClInclude Include="objectRepository.hpp">
+      <Filter>objects\repository</Filter>
+    </ClInclude>
+    <ClInclude Include="worldCauldron.hpp">
+      <Filter>objects\world objects\cauldron</Filter>
+    </ClInclude>
+    <ClInclude Include="cauldron.hpp">
+      <Filter>objects\world objects\cauldron</Filter>
+    </ClInclude>
+    <ClInclude Include="cookingScreen.hpp">
+      <Filter>components\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="cookingCauldron.hpp">
+      <Filter>objects\world objects\cauldron</Filter>
+    </ClInclude>
+    <ClInclude Include="player.hpp">
+      <Filter>objects\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteStack.hpp">
+      <Filter>components\sprites</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
@@ -252,6 +285,12 @@
     </Filter>
     <Filter Include="util">
       <UniqueIdentifier>{2619b8e0-ccb1-4002-aafc-d9f0aa1eadde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="objects\repository">
+      <UniqueIdentifier>{b421812d-4b95-4415-b555-e63775cd9492}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="objects\world objects\cauldron">
+      <UniqueIdentifier>{20cba432-7740-4170-ab0e-f2260c4316bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

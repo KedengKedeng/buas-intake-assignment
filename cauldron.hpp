@@ -1,19 +1,15 @@
 #pragma once
-#include "spriteObject.hpp"
 #include "item.hpp"
+#include "object.hpp"
 #include <vector>
 
-class Cauldron : public SpriteObject {
+class Cauldron : public Object {
 public:
-	Cauldron(int64_t id, Tmpl8::vec2& pos);
-	~Cauldron();
+	Cauldron(): Object(0, Tmpl8::vec2(0), BoundingBox(), ObservableBoundingBox()) {};
+	void insertItem(std::shared_ptr<Item> item) { items_.push_back(item); }
+	size_t getItemCount() { return items_.size(); }
 
-	void draw(Tmpl8::Surface* surface) override;
-
-	void onInteractStart() override;
-	void onInteractEnd() override;
+	void draw(Tmpl8::Surface* surface) override {};
 private:
 	std::vector<std::shared_ptr<Item>> items_ = {};
-
-	std::function<void()> itemDroppedUnsub = []() {};
 };

@@ -9,6 +9,8 @@ short term:
 - create exit game signal
 - if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
 - make elements in containers have relative positions
+- add onmousemove
+- move cauldron get outside of cauldron objects and into screens themselves and pass into constructor
 
 todo for mvp:
 - keyboard input handling (done)
@@ -23,3 +25,6 @@ nice to haves:
 - i11n (english, dutch, indonesian?)
 - mouse events (click and drag)
 - title menu
+
+assumptions made:
+- Everything collision and interaction wise assumes there will only ever be 1 player

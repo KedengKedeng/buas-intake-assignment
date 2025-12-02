@@ -27,4 +27,5 @@ private:
 	std::function<void()> interactionSignalUnsub = []() {};
 	std::function<void()> requestMoveUnsub = []() {};
 	std::function<void()> escapePressedUnsub = []() {};
+	std::function<void()> cauldronInteractedUnsub = []() {};
 };

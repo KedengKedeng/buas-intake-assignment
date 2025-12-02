@@ -20,18 +20,18 @@ public:
 	bool isCollisionAllowed() { return allowCollision; }
 	bool isInteractionAllowed() { return allowInteraction; }
 
-	virtual void subscribe();
-	virtual void unsubscribe();
-
 	virtual void draw(Tmpl8::Surface* surface) = 0;
 	virtual void process() {};
+
+	virtual void subscribe();
+	virtual void unsubscribe();
 protected:
 	Tmpl8::vec2 pos_;
 
 	BoundingBox boundingBox_;
 	ObservableBoundingBox interactionBoundingBox_;
-	virtual void onInteractStart() {}
-	virtual void onInteractEnd() {}
+	virtual void onInteractStart() {};
+	virtual void onInteractEnd() {};
 
 	std::function<void()> onInteractionStartUnsub = []() {};
 	std::function<void()> onInteractionEndUnsub = []() {};

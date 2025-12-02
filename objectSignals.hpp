@@ -2,3 +2,5 @@
 #include "signal.hpp"
 
 extern Signal<int64_t> deleteObjectSignal;
+
+extern Signal<> cauldronInteracted;
