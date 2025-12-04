@@ -4,12 +4,10 @@ short term:
 - any way to make text center?
 - find a better folder structure
 - combine item and sprite repositories into a class
-- allow interacting with cauldron which changes screens while not throwing in items
 - change interaction signal to be terminatable
 - create exit game signal
 - if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
 - make elements in containers have relative positions
-- add onmousemove
 - move cauldron get outside of cauldron objects and into screens themselves and pass into constructor
 - rename mouse pressed and mouse released to mousedown and mouseup
 
@@ -24,7 +22,7 @@ nice to haves:
 - sound
 - options menu (key rebinding?, volume mixer)
 - i11n (english, dutch, indonesian?)
-- mouse events (click, drag, move, hover)
+- mouse events (click (done), drag (done), move (done), hover)
 - title menu
 
 assumptions made:

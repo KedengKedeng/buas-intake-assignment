@@ -13,6 +13,18 @@ Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) : SpriteObject(id, pos, BoundingBox()
 	mouseMoveHandler.setOnMouseDrag([this](Tmpl8::vec2& pos, Tmpl8::vec2& delta) {
 		requestMove.emit(pos_, delta, *this);
 	});
+
+	mouseMoveHandler.setOnMouseDragStart([this]() {
+		velocity = { 0, 0 };
+	});
+
+	mouseMoveHandler.setOnMouseDragEnd([this]() {
+		velocity = { 0, 7 };
+	});
+}
+
+void Spoon::process() {
+	if (velocity.x || velocity.y) requestMove.emit(pos_, velocity, *this);
 }
 
 void Spoon::subscribe() {

@@ -8,6 +8,10 @@ public:
 
 	void subscribe() override;
 	void unsubscribe() override;
+
+	void process() override;
 private:
+	Tmpl8::vec2 velocity = { 0, 7 };
+
 	MouseMoveHandler mouseMoveHandler;
 };

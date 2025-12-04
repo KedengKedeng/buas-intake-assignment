@@ -10,22 +10,31 @@ MouseMoveHandler::~MouseMoveHandler() {
 void MouseMoveHandler::setOnMouseMove(std::function<void(Tmpl8::vec2&, Tmpl8::vec2&)> handler) {
 	unsubscribe();
 	onMouseMoveHandler_ = handler;
-	subscribe();
 }
 
 void MouseMoveHandler::setOnMouseDrag(std::function<void(Tmpl8::vec2&, Tmpl8::vec2&)> handler) {
 	unsubscribe();
 	onMouseDragHandler_ = handler;
-	subscribe();
 }
+
+void MouseMoveHandler::setOnMouseDragStart(std::function<void()> handler) {
+	onMouseDragStartHandler_ = handler;
+}
+
+void MouseMoveHandler::setOnMouseDragEnd(std::function<void()> handler) {
+	onMouseDragEndHandler_ = handler;
+}
+
 
 void MouseMoveHandler::subscribe() {
 	if (onMouseDragHandler_ != nullptr) {
 		onMouseDownUnsub = mousePressed.subscribe([this](Tmpl8::vec2& pos) {
 			if (interactionCheck(pos)) mouseDown = true;
+			if (onMouseDragStartHandler_ != nullptr) onMouseDragStartHandler_();
 		});
 
 		onMouseUpUnsub = mouseReleased.subscribe([this]() {
+			if (mouseDown && onMouseDragEndHandler_ != nullptr) onMouseDragEndHandler_();
 			mouseDown = false;
 		});
 	}
