@@ -16,7 +16,6 @@ public:
 	void subscribe() override;
 	void unsubscribe() override;
 private:
-	Tmpl8::vec2 objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2& velocity);
 	void interactionCheck(ObservableBoundingBox& bounds);
 	std::set<int64_t> alreadyInteracting = {};
 

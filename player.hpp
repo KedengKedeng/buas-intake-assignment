@@ -7,7 +7,6 @@ class Player : public SpriteObject {
 public:
 	Player(int64_t id, Tmpl8::vec2& pos);
 
-	void move(Tmpl8::vec2& newPos);
 	void calculateMove();
 
 	void addDelta(Tmpl8::vec2& delta) { delta_ += delta; }

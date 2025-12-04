@@ -12,9 +12,9 @@ void setupSpriteList() {
 	spriteRepository.insert(std::string("filledcauldron"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/filledcauldron.png"), 8));
 	spriteRepository.insert(std::string("filledburningcauldron"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/filledburningcauldron.png"), 8));
 	spriteRepository.insert(std::string("cauldroncloseupfront"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupfront.png"), 1));
+	spriteRepository.insert(std::string("cauldroncloseupback"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupback.png"), 1));
 	spriteRepository.insert(std::string("cauldroncloseupfire"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupfire.png"), 6));
 	spriteRepository.insert(std::string("cauldroncloseupfilled"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupfilled.png"), 8));
-	spriteRepository.insert(std::string("cauldroncloseupempty"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupempty.png"), 1));
 	spriteRepository.insert(std::string("spoon"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/spoon.png"), 1));
 
 }

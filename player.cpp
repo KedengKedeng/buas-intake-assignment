@@ -1,5 +1,6 @@
 #include "player.hpp"
 #include "playerSignals.hpp"
+#include "objectSignals.hpp"
 #include <algorithm>
 #include <cmath>
 #include "spriteRepository.hpp"
@@ -50,10 +51,6 @@ void Player::calculateMove() {
 	Tmpl8::vec2 calculatedVelocity = velocity / sidewardsPenalty * delta_;
 
 	requestMove.emit(pos_, calculatedVelocity, *this);
-}
-
-void Player::move(Tmpl8::vec2& newPos) {
-	pos_ = newPos;
 }
 
 void Player::process() {

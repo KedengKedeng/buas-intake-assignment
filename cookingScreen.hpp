@@ -17,4 +17,5 @@ private:
 	CookingCauldron cauldron_;
 
 	std::function<void()> escapePressedUnsub = []() {};
+	std::function<void()> requestMoveUnsub = []() {};
 };

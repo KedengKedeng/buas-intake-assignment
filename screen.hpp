@@ -15,4 +15,6 @@ public:
 	virtual void process();
 protected:
 	std::queue<std::function<void()>> queue = {};
+
+	Tmpl8::vec2 objectsCollideWithBounds(Object& object, Tmpl8::vec2& velocity);
 };

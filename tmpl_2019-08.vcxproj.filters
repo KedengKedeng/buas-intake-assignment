@@ -254,6 +254,9 @@
     <ClInclude Include="spoon.hpp">
       <Filter>objects\world objects</Filter>
     </ClInclude>
+    <ClInclude Include="invisibleBarrier.hpp">
+      <Filter>objects\world objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

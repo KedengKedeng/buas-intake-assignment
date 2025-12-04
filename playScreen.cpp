@@ -1,5 +1,5 @@
 #include "playScreen.hpp"
-#include "playerSignals.hpp"
+#include "objectSignals.hpp"
 #include "wall.hpp"
 #include "worldCauldron.hpp"
 #include "itemObject.hpp"
@@ -38,38 +38,6 @@ void PlayScreen::process() {
 
 	Screen::process();
 }
-
-Tmpl8::vec2 PlayScreen::objectsCollideWithBounds(BoundingBox& bounds, Tmpl8::vec2& velocity) {
-	Tmpl8::vec2 collisionVec = velocity;
-
-	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
-		auto object = it->second.get();
-		if (!object->isCollisionAllowed()) continue;
-
-		CollisionResult result = bounds.swept(object->getAbsoluteBounds(), velocity);
-        if (result.collision) {
-            Tmpl8::vec2 allowedMovement(0, 0);
-
-            allowedMovement.x += velocity.x * result.time;
-            allowedMovement.y += velocity.y * result.time;
-
-			// Check for remaining times in case of diagonal movement.
-            float remainingTime = 1 - result.time;
-            if (result.normalX == 0.0f) allowedMovement.x += velocity.x * remainingTime;
-            if (result.normalY == 0.0f) allowedMovement.y += velocity.y * remainingTime;
-            
-			// Compare to collisions beforehand so the minimum collision in a direction is always chosen.
-            if (velocity.x >= 0.0f) collisionVec.x = std::min(collisionVec.x, allowedMovement.x);
-            else collisionVec.x = std::max(collisionVec.x, allowedMovement.x);
-
-            if (velocity.y >= 0.0f) collisionVec.y = std::min(collisionVec.y, allowedMovement.y);
-            else collisionVec.y = std::max(collisionVec.y, allowedMovement.y);
-        }
-	}
-
-	return collisionVec;
-}
-
 void PlayScreen::interactionCheck(ObservableBoundingBox& bounds){
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
 		auto object = it->second.get();
@@ -119,15 +87,14 @@ void PlayScreen::subscribe() {
 		player_.clearItem();
 	});
 
-	requestMoveUnsub = requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Player& player) {
-		BoundingBox bounds = player.getBounds();
-		Tmpl8::vec2 collides = objectsCollideWithBounds(bounds.at(oldPos), velocity);
+	requestMoveUnsub = requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Object& object) {
+		Tmpl8::vec2 collides = objectsCollideWithBounds(object, velocity);
 
 		Tmpl8::vec2 newPos = oldPos + newPos;
 
 		if (oldPos != newPos) {
-			player.move(oldPos + collides);
-			interactionCheck(player.getAbsoluteInteractionBounds());
+			object.setPos(oldPos + collides);
+			interactionCheck(object.getAbsoluteInteractionBounds());
 		}
 	});
 

@@ -14,6 +14,7 @@ public:
 private:
 	std::shared_ptr<Cauldron> cauldron_;
 	Sprite cauldronFront;
+	Sprite cauldronBack;
 	SpriteStack cauldronInside;
 	SpriteStack fire;
 };
