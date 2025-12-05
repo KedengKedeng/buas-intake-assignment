@@ -6,7 +6,7 @@
 class MousePressedCommand : public Command {
 public:
 	MousePressedCommand(Tmpl8::vec2& pos) : pos_(pos) {}
-	void execute() override { mousePressed.emit(pos_); }
+	void execute() override { onMouseDown.emit(pos_); }
 private:
 	Tmpl8::vec2 pos_;
 };

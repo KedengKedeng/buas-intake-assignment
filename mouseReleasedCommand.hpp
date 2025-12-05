@@ -4,5 +4,5 @@
 
 class MouseReleasedCommand : public Command {
 public:
-	void execute() override { mouseReleased.emit(); }
+	void execute() override { onMouseUp.emit(); }
 };
