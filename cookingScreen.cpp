@@ -7,8 +7,9 @@
 #include "objectSignals.hpp"
 #include "invisibleBarrier.hpp"
 #include "random.hpp"
+#include "objectRepository.hpp"
 
-CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface), cauldron_() {
+CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface), cauldron_(std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")))) {
 	cauldron_.setPos(Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight()) - cauldron_.getPos());
 	auto cauldronSize = cauldron_.getBounds().getSize();
 	// cauldron collision walls

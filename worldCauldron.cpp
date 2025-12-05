@@ -2,16 +2,15 @@
 #include "itemSignals.hpp"
 #include "interactionSignal.hpp"
 #include "objectSignals.hpp"
-#include "objectRepository.hpp"
 
-WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos) :
+WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauldron> cauldron) :
 	SpriteObject(
 		id,
 		pos,
 		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0)),
 		ObservableBoundingBox(Tmpl8::vec2(-10), Tmpl8::vec2(0))
-	) {
-	cauldron_ = std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")));
+	),
+	cauldron_(cauldron) {
 	Sprite sprite = Sprite(std::string("emptycauldron"), 2.5);
 
 	addSprite(sprite);

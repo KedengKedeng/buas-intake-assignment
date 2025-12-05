@@ -4,19 +4,19 @@
 #include "worldCauldron.hpp"
 #include "itemObject.hpp"
 #include "sprite.hpp"
-#include "objectSignals.hpp"
 #include "itemSignals.hpp"
 #include "interactionSignal.hpp"
 #include "itemsRepository.hpp"
 #include "keyboardSignals.hpp"
 #include "screenSignals.hpp"
+#include "objectRepository.hpp"
 
 PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tmpl8::vec2(10)) {
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(1, surface->GetHeight())));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(surface->GetWidth(), 1)));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight() - 1), Tmpl8::vec2(surface->GetWidth(), 1)));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() - 1, 0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2)));
+	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")))));
 	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(500, 200), itemRepository.get(std::string("testItem"))));
 }
 

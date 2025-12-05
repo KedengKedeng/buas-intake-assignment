@@ -8,7 +8,6 @@ short term:
 - create exit game signal
 - if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
 - make elements in containers have relative positions
-- move cauldron get outside of cauldron objects and into screens themselves and pass into constructor
 
 todo for mvp:
 - keyboard input handling (done)

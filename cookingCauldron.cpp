@@ -1,15 +1,14 @@
 #include "cookingCauldron.hpp"
 
-CookingCauldron::CookingCauldron() 
+CookingCauldron::CookingCauldron(std::shared_ptr<Cauldron> cauldron) 
 	: Object(0, Tmpl8::vec2(0), BoundingBox(), ObservableBoundingBox()), 
 	cauldronFront(std::string("cauldroncloseupfront"), 0.5), 
 	cauldronBack(std::string("cauldroncloseupback"), 0.5),
 	cauldronInside(std::vector<Sprite>()),
-	fire(std::vector<Sprite>()) 
+	fire(std::vector<Sprite>()) ,
+	cauldron_(cauldron)
 {
 	allowCollision = false;
-
-	cauldron_ = std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")));
 	
 	pos_ = Tmpl8::vec2(cauldronFront.getWidth() / 2, cauldronFront.getHeight());
 	boundingBox_.setSize(Tmpl8::vec2(cauldronFront.getWidth(), cauldronFront.getHeight()));

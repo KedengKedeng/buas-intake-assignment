@@ -1,11 +1,10 @@
 #pragma once
 #include "cauldron.hpp"
-#include "objectRepository.hpp"
 #include "spriteStack.hpp"
 
 class CookingCauldron : public Object {
 public:
-	CookingCauldron();
+	CookingCauldron(std::shared_ptr<Cauldron> cauldron);
 	~CookingCauldron();
 
 	void drawBack(Tmpl8::Surface* surface);
