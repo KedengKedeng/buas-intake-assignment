@@ -224,6 +224,7 @@
   <ItemGroup>
     <ClCompile Include="boundingBox.cpp" />
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="cauldron.cpp" />
     <ClCompile Include="cookingCauldron.cpp" />
     <ClCompile Include="cookingScreen.cpp" />
     <ClCompile Include="mouseMoveHandler.cpp" />

@@ -1,7 +1,6 @@
 #pragma once
 #include "screen.hpp"
 #include "player.hpp"
-#include <set>
 
 class PlayScreen : public Screen {
 public:
@@ -16,9 +15,6 @@ public:
 	void subscribe() override;
 	void unsubscribe() override;
 private:
-	void interactionCheck(ObservableBoundingBox& bounds);
-	std::set<int64_t> alreadyInteracting = {};
-
 	Player player_;
 
 	std::function<void()> deleteObjectSignalUnsub = []() {};

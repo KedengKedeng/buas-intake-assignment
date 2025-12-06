@@ -4,6 +4,7 @@
 #include <functional>
 #include <memory>
 #include <map>
+#include <set>
 #include "random.hpp"
 #include "container.hpp"
 
@@ -14,6 +15,9 @@ public:
 
 	virtual void process();
 protected:
+	void interactionCheck(ObservableBoundingBox& bounds);
+	std::set<int64_t> alreadyInteracting = {};
+
 	std::queue<std::function<void()>> queue = {};
 
 	Tmpl8::vec2 objectsCollideWithBounds(Object& object, Tmpl8::vec2& velocity);

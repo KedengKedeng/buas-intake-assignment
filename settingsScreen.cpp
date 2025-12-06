@@ -45,7 +45,7 @@ void SettingsScreen::subscribe() {
 
 	escapePressedUnsub = escapePressed.subscribe([]() {
 		closeScreen.emit();
-		});
+	});
 }
 
 void SettingsScreen::unsubscribe() {

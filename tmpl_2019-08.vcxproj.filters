@@ -8,9 +8,6 @@
     <ClCompile Include="template.cpp">
       <Filter>template code</Filter>
     </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="playScreen.cpp">
       <Filter>components\screens</Filter>
     </ClCompile>
@@ -112,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="spoon.cpp">
       <Filter>objects\world objects</Filter>
+    </ClCompile>
+    <ClCompile Include="cauldron.cpp">
+      <Filter>objects\world objects\cauldron</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

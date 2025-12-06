@@ -1,7 +1,8 @@
 #include "cookingCauldron.hpp"
+#include "objectSignals.hpp"
 
-CookingCauldron::CookingCauldron(std::shared_ptr<Cauldron> cauldron) 
-	: Object(0, Tmpl8::vec2(0), BoundingBox(), ObservableBoundingBox()), 
+CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron) 
+	: Object(id, Tmpl8::vec2(0), BoundingBox(), ObservableBoundingBox()), 
 	cauldronFront(std::string("cauldroncloseupfront"), 0.5), 
 	cauldronBack(std::string("cauldroncloseupback"), 0.5),
 	cauldronInside(std::vector<Sprite>()),
@@ -12,6 +13,9 @@ CookingCauldron::CookingCauldron(std::shared_ptr<Cauldron> cauldron)
 	
 	pos_ = Tmpl8::vec2(cauldronFront.getWidth() / 2, cauldronFront.getHeight());
 	boundingBox_.setSize(Tmpl8::vec2(cauldronFront.getWidth(), cauldronFront.getHeight()));
+
+	interactionBoundingBox_.setPos(Tmpl8::vec2(120, 80));
+	interactionBoundingBox_.setSize(Tmpl8::vec2(cauldronFront.getWidth() - 220, cauldronFront.getHeight() - 80));
 
 	cauldronInside.addSprite(Sprite(std::string("cauldroncloseupfilled"), 0.5));
 
@@ -40,4 +44,12 @@ void CookingCauldron::drawFront(Tmpl8::Surface* surface) {
 		pos_.x + (cauldronFront.getWidth() / 2 - fire.getWidth() / 2), 
 		pos_.y + (cauldronFront.getHeight() - (fire.getHeight() - 20)))
 	);
+}
+
+void CookingCauldron::onInteractStart() {
+	cauldronInteracted.emit();
+}
+
+void CookingCauldron::onInteractEnd() {
+	cauldronInteractionEnded.emit();
 }

@@ -9,13 +9,18 @@
 #include "random.hpp"
 #include "objectRepository.hpp"
 
-CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface), cauldron_(std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")))) {
-	cauldron_.setPos(Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight()) - cauldron_.getPos());
-	auto cauldronSize = cauldron_.getBounds().getSize();
+CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
+	std::unique_ptr<CookingCauldron> cauldron = std::make_unique<CookingCauldron>(getRandomNum(), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron"))));
+
+	cauldronId = cauldron->getId();
+
+	cauldron->setPos(Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight()) - cauldron->getPos());
+	auto cauldronSize = cauldron->getBounds().getSize();
+
 	// cauldron collision walls
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron_.getPos() + Tmpl8::vec2(80), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron_.getPos() + Tmpl8::vec2(cauldronSize.x - 100, 80.0f), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron_.getPos() + Tmpl8::vec2(80.0f, cauldronSize.y - 100), Tmpl8::vec2(cauldronSize.x - 140, 1.0f)));
+	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
+	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(cauldronSize.x - 100, 80.0f), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
+	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80.0f, cauldronSize.y - 100), Tmpl8::vec2(cauldronSize.x - 140, 1.0f)));
 
 	// screen edge collision walls
 	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, 0), Tmpl8::vec2(1, surface->GetHeight())));
@@ -23,6 +28,7 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface), cauldro
 	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight()), Tmpl8::vec2(surface->GetWidth(), 1)));
 
 	insertObject(std::make_unique<Spoon>(0, Tmpl8::vec2(10)));
+	insertObject(std::move(cauldron));
 }
 
 CookingScreen::~CookingScreen() {
@@ -30,11 +36,12 @@ CookingScreen::~CookingScreen() {
 }
 
 void CookingScreen::draw(Tmpl8::Surface* surface) {
-	cauldron_.drawBack(surface);
+	auto cauldron = dynamic_cast<CookingCauldron*>(objects_[cauldronId].get());
+	cauldron->drawBack(surface);
 
 	Screen::draw(surface);
 
-	cauldron_.drawFront(surface);
+	cauldron->drawFront(surface);
 }
 
 void CookingScreen::process() {
@@ -48,6 +55,14 @@ void CookingScreen::subscribe() {
 		changeScreen.emit(1);
 	});
 
+	cauldronInteractedUnsub = cauldronInteracted.subscribe([this]() {
+		trackSpoonMovement = true;
+	});
+
+	cauldronInteractionEndedUnsub = cauldronInteractionEnded.subscribe([this]() {
+		trackSpoonMovement = false;
+	});
+
 	requestMoveUnsub = requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Object& object) {
 		Tmpl8::vec2 collides = objectsCollideWithBounds(object, velocity);
 
@@ -55,7 +70,12 @@ void CookingScreen::subscribe() {
 
 		if (oldPos != newPos) 
 			object.setPos(oldPos + collides);
-		
+
+		interactionCheck(object.getAbsoluteInteractionBounds());
+
+		auto cauldron = dynamic_cast<CookingCauldron*>(objects_[cauldronId].get());
+		if (trackSpoonMovement && oldPos != newPos) 
+			cauldron->stir(std::abs(collides.x));
 	});
 }
 
@@ -63,5 +83,7 @@ void CookingScreen::unsubscribe() {
 	Screen::unsubscribe();
 
 	escapePressedUnsub();
+	cauldronInteractedUnsub();
+	cauldronInteractionEndedUnsub();
 	requestMoveUnsub();
 }

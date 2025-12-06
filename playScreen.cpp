@@ -38,26 +38,6 @@ void PlayScreen::process() {
 
 	Screen::process();
 }
-void PlayScreen::interactionCheck(ObservableBoundingBox& bounds){
-	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
-		auto object = it->second.get();
-		if (!object->isInteractionAllowed()) continue;
-
-		ObservableBoundingBox& objectBounds = object->getInteractionBounds();
-		bool result = bounds.isInBounds(object->getAbsoluteInteractionBounds());
-
-		bool foundInteractingObject = alreadyInteracting.find(it->first) != alreadyInteracting.end();
-		if (result && !foundInteractingObject) {
-			alreadyInteracting.insert(it->first);
-			objectBounds.onIntersectStart.emit();
-		}
-
-		if (!result && foundInteractingObject) {
-			alreadyInteracting.erase(it->first);
-			objectBounds.onIntersectEnd.emit();
-		}
-	}
-}
 
 void PlayScreen::subscribe() {
 	Screen::subscribe();
@@ -92,10 +72,10 @@ void PlayScreen::subscribe() {
 
 		Tmpl8::vec2 newPos = oldPos + newPos;
 
-		if (oldPos != newPos) {
+		if (oldPos != newPos) 
 			object.setPos(oldPos + collides);
-			interactionCheck(object.getAbsoluteInteractionBounds());
-		}
+
+		interactionCheck(object.getAbsoluteInteractionBounds());
 	});
 
 	escapePressedUnsub = escapePressed.subscribe([]() {

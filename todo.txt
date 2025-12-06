@@ -24,4 +24,9 @@ nice to haves:
 - title menu
 
 assumptions made:
-- Everything collision and interaction wise assumes there will only ever be 1 player
+- Everything collision and interaction wise assumes there will only ever be 1 dynamic collider
+
+what would i do different next time:
+- i would like to try an entity component system next time with less inheritance and more composition
+- i would like more signals to be inside classes instead of global
+- probably find better ways to do texture ordering

@@ -14,8 +14,11 @@ public:
 	void subscribe() override;
 	void unsubscribe() override;
 private:
-	CookingCauldron cauldron_;
+	int64_t cauldronId;
+	bool trackSpoonMovement = false;
 
 	std::function<void()> escapePressedUnsub = []() {};
+	std::function<void()> cauldronInteractedUnsub = []() {};
+	std::function<void()> cauldronInteractionEndedUnsub = []() {};
 	std::function<void()> requestMoveUnsub = []() {};
 };
