@@ -11,9 +11,13 @@ public:
 	size_t getItemCount() { return items_.size(); }
 
 	void stir(float delta);
+	void addTemp(float delta);
+	float getTemp();
 
 	void draw(Tmpl8::Surface* surface) override {};
 private:
 	float amountToStir = 0;
+	float neededTemp = 0;
+	float temp = 0;
 	std::vector<std::shared_ptr<Item>> items_ = {};
 };

@@ -42,7 +42,7 @@ void CookingCauldron::drawFront(Tmpl8::Surface* surface) {
 
 	fire.draw(surface, Tmpl8::vec2(
 		pos_.x + (cauldronFront.getWidth() / 2 - fire.getWidth() / 2), 
-		pos_.y + (cauldronFront.getHeight() - (fire.getHeight() - 20)))
+		pos_.y + (cauldronFront.getHeight() - (fire.getHeight() - 20)) + (200 - std::min(cauldron_->getTemp() / 4, 200.0f)))
 	);
 }
 

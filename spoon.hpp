@@ -2,6 +2,8 @@
 #include "mouseMoveHandler.hpp"
 #include "spriteObject.hpp"
 
+extern Tmpl8::vec2 spoonVelocity;
+
 class Spoon : public SpriteObject {
 public:
 	Spoon(int64_t id, Tmpl8::vec2& pos);
@@ -11,7 +13,7 @@ public:
 
 	void process() override;
 private:
-	Tmpl8::vec2 velocity = { 0, 7 };
+	Tmpl8::vec2 velocity = spoonVelocity;
 
 	MouseMoveHandler mouseMoveHandler;
 };

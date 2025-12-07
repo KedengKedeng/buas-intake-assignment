@@ -116,6 +116,9 @@
     <ClCompile Include="button.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="blower.cpp">
+      <Filter>objects\world objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -169,9 +172,6 @@
     </ClInclude>
     <ClInclude Include="screenSignals.hpp">
       <Filter>signals</Filter>
-    </ClInclude>
-    <ClInclude Include="spriteObject.hpp">
-      <Filter>objects</Filter>
     </ClInclude>
     <ClInclude Include="wall.hpp">
       <Filter>objects\world objects</Filter>
@@ -258,6 +258,12 @@
       <Filter>objects\world objects</Filter>
     </ClInclude>
     <ClInclude Include="invisibleBarrier.hpp">
+      <Filter>objects\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteObject.hpp">
+      <Filter>objects</Filter>
+    </ClInclude>
+    <ClInclude Include="blower.hpp">
       <Filter>objects\world objects</Filter>
     </ClInclude>
   </ItemGroup>

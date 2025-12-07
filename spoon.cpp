@@ -1,6 +1,8 @@
 #include "spoon.hpp"
 #include "objectSignals.hpp"
 
+Tmpl8::vec2 spoonVelocity = { 0, 7 };
+
 Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) : SpriteObject(id, pos, BoundingBox(), ObservableBoundingBox()), mouseMoveHandler() {
 	addSprite(Sprite(std::string("spoon"), 0.4));
 
@@ -22,7 +24,7 @@ Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) : SpriteObject(id, pos, BoundingBox()
 	});
 
 	mouseMoveHandler.setOnMouseDragEnd([this]() {
-		velocity = { 0, 7 };
+		velocity = spoonVelocity;
 	});
 }
 

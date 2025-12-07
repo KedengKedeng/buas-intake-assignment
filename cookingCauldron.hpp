@@ -8,6 +8,7 @@ public:
 	~CookingCauldron();
 
 	void stir(float delta) { cauldron_->stir(delta); }
+	void addTemp(float delta) { cauldron_->addTemp(delta); }
 
 	void drawBack(Tmpl8::Surface* surface);
 	void drawFront(Tmpl8::Surface* surface);

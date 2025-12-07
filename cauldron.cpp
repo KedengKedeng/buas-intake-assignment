@@ -7,7 +7,6 @@ void Cauldron::insertItem(std::shared_ptr<Item> item) {
 
 void Cauldron::stir(float delta) {
 	if (items_.size() == 0) return;
-	printf("%.f\n", delta);
 
 	amountToStir -= delta;
 
@@ -16,4 +15,12 @@ void Cauldron::stir(float delta) {
 		printf("stirring complete \n");
 		items_.clear();
 	}
+}
+
+void Cauldron::addTemp(float delta) {
+	temp += delta;
+}
+
+float Cauldron::getTemp() {
+	return temp;
 }

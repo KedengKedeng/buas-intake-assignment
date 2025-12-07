@@ -8,4 +8,8 @@ extern Signal<int64_t> deleteObjectSignal;
 extern Signal<> cauldronInteracted;
 extern Signal<> cauldronInteractionEnded;
 
+extern Signal<> blowerInteracted;
+extern Signal<> blowerInteractionEnded;
+extern Signal<float> blowedSignal;
+
 extern Signal<Tmpl8::vec2&, Tmpl8::vec2&, Object&> requestMove;

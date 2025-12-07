@@ -9,11 +9,13 @@ public:
 
 	void addSprite(Sprite& sprite) { sprites_.push_back(sprite); }
 	void setSprite(int sprite) { currentSprite_ = sprite; }
+	void setFrame(int frame) { sprites_[currentSprite_].setFrame(frame); }
 
 	float getWidth() { return sprites_[0].getWidth(); }
 	float getHeight() { return sprites_[0].getHeight(); }
 
 	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& pos);
+	void drawNoAnimate(Tmpl8::Surface* surface, Tmpl8::vec2& pos);
 private:
 	float currentFrame_ = 1;
 	int currentSprite_ = 0;

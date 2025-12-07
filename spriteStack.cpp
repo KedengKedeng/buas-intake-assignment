@@ -11,3 +11,7 @@ void SpriteStack::draw(Tmpl8::Surface* surface, Tmpl8::vec2& pos) {
 
 	currentFrame_ += 0.1f;
 };
+
+void SpriteStack::drawNoAnimate(Tmpl8::Surface* surface, Tmpl8::vec2& pos) {
+	sprites_[currentSprite_].draw(surface, pos.x, pos.y);
+}
