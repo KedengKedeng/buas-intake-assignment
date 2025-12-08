@@ -44,6 +44,7 @@ std::unique_ptr<Command> KeyboardInput::keyDown(int keyCode) {
 		return std::make_unique<EscapeCommand>();
 		break;
 	default:
+		// print unused keycodes for debug reasons
 		printf("keycode: %d\n", keyCode);
 		return std::make_unique<Command>();
 		break;

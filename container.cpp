@@ -35,12 +35,16 @@ void Container::unsubscribe() {
 void Container::spreadObjects() {
 	if (justification_ == Justification::NONE) return;
 
+	// get combined size of all elements
 	Tmpl8::vec2 combinedSize(0);
 	for (auto& object : objects_) combinedSize += object.second->getBounds().getSize();
 
+	// calculate the gap between each element based on how much space
+	// they take up combined compared to the container size
 	Tmpl8::vec2 containerSize = boundingBox_.getSize();
 	Tmpl8::vec2 gap = (containerSize - combinedSize) / static_cast<float>(objects_.size());
 
+	// spread objects by gap
 	Tmpl8::vec2 currentPos = pos_;
 	for (auto& object : objects_) {
 		object.second->setPos(currentPos);

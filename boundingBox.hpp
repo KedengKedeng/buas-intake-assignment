@@ -3,15 +3,15 @@
 #include "signal.hpp"
 
 struct CollisionResult {
-	bool collision;
 	float normalX;
 	float normalY;
 	float time;
+	bool collision;
 };
 
 struct SweptAxisResult {
-	bool collision;
 	Tmpl8::vec2 timings;
+	bool collision;
 };
 
 class BoundingBox {
@@ -24,6 +24,8 @@ public:
 	Tmpl8::vec2 getSize() { return size_; }
 	void setSize(Tmpl8::vec2& size) { size_ = size; }
 
+	// return a version of the bounding box with the given position added.
+	// mainly used to compared bounding boxes on a plane.
 	BoundingBox at(Tmpl8::vec2& pos) { return BoundingBox(pos + pos_, size_); }
 
 	virtual bool isInBounds(BoundingBox& box);

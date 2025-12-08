@@ -9,6 +9,9 @@ short term:
 - if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
 - make elements in containers have relative positions
 - move interaction signals to objects instead of being global
+- allow each animation to set their own speed
+- allow each screen to have their own queue adding mechanism that things outside the screen can add to
+- screen enum
 
 todo for mvp:
 - keyboard input handling (done)

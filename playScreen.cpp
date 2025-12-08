@@ -12,10 +12,13 @@
 #include "objectRepository.hpp"
 
 PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tmpl8::vec2(10)) {
+	// world boundaries
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(1, surface->GetHeight())));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(surface->GetWidth(), 1)));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight() - 1), Tmpl8::vec2(surface->GetWidth(), 1)));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() - 1, 0), Tmpl8::vec2(1, surface->GetHeight())));
+
+	// interactable objects
 	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")))));
 	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(500, 200), itemRepository.get(std::string("testItem"))));
 }
@@ -57,11 +60,13 @@ void PlayScreen::subscribe() {
 
 		if (item.get() == nullptr) return;
 
+		// drop item on the ground if nothing is checking to pick it up
 		if (itemDropped.getListenerCount() == 0) {
 			std::unique_ptr<ItemObject> itemObject = std::make_unique<ItemObject>(getRandomNum(), player_.getPos(), item);
 			itemObject->subscribe();
 			insertObject(std::move(itemObject));
 		}
+		// otherwise allow said listener to pick up the item
 		else itemDropped.emit(item);
 
 		player_.clearItem();

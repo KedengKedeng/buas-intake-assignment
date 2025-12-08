@@ -8,19 +8,9 @@ class Sprite {
 public:
 	Sprite(std::string& name, float scale) : sprite_(spriteRepository.get(name, scale)), scale_(scale), maxFrames_(sprite_->Frames()) {};
 
-	void draw(Tmpl8::Surface* surface, float x, float y) { 
-		drawScaled(surface, x, y, 1.0f);
-	}
+	void draw(Tmpl8::Surface* surface, float x, float y);
 
-	void drawScaled(Tmpl8::Surface* surface, float x, float y, float scale) {
-		sprite_->DrawScaled(
-			static_cast<int>(x), 
-			static_cast<int>(y), 
-			static_cast<int>(getWidth() * scale), 
-			static_cast<int>(getHeight() * scale), 
-			surface
-		); 
-	}
+	void drawScaled(Tmpl8::Surface* surface, float x, float y, float scale);
 
 	void setFrame(unsigned int index);
 	unsigned int getFrames() { return sprite_->Frames(); }

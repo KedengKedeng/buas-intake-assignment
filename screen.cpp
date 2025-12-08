@@ -3,6 +3,7 @@
 void Screen::process() {
 	Container::process();
 
+	// Process the entire queue
 	for (; !queue.empty(); queue.pop()) {
 		auto func = queue.front();
 		func();
@@ -16,6 +17,9 @@ Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& veloci
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
 		auto object2 = it->second.get();
+
+		// the colliding object can be in this list and can hence check collision with itself.
+		// it would never be able to move if we dont check for this.
 		if (object.getId() == object2->getId() || !object2->isCollisionAllowed()) continue;
 
 		CollisionResult result = bounds.swept(object2->getAbsoluteBounds(), velocity);
@@ -51,11 +55,14 @@ void Screen::interactionCheck(ObservableBoundingBox& bounds) {
 		bool result = bounds.isInBounds(object->getAbsoluteInteractionBounds());
 
 		bool foundInteractingObject = alreadyInteracting.find(it->first) != alreadyInteracting.end();
+		// add to a list of already interacting objects.
+		// if not kept track it would emit onIntersectStart every frame
 		if (result && !foundInteractingObject) {
 			alreadyInteracting.insert(it->first);
 			objectBounds.onIntersectStart.emit();
 		}
 
+		// remove from list if no longer interacting
 		if (!result && foundInteractingObject) {
 			alreadyInteracting.erase(it->first);
 			objectBounds.onIntersectEnd.emit();

@@ -3,6 +3,7 @@
 void SpriteStack::draw(Tmpl8::Surface* surface, Tmpl8::vec2& pos) {
 	unsigned int frames = sprites_[currentSprite_].getFrames();
 
+	// overflow to first frame 
 	if (currentFrame_ > frames) currentFrame_ = 1;
 
 	sprites_[currentSprite_].setFrame(static_cast<int>(currentFrame_));

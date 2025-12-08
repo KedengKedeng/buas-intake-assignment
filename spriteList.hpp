@@ -1,6 +1,7 @@
 #pragma once 
 #include "spriteRepository.hpp"
 
+// registers all used assets in the game to a list for lookup later
 void setupSpriteList() {
 	spriteRepository.insert(std::string("waterbottle"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/mcwaterbottle.png"), 1));
 	spriteRepository.insert(std::string("playeridleleft"), std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/playeridleleft.png"), 3));

@@ -11,6 +11,7 @@
 class Screen : public Container {
 public:
 	Screen(Tmpl8::Surface* surface)
+		// screens are really just a container the size of the screen arent they? :)
 		: Container(0, Tmpl8::vec2(0), Tmpl8::vec2(0), Justification::NONE){};
 
 	virtual void process();

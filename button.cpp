@@ -27,15 +27,13 @@ void Button::subscribe() {
 
 		if (absolutePosBounds.isInBounds(mouseBounds))
 			active = true;
-		});
+	});
 
 	onMouseUpUnsub = onMouseUp.subscribe([this]() {
-		if (active) {
-			handler_();
-		}
+		if (active) handler_();
 
 		active = false;
-		});
+	});
 }
 
 void Button::unsubscribe() {

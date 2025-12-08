@@ -27,6 +27,7 @@ void MouseMoveHandler::setOnMouseDragEnd(std::function<void()> handler) {
 
 
 void MouseMoveHandler::subscribe() {
+	// dont bother subscribing if no drag handler has been set
 	if (onMouseDragHandler_ != nullptr) {
 		onMouseDownUnsub = onMouseDown.subscribe([this](Tmpl8::vec2& pos) {
 			if (interactionCheck(pos)) mouseDown = true;
@@ -34,8 +35,8 @@ void MouseMoveHandler::subscribe() {
 		});
 
 		onMouseUpUnsub = onMouseUp.subscribe([this]() {
-			if (mouseDown && onMouseDragEndHandler_ != nullptr) onMouseDragEndHandler_();
 			mouseDown = false;
+			if (mouseDown && onMouseDragEndHandler_ != nullptr) onMouseDragEndHandler_();
 		});
 	}
 

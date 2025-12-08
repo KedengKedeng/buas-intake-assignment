@@ -45,6 +45,7 @@ void Blower::draw(Tmpl8::Surface* surface) {
 }
 
 void Blower::process() {
+	// slowly bring blower back up if no interaction is happening
 	if (inflate) addBlowerPosition(-0.5f);
 }
 

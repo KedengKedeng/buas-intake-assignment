@@ -1,5 +1,6 @@
 #include "boundingBox.hpp"
 
+// simple aabb bounds checking
 bool BoundingBox::isInBounds(BoundingBox& box) {
 	Tmpl8::vec2 firstPos = getPos();
 	Tmpl8::vec2 firstSize = getSize();
@@ -20,22 +21,26 @@ CollisionResult BoundingBox::swept(BoundingBox& box, Tmpl8::vec2& velocity) {
     Tmpl8::vec2 secondPos = box.getPos();
     Tmpl8::vec2 secondSize = box.getSize();
 
+    // check collisions for each side
     SweptAxisResult resultX = getSweptTimings(firstPos.x, secondPos.x, firstSize.x, secondSize.x, velocity.x);
     SweptAxisResult resultY = getSweptTimings(firstPos.y, secondPos.y, firstSize.y, secondSize.y, velocity.y);
 
     if (!resultX.collision || !resultY.collision) return { false, 0, 0, 0 };
 
+    // check first possible collision time on each side
     float entryTime = std::max(resultX.timings.x, resultY.timings.x);
     float exitTime = std::min(resultX.timings.y, resultY.timings.y);
 
+    // check if the collision time actually happens in the time frame we are checking for
     if (entryTime > exitTime || entryTime < 0 || entryTime > 1) 
         return { false, 0, 0, 0 };
 
+    // get the normal of the collision
     float normalX = 0, normalY = 0;
     if (resultX.timings.x > resultY.timings.x) normalX = (velocity.x > 0) ? -1.0f : 1.0f;
     else normalY = (velocity.y > 0) ? -1.0f : 1.0f;
 
-    return { true, normalX, normalY, entryTime };
+    return { normalX, normalY, entryTime, true };
 }
 
 SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity) {
@@ -46,9 +51,12 @@ SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, fl
     );
 
     if (velocity == 0.0f) {
-        if (firstPos + firstSize < secondPos || secondPos + secondSize < firstPos) return { false, Tmpl8::vec2(1.0f, 1.0f)};
+        // the object can stil be colliding on a side even if it isnt moving.
+        // so these if statements have to be seperate to account for that.
+        if (firstPos + firstSize < secondPos || secondPos + secondSize < firstPos) return { Tmpl8::vec2(1), false};
     }
     else {
+        // do slightly different swept checks based on if the collision is forwards or backwards.
         if (velocity > 0.0f) {
             difference.x = secondPos - (firstPos + firstSize);
             difference.y = (secondPos + secondSize) - firstPos;
@@ -60,5 +68,5 @@ SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, fl
         timings = difference / velocity;
     }
 
-    return { true, timings };
+    return { timings, true };
 }

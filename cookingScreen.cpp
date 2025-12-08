@@ -13,12 +13,15 @@
 CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	std::unique_ptr<CookingCauldron> cauldron = std::make_unique<CookingCauldron>(getRandomNum(), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron"))));
 
+	// get a reference of the cauldron for operations on it specifically later
 	cauldronId = cauldron->getId();
 
 	cauldron->setPos(Tmpl8::vec2(surface->GetWidth() / 2 - 100, surface->GetHeight()) - cauldron->getPos());
 	auto cauldronSize = cauldron->getBounds().getSize();
 
 	// cauldron collision walls
+	// the collision system doesnt allow for unique shapes past filled squares right now.
+	// so we have to instantiate each side like this outside of the object.
 	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
 	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(cauldronSize.x - 100, 80.0f), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
 	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80.0f, cauldronSize.y - 100), Tmpl8::vec2(cauldronSize.x - 140, 1.0f)));
@@ -28,6 +31,7 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(surface->GetWidth(), 0), Tmpl8::vec2(1, surface->GetHeight())));
 	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight()), Tmpl8::vec2(surface->GetWidth(), 1)));
 
+	// insert main interactable objects
 	insertObject(std::make_unique<Spoon>(0, cauldron->getPos() + Tmpl8::vec2(cauldronSize.x, 0.0f) / 2));
 	insertObject(std::make_unique<Blower>(1, cauldron->getPos() + Tmpl8::vec2(500, 180)));
 	insertObject(std::move(cauldron));
@@ -75,6 +79,7 @@ void CookingScreen::subscribe() {
 		blowedSignalUnsub();
 	});
 
+	// Only subscribe if the blower is being interacted with
 	if (trackBlowerMovement) 
 		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {onBlow(delta); });
 

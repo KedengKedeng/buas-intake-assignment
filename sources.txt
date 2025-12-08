@@ -19,3 +19,7 @@ general c++:
 
 DrawScaled function bugs (no clip checking, not taking current frame into account):
 - Jeramiah van Oosten
+
+art and assets:
+- Minecraft (test item water bottle)
+- Solariouse

@@ -2,6 +2,7 @@
 #include "boundingBox.hpp"
 #include "signal.hpp"
 
+// this is really just a bounding box with intersection signals
 class ObservableBoundingBox : public BoundingBox {
 public:
 	ObservableBoundingBox() : BoundingBox() {}
