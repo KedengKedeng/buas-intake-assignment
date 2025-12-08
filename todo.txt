@@ -10,7 +10,6 @@ short term:
 - make elements in containers have relative positions
 - move interaction signals to objects instead of being global
 - allow each animation to set their own speed
-- find a way to reverse keys (do executions inside key input and add an undo function to the commands)
 - reset items on potion creation
 
 todo for mvp:
@@ -34,4 +33,3 @@ what would i do different next time:
 - i would like to try an entity component system next time with less inheritance and more composition
 - i would like more signals to be inside classes instead of global
 - probably find better ways to do texture ordering
-- per screen input mapping?

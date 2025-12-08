@@ -7,17 +7,23 @@
 #include <set>
 #include "random.hpp"
 #include "container.hpp"
+#include "keyboardInput.hpp"
 
 class Screen : public Container {
 public:
 	Screen(Tmpl8::Surface* surface)
 		// screens are really just a container the size of the screen arent they? :)
-		: Container(0, Tmpl8::vec2(0), Tmpl8::vec2(0), Justification::NONE){};
+		: Container(0, Tmpl8::vec2(0), Tmpl8::vec2(0), Justification::NONE), keyboardInput_() {};
 
 	virtual void process();
 
 	void pushToQueue(std::function<void()> func) { queue.push(func); }
+
+	void keyDown(int keyCode) { keyboardInput_.keyDown(keyCode); }
+	void keyUp(int keyCode) { keyboardInput_.keyUp(keyCode); }
 protected:
+	KeyboardInput keyboardInput_;
+
 	void interactionCheck(ObservableBoundingBox& bounds);
 	std::set<int64_t> alreadyInteracting = {};
 

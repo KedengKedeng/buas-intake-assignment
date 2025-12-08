@@ -9,8 +9,11 @@
 #include "random.hpp"
 #include "objectRepository.hpp"
 #include "blower.hpp"
+#include "keyboardCommand.hpp"
 
 CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
+	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<EscapeCommand>(); });
+
 	std::unique_ptr<CookingCauldron> cauldron = std::make_unique<CookingCauldron>(getRandomNum(), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron"))));
 
 	// get a reference of the cauldron for operations on it specifically later

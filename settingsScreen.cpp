@@ -3,8 +3,11 @@
 #include "button.hpp"
 #include "screenSignals.hpp"
 #include "keyboardSignals.hpp"
+#include "keyboardCommand.hpp"
 
 SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
+	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<EscapeCommand>(); });
+
 	auto container = std::make_unique<Container>(
 		0,
 		Tmpl8::vec2(surface->GetWidth() / 2 - 20, surface->GetHeight() / 2 - 30),

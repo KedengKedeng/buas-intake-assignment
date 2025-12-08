@@ -23,7 +23,6 @@ namespace Tmpl8
 		setupItemList();
 		setupObjectList();
 
-		keyboardInput = KeyboardInput();
 		mouseInput = MouseInput();
 
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);

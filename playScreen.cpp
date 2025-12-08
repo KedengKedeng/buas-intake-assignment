@@ -10,8 +10,18 @@
 #include "keyboardSignals.hpp"
 #include "screenSignals.hpp"
 #include "objectRepository.hpp"
+#include "moveCommand.hpp"
+#include "interactionCommand.hpp"
+#include "keyboardCommand.hpp"
 
 PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tmpl8::vec2(10)) {
+	keyboardInput_.registerHandler(std::string("walkLeft"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 }); });
+	keyboardInput_.registerHandler(std::string("walkUp"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 }); });
+	keyboardInput_.registerHandler(std::string("walkDown"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 }); });
+	keyboardInput_.registerHandler(std::string("walkRight"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 1, 0 }); });
+	keyboardInput_.registerHandler(std::string("interact"), []() {return std::make_unique<InteractionCommand>(); });
+	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<EscapeCommand>(); });
+
 	// world boundaries
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(1, surface->GetHeight())));
 	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(surface->GetWidth(), 1)));

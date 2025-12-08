@@ -1,12 +1,19 @@
 #pragma once
 #include "command.hpp"
+#include <string>
 #include <memory>
-#include <set>
+#include <map>
+#include <functional>
+
+extern std::map<int, std::string> keyMapping;
 
 class KeyboardInput {
 public:
-	std::unique_ptr<Command> keyDown(int keyCode);
-	std::unique_ptr<Command> keyUp(int keyCode);
+	void keyDown(int keyCode);
+	void keyUp(int keyCode);
+
+	void registerHandler(std::string& action, std::function<std::unique_ptr<Command>()> handler) { handlers[action] = handler; }
 private:
-	std::set<int> keysDown = {};
+	std::map<int, std::unique_ptr<Command>> keysDown = {};
+	std::map<std::string, std::function<std::unique_ptr<Command>()>> handlers = {};
 };
