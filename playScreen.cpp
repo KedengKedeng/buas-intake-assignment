@@ -84,11 +84,11 @@ void PlayScreen::subscribe() {
 	});
 
 	escapePressedUnsub = escapePressed.subscribe([]() {
-		stackScreen.emit(2);
+		stackScreen.emit(Screens::SettingsMenu);
 	});
 
 	cauldronInteractedUnsub = cauldronInteracted.subscribe([this]() {
-		changeScreen.emit(3);
+		changeScreen.emit(Screens::Cooking);
 	});
 }
 

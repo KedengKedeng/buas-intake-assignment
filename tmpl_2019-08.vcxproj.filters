@@ -266,6 +266,9 @@
     <ClInclude Include="blower.hpp">
       <Filter>objects\world objects</Filter>
     </ClInclude>
+    <ClInclude Include="screens.hpp">
+      <Filter>components\screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

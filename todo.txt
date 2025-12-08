@@ -10,8 +10,8 @@ short term:
 - make elements in containers have relative positions
 - move interaction signals to objects instead of being global
 - allow each animation to set their own speed
-- allow each screen to have their own queue adding mechanism that things outside the screen can add to
-- screen enum
+- find a way to reverse keys (do executions inside key input and add an undo function to the commands)
+- reset items on potion creation
 
 todo for mvp:
 - keyboard input handling (done)
@@ -25,7 +25,7 @@ nice to haves:
 - options menu (key rebinding?, volume mixer)
 - i11n (english, dutch, indonesian?)
 - mouse events (click (done), drag (done), move (done), hover)
-- title menu
+- title menu (done)
 
 assumptions made:
 - Everything collision and interaction wise assumes there will only ever be 1 dynamic collider
@@ -34,3 +34,4 @@ what would i do different next time:
 - i would like to try an entity component system next time with less inheritance and more composition
 - i would like more signals to be inside classes instead of global
 - probably find better ways to do texture ordering
+- per screen input mapping?

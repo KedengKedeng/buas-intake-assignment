@@ -26,26 +26,34 @@ namespace Tmpl8
 		keyboardInput = KeyboardInput();
 		mouseInput = MouseInput();
 
-		screens[0] = std::make_shared<StartScreen>(surface_);
-		screens[1] = std::make_shared<PlayScreen>(surface_);
-		screens[2] = std::make_shared<SettingsScreen>(surface_);
-		screens[3] = std::make_shared<CookingScreen>(surface_);
-		currentScreens.push_back(screens[0]);
-		screens[0]->subscribe();
+		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
+		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_);
+		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
+		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_);
+		currentScreens.push_back(screens[Screens::TitleMenu]);
+		screens[Screens::TitleMenu]->subscribe();
 
-		changeScreen.subscribe([this](int screenIndex) { 
-			queue.push([this, screenIndex]() {
+		pushToCurrentScreenQueue.subscribe([this](std::function<void()> func) {
+			currentScreens[0]->pushToQueue(func);
+		});
+
+		pushToScreenQueue.subscribe([this](Screens screen, std::function<void()> func) {
+			screens[screen]->pushToQueue(func);
+		});
+
+		changeScreen.subscribe([this](Screens screen) { 
+			queue.push([this, screen]() {
 				for (auto& screen : currentScreens) screen->unsubscribe();
 				currentScreens.clear();
-				currentScreens.push_back(screens[screenIndex]);
+				currentScreens.push_back(screens[screen]);
 				currentScreens[0]->subscribe();
 			});
 		});
 
-		stackScreen.subscribe([this](int screenIndex) {
-			queue.push([this, screenIndex]() {
+		stackScreen.subscribe([this](Screens screen) {
+			queue.push([this, screen]() {
 				for (auto& screen : currentScreens) screen->unsubscribe();
-				currentScreens.push_back(screens[screenIndex]);
+				currentScreens.push_back(screens[screen]);
 				auto screen = currentScreens.end() - 1;
 				screen->get()->subscribe();
 			});

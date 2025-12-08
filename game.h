@@ -3,6 +3,7 @@
 #include "mouseInput.hpp"
 #include "screen.hpp"
 #include "template.h"
+#include "screens.hpp"
 
 namespace Tmpl8 {
 
@@ -21,7 +22,7 @@ public:
 	void KeyUp(int key) { keyboardInput.keyUp(key)->execute(); }
 	void KeyDown(int key) { keyboardInput.keyDown(key)->execute(); }
 private:
-	std::shared_ptr<Screen> screens[4];
+	std::map<Screens, std::shared_ptr<Screen>> screens;
 	std::vector<std::shared_ptr<Screen>> currentScreens;
 	Surface* surface_;
 	KeyboardInput keyboardInput;

@@ -273,6 +273,7 @@
     <ClInclude Include="cookingScreen.hpp" />
     <ClInclude Include="invisibleBarrier.hpp" />
     <ClInclude Include="mouseMoveHandler.hpp" />
+    <ClInclude Include="screens.hpp" />
     <ClInclude Include="spoon.hpp" />
     <ClInclude Include="spriteStack.hpp" />
     <ClInclude Include="worldCauldron.hpp" />

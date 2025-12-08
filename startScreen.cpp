@@ -12,7 +12,7 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 
 	container->insertObject(std::make_unique<Button>(
 		0,
-		[]() { changeScreen.emit(1); },
+		[]() { changeScreen.emit(Screens::Play); },
 		std::string{ "Start game" },
 		Tmpl8::vec2(0),
 		Tmpl8::vec2(60, 20),
@@ -21,7 +21,7 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 
 	container->insertObject(std::make_unique<Button>(
 		1,
-		[]() { stackScreen.emit(2); },
+		[]() { stackScreen.emit(Screens::SettingsMenu); },
 		std::string{ "Settings" },
 		Tmpl8::vec2(0),
 		Tmpl8::vec2(60, 20),

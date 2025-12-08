@@ -58,7 +58,7 @@ void CookingScreen::subscribe() {
 	Screen::subscribe();
 
 	escapePressedUnsub = escapePressed.subscribe([]() {
-		changeScreen.emit(1);
+		changeScreen.emit(Screens::Play);
 	});
 
 	cauldronInteractedUnsub = cauldronInteracted.subscribe([this]() {

@@ -15,6 +15,8 @@ public:
 		: Container(0, Tmpl8::vec2(0), Tmpl8::vec2(0), Justification::NONE){};
 
 	virtual void process();
+
+	void pushToQueue(std::function<void()> func) { queue.push(func); }
 protected:
 	void interactionCheck(ObservableBoundingBox& bounds);
 	std::set<int64_t> alreadyInteracting = {};
