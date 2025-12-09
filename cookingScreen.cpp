@@ -9,10 +9,10 @@
 #include "random.hpp"
 #include "objectRepository.hpp"
 #include "blower.hpp"
-#include "keyboardCommand.hpp"
+#include "screenCommands.hpp"
 
 CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
-	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<EscapeCommand>(); });
+	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<ChangeScreenCommand>(Screens::Play); });
 
 	std::unique_ptr<CookingCauldron> cauldron = std::make_unique<CookingCauldron>(getRandomNum(), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron"))));
 
@@ -60,10 +60,6 @@ void CookingScreen::process() {
 void CookingScreen::subscribe() {
 	Screen::subscribe();
 
-	escapePressedUnsub = escapePressed.subscribe([]() {
-		changeScreen.emit(Screens::Play);
-	});
-
 	cauldronInteractedUnsub = cauldronInteracted.subscribe([this]() {
 		trackSpoonMovement = true;
 	});
@@ -105,7 +101,6 @@ void CookingScreen::subscribe() {
 void CookingScreen::unsubscribe() {
 	Screen::unsubscribe();
 
-	escapePressedUnsub();
 	cauldronInteractedUnsub();
 	cauldronInteractionEndedUnsub();
 	blowerInteractedUnsub();

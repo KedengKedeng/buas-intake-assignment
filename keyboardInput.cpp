@@ -11,7 +11,8 @@ std::map<int, std::string> keyMapping = {
 	{22, "walkDown"},
 	{7, "walkRight"},
 	{40, "interact"},
-	{41, "escape"}
+	{41, "escape"},
+	{8, "inventory"}
 };
 
 void KeyboardInput::keyDown(int keyCode) {

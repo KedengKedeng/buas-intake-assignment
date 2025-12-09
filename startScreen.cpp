@@ -1,10 +1,10 @@
 #include "startScreen.hpp"
 #include "button.hpp"
 #include "screenSignals.hpp"
-#include "keyboardCommand.hpp"
+#include "screenCommands.hpp"
 
 StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
-	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<EscapeCommand>(); });
+	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
 
 	auto container = std::make_unique<Container>(
 		getRandomNum(),

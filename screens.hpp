@@ -4,5 +4,6 @@ enum class Screens {
 	TitleMenu,
 	Play,
 	Cooking,
-	SettingsMenu
+	SettingsMenu,
+	Inventory
 };

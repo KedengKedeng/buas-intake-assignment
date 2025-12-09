@@ -3,15 +3,18 @@
 #include "button.hpp"
 #include "screenSignals.hpp"
 #include "keyboardSignals.hpp"
-#include "keyboardCommand.hpp"
+#include "screenCommands.hpp"
+#include "modal.hpp"
 
 SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
-	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<EscapeCommand>(); });
+	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<CloseScreenCommand>(); });
 
-	auto container = std::make_unique<Container>(
+	Tmpl8::vec2 modalSize = { 100, 100 };
+	auto container = std::make_unique<Modal>(
 		0,
-		Tmpl8::vec2(surface->GetWidth() / 2 - 20, surface->GetHeight() / 2 - 30),
-		Tmpl8::vec2(50),
+		Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) / 2 - modalSize / 2,
+		modalSize,
+		[]() {closeScreen.emit(); },
 		Justification::VERTICAL
 	);
 
@@ -24,35 +27,8 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	));
 
 	insertObject(std::move(container));
-	insertObject(std::make_unique<Button>(
-		1,
-		[]() {closeScreen.emit(); },
-		std::string("exit"),
-		Tmpl8::vec2(surface->GetWidth() / 2 + 30, surface->GetHeight() / 2 - 50),
-		Tmpl8::vec2(20, 10)
-	));
 }
 
 void SettingsScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
-	int left = surface->GetWidth() / 2 - 50;
-	int top = surface->GetHeight() / 2 - 50;
-	int right = left + 100;
-	int bottom = top + 100;
-	surface->Bar(left, top, right, bottom, 0xffffff);
-
 	Screen::draw(surface, offset);
-}
-
-void SettingsScreen::subscribe() {
-	Screen::subscribe();
-
-	escapePressedUnsub = escapePressed.subscribe([]() {
-		closeScreen.emit();
-	});
-}
-
-void SettingsScreen::unsubscribe() {
-	Screen::unsubscribe();
-
-	escapePressedUnsub();
 }

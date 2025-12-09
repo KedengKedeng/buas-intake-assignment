@@ -19,7 +19,7 @@ public:
 
 	virtual void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 	virtual void process() override;
-	void insertObject(std::unique_ptr<Object> object);
+	virtual void insertObject(std::unique_ptr<Object> object);
 
 	virtual void subscribe() override;
 	virtual void unsubscribe() override;

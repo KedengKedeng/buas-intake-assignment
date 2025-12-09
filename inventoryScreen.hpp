@@ -1,9 +1,11 @@
 #pragma once
 #include "screen.hpp"
 
-class SettingsScreen : public Screen {
+class InventoryScreen : public Screen {
 public:
-	SettingsScreen(Tmpl8::Surface* surface);
+	InventoryScreen(Tmpl8::Surface* surface);
 
 	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
+private:
+
 };

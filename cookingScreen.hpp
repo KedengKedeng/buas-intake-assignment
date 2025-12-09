@@ -20,7 +20,6 @@ private:
 
 	void onBlow(float delta) { if (delta > 0) dynamic_cast<CookingCauldron*>(objects_[cauldronId].get())->addTemp(delta); }
 
-	std::function<void()> escapePressedUnsub = []() {};
 	std::function<void()> cauldronInteractedUnsub = []() {};
 	std::function<void()> cauldronInteractionEndedUnsub = []() {};
 	std::function<void()> blowerInteractedUnsub = []() {};
