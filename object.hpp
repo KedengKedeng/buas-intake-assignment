@@ -20,7 +20,7 @@ public:
 	bool isCollisionAllowed() { return allowCollision; }
 	bool isInteractionAllowed() { return allowInteraction; }
 
-	virtual void draw(Tmpl8::Surface* surface) = 0;
+	virtual void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) = 0;
 	virtual void process() {};
 
 	virtual void subscribe();

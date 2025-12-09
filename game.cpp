@@ -90,6 +90,6 @@ namespace Tmpl8
 			func();
 		}
 
-		for (auto& screen : currentScreens) screen->draw(surface_);
+		for (auto& screen : currentScreens) screen->draw(surface_, Tmpl8::vec2(0));
 	}
 };

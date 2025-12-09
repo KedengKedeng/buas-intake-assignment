@@ -12,7 +12,7 @@ public:
 
 	void drawBack(Tmpl8::Surface* surface);
 	void drawFront(Tmpl8::Surface* surface);
-	void draw(Tmpl8::Surface* surface) override {};
+	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override {};
 protected:
 	void onInteractStart() override;
 	void onInteractEnd() override;

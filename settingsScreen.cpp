@@ -33,14 +33,14 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	));
 }
 
-void SettingsScreen::draw(Tmpl8::Surface* surface) {
+void SettingsScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 	int left = surface->GetWidth() / 2 - 50;
 	int top = surface->GetHeight() / 2 - 50;
 	int right = left + 100;
 	int bottom = top + 100;
 	surface->Bar(left, top, right, bottom, 0xffffff);
 
-	Screen::draw(surface);
+	Screen::draw(surface, offset);
 }
 
 void SettingsScreen::subscribe() {

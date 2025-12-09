@@ -17,7 +17,7 @@ public:
 		Justification justification
 	);
 
-	virtual void draw(Tmpl8::Surface* surface);
+	virtual void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 	virtual void process() override;
 	void insertObject(std::unique_ptr<Object> object);
 

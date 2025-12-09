@@ -57,16 +57,16 @@ void Player::process() {
 	calculateMove();
 }
 
-void Player::draw(Tmpl8::Surface* surface) {
+void Player::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 	if (delta_.x || delta_.y) setSprite(lookDirection + 2); // set to running animations
 	else setSprite(lookDirection); // set to idle animations
 
-	SpriteObject::draw(surface);
+	SpriteObject::draw(surface, offset);
 
 	if (item_ != nullptr) {
 		Tmpl8::vec2 playerSize = boundingBox_.getSize();
-		float xPos = pos_.x + playerSize.x - (item_->sprite.getWidth() * 0.5f) / 3;
-		float yPos = pos_.y + playerSize.y / 2 - (item_->sprite.getHeight() * 0.5f) / 2;
+		float xPos = pos_.x + offset.x + playerSize.x - (item_->sprite.getWidth() * 0.5f) / 3;
+		float yPos = pos_.y + offset.y + playerSize.y / 2 - (item_->sprite.getHeight() * 0.5f) / 2;
 		item_->sprite.drawScaled(surface, xPos, yPos, 0.5f);
 	}
 }

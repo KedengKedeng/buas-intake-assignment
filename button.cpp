@@ -43,7 +43,7 @@ void Button::unsubscribe() {
 	onMouseUpUnsub();
 }
 
-void Button::draw(Tmpl8::Surface* surface) {
+void Button::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 	Tmpl8::vec2 size = boundingBox_.getSize();
 
 	int left = static_cast<int>(pos_.x);

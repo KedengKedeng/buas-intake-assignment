@@ -39,9 +39,9 @@ void Blower::addBlowerPosition(float delta) {
 	blowedSignal.emit(blowerPosition - oldBlowerPos);
 };
 
-void Blower::draw(Tmpl8::Surface* surface) {
+void Blower::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 	setFrame(static_cast<int>(floor(blowerPosition / 25)));
-	drawNoAnimate(surface, pos_);
+	drawNoAnimate(surface, pos_ + offset);
 }
 
 void Blower::process() {

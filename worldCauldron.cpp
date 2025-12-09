@@ -25,10 +25,10 @@ WorldCauldron::~WorldCauldron() {
 	onInteractEnd();
 }
 
-void WorldCauldron::draw(Tmpl8::Surface* surface) {
+void WorldCauldron::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 	setSprite(cauldron_->getItemCount() != 0);
 
-	SpriteObject::draw(surface);
+	SpriteObject::draw(surface, offset);
 }
 
 void WorldCauldron::subscribe() {

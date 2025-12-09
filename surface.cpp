@@ -199,6 +199,16 @@ void Surface::Box( int x1, int y1, int x2, int y2, Pixel c )
 
 void Surface::Bar( int x1, int y1, int x2, int y2, Pixel c )
 {
+	int targetW = GetWidth();
+	int targetH = GetHeight();
+
+	if (x1 < 0) x1 = 0;
+	if (y1 < 0) y1 = 0;
+	if (x2 > targetW) x2 = targetW;
+	if (y2 > targetH) y2 = targetH;
+
+	if (x1 >= x2 || y1 >= y2) return;
+
 	Pixel* a = x1 + y1 * m_Pitch + m_Buffer;
 	for ( int y = y1; y <= y2; y++ )
 	{
@@ -415,9 +425,8 @@ void Sprite::DrawScaled(int a_X, int a_Y, int a_Width, int a_Height, Surface* a_
 	int targetW = a_Target->GetWidth();
 	int targetH = a_Target->GetHeight();
 
-	int sx1 = 0, sy1 = 0;
-	if (x1 < 0) { sx1 = -x1; x1 = 0; }
-	if (y1 < 0) { sy1 = -y1; y1 = 0; }
+	if (x1 < 0) x1 = 0; 
+	if (y1 < 0) y1 = 0;
 	if (x2 > targetW) x2 = targetW;
 	if (y2 > targetH) y2 = targetH;
 

@@ -9,7 +9,7 @@ public:
 
 	void addBlowerPosition(float delta);
 
-	void draw(Tmpl8::Surface* surface) override;
+	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 	void process() override;
 
 	void subscribe() override;

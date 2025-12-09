@@ -1,7 +1,9 @@
 #include "mouseMoveHandler.hpp"
 #include "mouseSignals.hpp"
 
-MouseMoveHandler::MouseMoveHandler() {}
+MouseMoveHandler::MouseMoveHandler() {
+
+}
 
 MouseMoveHandler::~MouseMoveHandler() {
 	unsubscribe();
@@ -35,8 +37,8 @@ void MouseMoveHandler::subscribe() {
 		});
 
 		onMouseUpUnsub = onMouseUp.subscribe([this]() {
-			mouseDown = false;
 			if (mouseDown && onMouseDragEndHandler_ != nullptr) onMouseDragEndHandler_();
+			mouseDown = false;
 		});
 	}
 

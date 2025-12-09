@@ -10,7 +10,8 @@ short term:
 - make elements in containers have relative positions
 - move interaction signals to objects instead of being global
 - allow each animation to set their own speed
-- reset items on potion creation
+- add fire to world cauldron
+- maybe rewrite parts of template to look a bit better?
 
 todo for mvp:
 - keyboard input handling (done)
@@ -18,6 +19,7 @@ todo for mvp:
 - ability to stack screens on top of each other (done)
 - player character that can move and interact with objects (done)
 - event based architecture? (done)
+- camera (done)
 
 nice to haves:
 - sound

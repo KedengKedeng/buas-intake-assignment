@@ -8,7 +8,7 @@ public:
 	ItemObject(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Item> item);
 	~ItemObject();
 
-	void draw(Tmpl8::Surface* surface);
+	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 	void process() override {};
 
 protected:

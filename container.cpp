@@ -8,9 +8,9 @@ Container::Container(
 )
 	: Object(id, pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0))), justification_(justification) { };
 
-void Container::draw(Tmpl8::Surface* surface) {
+void Container::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 	for (auto& object : objects_)
-		object.second->draw(surface);
+		object.second->draw(surface, offset);
 }
 
 void Container::process() {

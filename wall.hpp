@@ -8,5 +8,5 @@ public:
 		allowInteraction = false;
 	};
 
-	void draw(Tmpl8::Surface* surface) override;
+	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 };

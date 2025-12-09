@@ -14,7 +14,7 @@
 #include "interactionCommand.hpp"
 #include "keyboardCommand.hpp"
 
-PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tmpl8::vec2(10)) {
+PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tmpl8::vec2(100, 100)) {
 	keyboardInput_.registerHandler(std::string("walkLeft"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 }); });
 	keyboardInput_.registerHandler(std::string("walkUp"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 }); });
 	keyboardInput_.registerHandler(std::string("walkDown"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 }); });
@@ -30,7 +30,7 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tm
 
 	// interactable objects
 	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")))));
-	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(500, 200), itemRepository.get(std::string("testItem"))));
+	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(20, 50), itemRepository.get(std::string("testItem"))));
 }
 
 PlayScreen::~PlayScreen() {
@@ -41,9 +41,10 @@ void PlayScreen::deleteObject(int64_t id) {
 	objects_.erase(id);
 }
 
-void PlayScreen::draw(Tmpl8::Surface* surface) {
-	Screen::draw(surface);
-	player_.draw(surface);
+void PlayScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+	auto drawOffset = player_.getPos() - (Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) - player_.getBounds().getSize()) / 2;
+	Screen::draw(surface, -drawOffset);
+	player_.draw(surface, -drawOffset);
 }
 
 void PlayScreen::process() {

@@ -10,7 +10,7 @@ public:
 	void deleteObject(int64_t id);
 
 	void process() override;
-	void draw(Tmpl8::Surface* surface) override;
+	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 
 	void subscribe() override;
 	void unsubscribe() override;

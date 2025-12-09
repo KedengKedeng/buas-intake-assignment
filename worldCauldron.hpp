@@ -9,7 +9,7 @@ public:
 	WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauldron> cauldron);
 	~WorldCauldron();
 
-	void draw(Tmpl8::Surface* surface) override;
+	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 
 	void subscribe() override;
 	void unsubscribe() override;

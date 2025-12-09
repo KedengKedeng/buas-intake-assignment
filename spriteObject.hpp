@@ -10,5 +10,5 @@ public:
 		Object(id, pos, boundingBox, interactionBoundingBox), SpriteStack(std::vector<Sprite>()) {
 	}
 	
-	virtual void draw(Tmpl8::Surface* surface) override;
+	virtual void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 };
