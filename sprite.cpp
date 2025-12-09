@@ -15,7 +15,6 @@ void Sprite::drawScaled(Tmpl8::Surface* surface, float x, float y, float scale) 
 	);
 }
 
-
 void Sprite::setFrame(unsigned int index) { 
 	// clamp index to existing frames
 	index = std::min(index, maxFrames_);

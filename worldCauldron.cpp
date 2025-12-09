@@ -11,14 +11,14 @@ WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauld
 		ObservableBoundingBox(Tmpl8::vec2(-10), Tmpl8::vec2(0))
 	),
 	cauldron_(cauldron) {
-	Sprite sprite = Sprite(std::string("emptycauldron"), 2.5);
-
-	addSprite(sprite);
+	addSprite(Sprite(std::string("emptycauldron"), 2.5));
 	addSprite(Sprite(std::string("filledcauldron"), 2.5));
+	addSprite(Sprite(std::string("emptyburningcauldron"), 2.5));
+	addSprite(Sprite(std::string("filledburningcauldron"), 2.5));
 
-	boundingBox_.setSize(Tmpl8::vec2(sprite.getWidth(), sprite.getHeight()));
-	interactionBoundingBox_.setSize(Tmpl8::vec2(sprite.getWidth() + 10, sprite.getHeight() + 10));
-	pos_ = Tmpl8::vec2(pos_.x - sprite.getWidth() / 2, pos_.y - sprite.getHeight() / 2);
+	boundingBox_.setSize(Tmpl8::vec2(getWidth(), getHeight()));
+	interactionBoundingBox_.setSize(Tmpl8::vec2(getWidth() + 10, getHeight() + 10));
+	pos_ = Tmpl8::vec2(pos_.x - getWidth() / 2, pos_.y - getHeight() / 2);
 }
 
 WorldCauldron::~WorldCauldron() {
@@ -26,7 +26,9 @@ WorldCauldron::~WorldCauldron() {
 }
 
 void WorldCauldron::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
-	setSprite(cauldron_->getItemCount() != 0);
+	int spriteNum = cauldron_->getItemCount() != 0;
+	if (cauldron_->getTemp() > 200) spriteNum += 2;
+	setSprite(spriteNum);
 
 	SpriteObject::draw(surface, offset);
 }
