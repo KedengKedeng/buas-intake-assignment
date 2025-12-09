@@ -10,6 +10,11 @@ void Screen::process() {
 	}
 }
 
+void Screen::unsubscribe() {
+	Container::unsubscribe();
+	keyboardInput_.clearKeysDown();
+}
+
 Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& velocity) {
 	BoundingBox bounds = object.getAbsoluteBounds();
 

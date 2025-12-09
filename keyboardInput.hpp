@@ -13,6 +13,7 @@ public:
 	void keyUp(int keyCode);
 
 	void registerHandler(std::string& action, std::function<std::unique_ptr<Command>()> handler) { handlers[action] = handler; }
+	void clearKeysDown();
 private:
 	std::map<int, std::unique_ptr<Command>> keysDown = {};
 	std::map<std::string, std::function<std::unique_ptr<Command>()>> handlers = {};

@@ -3,6 +3,7 @@
 #include "interactionCommand.hpp"
 #include "keyboardCommand.hpp"
 #include "template.h"
+#include <vector>
 
 std::map<int, std::string> keyMapping = {
 	{4, "walkLeft"},
@@ -27,4 +28,11 @@ void KeyboardInput::keyDown(int keyCode) {
 void KeyboardInput::keyUp(int keyCode) {
 	if (keysDown.count(keyCode)) keysDown[keyCode]->undo();
 	keysDown.erase(keyCode);
+}
+
+void KeyboardInput::clearKeysDown() {
+	for (auto currentKeyDown = keysDown.begin(); currentKeyDown != keysDown.end(); currentKeyDown++)
+		currentKeyDown->second->undo();
+
+	keysDown.clear();
 }
