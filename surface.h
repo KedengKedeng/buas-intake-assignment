@@ -34,6 +34,11 @@ inline Pixel SubBlend( Pixel a_Color1, Pixel a_Color2 )
 	return static_cast<Pixel>(red + green + blue);
 }
 
+struct BoundsCheckResult {
+	int x, y, width, height;
+	bool dontPrint;
+};
+
 class Surface
 {
 	enum { OWNER = 1 };
@@ -65,6 +70,8 @@ public:
 	void Box( int x1, int y1, int x2, int y2, Pixel color );
 	void Bar( int x1, int y1, int x2, int y2, Pixel color );
 	void Resize( Surface* a_Orig );
+
+	BoundsCheckResult checkBounds(int& x1, int& y1, int& x2, int& y2, int targetWidth, int targetHeight);
 private:
 	// Attributes
 	Pixel* m_Buffer{nullptr};	

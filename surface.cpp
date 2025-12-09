@@ -17,6 +17,16 @@ bool Surface::fontInitialized = false;
 // True-color surface class implementation
 // -----------------------------------------------------------
 
+BoundsCheckResult Surface::checkBounds(int& x1, int& y1, int& x2, int& y2, int targetWidth, int targetHeight) {
+	if (x1 < 0) x1 = 0;
+	if (y1 < 0) y1 = 0;
+	if (x2 > targetWidth) x2 = targetWidth;
+	if (y2 > targetHeight) y2 = targetHeight;
+
+	if (x1 >= x2 || y1 >= y2) return {0,0,0,0,true};
+	return { x1, y1, x2, y2, false };
+}
+
 Surface::Surface( int a_Width, int a_Height, Pixel* a_Buffer, int a_Pitch ) :
 	m_Buffer( a_Buffer ),
 	m_Width( a_Width ),
@@ -199,15 +209,7 @@ void Surface::Box( int x1, int y1, int x2, int y2, Pixel c )
 
 void Surface::Bar( int x1, int y1, int x2, int y2, Pixel c )
 {
-	int targetW = GetWidth();
-	int targetH = GetHeight();
-
-	if (x1 < 0) x1 = 0;
-	if (y1 < 0) y1 = 0;
-	if (x2 > targetW) x2 = targetW;
-	if (y2 > targetH) y2 = targetH;
-
-	if (x1 >= x2 || y1 >= y2) return;
+	if (checkBounds(x1, y1, x2, y2, GetWidth(), GetHeight()).dontPrint) return;
 
 	Pixel* a = x1 + y1 * m_Pitch + m_Buffer;
 	for ( int y = y1; y <= y2; y++ )
@@ -397,7 +399,6 @@ void Sprite::Draw( Surface* a_Target, int a_X, int a_Y )
 	if (y2 > a_Target->GetHeight()) y2 = a_Target->GetHeight();
 
 	Pixel* dest = a_Target->GetBuffer();
-	int xs;
 	const int dpitch = a_Target->GetPitch();
 
 	if ((x2 > x1) && (y2 > y1))
@@ -422,15 +423,7 @@ void Sprite::DrawScaled(int a_X, int a_Y, int a_Width, int a_Height, Surface* a_
 	int x2 = a_X + a_Width;
 	int y2 = a_Y + a_Height;
 
-	int targetW = a_Target->GetWidth();
-	int targetH = a_Target->GetHeight();
-
-	if (x1 < 0) x1 = 0; 
-	if (y1 < 0) y1 = 0;
-	if (x2 > targetW) x2 = targetW;
-	if (y2 > targetH) y2 = targetH;
-
-	if (x1 >= x2 || y1 >= y2) return;
+	if (a_Target->checkBounds(x1, y1, x2, y2, a_Target->GetWidth(), a_Target->GetHeight()).dontPrint) return;
 
 	Pixel* spriteBuffer = GetBuffer() + m_CurrentFrame * m_Width;
 
