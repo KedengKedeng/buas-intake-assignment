@@ -24,7 +24,6 @@ Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) : SpriteObject(id, pos, BoundingBox()
 	});
 
 	mouseMoveHandler.setOnMouseDragEnd([this]() {
-		printf("%.f, %.f\n", spoonVelocity.x, spoonVelocity.y);
 		velocity = spoonVelocity;
 	});
 }

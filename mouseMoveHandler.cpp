@@ -31,6 +31,7 @@ void MouseMoveHandler::setOnMouseDragEnd(std::function<void()> handler) {
 void MouseMoveHandler::subscribe() {
 	// dont bother subscribing if no drag handler has been set
 	if (onMouseDragHandler_ != nullptr) {
+		printf("bla\n");
 		onMouseDownUnsub = onMouseDown.subscribe([this](Tmpl8::vec2& pos) {
 			if (interactionCheck(pos)) mouseDown = true;
 			if (onMouseDragStartHandler_ != nullptr) onMouseDragStartHandler_();

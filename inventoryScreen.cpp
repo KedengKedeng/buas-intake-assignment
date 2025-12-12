@@ -46,9 +46,10 @@ void InventoryScreen::process() {
 			container->insertObject(std::make_unique<Container>(id, Tmpl8::vec2(0), Tmpl8::vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL));
 			auto horizontalContainer = container->getInnerObject<Container>(id);
 			for (int y = 0; y < maxItemsOnRow; y++) {
-				horizontalContainer->insertObject(std::make_unique<InventorySlot>(id, Tmpl8::vec2(0), inventorySlotSize, nullptr));
+				horizontalContainer->insertObject(std::make_unique<InventorySlot>(id, Tmpl8::vec2(0), inventorySlotSize, nullptr, [](Tmpl8::vec2& pos) {}));
 				id++;
 			}
+			horizontalContainer->subscribe();
 		}
 	}
 }
