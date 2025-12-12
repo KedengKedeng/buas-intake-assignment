@@ -2,16 +2,53 @@
 #include "modal.hpp"
 #include "screenSignals.hpp"
 #include "screenCommands.hpp"
+#include "inventorySlot.hpp"
+#include "itemsRepository.hpp"
 
-InventoryScreen::InventoryScreen(Tmpl8::Surface* surface) : Screen(surface) {
+InventoryScreen::InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory) 
+	: Screen(surface), inventory_(inventory) {
 	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<CloseScreenCommand>(); });
 
-	Tmpl8::vec2 size = { 200, 200 };
+	Tmpl8::vec2 size = { 400, 300 };
 	insertObject(std::make_unique<Modal>(0, Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
 		closeScreen.emit();
 	}, Justification::VERTICAL));
 }
 
 void InventoryScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+	auto modal = getObject<Modal>(0);
+	auto items = inventory_->begin();
+	for (auto containers = modal->begin(); containers != modal->end(); containers++) {
+		Container* container = dynamic_cast<Container*>(containers->second.get());
+		for (auto inventorySlot = container->begin(); inventorySlot != container->end(); inventorySlot++) {
+			if (items == inventory_->end()) break;
+
+			std::string itemName = const_cast<std::string&>(items->first);
+			std::shared_ptr<Item> item_ = itemRepository.get(itemName);
+			InventorySlot* slot = dynamic_cast<InventorySlot*>(inventorySlot->second.get());
+			slot->setItem(item_);
+			items++;
+		}
+	}
+
 	Screen::draw(surface, offset);
+}
+
+void InventoryScreen::process() {
+	int itemCount = std::max(static_cast<int>(ceil(inventory_->getItemTypeCount() / maxItemsOnRow)), 3);
+	if (itemCount != drawRows) {
+		drawRows = itemCount;
+		auto container = getObject<Modal>(0);
+		container->clearObjects();
+
+		int64_t id = 0;
+		for (int x = 0; x < drawRows; x++) {
+			container->insertObject(std::make_unique<Container>(id, Tmpl8::vec2(0), Tmpl8::vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL));
+			auto horizontalContainer = container->getInnerObject<Container>(id);
+			for (int y = 0; y < maxItemsOnRow; y++) {
+				horizontalContainer->insertObject(std::make_unique<InventorySlot>(id, Tmpl8::vec2(0), inventorySlotSize, nullptr));
+				id++;
+			}
+		}
+	}
 }

@@ -14,7 +14,8 @@
 #include "interactionCommand.hpp"
 #include "screenCommands.hpp"
 
-PlayScreen::PlayScreen(Tmpl8::Surface* surface) : Screen(surface), player_(0, Tmpl8::vec2(100, 100)) {
+PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory) 
+	: Screen(surface), player_(0, Tmpl8::vec2(100, 100)), inventory_(inventory) {
 	keyboardInput_.registerHandler(std::string("walkLeft"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 }); });
 	keyboardInput_.registerHandler(std::string("walkUp"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 }); });
 	keyboardInput_.registerHandler(std::string("walkDown"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 }); });
@@ -64,6 +65,7 @@ void PlayScreen::subscribe() {
 	});
 
 	itemPickedUpUnsub = itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
+		inventory_->addItem(item->name);
 		player_.setItem(item);
 	});
 

@@ -18,7 +18,7 @@ private:
 	bool trackSpoonMovement = false;
 	bool trackBlowerMovement = false;
 
-	void onBlow(float delta) { if (delta > 0) dynamic_cast<CookingCauldron*>(objects_[cauldronId].get())->addTemp(delta); }
+	void onBlow(float delta) { if (delta > 0) getObject<CookingCauldron>(cauldronId)->addTemp(delta); }
 
 	std::function<void()> cauldronInteractedUnsub = []() {};
 	std::function<void()> cauldronInteractionEndedUnsub = []() {};

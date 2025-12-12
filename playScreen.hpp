@@ -1,10 +1,11 @@
 #pragma once
 #include "screen.hpp"
 #include "player.hpp"
+#include "inventory.hpp"
 
 class PlayScreen : public Screen {
 public:
-	PlayScreen(Tmpl8::Surface* surface);
+	PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory);
 	~PlayScreen();
 
 	void deleteObject(int64_t id);
@@ -16,6 +17,7 @@ public:
 	void unsubscribe() override;
 private:
 	Player player_;
+	std::shared_ptr<Inventory> inventory_;
 
 	std::function<void()> deleteObjectSignalUnsub = []() {};
 	std::function<void()> itemPickedUpUnsub = []() {};

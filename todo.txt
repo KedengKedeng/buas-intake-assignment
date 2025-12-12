@@ -11,7 +11,7 @@ short term:
 - move interaction signals to objects instead of being global
 - allow each animation to set their own speed
 - maybe rewrite parts of template to look a bit better?
-- remove objectRepository and just pass via screen instantiation
+- too much gap in first row of inventory. fix later.
 
 todo for mvp:
 - keyboard input handling (done)

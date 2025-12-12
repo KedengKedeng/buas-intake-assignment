@@ -10,6 +10,7 @@
 #include "itemList.hpp"
 #include "spriteList.hpp"
 #include "objectList.hpp"
+#include "inventory.hpp"
 
 extern void setupObjectList();
 
@@ -26,11 +27,13 @@ namespace Tmpl8
 
 		mouseInput = MouseInput();
 
+		std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
+
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
-		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_);
+		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory);
 		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
 		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_);
-		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_);
+		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_, inventory);
 		currentScreens.push_back(screens[Screens::TitleMenu]);
 		screens[Screens::TitleMenu]->subscribe();
 
