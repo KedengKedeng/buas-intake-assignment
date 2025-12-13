@@ -12,8 +12,6 @@
 #include "objectList.hpp"
 #include "inventory.hpp"
 
-extern void setupObjectList();
-
 namespace Tmpl8
 {
 	// -----------------------------------------------------------

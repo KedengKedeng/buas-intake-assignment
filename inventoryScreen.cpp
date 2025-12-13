@@ -27,12 +27,12 @@ void InventoryScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 			if (items != inventory_->end()) {
 				std::string itemName = const_cast<std::string&>(items->first);
 				std::shared_ptr<Item> item_ = itemRepository.get(itemName);
-				slot->setItem(item_);
+				slot->setItem(item_, items->second);
 				items++;
 				continue;
 			}
 
-			slot->setItem(nullptr);
+			slot->setItem(nullptr, 0);
 		}
 	}
 
@@ -56,6 +56,7 @@ void InventoryScreen::process() {
 					Tmpl8::vec2(0), 
 					inventorySlotSize, 
 					nullptr, 
+					0,
 					[this, container](InventorySlot* slot, Tmpl8::vec2& pos) {
 						// drop item when user drags it out of the bounds of the modal
 						if (!container->getAbsoluteBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)))) {
