@@ -20,9 +20,7 @@ private:
 	std::shared_ptr<Cauldron> cauldron_;
 
 	std::function<void()> itemDroppedUnsub = []() {};
-	std::function<void()> itemPickedUpUnsub = []() {};
 	std::function<void()> interactionSignalUnsub = []() {};
 
 	bool isInteracting = false;
-	bool allowCauldronScreen = true;
 };

@@ -4,3 +4,4 @@
 
 extern Signal<std::shared_ptr<Item>> itemPickedUp;
 extern Signal<std::shared_ptr<Item>> itemDropped;
+extern Signal<std::shared_ptr<Item>> itemDroppedFromInventory;

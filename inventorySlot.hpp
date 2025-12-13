@@ -5,9 +5,10 @@
 
 class InventorySlot : public Object {
 public:
-	InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::shared_ptr<Item> item, std::function<void(Tmpl8::vec2&)> onDragEndHandler);
+	InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::shared_ptr<Item> item, std::function<void(InventorySlot*, Tmpl8::vec2&)> onDragEndHandler);
 
 	void setItem(std::shared_ptr<Item> item) { item_ = item; }
+	std::shared_ptr<Item> getItem() { return item_; }
 
 	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 

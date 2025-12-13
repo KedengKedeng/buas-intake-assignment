@@ -37,11 +37,7 @@ void WorldCauldron::subscribe() {
 	SpriteObject::subscribe();
 
 	interactionSignalUnsub = interactionSignal.subscribe([this]() {
-		if (allowCauldronScreen && isInteracting) cauldronInteracted.emit();
-	});
-
-	itemPickedUpUnsub = itemPickedUp.subscribe([this](std::shared_ptr<Item>& item) {
-		allowCauldronScreen = false;
+		if (isInteracting) cauldronInteracted.emit();
 	});
 }
 
@@ -49,7 +45,6 @@ void WorldCauldron::unsubscribe() {
 	SpriteObject::unsubscribe();
 
 	interactionSignalUnsub();
-	itemPickedUpUnsub();
 }
 
 void WorldCauldron::onInteractStart() {
@@ -57,8 +52,6 @@ void WorldCauldron::onInteractStart() {
 
 	itemDroppedUnsub = itemDropped.subscribe([this](std::shared_ptr<Item> item) {
 		cauldron_->insertItem(item);
-
-		allowCauldronScreen = true;
 
 		return true;
 	});

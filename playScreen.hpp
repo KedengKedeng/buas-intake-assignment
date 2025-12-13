@@ -21,7 +21,7 @@ private:
 
 	std::function<void()> deleteObjectSignalUnsub = []() {};
 	std::function<void()> itemPickedUpUnsub = []() {};
-	std::function<void()> interactionSignalUnsub = []() {};
+	std::function<void()> itemDroppedUnsub = []() {};
 	std::function<void()> requestMoveUnsub = []() {};
 	std::function<void()> escapePressedUnsub = []() {};
 	std::function<void()> cauldronInteractedUnsub = []() {};

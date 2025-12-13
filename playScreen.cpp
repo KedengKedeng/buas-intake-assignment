@@ -66,14 +66,9 @@ void PlayScreen::subscribe() {
 
 	itemPickedUpUnsub = itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
 		inventory_->addItem(item->name);
-		player_.setItem(item);
 	});
 
-	interactionSignalUnsub = interactionSignal.subscribe([this]() {
-		auto item = player_.getItem();
-
-		if (item.get() == nullptr) return;
-
+	itemDroppedUnsub = itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {
 		// drop item on the ground if nothing is checking to pick it up
 		if (itemDropped.getListenerCount() == 0) {
 			std::unique_ptr<ItemObject> itemObject = std::make_unique<ItemObject>(getRandomNum(), player_.getPos(), item);
@@ -82,8 +77,6 @@ void PlayScreen::subscribe() {
 		}
 		// otherwise allow said listener to pick up the item
 		else itemDropped.emit(item);
-
-		player_.clearItem();
 	});
 
 	requestMoveUnsub = requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Object& object) {
@@ -113,7 +106,7 @@ void PlayScreen::unsubscribe() {
 
 	deleteObjectSignalUnsub();
 	itemPickedUpUnsub();
-	interactionSignalUnsub();
+	itemDroppedUnsub();
 	requestMoveUnsub();
 	escapePressedUnsub();
 	cauldronInteractedUnsub();

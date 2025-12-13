@@ -1,6 +1,6 @@
 #include "inventorySlot.hpp"
 
-InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::shared_ptr<Item> item, std::function<void(Tmpl8::vec2&)> onDragEndHandler)
+InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::shared_ptr<Item> item, std::function<void(InventorySlot*, Tmpl8::vec2&)> onDragEndHandler)
 	: Object(id, pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox()), mouseMoveHandler_(){
 	mouseMoveHandler_.setInteractionCheck([this](Tmpl8::vec2& pos) {
 		return getAbsoluteBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
@@ -16,7 +16,7 @@ InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, st
 	});
 
 	mouseMoveHandler_.setOnMouseDragEnd([this, onDragEndHandler]() {
-		onDragEndHandler(dragPos);
+		onDragEndHandler(this, dragPos);
 		dragging = false;
 	});
 }

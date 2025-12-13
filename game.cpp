@@ -34,6 +34,7 @@ namespace Tmpl8
 		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
 		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_);
 		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_, inventory);
+
 		currentScreens.push_back(screens[Screens::TitleMenu]);
 		screens[Screens::TitleMenu]->subscribe();
 
@@ -50,7 +51,8 @@ namespace Tmpl8
 				for (auto& screen : currentScreens) screen->unsubscribe();
 				currentScreens.clear();
 				currentScreens.push_back(screens[screen]);
-				currentScreens[0]->subscribe();
+				auto screen = currentScreens.end() - 1;
+				screen->get()->subscribe();
 			});
 		});
 
@@ -88,7 +90,7 @@ namespace Tmpl8
 	{
 		surface_->Clear(255 << 8);
 
-		for (auto& screen : currentScreens) screen->process();
+		currentScreens[currentScreens.size() - 1]->process();
 
 		for (; !queue.empty(); queue.pop()) {
 			auto func = queue.front();

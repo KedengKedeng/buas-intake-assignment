@@ -11,10 +11,6 @@ public:
 
 	void addDelta(Tmpl8::vec2& delta) { delta_ += delta; }
 
-	void setItem(std::shared_ptr<Item> item) { item_ = item; }
-	void clearItem() { item_.reset(); }
-	std::shared_ptr<Item> getItem() { return item_; }
-
 	void process() override;
 	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 
@@ -23,8 +19,6 @@ public:
 private:
 	Tmpl8::vec2 velocity = { 6, 6 };
 	Tmpl8::vec2 delta_ = { 0, 0 };
-
-	std::shared_ptr<Item> item_;
 
 	int lookDirection = 0;
 
