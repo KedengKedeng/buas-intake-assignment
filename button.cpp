@@ -21,26 +21,19 @@ Button::Button(
 void Button::subscribe() {
 	Object::subscribe();
 
-	onMouseDownUnsub = onMouseDown.subscribe([this](Tmpl8::vec2& pos) {
+	unsubscribers.push_back(onMouseDown.subscribe([this](Tmpl8::vec2& pos) {
 		BoundingBox absolutePosBounds = boundingBox_.at(pos_);
 		BoundingBox mouseBounds = BoundingBox(pos, Tmpl8::vec2(1));
 
 		if (absolutePosBounds.isInBounds(mouseBounds))
 			active = true;
-	});
+	}));
 
-	onMouseUpUnsub = onMouseUp.subscribe([this]() {
+	unsubscribers.push_back(onMouseUp.subscribe([this]() {
 		if (active) handler_();
 
 		active = false;
-	});
-}
-
-void Button::unsubscribe() {
-	Object::unsubscribe();
-
-	onMouseDownUnsub();
-	onMouseUpUnsub();
+	}));
 }
 
 void Button::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {

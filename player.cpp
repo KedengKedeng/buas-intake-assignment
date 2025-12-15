@@ -26,18 +26,12 @@ Player::Player(int64_t id, Tmpl8::vec2& pos) :
 void Player::subscribe() {
 	CharacterObject::subscribe();
 
-	walkSignalUnsub = walkSignal.subscribe([this](Tmpl8::vec2& delta) {
+	unsubscribers.push_back(walkSignal.subscribe([this](Tmpl8::vec2& delta) {
 		addDelta(delta);
 
 		Tmpl8::vec2 delta_ = getDelta();
 
 		if (delta_.x < 0) setLookingDirection(LookingDirections::LEFT);
 		if (delta_.x > 0) setLookingDirection(LookingDirections::RIGHT);
-	});
-}
-
-void Player::unsubscribe() {
-	CharacterObject::unsubscribe();
-
-	walkSignalUnsub();
+	}));
 }

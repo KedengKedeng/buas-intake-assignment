@@ -16,7 +16,6 @@ short term:
 - try seperating logic from ui more
 - add success and fail into set and add functions?
 - combine item and husbandry into a storage class
-- consolodate unsub functions into a single vector
 
 todo for mvp:
 - keyboard input handling (done)

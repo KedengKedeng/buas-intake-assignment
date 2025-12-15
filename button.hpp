@@ -21,7 +21,6 @@ public:
 	void process() override {}
 
 	void subscribe() override;
-	void unsubscribe() override;
 private:
 	std::function<void()> handler_;
 
@@ -32,7 +31,4 @@ private:
 
 	bool active = false;
 	bool hover = false;
-
-	std::function<void()> onMouseDownUnsub = []() {};
-	std::function<void()> onMouseUpUnsub = []() {};
 };

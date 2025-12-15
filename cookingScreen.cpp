@@ -60,29 +60,25 @@ void CookingScreen::process() {
 void CookingScreen::subscribe() {
 	Screen::subscribe();
 
-	cauldronInteractedUnsub = cauldronInteracted.subscribe([this]() {
+	unsubscribers.push_back(cauldronInteracted.subscribe([this]() {
 		trackSpoonMovement = true;
-	});
+	}));
 
-	cauldronInteractionEndedUnsub = cauldronInteractionEnded.subscribe([this]() {
+	unsubscribers.push_back(cauldronInteractionEnded.subscribe([this]() {
 		trackSpoonMovement = false;
-	});
+	}));
 
-	blowerInteractedUnsub = blowerInteracted.subscribe([this]() {
+	unsubscribers.push_back(blowerInteracted.subscribe([this]() {
 		trackBlowerMovement = true;
 		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {onBlow(delta); });
-	});
+	}));
 
-	blowerInteractionEndedUnsub = blowerInteractionEnded.subscribe([this]() {
+	unsubscribers.push_back(blowerInteractionEnded.subscribe([this]() {
 		trackBlowerMovement = false;
 		blowedSignalUnsub();
-	});
+	}));
 
-	// Only subscribe if the blower is being interacted with
-	if (trackBlowerMovement) 
-		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {onBlow(delta); });
-
-	requestMoveUnsub = requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Object& object) {
+	unsubscribers.push_back(requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Object& object) {
 		Tmpl8::vec2 collides = objectsCollideWithBounds(object, velocity);
 
 		Tmpl8::vec2 newPos = oldPos + newPos;
@@ -95,16 +91,15 @@ void CookingScreen::subscribe() {
 		auto cauldron = dynamic_cast<CookingCauldron*>(objects_[cauldronId].get());
 		if (trackSpoonMovement && oldPos != newPos) 
 			cauldron->stir(std::abs(collides.x));
-	});
+	}));
+
+	// Only subscribe if the blower is being interacted with
+	if (trackBlowerMovement)
+		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {onBlow(delta); });
 }
 
 void CookingScreen::unsubscribe() {
 	Screen::unsubscribe();
 
-	cauldronInteractedUnsub();
-	cauldronInteractionEndedUnsub();
-	blowerInteractedUnsub();
-	blowerInteractionEndedUnsub();
 	blowedSignalUnsub();
-	requestMoveUnsub();
 }

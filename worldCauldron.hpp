@@ -12,7 +12,6 @@ public:
 	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
 
 	void subscribe() override;
-	void unsubscribe() override;
 protected:
 	void onInteractStart() override;
 	void onInteractEnd() override;
@@ -20,7 +19,6 @@ private:
 	std::shared_ptr<Cauldron> cauldron_;
 
 	std::function<void()> itemDroppedUnsub = []() {};
-	std::function<void()> interactionSignalUnsub = []() {};
 
 	bool isInteracting = false;
 };

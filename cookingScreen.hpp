@@ -20,10 +20,5 @@ private:
 
 	void onBlow(float delta) { if (delta > 0) getObject<CookingCauldron>(cauldronId)->addTemp(delta); }
 
-	std::function<void()> cauldronInteractedUnsub = []() {};
-	std::function<void()> cauldronInteractionEndedUnsub = []() {};
-	std::function<void()> blowerInteractedUnsub = []() {};
-	std::function<void()> blowerInteractionEndedUnsub = []() {};
 	std::function<void()> blowedSignalUnsub = []() {};
-	std::function<void()> requestMoveUnsub = []() {};
 };

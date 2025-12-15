@@ -22,11 +22,4 @@ private:
 	Player player_;
 	std::shared_ptr<Inventory> inventory_;
 	std::shared_ptr<Husbandry> husbandry_;
-
-	std::function<void()> deleteObjectSignalUnsub = []() {};
-	std::function<void()> itemPickedUpUnsub = []() {};
-	std::function<void()> itemDroppedUnsub = []() {};
-	std::function<void()> requestMoveUnsub = []() {};
-	std::function<void()> escapePressedUnsub = []() {};
-	std::function<void()> cauldronInteractedUnsub = []() {};
 };

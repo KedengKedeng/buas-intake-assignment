@@ -8,11 +8,11 @@ Object::~Object() {
 }
 
 void Object::subscribe() {
-	onInteractionStartUnsub = interactionBoundingBox_.onIntersectStart.subscribe([this]() {onInteractStart(); });
-	onInteractionEndUnsub = interactionBoundingBox_.onIntersectEnd.subscribe([this]() {onInteractEnd(); });
+	unsubscribers.push_back(interactionBoundingBox_.onIntersectStart.subscribe([this]() {onInteractStart(); }));
+	unsubscribers.push_back(interactionBoundingBox_.onIntersectEnd.subscribe([this]() {onInteractEnd(); }));
 }
 
 void Object::unsubscribe() {
-	onInteractionStartUnsub();
-	onInteractionEndUnsub();
+	for (auto& unsubscriber : unsubscribers) unsubscriber();
+	unsubscribers.clear();
 }

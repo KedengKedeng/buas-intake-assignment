@@ -29,6 +29,8 @@ void Container::subscribe() {
 }
 
 void Container::unsubscribe() {
+	Object::unsubscribe();
+
 	for (auto& object : objects_) object.second->unsubscribe();
 }
 

@@ -63,15 +63,15 @@ void PlayScreen::subscribe() {
 
 	player_.subscribe();
 
-	deleteObjectSignalUnsub = deleteObjectSignal.subscribe([this](int64_t id) {
+	unsubscribers.push_back(deleteObjectSignal.subscribe([this](int64_t id) {
 		queue.push([this, id]() {deleteObject(id); });
-	});
+	}));
 
-	itemPickedUpUnsub = itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
+	unsubscribers.push_back(itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
 		inventory_->addItem(item->name);
-	});
+	}));
 
-	itemDroppedUnsub = itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {
+	unsubscribers.push_back(itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {
 		// drop item on the ground if nothing is checking to pick it up
 		if (itemDropped.getListenerCount() == 0) {
 			std::unique_ptr<ItemObject> itemObject = std::make_unique<ItemObject>(getRandomNum(), player_.getPos(), item);
@@ -80,9 +80,9 @@ void PlayScreen::subscribe() {
 		}
 		// otherwise allow said listener to pick up the item
 		else itemDropped.emit(item);
-	});
+	}));
 
-	requestMoveUnsub = requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Object& object) {
+	unsubscribers.push_back(requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Object& object) {
 		Tmpl8::vec2 collides = objectsCollideWithBounds(object, velocity);
 
 		Tmpl8::vec2 newPos = oldPos + newPos;
@@ -91,26 +91,19 @@ void PlayScreen::subscribe() {
 			object.setPos(oldPos + collides);
 
 		if (object.isInteractor()) interactionCheck(object.getAbsoluteInteractionBounds());
-	});
+	}));
 
-	escapePressedUnsub = escapePressed.subscribe([]() {
+	unsubscribers.push_back(escapePressed.subscribe([]() {
 		stackScreen.emit(Screens::SettingsMenu);
-	});
+	}));
 
-	cauldronInteractedUnsub = cauldronInteracted.subscribe([this]() {
+	unsubscribers.push_back(cauldronInteracted.subscribe([this]() {
 		changeScreen.emit(Screens::Cooking);
-	});
+	}));
 }
 
 void PlayScreen::unsubscribe() {
 	Screen::unsubscribe();
 
 	player_.unsubscribe();
-
-	deleteObjectSignalUnsub();
-	itemPickedUpUnsub();
-	itemDroppedUnsub();
-	requestMoveUnsub();
-	escapePressedUnsub();
-	cauldronInteractedUnsub();
 }

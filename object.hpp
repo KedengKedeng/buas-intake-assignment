@@ -34,6 +34,8 @@ protected:
 	virtual void onInteractStart() {};
 	virtual void onInteractEnd() {};
 
+	std::vector<std::function<void()>> unsubscribers = {};
+
 	std::function<void()> onInteractionStartUnsub = []() {};
 	std::function<void()> onInteractionEndUnsub = []() {};
 

@@ -36,15 +36,9 @@ void WorldCauldron::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 void WorldCauldron::subscribe() {
 	SpriteObject::subscribe();
 
-	interactionSignalUnsub = interactionSignal.subscribe([this]() {
+	unsubscribers.push_back(interactionSignal.subscribe([this]() {
 		if (isInteracting) cauldronInteracted.emit();
-	});
-}
-
-void WorldCauldron::unsubscribe() {
-	SpriteObject::unsubscribe();
-
-	interactionSignalUnsub();
+	}));
 }
 
 void WorldCauldron::onInteractStart() {
