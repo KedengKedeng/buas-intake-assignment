@@ -14,8 +14,8 @@
 #include "interactionCommand.hpp"
 #include "screenCommands.hpp"
 
-PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory) 
-	: Screen(surface), player_(0, Tmpl8::vec2(100, 100)), inventory_(inventory) {
+PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry)
+	: Screen(surface), player_(0, Tmpl8::vec2(100, 100)), inventory_(inventory), husbandry_(husbandry) {
 	keyboardInput_.registerHandler(std::string("walkLeft"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 }); });
 	keyboardInput_.registerHandler(std::string("walkUp"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 }); });
 	keyboardInput_.registerHandler(std::string("walkDown"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 }); });
@@ -24,11 +24,7 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
 	keyboardInput_.registerHandler(std::string("inventory"), []() {return std::make_unique<StackScreenCommand>(Screens::Inventory); });
 
-	// world boundaries
-	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(surface->GetWidth(), 1)));
-	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight() - 1), Tmpl8::vec2(surface->GetWidth(), 1)));
-	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() - 1, 0), Tmpl8::vec2(1, surface->GetHeight())));
+	createWorldBounds(Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()));
 
 	// interactable objects
 	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")))));
@@ -37,6 +33,13 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 
 PlayScreen::~PlayScreen() {
 	unsubscribe();
+}
+
+void PlayScreen::createWorldBounds(Tmpl8::vec2& size) {
+	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(1.0f, size.y)));
+	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0), Tmpl8::vec2(size.x, 1.0f)));
+	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(0.0f, size.y - 1), Tmpl8::vec2(size.x, 1.0f)));
+	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(size.x - 1, 0.0f), Tmpl8::vec2(1.0f, size.y)));
 }
 
 void PlayScreen::deleteObject(int64_t id) {
@@ -87,7 +90,7 @@ void PlayScreen::subscribe() {
 		if (oldPos != newPos) 
 			object.setPos(oldPos + collides);
 
-		interactionCheck(object.getAbsoluteInteractionBounds());
+		if (object.isInteractor()) interactionCheck(object.getAbsoluteInteractionBounds());
 	});
 
 	escapePressedUnsub = escapePressed.subscribe([]() {

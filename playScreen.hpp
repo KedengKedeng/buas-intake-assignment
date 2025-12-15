@@ -2,11 +2,14 @@
 #include "screen.hpp"
 #include "player.hpp"
 #include "inventory.hpp"
+#include "husbandry.hpp"
 
 class PlayScreen : public Screen {
 public:
-	PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory);
+	PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry);
 	~PlayScreen();
+
+	void createWorldBounds(Tmpl8::vec2& size);
 
 	void deleteObject(int64_t id);
 
@@ -18,6 +21,7 @@ public:
 private:
 	Player player_;
 	std::shared_ptr<Inventory> inventory_;
+	std::shared_ptr<Husbandry> husbandry_;
 
 	std::function<void()> deleteObjectSignalUnsub = []() {};
 	std::function<void()> itemPickedUpUnsub = []() {};

@@ -19,6 +19,7 @@ public:
 	ObservableBoundingBox getAbsoluteInteractionBounds() { return interactionBoundingBox_.at(pos_); }
 	bool isCollisionAllowed() { return allowCollision; }
 	bool isInteractionAllowed() { return allowInteraction; }
+	bool isInteractor() { return allowInteractor; }
 
 	virtual void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) = 0;
 	virtual void process() {};
@@ -37,7 +38,8 @@ protected:
 	std::function<void()> onInteractionEndUnsub = []() {};
 
 	bool allowCollision = true;
-	bool allowInteraction = true;
+	bool allowInteraction = true; // allows interactor to interact with this object
+	bool allowInteractor = true; // allows the object to be the interactor
 private:
 	int64_t id_;
 };

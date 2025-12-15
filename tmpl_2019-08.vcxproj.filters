@@ -83,9 +83,6 @@
     <ClCompile Include="objectRepository.cpp">
       <Filter>gameplay\objects\repository</Filter>
     </ClCompile>
-    <ClCompile Include="objectList.hpp">
-      <Filter>gameplay\objects\repository</Filter>
-    </ClCompile>
     <ClCompile Include="worldCauldron.cpp">
       <Filter>gameplay\objects\world objects\cauldron</Filter>
     </ClCompile>
@@ -130,6 +127,18 @@
     </ClCompile>
     <ClCompile Include="inventorySlot.cpp">
       <Filter>ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="characterObject.cpp">
+      <Filter>gameplay\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="creatureTypeRepository.cpp">
+      <Filter>gameplay\creaturetypes</Filter>
+    </ClCompile>
+    <ClCompile Include="husbandry.cpp">
+      <Filter>systems\husbandry</Filter>
+    </ClCompile>
+    <ClCompile Include="creature.cpp">
+      <Filter>gameplay\objects\world objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +302,30 @@
     <ClInclude Include="inventorySlot.hpp">
       <Filter>ui\components</Filter>
     </ClInclude>
+    <ClInclude Include="characterObject.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="creatureTypeRepository.hpp">
+      <Filter>gameplay\creaturetypes</Filter>
+    </ClInclude>
+    <ClInclude Include="creatureType.hpp">
+      <Filter>gameplay\creaturetypes</Filter>
+    </ClInclude>
+    <ClInclude Include="creatureTypeList.hpp">
+      <Filter>gameplay\creaturetypes</Filter>
+    </ClInclude>
+    <ClInclude Include="husbandry.hpp">
+      <Filter>systems\husbandry</Filter>
+    </ClInclude>
+    <ClInclude Include="plot.hpp">
+      <Filter>systems\husbandry</Filter>
+    </ClInclude>
+    <ClInclude Include="objectList.hpp">
+      <Filter>gameplay\objects\repository</Filter>
+    </ClInclude>
+    <ClInclude Include="creature.hpp">
+      <Filter>gameplay\objects\world objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">
@@ -354,6 +387,12 @@
     </Filter>
     <Filter Include="ui\components">
       <UniqueIdentifier>{37f7fe36-17bd-4008-bdb7-35c6672cd2b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameplay\creaturetypes">
+      <UniqueIdentifier>{2b8b7f85-5a83-480f-9880-fe2fde0daa96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="systems\husbandry">
+      <UniqueIdentifier>{c4901bb5-8211-437c-8012-7a3ac516c0ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

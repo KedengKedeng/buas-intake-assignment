@@ -12,6 +12,11 @@ short term:
 - allow each animation to set their own speed
 - maybe rewrite parts of template to look a bit better?
 - too much gap in first row of inventory. fix later.
+- change animation to sprite instead of in spriteStack and remove unnecisary spriteStacks
+- try seperating logic from ui more
+- add success and fail into set and add functions?
+- combine item and husbandry into a storage class
+- consolodate unsub functions into a single vector
 
 todo for mvp:
 - keyboard input handling (done)
@@ -24,9 +29,16 @@ todo for mvp:
 developing further:
 - customers
 - husbandry
+	- have creatures
+	- creatures are put in pens
+	- pens can be bought slime rancher style (i.e see plot, buy and choose type)
+	- creatures can have their item harvested on a timer
+	- pens/creature can be leveled for faster production or better items?
+	- have upgrade list for what should happen at each level
 - saving system
 - plant and crystal growing
 - storage
+	- add bought animals to storage screen with tabs
 - market and money
 
 nice to haves:

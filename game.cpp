@@ -10,7 +10,9 @@
 #include "itemList.hpp"
 #include "spriteList.hpp"
 #include "objectList.hpp"
+#include "creatureTypeList.hpp"
 #include "inventory.hpp"
+#include "husbandry.hpp"
 
 namespace Tmpl8
 {
@@ -21,14 +23,16 @@ namespace Tmpl8
 	{
 		setupSpriteList();
 		setupItemList();
+		setupCreatureTypeList();
 		setupObjectList();
 
 		mouseInput = MouseInput();
 
 		std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
+		std::shared_ptr<Husbandry> husbandry = std::make_shared<Husbandry>();
 
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
-		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory);
+		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry);
 		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
 		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_);
 		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_, inventory);
