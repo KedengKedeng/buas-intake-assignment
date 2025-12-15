@@ -113,9 +113,6 @@
     <ClCompile Include="inventoryScreen.cpp">
       <Filter>ui\screens</Filter>
     </ClCompile>
-    <ClCompile Include="inventory.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
     <ClCompile Include="button.cpp">
       <Filter>ui\components</Filter>
     </ClCompile>
@@ -134,11 +131,11 @@
     <ClCompile Include="creatureTypeRepository.cpp">
       <Filter>gameplay\creaturetypes</Filter>
     </ClCompile>
-    <ClCompile Include="husbandry.cpp">
-      <Filter>systems\husbandry</Filter>
-    </ClCompile>
     <ClCompile Include="creature.cpp">
       <Filter>gameplay\objects\world objects</Filter>
+    </ClCompile>
+    <ClCompile Include="countingStorage.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -325,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="creature.hpp">
       <Filter>gameplay\objects\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="countingStorage.hpp">
+      <Filter>systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

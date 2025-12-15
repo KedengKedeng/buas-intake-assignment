@@ -62,7 +62,7 @@ void InventoryScreen::process() {
 						if (!container->getAbsoluteBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)))) {
 							auto item = slot->getItem();
 							if (item == nullptr) return;
-							inventory_->removeItem(item->name);
+							inventory_->remove(item->name);
 							pushToScreenQueue.emit(Screens::Play, [item]() { itemDroppedFromInventory.emit(item); });
 						}
 					}

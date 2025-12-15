@@ -15,7 +15,6 @@ short term:
 - change animation to sprite instead of in spriteStack and remove unnecisary spriteStacks
 - try seperating logic from ui more
 - add success and fail into set and add functions?
-- combine item and husbandry into a storage class
 
 todo for mvp:
 - keyboard input handling (done)

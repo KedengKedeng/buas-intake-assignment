@@ -231,10 +231,9 @@
     <ClCompile Include="characterObject.cpp" />
     <ClCompile Include="cookingCauldron.cpp" />
     <ClCompile Include="cookingScreen.cpp" />
+    <ClCompile Include="countingStorage.cpp" />
     <ClCompile Include="creature.cpp" />
     <ClCompile Include="creatureTypeRepository.cpp" />
-    <ClCompile Include="husbandry.cpp" />
-    <ClCompile Include="inventory.cpp" />
     <ClCompile Include="inventoryScreen.cpp" />
     <ClCompile Include="inventorySlot.cpp" />
     <ClCompile Include="modal.cpp" />
@@ -298,6 +297,7 @@
     <ClInclude Include="screens.hpp" />
     <ClInclude Include="spoon.hpp" />
     <ClInclude Include="spriteStack.hpp" />
+    <ClInclude Include="countingStorage.hpp" />
     <ClInclude Include="worldCauldron.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />

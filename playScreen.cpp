@@ -68,7 +68,7 @@ void PlayScreen::subscribe() {
 	}));
 
 	unsubscribers.push_back(itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
-		inventory_->addItem(item->name);
+		inventory_->add(item->name);
 	}));
 
 	unsubscribers.push_back(itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {
