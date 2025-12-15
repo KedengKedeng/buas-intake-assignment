@@ -52,5 +52,7 @@ void Button::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 		color_
 	);
 
-	surface->Print(const_cast<char*>(text_.c_str()), left, top, 0x000000);
+	int textLeft = static_cast<int>(pos_.x + (size.x - text_.size() * 6 ) / 2);
+	int textTop = static_cast<int>(pos_.y + (size.y - 6) / 2);
+	surface->Print(const_cast<char*>(text_.c_str()), textLeft, textTop, 0x000000);
 }

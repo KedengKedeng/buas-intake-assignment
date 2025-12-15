@@ -113,6 +113,7 @@ void Surface::Print( char* a_String, int x1, int y1, Pixel color )
 		InitCharset();
 		fontInitialized = true;
 	}
+
 	Pixel* t = m_Buffer + x1 + y1 * m_Pitch;
 	for ( int i = 0; i < (int)(strlen( a_String )); i++, t += 6 )
 	{	

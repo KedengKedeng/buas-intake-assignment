@@ -1,8 +1,6 @@
 short term:
 - base input class
 - any way to increase font size?
-- any way to make text center?
-- find a better folder structure
 - combine item and sprite repositories into a class
 - change interaction signal to be terminatable
 - create exit game signal
@@ -15,6 +13,7 @@ short term:
 - change animation to sprite instead of in spriteStack and remove unnecisary spriteStacks
 - try seperating logic from ui more
 - add success and fail into set and add functions?
+- add a text class to template for font sizes and text centering
 
 todo for mvp:
 - keyboard input handling (done)

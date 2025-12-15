@@ -45,10 +45,10 @@
       <Filter>gameplay\objects\world objects</Filter>
     </ClCompile>
     <ClCompile Include="spriteRepository.cpp">
-      <Filter>ui\sprites</Filter>
+      <Filter>gameplay\sprites</Filter>
     </ClCompile>
     <ClCompile Include="sprite.cpp">
-      <Filter>ui\sprites</Filter>
+      <Filter>gameplay\sprites</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
       <Filter>gameplay\objects</Filter>
@@ -96,7 +96,7 @@
       <Filter>gameplay\objects\world objects\cauldron</Filter>
     </ClCompile>
     <ClCompile Include="spriteStack.cpp">
-      <Filter>ui\sprites</Filter>
+      <Filter>gameplay\sprites</Filter>
     </ClCompile>
     <ClCompile Include="mouseMoveHandler.cpp">
       <Filter>core\input\mouse</Filter>
@@ -204,16 +204,16 @@
       <Filter>gameplay\objects\world objects</Filter>
     </ClInclude>
     <ClInclude Include="sprite.hpp">
-      <Filter>ui\sprites</Filter>
+      <Filter>gameplay\sprites</Filter>
     </ClInclude>
     <ClInclude Include="spriteRepository.hpp">
-      <Filter>ui\sprites</Filter>
+      <Filter>gameplay\sprites</Filter>
     </ClInclude>
     <ClInclude Include="itemList.hpp">
       <Filter>gameplay\items</Filter>
     </ClInclude>
     <ClInclude Include="spriteList.hpp">
-      <Filter>ui\sprites</Filter>
+      <Filter>gameplay\sprites</Filter>
     </ClInclude>
     <ClInclude Include="observableBoundingBox.hpp">
       <Filter>systems\collision</Filter>
@@ -258,7 +258,7 @@
       <Filter>gameplay\objects\world objects</Filter>
     </ClInclude>
     <ClInclude Include="spriteStack.hpp">
-      <Filter>ui\sprites</Filter>
+      <Filter>gameplay\sprites</Filter>
     </ClInclude>
     <ClInclude Include="mouseMoveHandler.hpp">
       <Filter>core\input\mouse</Filter>
@@ -334,9 +334,6 @@
     <Filter Include="ui\screens">
       <UniqueIdentifier>{2ad15876-c853-4b87-a567-340cce7c51bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ui\sprites">
-      <UniqueIdentifier>{9e228cc3-d583-4185-8876-f5186ad6a148}</UniqueIdentifier>
-    </Filter>
     <Filter Include="core">
       <UniqueIdentifier>{9482d17b-2523-4521-92b4-1b3b7ce96612}</UniqueIdentifier>
     </Filter>
@@ -393,6 +390,9 @@
     </Filter>
     <Filter Include="systems\husbandry">
       <UniqueIdentifier>{c4901bb5-8211-437c-8012-7a3ac516c0ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameplay\sprites">
+      <UniqueIdentifier>{9e228cc3-d583-4185-8876-f5186ad6a148}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
