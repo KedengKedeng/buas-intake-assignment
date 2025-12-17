@@ -15,7 +15,7 @@ public:
 		// screens are really just a container the size of the screen arent they? :)
 		: Container(0, Tmpl8::vec2(0), Tmpl8::vec2(0), Justification::NONE), keyboardInput_() {};
 
-	virtual void process() override;
+	virtual void process(float deltaTime) override;
 
 	virtual void unsubscribe() override;
 

@@ -8,8 +8,7 @@ public:
 	CookingScreen(Tmpl8::Surface* surface);
 	~CookingScreen();
 
-	void process() override;
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
+	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
 
 	void subscribe() override;
 	void unsubscribe() override;

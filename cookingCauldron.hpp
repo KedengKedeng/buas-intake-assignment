@@ -1,6 +1,6 @@
 #pragma once
 #include "cauldron.hpp"
-#include "spriteStack.hpp"
+#include "animatedSprite.hpp"
 
 class CookingCauldron : public Object {
 public:
@@ -12,7 +12,8 @@ public:
 
 	void drawBack(Tmpl8::Surface* surface);
 	void drawFront(Tmpl8::Surface* surface);
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override {};
+	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override {};
+	void process(float deltaTime) override;
 protected:
 	void onInteractStart() override;
 	void onInteractEnd() override;
@@ -20,6 +21,6 @@ private:
 	std::shared_ptr<Cauldron> cauldron_;
 	Sprite cauldronFront;
 	Sprite cauldronBack;
-	SpriteStack cauldronInside;
-	SpriteStack fire;
+	AnimatedSprite cauldronInside;
+	AnimatedSprite fire;
 };

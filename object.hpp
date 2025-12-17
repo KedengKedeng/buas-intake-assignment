@@ -5,7 +5,7 @@
 
 class Object {
 public:
-	Object(int64_t id, Tmpl8::vec2& pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
+	Object(int64_t id, const Tmpl8::vec2& pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
 	virtual ~Object();
 
 	int64_t getId() { return id_; }
@@ -21,8 +21,8 @@ public:
 	bool isInteractionAllowed() { return allowInteraction; }
 	bool isInteractor() { return allowInteractor; }
 
-	virtual void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) = 0;
-	virtual void process() {};
+	virtual void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) = 0;
+	virtual void process(float deltaTime) {};
 
 	virtual void subscribe();
 	virtual void unsubscribe();

@@ -1,7 +1,7 @@
 #include "screen.hpp"
 
-void Screen::process() {
-	Container::process();
+void Screen::process(float deltaTime) {
+	Container::process(deltaTime);
 
 	// Process the entire queue
 	for (; !queue.empty(); queue.pop()) {

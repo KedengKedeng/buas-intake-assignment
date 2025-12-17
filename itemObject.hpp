@@ -8,8 +8,8 @@ public:
 	ItemObject(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Item> item);
 	~ItemObject();
 
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
-	void process() override {};
+	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void process(float deltaTime) override {};
 
 protected:
 	void onInteractStart() override;

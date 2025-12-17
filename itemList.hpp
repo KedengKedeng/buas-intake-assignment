@@ -1,5 +1,6 @@
 #pragma once
 #include "itemsRepository.hpp"
+#include "spriteRepository.hpp"
 
 void setupItemList() {
 	itemRepository.insert(std::make_shared<Item>(
@@ -8,6 +9,6 @@ void setupItemList() {
 		2.5f,
 		1.35f,
 		"testItem",
-		Sprite("waterbottle", 0.3f)
+		Sprite(spriteRepository.get("waterbottle"), 0.3f)
 	));
 }

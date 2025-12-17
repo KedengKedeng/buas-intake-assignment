@@ -14,7 +14,7 @@ ItemObject::~ItemObject() {
 	onInteractEnd();
 }
 
-void ItemObject::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void ItemObject::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	item_->sprite.draw(surface, pos_.x + offset.x, pos_.y + offset.y + drawOffset);
 
 	// Get item to bob up and down.

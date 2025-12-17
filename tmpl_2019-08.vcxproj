@@ -224,6 +224,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animatedSprite.cpp" />
     <ClCompile Include="blower.cpp" />
     <ClCompile Include="boundingBox.cpp" />
     <ClCompile Include="button.cpp" />
@@ -272,6 +273,7 @@
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animatedSprite.hpp" />
     <ClInclude Include="blower.hpp" />
     <ClInclude Include="boundingBox.hpp" />
     <ClInclude Include="button.hpp" />

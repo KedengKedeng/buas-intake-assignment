@@ -14,7 +14,7 @@ public:
 	void addTemp(float delta);
 	float getTemp();
 
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override {};
+	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override {};
 private:
 	float amountToStir = 0;
 	float neededTemp = 0;

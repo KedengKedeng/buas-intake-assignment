@@ -1,13 +1,15 @@
 #include "blower.hpp"
 #include "objectSignals.hpp"
+#include "spriteRepository.hpp"
 
 Blower::Blower(int64_t id, Tmpl8::vec2& pos) 
-	: SpriteObject(id, pos, BoundingBox(), ObservableBoundingBox()), mouseMoveHandler(){
+	: Object(id, pos, BoundingBox(), ObservableBoundingBox()), 
+	mouseMoveHandler(), 
+	sprite_(spriteRepository.get("blower"), 0.4f)
+{
 	allowCollision = false;
 
-	addSprite(Sprite("blower", 0.4));
-
-	boundingBox_.setSize(Tmpl8::vec2(getWidth(), getHeight()));
+	boundingBox_.setSize(Tmpl8::vec2(sprite_.getWidth(), sprite_.getHeight()));
 
 	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
 		return getAbsoluteBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
@@ -39,22 +41,22 @@ void Blower::addBlowerPosition(float delta) {
 	blowedSignal.emit(blowerPosition - oldBlowerPos);
 };
 
-void Blower::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
-	setFrame(static_cast<int>(floor(blowerPosition / 25)));
-	drawNoAnimate(surface, pos_ + offset);
+void Blower::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+	sprite_.setFrame(static_cast<int>(floor(blowerPosition / 25)));
+	sprite_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);
 }
 
-void Blower::process() {
+void Blower::process(float deltaTime) {
 	// slowly bring blower back up if no interaction is happening
 	if (inflate) addBlowerPosition(-0.5f);
 }
 
 void Blower::subscribe() {
-	SpriteObject::subscribe();
+	Object::subscribe();
 	mouseMoveHandler.subscribe();
 }
 
 void Blower::unsubscribe() {
-	SpriteObject::unsubscribe();
+	Object::unsubscribe();
 	mouseMoveHandler.unsubscribe();
 }

@@ -7,7 +7,6 @@ short term:
 - if options get too long create a scrollable container by drawing to a new surface, turning it into a sprite and then drawing it onto the real surface.
 - make elements in containers have relative positions
 - move interaction signals to objects instead of being global
-- allow each animation to set their own speed
 - maybe rewrite parts of template to look a bit better?
 - too much gap in first row of inventory. fix later.
 - change animation to sprite instead of in spriteStack and remove unnecisary spriteStacks

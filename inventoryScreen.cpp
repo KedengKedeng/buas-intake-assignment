@@ -16,7 +16,7 @@ InventoryScreen::InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Invent
 	}, Justification::VERTICAL));
 }
 
-void InventoryScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void InventoryScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	auto modal = getObject<Modal>(0);
 	auto items = inventory_->begin();
 	for (auto containers = modal->begin(); containers != modal->end(); containers++) {
@@ -39,7 +39,7 @@ void InventoryScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
 	Screen::draw(surface, offset);
 }
 
-void InventoryScreen::process() {
+void InventoryScreen::process(float deltaTime) {
 	int itemCount = std::max(static_cast<int>(ceil(inventory_->getItemTypeCount() / maxItemsOnRow)), 3);
 	if (itemCount != drawRows) {
 		drawRows = itemCount;

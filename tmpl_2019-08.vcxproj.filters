@@ -47,9 +47,6 @@
     <ClCompile Include="spriteRepository.cpp">
       <Filter>gameplay\sprites</Filter>
     </ClCompile>
-    <ClCompile Include="sprite.cpp">
-      <Filter>gameplay\sprites</Filter>
-    </ClCompile>
     <ClCompile Include="object.cpp">
       <Filter>gameplay\objects</Filter>
     </ClCompile>
@@ -137,6 +134,12 @@
     <ClCompile Include="countingStorage.cpp">
       <Filter>systems</Filter>
     </ClCompile>
+    <ClCompile Include="sprite.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="animatedSprite.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -202,9 +205,6 @@
     </ClInclude>
     <ClInclude Include="itemObject.hpp">
       <Filter>gameplay\objects\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="sprite.hpp">
-      <Filter>gameplay\sprites</Filter>
     </ClInclude>
     <ClInclude Include="spriteRepository.hpp">
       <Filter>gameplay\sprites</Filter>
@@ -326,6 +326,12 @@
     <ClInclude Include="countingStorage.hpp">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="sprite.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="animatedSprite.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">
@@ -393,6 +399,9 @@
     </Filter>
     <Filter Include="gameplay\sprites">
       <UniqueIdentifier>{9e228cc3-d583-4185-8876-f5186ad6a148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\rendering">
+      <UniqueIdentifier>{28e27ebb-3e46-496c-bbb5-5c7dd720c835}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

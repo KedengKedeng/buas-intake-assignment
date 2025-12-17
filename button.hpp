@@ -17,8 +17,8 @@ public:
 		Tmpl8::Pixel borderColor = 0x000000
 	);
 
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
-	void process() override {}
+	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void process(float deltaTime) override {}
 
 	void subscribe() override;
 private:

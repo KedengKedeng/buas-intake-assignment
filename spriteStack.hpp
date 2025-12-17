@@ -1,23 +1,21 @@
 #pragma once
-#include "sprite.hpp"
+#include "animatedSprite.hpp"
 #include "template.h"
 #include <vector>
 
 class SpriteStack {
 public:
-	SpriteStack(std::vector<Sprite>& sprites) : sprites_(sprites) {};
+	SpriteStack(const std::vector<AnimatedSprite>& sprites) : sprites_(std::move(sprites)) {};
 
-	void addSprite(Sprite& sprite) { sprites_.push_back(sprite); }
+	void addSprite(AnimatedSprite& sprite) { sprites_.push_back(sprite); }
 	void setSprite(int sprite) { currentSprite_ = sprite; }
-	void setFrame(int frame) { sprites_[currentSprite_].setFrame(frame); }
 
 	float getWidth() { return sprites_[0].getWidth(); }
 	float getHeight() { return sprites_[0].getHeight(); }
 
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& pos);
-	void drawNoAnimate(Tmpl8::Surface* surface, Tmpl8::vec2& pos);
+	void process(float deltaTime);
+	void draw(Tmpl8::Surface* surface, float x, float y);
 private:
-	float currentFrame_ = 1;
 	int currentSprite_ = 0;
-	std::vector<Sprite> sprites_;
+	std::vector<AnimatedSprite> sprites_;
 };

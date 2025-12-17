@@ -1,15 +1,28 @@
 #pragma once
-#include "sprite.hpp"
+#include "animatedSprite.hpp"
 #include <string>
 
 struct CreatureType {
-	CreatureType(const std::string& name, int price, Sprite& idleLeft, Sprite& idleRight, Sprite& walkLeft, Sprite& walkRight) :
-		name(name), price(price), idleLeft(idleLeft), idleRight(idleRight), walkLeft(walkLeft), walkRight(walkRight) { }
+	CreatureType(
+		const std::string& name, 
+		int price, 
+		const AnimatedSprite& idleLeft, 
+		const AnimatedSprite& idleRight, 
+		const AnimatedSprite& walkLeft, 
+		const AnimatedSprite& walkRight
+	) :
+		name(std::move(name)), 
+		price(price), 
+		idleLeft(std::move(idleLeft)), 
+		idleRight(std::move(idleRight)), 
+		walkLeft(std::move(walkLeft)), 
+		walkRight(std::move(walkRight)) 
+	{ }
 
 	std::string name;
 	int price;
-	Sprite idleLeft;
-	Sprite idleRight;
-	Sprite walkLeft;
-	Sprite walkRight;
+	AnimatedSprite idleLeft;
+	AnimatedSprite idleRight;
+	AnimatedSprite walkLeft;
+	AnimatedSprite walkRight;
 };

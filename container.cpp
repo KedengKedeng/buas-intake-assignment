@@ -8,14 +8,14 @@ Container::Container(
 )
 	: Object(id, pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0))), justification_(justification) { };
 
-void Container::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void Container::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	for (auto& object : objects_)
 		object.second->draw(surface, offset);
 }
 
-void Container::process() {
+void Container::process(float deltaTime) {
 	for (auto& object : objects_)
-		object.second->process();
+		object.second->process(deltaTime);
 }
 
 void Container::insertObject(std::unique_ptr<Object> object) {

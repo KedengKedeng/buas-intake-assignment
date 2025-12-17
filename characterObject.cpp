@@ -6,10 +6,10 @@ CharacterObject::CharacterObject(
 	Tmpl8::vec2& pos,
 	BoundingBox& boundingBox,
 	ObservableBoundingBox& interactableBoundingBox,
-	Sprite& idleLeft,
-	Sprite& idleRight,
-	Sprite& walkLeft,
-	Sprite& walkRight
+	AnimatedSprite& idleLeft,
+	AnimatedSprite& idleRight,
+	AnimatedSprite& walkLeft,
+	AnimatedSprite& walkRight
 ): SpriteObject(id, pos, boundingBox, interactableBoundingBox) {
 	addSprite(idleLeft);
 	addSprite(idleRight);
@@ -27,11 +27,12 @@ void CharacterObject::calculateMove() {
 	requestMove.emit(pos_, calculatedVelocity, *this);
 }
 
-void CharacterObject::process() {
+void CharacterObject::process(float deltaTime) {
+	SpriteObject::process(deltaTime);
 	calculateMove();
 }
 
-void CharacterObject::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void CharacterObject::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	if (delta_.x || delta_.y) setSprite(static_cast<int>(lookingDirection_) + 2); // set to running animations
 	else setSprite(static_cast<int>(lookingDirection_)); // set to idle animations
 

@@ -22,7 +22,7 @@ InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, st
 	});
 }
 
-void InventorySlot::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void InventorySlot::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	Tmpl8::vec2 pos = dragging ? dragPos : pos_;
 	auto size = boundingBox_.getSize();
 	surface->Box(

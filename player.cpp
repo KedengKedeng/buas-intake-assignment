@@ -7,6 +7,7 @@
 
 const int playerInteractionOffset = 10;
 const float playerSpriteScale = 2.5f;
+const float playerSpriteFrameRate = 0.005f;
 
 Player::Player(int64_t id, Tmpl8::vec2& pos) :
 	CharacterObject(
@@ -14,10 +15,10 @@ Player::Player(int64_t id, Tmpl8::vec2& pos) :
 		pos,
 		BoundingBox(),
 		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(0)),
-		Sprite("playeridleleft", playerSpriteScale),
-		Sprite("playeridleright", playerSpriteScale),
-		Sprite("playerwalkleft", playerSpriteScale),
-		Sprite("playerwalkright", playerSpriteScale)
+		AnimatedSprite(Sprite(spriteRepository.get("playeridleleft"), playerSpriteScale), playerSpriteFrameRate),
+		AnimatedSprite(Sprite(spriteRepository.get("playeridleright"), playerSpriteScale), playerSpriteFrameRate),
+		AnimatedSprite(Sprite(spriteRepository.get("playerwalkleft"), playerSpriteScale), playerSpriteFrameRate),
+		AnimatedSprite(Sprite(spriteRepository.get("playerwalkright"), playerSpriteScale), playerSpriteFrameRate)
 	) {
 	boundingBox_.setSize(Tmpl8::vec2(getWidth(), getHeight()));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(getWidth() + playerInteractionOffset, getHeight() + playerInteractionOffset));

@@ -44,17 +44,13 @@ CookingScreen::~CookingScreen() {
 	unsubscribe();
 }
 
-void CookingScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void CookingScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	auto cauldron = dynamic_cast<CookingCauldron*>(objects_[cauldronId].get());
 	cauldron->drawBack(surface);
 
 	Screen::draw(surface, offset);
 
 	cauldron->drawFront(surface);
-}
-
-void CookingScreen::process() {
-	Screen::process();
 }
 
 void CookingScreen::subscribe() {

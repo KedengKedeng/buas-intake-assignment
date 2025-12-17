@@ -30,6 +30,7 @@ namespace Tmpl8
 
 		std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
 		std::shared_ptr<Husbandry> husbandry = std::make_shared<Husbandry>();
+		husbandry->addPlot(std::make_shared<Plot>());
 
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
 		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry);
@@ -92,7 +93,7 @@ namespace Tmpl8
 	{
 		surface_->Clear(0x6495ED);
 
-		currentScreens[currentScreens.size() - 1]->process();
+		currentScreens[currentScreens.size() - 1]->process(deltaTime);
 
 		for (; !queue.empty(); queue.pop()) {
 			auto func = queue.front();

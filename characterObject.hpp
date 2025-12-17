@@ -13,10 +13,10 @@ public:
 		Tmpl8::vec2& pos, 
 		BoundingBox& boundingBox, 
 		ObservableBoundingBox& interactableBoundingBox,
-		Sprite& idleLeft,
-		Sprite& idleRight,
-		Sprite& walkLeft,
-		Sprite& walkRight
+		AnimatedSprite& idleLeft,
+		AnimatedSprite& idleRight,
+		AnimatedSprite& walkLeft,
+		AnimatedSprite& walkRight
 	);
 
 	void calculateMove();
@@ -27,8 +27,8 @@ public:
 	void setLookingDirection(LookingDirections lookingDirection) { lookingDirection_ = lookingDirection; }
 	LookingDirections getLookingDirection() { return lookingDirection_; }
 
-	void process() override;
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
+	void process(float deltaTime) override;
+	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
 private:
 	Tmpl8::vec2 velocity = { 6, 6 };
 	Tmpl8::vec2 delta_ = { 0, 0 };

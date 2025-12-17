@@ -1,16 +1,17 @@
 #pragma once
-#include "spriteObject.hpp"
+#include "object.hpp"
 #include "mouseMoveHandler.hpp"
+#include "sprite.hpp"
 
-class Blower : public SpriteObject {
+class Blower : public Object {
 public:
 	Blower(int64_t id, Tmpl8::vec2& pos);
 	~Blower();
 
 	void addBlowerPosition(float delta);
 
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
-	void process() override;
+	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void process(float deltaTime) override;
 
 	void subscribe() override;
 	void unsubscribe() override;
@@ -18,4 +19,5 @@ private:
 	bool inflate = true;
 	float blowerPosition = 0;
 	MouseMoveHandler mouseMoveHandler;
+	Sprite sprite_;
 };

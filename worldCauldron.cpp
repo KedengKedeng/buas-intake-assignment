@@ -2,6 +2,10 @@
 #include "itemSignals.hpp"
 #include "interactionSignal.hpp"
 #include "objectSignals.hpp"
+#include "spriteRepository.hpp"
+
+const float cauldronSpriteScale = 2.5f;
+const float cauldronSpriteFrameRate = 0.005f;
 
 WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauldron> cauldron) :
 	SpriteObject(
@@ -11,10 +15,10 @@ WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauld
 		ObservableBoundingBox(Tmpl8::vec2(-10), Tmpl8::vec2(0))
 	),
 	cauldron_(cauldron) {
-	addSprite(Sprite("emptycauldron", 2.5));
-	addSprite(Sprite("filledcauldron", 2.5));
-	addSprite(Sprite("emptyburningcauldron", 2.5));
-	addSprite(Sprite("filledburningcauldron", 2.5));
+	addSprite(AnimatedSprite(Sprite(spriteRepository.get("emptycauldron"), cauldronSpriteScale), cauldronSpriteFrameRate));
+	addSprite(AnimatedSprite(Sprite(spriteRepository.get("filledcauldron"), cauldronSpriteScale), cauldronSpriteFrameRate));
+	addSprite(AnimatedSprite(Sprite(spriteRepository.get("emptyburningcauldron"), cauldronSpriteScale), cauldronSpriteFrameRate));
+	addSprite(AnimatedSprite(Sprite(spriteRepository.get("filledburningcauldron"), cauldronSpriteScale), cauldronSpriteFrameRate));
 
 	boundingBox_.setSize(Tmpl8::vec2(getWidth(), getHeight()));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(getWidth() + 10, getHeight() + 10));
@@ -25,7 +29,7 @@ WorldCauldron::~WorldCauldron() {
 	onInteractEnd();
 }
 
-void WorldCauldron::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void WorldCauldron::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	int spriteNum = cauldron_->getItemCount() != 0;
 	if (cauldron_->getTemp() > 200) spriteNum += 2;
 	setSprite(spriteNum);

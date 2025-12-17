@@ -17,8 +17,8 @@ public:
 		Justification justification
 	);
 
-	virtual void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
-	virtual void process() override;
+	virtual void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	virtual void process(float deltaTime) override;
 
 	virtual void insertObject(std::unique_ptr<Object> object);
 	void clearObjects() { objects_.clear(); }

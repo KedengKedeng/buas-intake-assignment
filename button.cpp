@@ -36,7 +36,7 @@ void Button::subscribe() {
 	}));
 }
 
-void Button::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void Button::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	Tmpl8::vec2 size = boundingBox_.getSize();
 
 	int left = static_cast<int>(pos_.x);

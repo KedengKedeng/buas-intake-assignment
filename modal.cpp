@@ -9,7 +9,7 @@ Modal::Modal(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::function<void
 
 }
 
-void Modal::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void Modal::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	auto size = boundingBox_.getSize();
 	surface->Bar(pos_.x, pos_.y, pos_.x + size.x, pos_.y + size.y, 0xffffff);
 

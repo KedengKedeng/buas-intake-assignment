@@ -13,7 +13,7 @@ public:
 	std::map<int64_t, std::unique_ptr<Object>>::iterator begin() override { return innerContainer_.begin(); }
 	std::map<int64_t, std::unique_ptr<Object>>::iterator end() override { return innerContainer_.end(); }
 
-	virtual void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
+	virtual void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
 
 	virtual void subscribe() override;
 	virtual void unsubscribe() override;

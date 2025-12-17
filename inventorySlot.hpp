@@ -17,7 +17,7 @@ public:
 	void setItem(std::shared_ptr<Item> item, int amount) { item_ = item; amount_ = amount; }
 	std::shared_ptr<Item> getItem() { return item_; }
 
-	void draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) override;
+	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
 
 	void subscribe() override;
 	void unsubscribe() override;

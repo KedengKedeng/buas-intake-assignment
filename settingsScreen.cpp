@@ -29,6 +29,6 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	insertObject(std::move(container));
 }
 
-void SettingsScreen::draw(Tmpl8::Surface* surface, Tmpl8::vec2& offset) {
+void SettingsScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	Screen::draw(surface, offset);
 }

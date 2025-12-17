@@ -2,11 +2,11 @@
 #include <string>
 #include <memory>
 #include "surface.h"
-#include "spriteRepository.hpp"
 
 class Sprite {
 public:
-	Sprite(const std::string& name, float scale) : sprite_(spriteRepository.get(name, scale)), scale_(scale), maxFrames_(sprite_->Frames()) {};
+	Sprite(std::shared_ptr<Tmpl8::Sprite> sprite, float scale) 
+		: sprite_(sprite), scale_(scale), maxFrames_(sprite_->Frames()) {};
 
 	void draw(Tmpl8::Surface* surface, float x, float y);
 

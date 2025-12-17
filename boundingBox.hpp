@@ -17,7 +17,7 @@ struct SweptAxisResult {
 class BoundingBox {
 public:
 	BoundingBox() : pos_(Tmpl8::vec2(0)), size_(Tmpl8::vec2(0)) {}
-	BoundingBox(Tmpl8::vec2& pos, Tmpl8::vec2& size): pos_(pos), size_(size) {};
+	BoundingBox(const Tmpl8::vec2& pos, const Tmpl8::vec2& size): pos_(pos), size_(size) {};
 
 	Tmpl8::vec2 getPos() { return pos_; }
 	void setPos(Tmpl8::vec2& pos) { pos_ = pos; }
