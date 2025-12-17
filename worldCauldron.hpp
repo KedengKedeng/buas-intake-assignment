@@ -1,15 +1,17 @@
 #pragma once
-#include "spriteObject.hpp"
+#include "object.hpp"
+#include "spriteStack.hpp"
 #include "item.hpp"
 #include "cauldron.hpp"
 #include <vector>
 
-class WorldCauldron : public SpriteObject {
+class WorldCauldron : public Object {
 public:
 	WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauldron> cauldron);
 	~WorldCauldron();
 
 	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void process(float deltaTime) override;
 
 	void subscribe() override;
 protected:
@@ -21,4 +23,6 @@ private:
 	std::function<void()> itemDroppedUnsub = []() {};
 
 	bool isInteracting = false;
+
+	SpriteStack sprites_;
 };

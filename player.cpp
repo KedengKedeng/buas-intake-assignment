@@ -20,8 +20,8 @@ Player::Player(int64_t id, Tmpl8::vec2& pos) :
 		AnimatedSprite(Sprite(spriteRepository.get("playerwalkleft"), playerSpriteScale), playerSpriteFrameRate),
 		AnimatedSprite(Sprite(spriteRepository.get("playerwalkright"), playerSpriteScale), playerSpriteFrameRate)
 	) {
-	boundingBox_.setSize(Tmpl8::vec2(getWidth(), getHeight()));
-	interactionBoundingBox_.setSize(Tmpl8::vec2(getWidth() + playerInteractionOffset, getHeight() + playerInteractionOffset));
+	boundingBox_.setSize(Tmpl8::vec2(getTextureWidth(), getTextureHeight()));
+	interactionBoundingBox_.setSize(Tmpl8::vec2(getTextureWidth() + playerInteractionOffset, getTextureHeight() + playerInteractionOffset));
 };
 
 void Player::subscribe() {

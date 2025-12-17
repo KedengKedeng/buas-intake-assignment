@@ -5,7 +5,7 @@
 
 class SpriteStack {
 public:
-	SpriteStack(const std::vector<AnimatedSprite>& sprites) : sprites_(std::move(sprites)) {};
+	SpriteStack(std::vector<AnimatedSprite>& sprites) : sprites_(std::move(sprites)) {};
 
 	void addSprite(AnimatedSprite& sprite) { sprites_.push_back(sprite); }
 	void setSprite(int sprite) { currentSprite_ = sprite; }

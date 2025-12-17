@@ -1,12 +1,13 @@
 #pragma once
-#include "spriteObject.hpp"
+#include "object.hpp"
+#include "spriteStack.hpp"
 
 enum class LookingDirections {
 	LEFT,
 	RIGHT
 };
 
-class CharacterObject : public SpriteObject {
+class CharacterObject : public Object {
 public:
 	CharacterObject(
 		int64_t id, 
@@ -29,9 +30,13 @@ public:
 
 	void process(float deltaTime) override;
 	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+protected:
+	float getTextureWidth() { return sprites_.getWidth(); }
+	float getTextureHeight() { return sprites_.getHeight(); }
 private:
 	Tmpl8::vec2 velocity = { 6, 6 };
 	Tmpl8::vec2 delta_ = { 0, 0 };
 
 	LookingDirections lookingDirection_ = LookingDirections::LEFT;
+	SpriteStack sprites_;
 };

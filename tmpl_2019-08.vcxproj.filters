@@ -65,9 +65,6 @@
     <ClCompile Include="screen.cpp">
       <Filter>ui\screens</Filter>
     </ClCompile>
-    <ClCompile Include="spriteObject.cpp">
-      <Filter>gameplay\objects</Filter>
-    </ClCompile>
     <ClCompile Include="random.cpp">
       <Filter>core\util</Filter>
     </ClCompile>
@@ -91,9 +88,6 @@
     </ClCompile>
     <ClCompile Include="cookingCauldron.cpp">
       <Filter>gameplay\objects\world objects\cauldron</Filter>
-    </ClCompile>
-    <ClCompile Include="spriteStack.cpp">
-      <Filter>gameplay\sprites</Filter>
     </ClCompile>
     <ClCompile Include="mouseMoveHandler.cpp">
       <Filter>core\input\mouse</Filter>
@@ -138,6 +132,9 @@
       <Filter>core\rendering</Filter>
     </ClCompile>
     <ClCompile Include="animatedSprite.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteStack.cpp">
       <Filter>core\rendering</Filter>
     </ClCompile>
   </ItemGroup>
@@ -257,9 +254,6 @@
     <ClInclude Include="player.hpp">
       <Filter>gameplay\objects\world objects</Filter>
     </ClInclude>
-    <ClInclude Include="spriteStack.hpp">
-      <Filter>gameplay\sprites</Filter>
-    </ClInclude>
     <ClInclude Include="mouseMoveHandler.hpp">
       <Filter>core\input\mouse</Filter>
     </ClInclude>
@@ -268,9 +262,6 @@
     </ClInclude>
     <ClInclude Include="invisibleBarrier.hpp">
       <Filter>gameplay\objects\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="spriteObject.hpp">
-      <Filter>gameplay\objects</Filter>
     </ClInclude>
     <ClInclude Include="blower.hpp">
       <Filter>gameplay\objects\world objects</Filter>
@@ -330,6 +321,9 @@
       <Filter>core\rendering</Filter>
     </ClInclude>
     <ClInclude Include="animatedSprite.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteStack.hpp">
       <Filter>core\rendering</Filter>
     </ClInclude>
   </ItemGroup>

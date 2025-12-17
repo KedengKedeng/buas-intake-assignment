@@ -265,7 +265,6 @@
     <ClCompile Include="screenSignals.cpp" />
     <ClCompile Include="settingsScreen.cpp" />
     <ClCompile Include="sprite.cpp" />
-    <ClCompile Include="spriteObject.cpp" />
     <ClCompile Include="spriteRepository.cpp" />
     <ClCompile Include="startScreen.cpp" />
     <ClCompile Include="surface.cpp" />
@@ -330,7 +329,6 @@
     <ClInclude Include="signal.hpp" />
     <ClInclude Include="sprite.hpp" />
     <ClInclude Include="spriteList.hpp" />
-    <ClInclude Include="spriteObject.hpp" />
     <ClInclude Include="spriteRepository.hpp" />
     <ClInclude Include="startScreen.hpp" />
     <ClInclude Include="surface.h" />

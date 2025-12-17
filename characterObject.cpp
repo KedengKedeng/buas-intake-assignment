@@ -10,12 +10,10 @@ CharacterObject::CharacterObject(
 	AnimatedSprite& idleRight,
 	AnimatedSprite& walkLeft,
 	AnimatedSprite& walkRight
-): SpriteObject(id, pos, boundingBox, interactableBoundingBox) {
-	addSprite(idleLeft);
-	addSprite(idleRight);
-	addSprite(walkLeft);
-	addSprite(walkRight);
-}
+) : 
+	Object(id, pos, boundingBox, interactableBoundingBox), 
+	sprites_(std::vector<AnimatedSprite>({idleLeft, idleRight, walkLeft, walkRight}))
+{}
 
 void CharacterObject::calculateMove() {
 	// Make movement in each direction a lower speed
@@ -28,13 +26,13 @@ void CharacterObject::calculateMove() {
 }
 
 void CharacterObject::process(float deltaTime) {
-	SpriteObject::process(deltaTime);
+	sprites_.process(deltaTime);
 	calculateMove();
 }
 
 void CharacterObject::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
-	if (delta_.x || delta_.y) setSprite(static_cast<int>(lookingDirection_) + 2); // set to running animations
-	else setSprite(static_cast<int>(lookingDirection_)); // set to idle animations
+	if (delta_.x || delta_.y) sprites_.setSprite(static_cast<int>(lookingDirection_) + 2); // set to running animations
+	else sprites_.setSprite(static_cast<int>(lookingDirection_)); // set to idle animations
 
-	SpriteObject::draw(surface, offset);
+	sprites_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);
 }
