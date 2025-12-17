@@ -3,5 +3,5 @@
 #include "objectList.hpp"
 
 void setupObjectList() {
-	objectRepository.insert(std::string("cauldron"), std::make_shared<Cauldron>());
+	objectRepository.insert("cauldron", std::make_shared<Cauldron>());
 }

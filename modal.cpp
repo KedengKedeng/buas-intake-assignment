@@ -4,7 +4,7 @@ Tmpl8::vec2 BUTTON_SIZE = {10, 10};
 
 Modal::Modal(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::function<void()> onExitHandler, Justification justification)
 	: Container(id, pos, size, Justification::VERTICAL), 
-	exitButton(0, onExitHandler, std::string("X"), Tmpl8::vec2(pos.x + size.x - BUTTON_SIZE.x, pos.y), BUTTON_SIZE),
+	exitButton(0, onExitHandler, "X", Tmpl8::vec2(pos.x + size.x - BUTTON_SIZE.x, pos.y), BUTTON_SIZE),
 	innerContainer_(0, pos + BUTTON_SIZE, size - BUTTON_SIZE, justification){
 
 }

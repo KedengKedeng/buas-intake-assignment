@@ -4,7 +4,7 @@
 Tmpl8::vec2 spoonVelocity = { 0, 7 };
 
 Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) : SpriteObject(id, pos, BoundingBox(), ObservableBoundingBox()), mouseMoveHandler() {
-	addSprite(Sprite(std::string("spoon"), 0.4));
+	addSprite(Sprite("spoon", 0.4));
 
 	boundingBox_.setPos(Tmpl8::vec2(20));
 	boundingBox_.setSize(Tmpl8::vec2(getWidth() - 40, getHeight() - 40));

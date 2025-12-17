@@ -11,10 +11,10 @@ WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauld
 		ObservableBoundingBox(Tmpl8::vec2(-10), Tmpl8::vec2(0))
 	),
 	cauldron_(cauldron) {
-	addSprite(Sprite(std::string("emptycauldron"), 2.5));
-	addSprite(Sprite(std::string("filledcauldron"), 2.5));
-	addSprite(Sprite(std::string("emptyburningcauldron"), 2.5));
-	addSprite(Sprite(std::string("filledburningcauldron"), 2.5));
+	addSprite(Sprite("emptycauldron", 2.5));
+	addSprite(Sprite("filledcauldron", 2.5));
+	addSprite(Sprite("emptyburningcauldron", 2.5));
+	addSprite(Sprite("filledburningcauldron", 2.5));
 
 	boundingBox_.setSize(Tmpl8::vec2(getWidth(), getHeight()));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(getWidth() + 10, getHeight() + 10));

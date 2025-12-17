@@ -6,8 +6,8 @@
 
 class SpriteRepository {
 public:
-	void insert(std::string& name, std::shared_ptr<Tmpl8::Sprite> sprite) { registry_.insert({ name, sprite }); }
-	std::shared_ptr<Tmpl8::Sprite> get(std::string& name, float scale) { return registry_[name]; }
+	void insert(const std::string& name, std::shared_ptr<Tmpl8::Sprite> sprite) { registry_.insert({ name, sprite }); }
+	std::shared_ptr<Tmpl8::Sprite> get(const std::string& name, float scale) { return registry_[name]; }
 private:
 	std::map<std::string, std::shared_ptr<Tmpl8::Sprite>> registry_ = {};
 };

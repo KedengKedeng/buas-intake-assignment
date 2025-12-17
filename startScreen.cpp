@@ -4,7 +4,7 @@
 #include "screenCommands.hpp"
 
 StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
-	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
+	keyboardInput_.registerHandler("escape", []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
 
 	Tmpl8::vec2 containerSize = {70, 75};
 	Tmpl8::vec2 buttonSize = { 70, 20 };

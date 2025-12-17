@@ -7,7 +7,7 @@
 #include "modal.hpp"
 
 SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
-	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<CloseScreenCommand>(); });
+	keyboardInput_.registerHandler("escape", []() {return std::make_unique<CloseScreenCommand>(); });
 
 	Tmpl8::vec2 modalSize = { 100, 100 };
 	auto container = std::make_unique<Modal>(
@@ -21,7 +21,7 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	container->insertObject(std::make_unique<Button>(
 		0,
 		[]() {},
-		std::string("test button"),
+		"test button",
 		Tmpl8::vec2(0),
 		Tmpl8::vec2(20)
 	));

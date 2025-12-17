@@ -16,19 +16,19 @@
 
 PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry)
 	: Screen(surface), player_(0, Tmpl8::vec2(100, 100)), inventory_(inventory), husbandry_(husbandry) {
-	keyboardInput_.registerHandler(std::string("walkLeft"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 }); });
-	keyboardInput_.registerHandler(std::string("walkUp"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 }); });
-	keyboardInput_.registerHandler(std::string("walkDown"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 }); });
-	keyboardInput_.registerHandler(std::string("walkRight"), []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 1, 0 }); });
-	keyboardInput_.registerHandler(std::string("interact"), []() {return std::make_unique<InteractionCommand>(); });
-	keyboardInput_.registerHandler(std::string("escape"), []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
-	keyboardInput_.registerHandler(std::string("inventory"), []() {return std::make_unique<StackScreenCommand>(Screens::Inventory); });
+	keyboardInput_.registerHandler("walkLeft", []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 }); });
+	keyboardInput_.registerHandler("walkUp", []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 }); });
+	keyboardInput_.registerHandler("walkDown", []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 }); });
+	keyboardInput_.registerHandler("walkRight", []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 1, 0 }); });
+	keyboardInput_.registerHandler("interact", []() {return std::make_unique<InteractionCommand>(); });
+	keyboardInput_.registerHandler("escape", []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
+	keyboardInput_.registerHandler("inventory", []() {return std::make_unique<StackScreenCommand>(Screens::Inventory); });
 
 	createWorldBounds(Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()));
 
 	// interactable objects
-	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get(std::string("cauldron")))));
-	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(20, 50), itemRepository.get(std::string("testItem"))));
+	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron"))));
+	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(20, 50), itemRepository.get("testItem")));
 }
 
 PlayScreen::~PlayScreen() {

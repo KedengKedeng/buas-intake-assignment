@@ -6,8 +6,8 @@
 
 class ObjectRepository {
 public:
-	void insert(std::string& name, std::shared_ptr<Object> object) { registry_.insert({ name, object }); }
-	std::shared_ptr<Object> get(std::string& name) { return registry_[name]; }
+	void insert(const std::string& name, std::shared_ptr<Object> object) { registry_.insert({ name, object }); }
+	std::shared_ptr<Object> get(const std::string& name) { return registry_[name]; }
 private:
 	std::map<std::string, std::shared_ptr<Object>> registry_ = {};
 };

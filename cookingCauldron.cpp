@@ -3,8 +3,8 @@
 
 CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron) 
 	: Object(id, Tmpl8::vec2(0), BoundingBox(), ObservableBoundingBox()), 
-	cauldronFront(std::string("cauldroncloseupfront"), 0.5), 
-	cauldronBack(std::string("cauldroncloseupback"), 0.5),
+	cauldronFront("cauldroncloseupfront", 0.5), 
+	cauldronBack("cauldroncloseupback", 0.5),
 	cauldronInside(std::vector<Sprite>()),
 	fire(std::vector<Sprite>()) ,
 	cauldron_(cauldron)
@@ -19,9 +19,9 @@ CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron)
 	interactionBoundingBox_.setPos(Tmpl8::vec2(120, 80));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(cauldronFront.getWidth() - 220, cauldronFront.getHeight() - 80));
 
-	cauldronInside.addSprite(Sprite(std::string("cauldroncloseupfilled"), 0.5));
+	cauldronInside.addSprite(Sprite("cauldroncloseupfilled", 0.5));
 
-	fire.addSprite(Sprite(std::string("cauldroncloseupfire"), 0.4));
+	fire.addSprite(Sprite("cauldroncloseupfire", 0.4));
 }
 
 CookingCauldron::~CookingCauldron() {

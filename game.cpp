@@ -90,7 +90,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		surface_->Clear(255 << 8);
+		surface_->Clear(0x6495ED);
 
 		currentScreens[currentScreens.size() - 1]->process();
 

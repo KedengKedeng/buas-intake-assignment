@@ -3,7 +3,7 @@
 Button::Button(
 	int64_t id,
 	std::function<void()> handler,
-	std::string& text,
+	const std::string& text,
 	Tmpl8::vec2& pos,
 	Tmpl8::vec2& size,
 	int borderWidth,

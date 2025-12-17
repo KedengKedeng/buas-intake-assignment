@@ -7,7 +7,7 @@ void setupItemList() {
 		0xffffff,
 		2.5f,
 		1.35f,
-		std::string("testItem"),
-		Sprite(std::string("waterbottle"), 0.3f)
+		"testItem",
+		Sprite("waterbottle", 0.3f)
 	));
 }

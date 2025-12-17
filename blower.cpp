@@ -5,7 +5,7 @@ Blower::Blower(int64_t id, Tmpl8::vec2& pos)
 	: SpriteObject(id, pos, BoundingBox(), ObservableBoundingBox()), mouseMoveHandler(){
 	allowCollision = false;
 
-	addSprite(Sprite(std::string("blower"), 0.4));
+	addSprite(Sprite("blower", 0.4));
 
 	boundingBox_.setSize(Tmpl8::vec2(getWidth(), getHeight()));
 
