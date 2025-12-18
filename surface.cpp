@@ -18,10 +18,10 @@ bool Surface::fontInitialized = false;
 // -----------------------------------------------------------
 
 BoundsCheckResult Surface::checkBounds(int& x1, int& y1, int& x2, int& y2, int targetWidth, int targetHeight) {
-	if (x1 < 0) x1 = 0;
-	if (y1 < 0) y1 = 0;
-	if (x2 > targetWidth) x2 = targetWidth;
-	if (y2 > targetHeight) y2 = targetHeight;
+	x1 = std::max(x1, 0);
+	y1 = std::max(y1, 0);
+	x2 = std::min(x2, targetWidth);
+	y2 = std::min(y2, targetHeight);
 
 	if (x1 >= x2 || y1 >= y2) return {0,0,0,0,true};
 	return { x1, y1, x2, y2, false };
@@ -44,9 +44,9 @@ Surface::Surface( int a_Width, int a_Height ) :
 	m_Buffer = static_cast<Pixel*>(MALLOC64( (unsigned int)a_Width * (unsigned int)a_Height * sizeof( Pixel )));
 }
 
-Surface::Surface( char* a_File )
+Surface::Surface( const std::string& a_File )
 {
-	FILE* f = fopen( a_File, "rb" );
+	FILE* f = fopen( a_File.c_str(), "rb");
 	if (!f) 
 	{
 		char t[128];
@@ -55,10 +55,10 @@ Surface::Surface( char* a_File )
 		return;
 	}
 	else fclose( f );
-	LoadImage( a_File );
+	LoadImage( a_File.c_str() );
 }
 
-void Surface::LoadImage( char* a_File )
+void Surface::LoadImage( const char* a_File )
 {
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
 	fif = FreeImage_GetFileType( a_File, 0 );
@@ -354,119 +354,6 @@ void Surface::ScaleColor( unsigned int a_Scale )
 		unsigned int rb = (((c & (RedMask|BlueMask)) * a_Scale) >> 5) & (RedMask|BlueMask);
 		unsigned int g = (((c & GreenMask) * a_Scale) >> 5) & GreenMask;
 		m_Buffer[i] = rb + g;
-	}
-}
-
-Sprite::Sprite( Surface* a_Surface, unsigned int a_NumFrames ) :
-	m_Width( static_cast<int>(a_Surface->GetWidth() / a_NumFrames) ),
-	m_Height( a_Surface->GetHeight() ),
-	m_Pitch(  a_Surface->GetWidth() ),
-	m_NumFrames( a_NumFrames ),
-	m_CurrentFrame( 0 ),
-	m_Flags( 0 ),
-	m_Start( new unsigned int*[a_NumFrames] ),
-	m_Surface( a_Surface )
-{
-	InitializeStartData();
-}
-
-Sprite::~Sprite()
-{
-	delete m_Surface;
-	for ( unsigned int i = 0; i < m_NumFrames; i++ ) delete m_Start[i];
-	delete[] m_Start;
-}
-
-void Sprite::Draw( Surface* a_Target, int a_X, int a_Y )
-{
-	if ((a_X < -m_Width) || (a_X > (a_Target->GetWidth() + m_Width))) return;
-	if ((a_Y < -m_Height) || (a_Y > (a_Target->GetHeight() + m_Height))) return;
-
-	int x1 = a_X, x2 = a_X + m_Width;
-	int y1 = a_Y, y2 = a_Y + m_Height;
-	Pixel* src = GetBuffer() + m_CurrentFrame * m_Width;
-
-	if (x1 < 0)
-	{
-		src += -x1;
-		x1 = 0;
-	}
-	if (x2 > a_Target->GetWidth()) x2 = a_Target->GetWidth();
-	if (y1 < 0) 
-	{ 
-		src += -y1 * m_Pitch;
-		y1 = 0;
-	}
-	if (y2 > a_Target->GetHeight()) y2 = a_Target->GetHeight();
-
-	Pixel* dest = a_Target->GetBuffer();
-	const int dpitch = a_Target->GetPitch();
-
-	if ((x2 > x1) && (y2 > y1))
-	{
-		for (int y = 0; y < m_Height; y++)
-		{
-			for (int x = 0; x < m_Width; x++)
-			{
-				const Pixel color = *(src + x + y * m_Pitch);
-				if (color & 0xffffff) dest[a_X + x + ((a_Y + y) * dpitch)] = color;
-			}
-		}
-	}
-}
-
-void Sprite::DrawScaled(int a_X, int a_Y, int a_Width, int a_Height, Surface* a_Target)
-{
-	if (a_Width == 0 || a_Height == 0) return;
-
-	int x1 = a_X;
-	int y1 = a_Y;
-	int x2 = a_X + a_Width;
-	int y2 = a_Y + a_Height;
-
-	if (a_Target->checkBounds(x1, y1, x2, y2, a_Target->GetWidth(), a_Target->GetHeight()).dontPrint) return;
-
-	Pixel* spriteBuffer = GetBuffer() + m_CurrentFrame * m_Width;
-
-	Pixel* targetBuffer = a_Target->GetBuffer();
-	int targetPitch = a_Target->GetPitch();
-
-	for (int ty = y1; ty < y2; ty++)
-	{
-		float v = (float)(ty - a_Y) / a_Height;
-		int sy = (int)(v * m_Height);
-
-		for (int tx = x1; tx < x2; tx++)
-		{
-			float u = (float)(tx - a_X) / a_Width;
-			int sx = (int)(u * m_Width);
-
-			Pixel color = spriteBuffer[sx + sy * m_Pitch];
-
-			if (color) targetBuffer[tx + ty * targetPitch] = color;
-		}
-	}
-}
-
-
-void Sprite::InitializeStartData()
-{
-    for ( unsigned int f = 0; f < m_NumFrames; ++f )
-    {
-        m_Start[f] = new unsigned int[m_Height];
-     	for ( int y = 0; y < m_Height; ++y )
-     	{
-      	    m_Start[f][y] = m_Width;
-			Pixel* addr = GetBuffer() + f * m_Width + y * m_Pitch;
-     	    for ( int x = 0; x < m_Width; ++x )
-     	    {
-                if (addr[x])
-     	        {
-     	            m_Start[f][y] = x;
-                    break;
-                }
-            }
-		}
 	}
 }
 

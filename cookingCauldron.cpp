@@ -4,10 +4,10 @@
 
 CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron) 
 	: Object(id, Tmpl8::vec2(0), BoundingBox(), ObservableBoundingBox()), 
-	cauldronFront(spriteRepository.get("cauldroncloseupfront"), 0.5), 
-	cauldronBack(spriteRepository.get("cauldroncloseupback"), 0.5),
-	cauldronInside(Sprite(spriteRepository.get("cauldroncloseupfilled"), 0.5), 0.005f),
-	fire(Sprite(spriteRepository.get("cauldroncloseupfire"), 0.4), 0.005f) ,
+	cauldronFront(spriteRepository.get("cauldroncloseupfront", 0.5)), 
+	cauldronBack(spriteRepository.get("cauldroncloseupback", 0.5)),
+	cauldronInside(spriteRepository.get("cauldroncloseupfilled", 0.5), 0.005f),
+	fire(spriteRepository.get("cauldroncloseupfire", 0.4), 0.005f) ,
 	cauldron_(cauldron)
 {
 	allowCollision = false;

@@ -1,6 +1,5 @@
 #include "cookingScreen.hpp"
 #include "wall.hpp"
-#include "sprite.hpp"
 #include "spoon.hpp"
 #include "screenSignals.hpp"
 #include "keyboardSignals.hpp"

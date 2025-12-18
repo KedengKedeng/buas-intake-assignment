@@ -5,7 +5,7 @@
 Blower::Blower(int64_t id, Tmpl8::vec2& pos) 
 	: Object(id, pos, BoundingBox(), ObservableBoundingBox()), 
 	mouseMoveHandler(), 
-	sprite_(spriteRepository.get("blower"), 0.4f)
+	sprite_(spriteRepository.get("blower", 0.4f))
 {
 	allowCollision = false;
 

@@ -2,14 +2,14 @@
 #include <map>
 #include <string>
 #include <memory>
-#include "surface.h"
+#include "sprite.hpp"
 
 class SpriteRepository {
 public:
-	void insert(const std::string& name, std::shared_ptr<Tmpl8::Sprite> sprite) { registry_.insert({ name, sprite }); }
-	std::shared_ptr<Tmpl8::Sprite> get(const std::string& name) { return registry_[name]; }
+	void insert(const std::string& name, Sprite& sprite) { registry_.insert({ name, std::move(sprite) }); }
+	Sprite get(const std::string& name, float scale = 1.0f) { return Sprite(registry_.at(name), scale); }
 private:
-	std::map<std::string, std::shared_ptr<Tmpl8::Sprite>> registry_ = {};
+	std::map<std::string, Sprite> registry_ = {};
 };
 
 extern SpriteRepository spriteRepository;

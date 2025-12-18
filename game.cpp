@@ -10,6 +10,7 @@
 #include "itemList.hpp"
 #include "spriteList.hpp"
 #include "objectList.hpp"
+#include "surfaceList.hpp"
 #include "creatureTypeList.hpp"
 #include "inventory.hpp"
 #include "husbandry.hpp"
@@ -21,6 +22,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
+		setupSurfaceList();
 		setupSpriteList();
 		setupItemList();
 		setupCreatureTypeList();

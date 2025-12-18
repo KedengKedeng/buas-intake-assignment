@@ -14,6 +14,9 @@ short term:
 - add success and fail into set and add functions?
 - add a text class to template for font sizes and text centering
 - switch over to systems (animation system, movement system, physics system)
+- turning sprites into classes that have a surface inside of them and take a rect
+- replace std string in file operations with path
+
 
 todo for mvp:
 - keyboard input handling (done)

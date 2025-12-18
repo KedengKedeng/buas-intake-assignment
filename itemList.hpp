@@ -9,6 +9,6 @@ void setupItemList() {
 		2.5f,
 		1.35f,
 		"testItem",
-		Sprite(spriteRepository.get("waterbottle"), 0.3f)
+		spriteRepository.get("waterbottle", 0.3f)
 	));
 }

@@ -15,10 +15,10 @@ Player::Player(int64_t id, Tmpl8::vec2& pos) :
 		pos,
 		BoundingBox(),
 		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(0)),
-		AnimatedSprite(Sprite(spriteRepository.get("playeridleleft"), playerSpriteScale), playerSpriteFrameRate),
-		AnimatedSprite(Sprite(spriteRepository.get("playeridleright"), playerSpriteScale), playerSpriteFrameRate),
-		AnimatedSprite(Sprite(spriteRepository.get("playerwalkleft"), playerSpriteScale), playerSpriteFrameRate),
-		AnimatedSprite(Sprite(spriteRepository.get("playerwalkright"), playerSpriteScale), playerSpriteFrameRate)
+		AnimatedSprite(spriteRepository.get("playeridleleft", playerSpriteScale), playerSpriteFrameRate),
+		AnimatedSprite(spriteRepository.get("playeridleright", playerSpriteScale), playerSpriteFrameRate),
+		AnimatedSprite(spriteRepository.get("playerwalkleft", playerSpriteScale), playerSpriteFrameRate),
+		AnimatedSprite(spriteRepository.get("playerwalkright", playerSpriteScale), playerSpriteFrameRate)
 	) {
 	boundingBox_.setSize(Tmpl8::vec2(getTextureWidth(), getTextureHeight()));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(getTextureWidth() + playerInteractionOffset, getTextureHeight() + playerInteractionOffset));

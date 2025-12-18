@@ -137,6 +137,9 @@
     <ClCompile Include="spriteStack.cpp">
       <Filter>core\rendering</Filter>
     </ClCompile>
+    <ClCompile Include="surfaceRepository.cpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -326,6 +329,12 @@
     <ClInclude Include="spriteStack.hpp">
       <Filter>core\rendering</Filter>
     </ClInclude>
+    <ClInclude Include="surfaceRepository.hpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="surfaceList.hpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">
@@ -396,6 +405,9 @@
     </Filter>
     <Filter Include="core\rendering">
       <UniqueIdentifier>{28e27ebb-3e46-496c-bbb5-5c7dd720c835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\math">
+      <UniqueIdentifier>{77fba2d8-8dfe-409e-890f-de247fd38a86}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

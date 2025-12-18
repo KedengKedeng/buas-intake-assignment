@@ -3,7 +3,6 @@
 #include "wall.hpp"
 #include "worldCauldron.hpp"
 #include "itemObject.hpp"
-#include "sprite.hpp"
 #include "itemSignals.hpp"
 #include "interactionSignal.hpp"
 #include "itemsRepository.hpp"

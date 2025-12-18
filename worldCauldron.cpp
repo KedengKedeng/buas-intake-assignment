@@ -16,10 +16,10 @@ WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauld
 	),
 	cauldron_(cauldron),
 	sprites_(std::vector<AnimatedSprite>({
-		AnimatedSprite(Sprite(spriteRepository.get("emptycauldron"), cauldronSpriteScale), cauldronSpriteFrameRate),
-		AnimatedSprite(Sprite(spriteRepository.get("filledcauldron"), cauldronSpriteScale), cauldronSpriteFrameRate),
-		AnimatedSprite(Sprite(spriteRepository.get("emptyburningcauldron"), cauldronSpriteScale), cauldronSpriteFrameRate),
-		AnimatedSprite(Sprite(spriteRepository.get("filledburningcauldron"), cauldronSpriteScale), cauldronSpriteFrameRate)
+		AnimatedSprite(spriteRepository.get("emptycauldron", cauldronSpriteScale), cauldronSpriteFrameRate),
+		AnimatedSprite(spriteRepository.get("filledcauldron", cauldronSpriteScale), cauldronSpriteFrameRate),
+		AnimatedSprite(spriteRepository.get("emptyburningcauldron", cauldronSpriteScale), cauldronSpriteFrameRate),
+		AnimatedSprite(spriteRepository.get("filledburningcauldron", cauldronSpriteScale), cauldronSpriteFrameRate)
 	}))
 {
 	boundingBox_.setSize(Tmpl8::vec2(sprites_.getWidth(), sprites_.getHeight()));

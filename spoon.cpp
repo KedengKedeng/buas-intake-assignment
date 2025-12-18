@@ -6,7 +6,7 @@
 Tmpl8::vec2 spoonVelocity = { 0, 7 };
 
 Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) 
-	: Object(id, pos, BoundingBox(), ObservableBoundingBox()), mouseMoveHandler(), sprite_(spriteRepository.get("spoon"), 0.4) {
+	: Object(id, pos, BoundingBox(), ObservableBoundingBox()), mouseMoveHandler(), sprite_(spriteRepository.get("spoon", 0.4)) {
 	boundingBox_.setPos(Tmpl8::vec2(20));
 	boundingBox_.setSize(Tmpl8::vec2(sprite_.getWidth() - 40, sprite_.getHeight() - 40));
 	interactionBoundingBox_.setPos(Tmpl8::vec2(20));

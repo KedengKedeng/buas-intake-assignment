@@ -1,22 +1,23 @@
 #pragma once 
 #include "spriteRepository.hpp"
+#include "surfaceRepository.hpp"
 
 // registers all used assets in the game to a list for lookup later
 void setupSpriteList() {
-	spriteRepository.insert("waterbottle", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/mcwaterbottle.png"), 1));
-	spriteRepository.insert("playeridleleft", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/playeridleleft.png"), 3));
-	spriteRepository.insert("playeridleright", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/playeridleright.png"), 3));
-	spriteRepository.insert("playerwalkleft", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/playerwalkleft.png"), 4));
-	spriteRepository.insert("playerwalkright", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/playerwalkright.png"), 4));
-	spriteRepository.insert("emptycauldron", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/emptycauldron.png"), 1));
-	spriteRepository.insert("emptyburningcauldron", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/emptyburningcauldron.png"), 8));
-	spriteRepository.insert("filledcauldron", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/filledcauldron.png"), 8));
-	spriteRepository.insert("filledburningcauldron", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/filledburningcauldron.png"), 8));
-	spriteRepository.insert("cauldroncloseupfront", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupfront.png"), 1));
-	spriteRepository.insert("cauldroncloseupback", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupback.png"), 1));
-	spriteRepository.insert("cauldroncloseupfire", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupfire.png"), 6));
-	spriteRepository.insert("cauldroncloseupfilled", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/cauldroncloseupfilled.png"), 8));
-	spriteRepository.insert("spoon", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/spoon.png"), 1));
-	spriteRepository.insert("blower", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/blower.png"), 4));
-	spriteRepository.insert("test", std::make_shared<Tmpl8::Sprite>(new Tmpl8::Surface("assets/testsprite.png"), 1));
+	spriteRepository.insert("waterbottle", Sprite(surfaceRepository.get("waterbottle"), 1));
+	spriteRepository.insert("playeridleleft", Sprite(surfaceRepository.get("playeridleleft"), 3));
+	spriteRepository.insert("playeridleright", Sprite(surfaceRepository.get("playeridleright"), 3));
+	spriteRepository.insert("playerwalkleft", Sprite(surfaceRepository.get("playerwalkleft"), 4));
+	spriteRepository.insert("playerwalkright", Sprite(surfaceRepository.get("playerwalkright"), 4));
+	spriteRepository.insert("emptycauldron", Sprite(surfaceRepository.get("emptycauldron"), 1));
+	spriteRepository.insert("emptyburningcauldron", Sprite(surfaceRepository.get("emptyburningcauldron"), 8));
+	spriteRepository.insert("filledcauldron", Sprite(surfaceRepository.get("filledcauldron"), 8));
+	spriteRepository.insert("filledburningcauldron", Sprite(surfaceRepository.get("filledburningcauldron"), 8));
+	spriteRepository.insert("cauldroncloseupfront", Sprite(surfaceRepository.get("cauldroncloseupfront"), 1));
+	spriteRepository.insert("cauldroncloseupback", Sprite(surfaceRepository.get("cauldroncloseupback"), 1));
+	spriteRepository.insert("cauldroncloseupfire", Sprite(surfaceRepository.get("cauldroncloseupfire"), 6));
+	spriteRepository.insert("cauldroncloseupfilled", Sprite(surfaceRepository.get("cauldroncloseupfilled"), 8));
+	spriteRepository.insert("spoon", Sprite(surfaceRepository.get("spoon"), 1));
+	spriteRepository.insert("blower", Sprite(surfaceRepository.get("blower"), 4));
+	spriteRepository.insert("test", Sprite(surfaceRepository.get("test"), 1));
 }
