@@ -3,7 +3,8 @@
 #include "spriteRepository.hpp"
 
 void setupCreatureTypeList() {
-	AnimatedSprite testSprite = AnimatedSprite(spriteRepository.get("test", 1.0f), 1.0f);
+	Sprite test = spriteRepository.get("test", 1.0f);
+	AnimatedSprite testSprite = AnimatedSprite(std::vector<Sprite>{test}, 1.0f);
 	creatureTypeRepository.insert(std::make_shared<CreatureType>(
 		"testAnimal",
 		0,

@@ -5,11 +5,11 @@
 Blower::Blower(int64_t id, Tmpl8::vec2& pos) 
 	: Object(id, pos, BoundingBox(), ObservableBoundingBox()), 
 	mouseMoveHandler(), 
-	sprite_(spriteRepository.get("blower", 0.4f))
+	sprites_(spriteRepository.getAnimated("blower", 0, 0.4f).getFrames())
 {
 	allowCollision = false;
 
-	boundingBox_.setSize(Tmpl8::vec2(sprite_.getWidth(), sprite_.getHeight()));
+	boundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth(), sprites_[0].getHeight()));
 
 	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
 		return getAbsoluteBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
@@ -31,10 +31,6 @@ Blower::Blower(int64_t id, Tmpl8::vec2& pos)
 	});
 }
 
-Blower::~Blower() {
-
-}
-
 void Blower::addBlowerPosition(float delta) { 
 	float oldBlowerPos = blowerPosition;
 	blowerPosition = std::min(std::max(blowerPosition + delta, 0.0f), 99.0f); 
@@ -42,8 +38,8 @@ void Blower::addBlowerPosition(float delta) {
 };
 
 void Blower::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
-	sprite_.setFrame(static_cast<int>(floor(blowerPosition / 25)));
-	sprite_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);
+	int frame = static_cast<int>(floor(blowerPosition / 25));
+	sprites_[frame].draw(surface, pos_.x + offset.x, pos_.y + offset.y);
 }
 
 void Blower::process(float deltaTime) {

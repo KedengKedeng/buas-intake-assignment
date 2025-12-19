@@ -6,7 +6,6 @@
 class Blower : public Object {
 public:
 	Blower(int64_t id, Tmpl8::vec2& pos);
-	~Blower();
 
 	void addBlowerPosition(float delta);
 
@@ -19,5 +18,5 @@ private:
 	bool inflate = true;
 	float blowerPosition = 0;
 	MouseMoveHandler mouseMoveHandler;
-	Sprite sprite_;
+	std::vector<Sprite> sprites_;
 };

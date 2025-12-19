@@ -288,6 +288,7 @@
     <ClInclude Include="inventorySlot.hpp" />
     <ClInclude Include="objectList.hpp" />
     <ClInclude Include="plot.hpp" />
+    <ClInclude Include="rect2.hpp" />
     <ClInclude Include="screenCommands.hpp" />
     <ClInclude Include="container.hpp" />
     <ClInclude Include="cookingCauldron.hpp" />

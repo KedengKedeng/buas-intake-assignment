@@ -17,7 +17,7 @@ bool Surface::fontInitialized = false;
 // True-color surface class implementation
 // -----------------------------------------------------------
 
-BoundsCheckResult Surface::checkBounds(int& x1, int& y1, int& x2, int& y2, int targetWidth, int targetHeight) {
+BoundsCheckResult Surface::checkBounds(int x1, int y1, int x2, int y2, int targetWidth, int targetHeight) {
 	x1 = std::max(x1, 0);
 	y1 = std::max(y1, 0);
 	x2 = std::min(x2, targetWidth);
@@ -210,7 +210,12 @@ void Surface::Box( int x1, int y1, int x2, int y2, Pixel c )
 
 void Surface::Bar( int x1, int y1, int x2, int y2, Pixel c )
 {
-	if (checkBounds(x1, y1, x2, y2, GetWidth(), GetHeight()).dontPrint) return;
+	BoundsCheckResult result = checkBounds(x1, y1, x2, y2, GetWidth(), GetHeight());
+	x1 = result.x;
+	x2 = result.x2;
+	y1 = result.y;
+	y2 = result.y2;
+	if (result.dontPrint) return;
 
 	Pixel* a = x1 + y1 * m_Pitch + m_Buffer;
 	for ( int y = y1; y <= y2; y++ )

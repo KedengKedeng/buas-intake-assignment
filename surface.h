@@ -36,7 +36,7 @@ inline Pixel SubBlend( Pixel a_Color1, Pixel a_Color2 )
 }
 
 struct BoundsCheckResult {
-	int x, y, width, height;
+	int x, y, x2, y2;
 	bool dontPrint;
 };
 
@@ -72,7 +72,7 @@ public:
 	void Bar( int x1, int y1, int x2, int y2, Pixel color );
 	void Resize( Surface* a_Orig );
 
-	BoundsCheckResult checkBounds(int& x1, int& y1, int& x2, int& y2, int targetWidth, int targetHeight);
+	BoundsCheckResult checkBounds(int x1, int y1, int x2, int y2, int targetWidth, int targetHeight);
 private:
 	// Attributes
 	Pixel* m_Buffer{nullptr};	

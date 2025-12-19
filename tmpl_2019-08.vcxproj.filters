@@ -335,6 +335,9 @@
     <ClInclude Include="surfaceList.hpp">
       <Filter>gameplay\sprites</Filter>
     </ClInclude>
+    <ClInclude Include="rect2.hpp">
+      <Filter>core\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">

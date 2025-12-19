@@ -1,5 +1,6 @@
 #pragma once
 #include "surface.h"
+#include "rect2.hpp"
 #include <memory>
 
 class Sprite
@@ -20,32 +21,28 @@ public:
 		NOCLIP = (1 << 14)
 	};
 
-	// Structors
-	Sprite(std::shared_ptr<Tmpl8::Surface> a_Surface, unsigned int a_NumFrames, float scale = 1.0f);
+	Sprite(std::shared_ptr<Tmpl8::Surface> a_Surface, Rect2<int> rect, float scale = 1.0f);
+	Sprite(std::shared_ptr<Tmpl8::Surface> a_Surface, float scale = 1.0f);
 	Sprite(Sprite& other, float scale);
 
-	// Methods
 	void draw(Tmpl8::Surface* surface, float x, float y);
 	void drawScaled(Tmpl8::Surface* surface, float x, float y, float scale);
-	void drawScaled(Tmpl8::Surface* a_Target, float a_X, float a_Y, float a_Width, float a_Height);
+	void drawScaled(Tmpl8::Surface* target, float x, float y, float width, float height);
 
-	void setFrame(unsigned int a_Index);
-	unsigned int getFrames() { return m_NumFrames; }
+	void setFlags(unsigned int flags) { flags_ = flags; }
+	unsigned int getFlags() const { return flags_; }
 
-	void setFlags(unsigned int a_Flags) { m_Flags = a_Flags; }
-	unsigned int getFlags() const { return m_Flags; }
+	// returns scaled sizes
+	float getWidth() { return rect_.width * scale_; }
+	float getHeight() { return rect_.height * scale_; }
 
-	float getWidth() { return m_Width * scale_; }
-	float getHeight() { return m_Height * scale_; }
-
-	Tmpl8::Pixel* getBuffer() { return m_Surface->GetBuffer(); }
-	std::shared_ptr<Tmpl8::Surface> getSurface() { return m_Surface; }
+	Tmpl8::Pixel* getBuffer() { return surface_->GetBuffer(); }
+	std::shared_ptr<Tmpl8::Surface> getSurface() { return surface_; }
 private:
-	// Attributes
-	int m_Width, m_Height, m_Pitch;
+	int pitch_;
+	Rect2<int> rect_;
 	float scale_;
-	unsigned int m_NumFrames;
-	unsigned int m_CurrentFrame;
-	unsigned int m_Flags;
-	std::shared_ptr<Tmpl8::Surface> m_Surface;
+	unsigned int flags_;
+
+	std::shared_ptr<Tmpl8::Surface> surface_;
 };
