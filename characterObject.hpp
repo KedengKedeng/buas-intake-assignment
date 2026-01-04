@@ -1,18 +1,19 @@
 #pragma once
 #include "object.hpp"
 #include "spriteStack.hpp"
+#include "collider.hpp"
 
 enum class LookingDirections {
 	LEFT,
 	RIGHT
 };
 
-class CharacterObject : public Object {
+class CharacterObject : public Object, public Collider {
 public:
 	CharacterObject(
 		int64_t id, 
 		Tmpl8::vec2& pos, 
-		BoundingBox& boundingBox, 
+		Tmpl8::vec2& size, 
 		ObservableBoundingBox& interactableBoundingBox,
 		AnimatedSprite& idleLeft,
 		AnimatedSprite& idleRight,

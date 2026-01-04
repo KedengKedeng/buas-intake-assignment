@@ -10,7 +10,7 @@ Button::Button(
 	Tmpl8::Pixel color,
 	Tmpl8::Pixel borderColor
 ) :
-	Object(id, pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox()),
+	Object(id, pos, ObservableBoundingBox(Tmpl8::vec2(0), size)),
 	handler_(handler),
 	text_(text),
 	borderWidth_(borderWidth),
@@ -22,7 +22,7 @@ void Button::subscribe() {
 	Object::subscribe();
 
 	unsubscribers.push_back(onMouseDown.subscribe([this](Tmpl8::vec2& pos) {
-		BoundingBox absolutePosBounds = boundingBox_.at(pos_);
+		BoundingBox absolutePosBounds = interactionBoundingBox_.at(pos_);
 		BoundingBox mouseBounds = BoundingBox(pos, Tmpl8::vec2(1));
 
 		if (absolutePosBounds.isInBounds(mouseBounds))
@@ -37,7 +37,7 @@ void Button::subscribe() {
 }
 
 void Button::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
-	Tmpl8::vec2 size = boundingBox_.getSize();
+	Tmpl8::vec2 size = interactionBoundingBox_.getSize();
 
 	int left = static_cast<int>(pos_.x);
 	int top = static_cast<int>(pos_.y);

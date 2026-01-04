@@ -279,6 +279,7 @@
     <ClInclude Include="button.hpp" />
     <ClInclude Include="cauldron.hpp" />
     <ClInclude Include="characterObject.hpp" />
+    <ClInclude Include="collider.hpp" />
     <ClInclude Include="creatureTypeList.hpp" />
     <ClInclude Include="creatureTypeRepository.hpp" />
     <ClInclude Include="creature.hpp" />

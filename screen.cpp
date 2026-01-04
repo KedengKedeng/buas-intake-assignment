@@ -1,4 +1,5 @@
 #include "screen.hpp"
+#include "collider.hpp"
 
 void Screen::process(float deltaTime) {
 	Container::process(deltaTime);
@@ -16,18 +17,22 @@ void Screen::unsubscribe() {
 }
 
 Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& velocity) {
-	BoundingBox bounds = object.getAbsoluteBounds();
+	Collider* collider = dynamic_cast<Collider*>(&object);
+	if (collider == nullptr) return Tmpl8::vec2(0, 0);
+
+	BoundingBox bounds = collider->getBoundsAt(object.getPos());
 
 	Tmpl8::vec2 collisionVec = velocity;
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
 		auto object2 = it->second.get();
+		auto collider2 = dynamic_cast<Collider*>(object2);
 
 		// the colliding object can be in this list and can hence check collision with itself.
 		// it would never be able to move if we dont check for this.
-		if (object.getId() == object2->getId() || !object2->isCollisionAllowed()) continue;
+		if (object.getId() == object2->getId() || collider2 == nullptr) continue;
 
-		CollisionResult result = bounds.swept(object2->getAbsoluteBounds(), velocity);
+		CollisionResult result = bounds.swept(collider2->getBoundsAt(object2->getPos()), velocity);
 		if (result.collision) {
 			Tmpl8::vec2 allowedMovement(0, 0);
 

@@ -3,17 +3,14 @@
 #include "spriteRepository.hpp"
 
 CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron) 
-	: Object(id, Tmpl8::vec2(0), BoundingBox(), ObservableBoundingBox()), 
+	: Object(id, Tmpl8::vec2(0), ObservableBoundingBox()), 
 	cauldronFront(spriteRepository.get("cauldroncloseupfront", 0.5)), 
 	cauldronBack(spriteRepository.get("cauldroncloseupback", 0.5)),
 	cauldronInside(spriteRepository.getAnimated("cauldroncloseupfilled", 0.005f, 0.5)),
 	fire(spriteRepository.getAnimated("cauldroncloseupfire", 0.005f, 0.4)),
 	cauldron_(cauldron)
 {
-	allowCollision = false;
-	
 	pos_ = Tmpl8::vec2(cauldronFront.getWidth() / 2, cauldronFront.getHeight());
-	boundingBox_.setSize(Tmpl8::vec2(cauldronFront.getWidth(), cauldronFront.getHeight()));
 
 	// the asset has a lot of white space so we need to add an offset
 	// to make the bounding box feel a bit better

@@ -52,7 +52,7 @@ void PlayScreen::deleteObject(int64_t id) {
 }
 
 void PlayScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
-	auto drawOffset = player_.getPos() - (Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) - player_.getBounds().getSize()) / 2;
+	auto drawOffset = player_.getPos() - (Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) - player_.getColliderSize()) / 2;
 	Screen::draw(surface, -drawOffset);
 	player_.draw(surface, -drawOffset);
 }

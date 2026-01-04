@@ -338,6 +338,9 @@
     <ClInclude Include="rect2.hpp">
       <Filter>core\math</Filter>
     </ClInclude>
+    <ClInclude Include="collider.hpp">
+      <Filter>systems\collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">

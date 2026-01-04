@@ -4,7 +4,7 @@ Creature::Creature(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<CreatureType> c
 	CharacterObject(
 		id, 
 		pos, 
-		BoundingBox(),
+		Tmpl8::vec2(0),
 		ObservableBoundingBox(),
 		creatureType->idleLeft,
 		creatureType->idleRight,

@@ -3,9 +3,10 @@
 #include "spriteStack.hpp"
 #include "item.hpp"
 #include "cauldron.hpp"
+#include "collider.hpp"
 #include <vector>
 
-class WorldCauldron : public Object {
+class WorldCauldron : public Object, public Collider {
 public:
 	WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauldron> cauldron);
 	~WorldCauldron();

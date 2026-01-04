@@ -2,10 +2,11 @@
 #include "mouseMoveHandler.hpp"
 #include "object.hpp"
 #include "sprite.hpp"
+#include "collider.hpp"
 
 extern Tmpl8::vec2 spoonVelocity;
 
-class Spoon : public Object {
+class Spoon : public Object, public Collider {
 public:
 	Spoon(int64_t id, Tmpl8::vec2& pos);
 

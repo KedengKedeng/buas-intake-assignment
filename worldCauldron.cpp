@@ -11,9 +11,9 @@ WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauld
 	Object(
 		id,
 		pos,
-		BoundingBox(Tmpl8::vec2(0), Tmpl8::vec2(0)),
 		ObservableBoundingBox(Tmpl8::vec2(-10), Tmpl8::vec2(0))
 	),
+	Collider(Tmpl8::vec2(0), Tmpl8::vec2(0)),
 	cauldron_(cauldron),
 	sprites_(std::vector<AnimatedSprite>({
 		AnimatedSprite(std::vector<Sprite>{spriteRepository.get("emptycauldron", cauldronSpriteScale)}, cauldronSpriteFrameRate),
@@ -22,7 +22,7 @@ WorldCauldron::WorldCauldron(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Cauld
 		spriteRepository.getAnimated("filledburningcauldron", cauldronSpriteFrameRate, cauldronSpriteScale)
 	}))
 {
-	boundingBox_.setSize(Tmpl8::vec2(sprites_.getWidth(), sprites_.getHeight()));
+	collidingBox_.setSize(Tmpl8::vec2(sprites_.getWidth(), sprites_.getHeight()));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(sprites_.getWidth() + 10, sprites_.getHeight() + 10));
 	pos_ = Tmpl8::vec2(pos_.x - sprites_.getWidth() / 2, pos_.y - sprites_.getHeight() / 2);
 }

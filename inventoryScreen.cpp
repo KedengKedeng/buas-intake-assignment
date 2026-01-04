@@ -59,7 +59,7 @@ void InventoryScreen::process(float deltaTime) {
 					0,
 					[this, container](InventorySlot* slot, Tmpl8::vec2& pos) {
 						// drop item when user drags it out of the bounds of the modal
-						if (!container->getAbsoluteBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)))) {
+						if (!container->getAbsoluteInteractionBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)))) {
 							auto item = slot->getItem();
 							if (item == nullptr) return;
 							inventory_->remove(item->name);

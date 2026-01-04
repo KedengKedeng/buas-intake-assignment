@@ -2,9 +2,9 @@
 #include <format>
 
 InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::shared_ptr<Item> item, int amount, std::function<void(InventorySlot*, Tmpl8::vec2&)> onDragEndHandler)
-	: Object(id, pos, BoundingBox(Tmpl8::vec2(0), size), ObservableBoundingBox()), mouseMoveHandler_(){
+	: Object(id, pos, ObservableBoundingBox(Tmpl8::vec2(0), size)), mouseMoveHandler_(){
 	mouseMoveHandler_.setInteractionCheck([this](Tmpl8::vec2& pos) {
-		return getAbsoluteBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
+		return getAbsoluteInteractionBounds().isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
 	});
 
 	mouseMoveHandler_.setOnMouseDragStart([this]() {
@@ -24,7 +24,7 @@ InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, st
 
 void InventorySlot::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	Tmpl8::vec2 pos = dragging ? dragPos : pos_;
-	auto size = boundingBox_.getSize();
+	auto size = interactionBoundingBox_.getSize();
 	surface->Box(
 		pos_.x,
 		pos_.y,
@@ -41,7 +41,7 @@ void InventorySlot::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 			0.5f
 		);
 
-		Tmpl8::vec2 pos = Tmpl8::vec2(pos_.x + 10, pos_.y + boundingBox_.getSize().y - 10);
+		Tmpl8::vec2 pos = Tmpl8::vec2(pos_.x + 10, pos_.y + interactionBoundingBox_.getSize().y - 10);
 		surface->Print(const_cast<char*>(std::format("x{}", amount_).c_str()), pos.x, pos.y, 0xfffffff);
 	}
 }

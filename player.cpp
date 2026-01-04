@@ -13,15 +13,15 @@ Player::Player(int64_t id, Tmpl8::vec2& pos) :
 	CharacterObject(
 		id,
 		pos,
-		BoundingBox(),
+		Tmpl8::vec2(0),
 		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(0)),
 		spriteRepository.getAnimated("playeridleleft", playerSpriteFrameRate, playerSpriteScale),
 		spriteRepository.getAnimated("playeridleright", playerSpriteFrameRate, playerSpriteScale),
 		spriteRepository.getAnimated("playerwalkleft", playerSpriteFrameRate, playerSpriteScale),
 		spriteRepository.getAnimated("playerwalkright", playerSpriteFrameRate, playerSpriteScale)
 	) {
-	boundingBox_.setSize(Tmpl8::vec2(getTextureWidth(), getTextureHeight()));
-	interactionBoundingBox_.setSize(Tmpl8::vec2(getTextureWidth() + playerInteractionOffset, getTextureHeight() + playerInteractionOffset));
+	collidingBox_.setSize(Tmpl8::vec2(getTextureWidth(), getTextureHeight()));
+	interactionBoundingBox_.setSize(Tmpl8::vec2(getTextureWidth() + playerInteractionOffset * 2, getTextureHeight() + playerInteractionOffset * 2));
 };
 
 void Player::subscribe() {

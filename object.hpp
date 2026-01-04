@@ -5,7 +5,7 @@
 
 class Object {
 public:
-	Object(int64_t id, const Tmpl8::vec2& pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox);
+	Object(int64_t id, const Tmpl8::vec2& pos, ObservableBoundingBox& interactionBoundingBox);
 	virtual ~Object();
 
 	int64_t getId() { return id_; }
@@ -13,11 +13,8 @@ public:
 	void setPos(Tmpl8::vec2& pos) { pos_ = pos; }
 	Tmpl8::vec2 getPos() { return pos_; }
 
-	BoundingBox& getBounds() { return boundingBox_; }
-	BoundingBox getAbsoluteBounds() { return boundingBox_.at(pos_); }
 	ObservableBoundingBox& getInteractionBounds() { return interactionBoundingBox_; }
 	ObservableBoundingBox getAbsoluteInteractionBounds() { return interactionBoundingBox_.at(pos_); }
-	bool isCollisionAllowed() { return allowCollision; }
 	bool isInteractionAllowed() { return allowInteraction; }
 	bool isInteractor() { return allowInteractor; }
 
@@ -29,7 +26,6 @@ public:
 protected:
 	Tmpl8::vec2 pos_;
 
-	BoundingBox boundingBox_;
 	ObservableBoundingBox interactionBoundingBox_;
 	virtual void onInteractStart() {};
 	virtual void onInteractEnd() {};
@@ -39,7 +35,6 @@ protected:
 	std::function<void()> onInteractionStartUnsub = []() {};
 	std::function<void()> onInteractionEndUnsub = []() {};
 
-	bool allowCollision = true;
 	bool allowInteraction = true; // allows interactor to interact with this object
 	bool allowInteractor = true; // allows the object to be the interactor
 private:

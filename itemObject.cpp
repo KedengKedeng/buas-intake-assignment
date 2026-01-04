@@ -4,10 +4,9 @@
 #include "objectSignals.hpp"
 
 ItemObject::ItemObject(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Item> item) :
-	Object(id, pos, BoundingBox(), ObservableBoundingBox()), item_(item) {
+	Object(id, pos, ObservableBoundingBox()), item_(item) {
 	interactionBoundingBox_.setPos(Tmpl8::vec2(-10));
 	interactionBoundingBox_.setSize(Tmpl8::vec2(item_->sprite.getWidth() + 10, item_->sprite.getHeight() + 10));
-	allowCollision = false;
 }
 
 ItemObject::~ItemObject() {

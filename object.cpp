@@ -1,7 +1,7 @@
 #include "object.hpp"
 
-Object::Object(int64_t id, const Tmpl8::vec2& pos, BoundingBox& boundingBox, ObservableBoundingBox& interactionBoundingBox) :
-	id_(id), pos_(pos), boundingBox_(boundingBox), interactionBoundingBox_(interactionBoundingBox) {};
+Object::Object(int64_t id, const Tmpl8::vec2& pos, ObservableBoundingBox& interactionBoundingBox) :
+	id_(id), pos_(pos), interactionBoundingBox_(interactionBoundingBox) {};
 
 Object::~Object() {
 	unsubscribe();

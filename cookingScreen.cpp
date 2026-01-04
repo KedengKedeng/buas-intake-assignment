@@ -19,7 +19,7 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	cauldronId = cauldron->getId();
 
 	cauldron->setPos(Tmpl8::vec2(surface->GetWidth() / 2 - 100, surface->GetHeight()) - cauldron->getPos());
-	auto cauldronSize = cauldron->getBounds().getSize();
+	auto cauldronSize = cauldron->getInteractionBounds().getSize() + Tmpl8::vec2(220, 80);
 
 	// cauldron collision walls
 	// the collision system doesnt allow for unique shapes past filled squares right now.
