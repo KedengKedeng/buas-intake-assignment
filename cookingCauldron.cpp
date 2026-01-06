@@ -3,7 +3,7 @@
 #include "spriteRepository.hpp"
 
 CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron) 
-	: Object(id, Tmpl8::vec2(0), ObservableBoundingBox()), 
+	: Object(id, Tmpl8::vec2(0), Tmpl8::vec2(0)), 
 	cauldronFront(spriteRepository.get("cauldroncloseupfront", 0.5)), 
 	cauldronBack(spriteRepository.get("cauldroncloseupback", 0.5)),
 	cauldronInside(spriteRepository.getAnimated("cauldroncloseupfilled", 0.005f, 0.5)),
@@ -14,8 +14,8 @@ CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron)
 
 	// the asset has a lot of white space so we need to add an offset
 	// to make the bounding box feel a bit better
-	interactionBoundingBox_.setPos(Tmpl8::vec2(120, 80));
-	interactionBoundingBox_.setSize(Tmpl8::vec2(cauldronFront.getWidth() - 220, cauldronFront.getHeight() - 80));
+	interactionBox_.setPos(Tmpl8::vec2(120, 80));
+	interactionBox_.setSize(Tmpl8::vec2(cauldronFront.getWidth() - 220, cauldronFront.getHeight() - 80));
 }
 
 CookingCauldron::~CookingCauldron() {
@@ -51,10 +51,7 @@ void CookingCauldron::process(float deltaTime) {
 	fire.process(deltaTime);
 }
 
-void CookingCauldron::onInteractStart() {
-	cauldronInteracted.emit();
-}
-
-void CookingCauldron::onInteractEnd() {
-	cauldronInteractionEnded.emit();
+void CookingCauldron::subscribe() {
+	unsubscribers.push_back(onInteractionStart.subscribe([this]() {cauldronInteracted.emit(); }));
+	unsubscribers.push_back(onInteractionEnd.subscribe([this]() {cauldronInteractionEnded.emit(); }));
 }

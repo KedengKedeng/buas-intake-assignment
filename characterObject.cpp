@@ -5,14 +5,15 @@ CharacterObject::CharacterObject(
 	int64_t id,
 	Tmpl8::vec2& pos,
 	Tmpl8::vec2& size,
-	ObservableBoundingBox& interactableBoundingBox,
 	AnimatedSprite& idleLeft,
 	AnimatedSprite& idleRight,
 	AnimatedSprite& walkLeft,
-	AnimatedSprite& walkRight
+	AnimatedSprite& walkRight,
+	bool isInteractor
 ) : 
-	Object(id, pos, interactableBoundingBox), 
+	Object(id, pos, size), 
 	Collider(Tmpl8::vec2(0), size),
+	Interactable(Tmpl8::vec2(-10), size + 10, isInteractor),
 	sprites_(std::vector<AnimatedSprite>({idleLeft, idleRight, walkLeft, walkRight}))
 {}
 

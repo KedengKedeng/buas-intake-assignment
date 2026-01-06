@@ -5,11 +5,9 @@ Creature::Creature(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<CreatureType> c
 		id, 
 		pos, 
 		Tmpl8::vec2(0),
-		ObservableBoundingBox(),
 		creatureType->idleLeft,
 		creatureType->idleRight,
 		creatureType->walkLeft,
-		creatureType->walkRight
-	), creatureType_(creatureType) { 
-	allowInteractor = false;
-}
+		creatureType->walkRight,
+		false
+	), creatureType_(creatureType) {}

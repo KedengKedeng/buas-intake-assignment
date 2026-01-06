@@ -2,8 +2,9 @@
 #include "object.hpp"
 #include "mouseMoveHandler.hpp"
 #include "sprite.hpp"
+#include "interactable.hpp"
 
-class Blower : public Object {
+class Blower : public Object, public Interactable {
 public:
 	Blower(int64_t id, Tmpl8::vec2& pos);
 

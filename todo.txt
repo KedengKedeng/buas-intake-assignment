@@ -16,7 +16,7 @@ short term:
 - switch over to systems (animation system, movement system, physics system)
 - turning sprites into classes that have a surface inside of them and take a rect
 - replace std string in file operations with path
-
+- create is point in bounds function for bounding boxes
 
 todo for mvp:
 - keyboard input handling (done)

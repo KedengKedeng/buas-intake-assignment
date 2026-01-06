@@ -1,5 +1,6 @@
 #include "screen.hpp"
 #include "collider.hpp"
+#include "interactable.hpp"
 
 void Screen::process(float deltaTime) {
 	Container::process(deltaTime);
@@ -20,7 +21,7 @@ Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& veloci
 	Collider* collider = dynamic_cast<Collider*>(&object);
 	if (collider == nullptr) return Tmpl8::vec2(0, 0);
 
-	BoundingBox bounds = collider->getBoundsAt(object.getPos());
+	BoundingBox bounds = collider->getColliderBoundsAt(object.getPos());
 
 	Tmpl8::vec2 collisionVec = velocity;
 
@@ -32,7 +33,7 @@ Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& veloci
 		// it would never be able to move if we dont check for this.
 		if (object.getId() == object2->getId() || collider2 == nullptr) continue;
 
-		CollisionResult result = bounds.swept(collider2->getBoundsAt(object2->getPos()), velocity);
+		CollisionResult result = bounds.swept(collider2->getColliderBoundsAt(object2->getPos()), velocity);
 		if (result.collision) {
 			Tmpl8::vec2 allowedMovement(0, 0);
 
@@ -56,26 +57,31 @@ Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& veloci
 	return collisionVec;
 }
 
-void Screen::interactionCheck(ObservableBoundingBox& bounds) {
-	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
-		auto object = it->second.get();
-		if (!object->isInteractionAllowed()) continue;
+void Screen::interactionCheck(Object& object) {
+	Interactable* interactor = dynamic_cast<Interactable*>(&object);
+	if (interactor == nullptr || !interactor->isInteractor()) return;
 
-		ObservableBoundingBox& objectBounds = object->getInteractionBounds();
-		bool result = bounds.isInBounds(object->getAbsoluteInteractionBounds());
+	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
+		auto object2 = it->second.get();
+		Interactable* interacted = dynamic_cast<Interactable*>(object2);
+		if (interacted == nullptr) continue;
+
+		BoundingBox interactorBounds = interactor->getInteractableBoundsAt(object.getPos());
+		BoundingBox interactedBounds = interacted->getInteractableBoundsAt(object2->getPos());
+		bool result = interactorBounds.isInBounds(interactedBounds);
 
 		bool foundInteractingObject = alreadyInteracting.find(it->first) != alreadyInteracting.end();
 		// add to a list of already interacting objects.
 		// if not kept track it would emit onIntersectStart every frame
 		if (result && !foundInteractingObject) {
 			alreadyInteracting.insert(it->first);
-			objectBounds.onIntersectStart.emit();
+			interacted->onInteractionStart.emit();
 		}
 
 		// remove from list if no longer interacting
 		if (!result && foundInteractingObject) {
 			alreadyInteracting.erase(it->first);
-			objectBounds.onIntersectEnd.emit();
+			interacted->onInteractionEnd.emit();
 		}
 	}
 }

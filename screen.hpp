@@ -7,6 +7,7 @@
 #include <set>
 #include "random.hpp"
 #include "container.hpp"
+#include "boundingBox.hpp"
 #include "keyboardInput.hpp"
 
 class Screen : public Container {
@@ -26,7 +27,7 @@ public:
 protected:
 	KeyboardInput keyboardInput_;
 
-	void interactionCheck(ObservableBoundingBox& bounds);
+	void interactionCheck(Object& object);
 	std::set<int64_t> alreadyInteracting = {};
 
 	std::queue<std::function<void()>> queue = {};

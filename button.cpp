@@ -10,7 +10,7 @@ Button::Button(
 	Tmpl8::Pixel color,
 	Tmpl8::Pixel borderColor
 ) :
-	Object(id, pos, ObservableBoundingBox(Tmpl8::vec2(0), size)),
+	Object(id, pos, size),
 	handler_(handler),
 	text_(text),
 	borderWidth_(borderWidth),
@@ -22,7 +22,7 @@ void Button::subscribe() {
 	Object::subscribe();
 
 	unsubscribers.push_back(onMouseDown.subscribe([this](Tmpl8::vec2& pos) {
-		BoundingBox absolutePosBounds = interactionBoundingBox_.at(pos_);
+		BoundingBox absolutePosBounds = BoundingBox(pos_, size_);
 		BoundingBox mouseBounds = BoundingBox(pos, Tmpl8::vec2(1));
 
 		if (absolutePosBounds.isInBounds(mouseBounds))
@@ -37,12 +37,10 @@ void Button::subscribe() {
 }
 
 void Button::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
-	Tmpl8::vec2 size = interactionBoundingBox_.getSize();
-
 	int left = static_cast<int>(pos_.x);
 	int top = static_cast<int>(pos_.y);
-	int right = static_cast<int>(pos_.x + size.x);
-	int bottom = static_cast<int>(pos_.y + size.y);
+	int right = static_cast<int>(pos_.x + size_.x);
+	int bottom = static_cast<int>(pos_.y + size_.y);
 	surface->Bar(left, top, right, bottom, borderColor_);
 	surface->Bar(
 		left + borderWidth_, 
@@ -52,7 +50,7 @@ void Button::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 		color_
 	);
 
-	int textLeft = static_cast<int>(pos_.x + (size.x - text_.size() * 6 ) / 2);
-	int textTop = static_cast<int>(pos_.y + (size.y - 6) / 2);
+	int textLeft = static_cast<int>(pos_.x + (size_.x - text_.size() * 6 ) / 2);
+	int textTop = static_cast<int>(pos_.y + (size_.y - 6) / 2);
 	surface->Print(const_cast<char*>(text_.c_str()), textLeft, textTop, 0x000000);
 }

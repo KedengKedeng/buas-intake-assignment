@@ -95,7 +95,7 @@ void PlayScreen::subscribe() {
 		if (oldPos != newPos) 
 			object.setPos(oldPos + collides);
 
-		if (object.isInteractor()) interactionCheck(object.getAbsoluteInteractionBounds());
+		interactionCheck(object);
 	}));
 
 	unsubscribers.push_back(escapePressed.subscribe([]() {

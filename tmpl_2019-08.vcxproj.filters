@@ -215,9 +215,6 @@
     <ClInclude Include="spriteList.hpp">
       <Filter>gameplay\sprites</Filter>
     </ClInclude>
-    <ClInclude Include="observableBoundingBox.hpp">
-      <Filter>systems\collision</Filter>
-    </ClInclude>
     <ClInclude Include="random.hpp">
       <Filter>core\util</Filter>
     </ClInclude>
@@ -339,6 +336,9 @@
       <Filter>core\math</Filter>
     </ClInclude>
     <ClInclude Include="collider.hpp">
+      <Filter>systems\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="interactable.hpp">
       <Filter>systems\collision</Filter>
     </ClInclude>
   </ItemGroup>

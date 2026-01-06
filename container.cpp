@@ -6,7 +6,7 @@ Container::Container(
 	Tmpl8::vec2& size,
 	Justification justification
 )
-	: Object(id, pos, ObservableBoundingBox(Tmpl8::vec2(0), size)), justification_(justification) { };
+	: Object(id, pos, size), justification_(justification) { };
 
 void Container::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	for (auto& object : objects_)
@@ -39,19 +39,20 @@ void Container::spreadObjects() {
 
 	// get combined size of all elements
 	Tmpl8::vec2 combinedSize(0);
-	for (auto& object : objects_) combinedSize += object.second->getInteractionBounds().getSize();
+	for (auto& object : objects_) {
+		combinedSize += object.second->getSize();
+	}
 
 	// calculate the gap between each element based on how much space
 	// they take up combined compared to the container size
-	Tmpl8::vec2 containerSize = interactionBoundingBox_.getSize();
-	Tmpl8::vec2 gap = (containerSize - combinedSize) / static_cast<float>(objects_.size());
+	Tmpl8::vec2 gap = (size_ - combinedSize) / static_cast<float>(objects_.size());
 
 	// spread objects by gap
 	Tmpl8::vec2 currentPos = pos_;
 	for (auto& object : objects_) {
 		object.second->setPos(currentPos);
 
-		Tmpl8::vec2 objectSize = object.second->getInteractionBounds().getSize();
+		Tmpl8::vec2 objectSize = object.second->getSize();
 		if (justification_ == Justification::VERTICAL) currentPos.y += objectSize.y + gap.y;
 		if (justification_ == Justification::HORIZONTAL) currentPos.x += objectSize.x + gap.x;
 	}

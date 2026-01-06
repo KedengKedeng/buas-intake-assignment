@@ -3,10 +3,11 @@
 #include "object.hpp"
 #include "sprite.hpp"
 #include "collider.hpp"
+#include "interactable.hpp"
 
 extern Tmpl8::vec2 spoonVelocity;
 
-class Spoon : public Object, public Collider {
+class Spoon : public Object, public Collider, public Interactable {
 public:
 	Spoon(int64_t id, Tmpl8::vec2& pos);
 

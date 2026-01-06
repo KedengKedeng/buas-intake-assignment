@@ -2,20 +2,21 @@
 #include "objectSignals.hpp"
 #include "spriteRepository.hpp"
 
-Blower::Blower(int64_t id, Tmpl8::vec2& pos) 
-	: Object(id, pos, ObservableBoundingBox()), 
+Blower::Blower(int64_t id, Tmpl8::vec2& pos) :
+	Object(id, pos, Tmpl8::vec2(0)),
+	Interactable(),
 	mouseMoveHandler(), 
 	sprites_(spriteRepository.getAnimated("blower", 0, 0.4f).getFrames())
 {
-	interactionBoundingBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth(), sprites_[0].getHeight()));
+	interactionBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth(), sprites_[0].getHeight()));
 
 	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
-		return interactionBoundingBox_.at(pos_).isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
+		return getInteractableBoundsAt(pos_).isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
 	});
 
 	mouseMoveHandler.setOnMouseDrag([this](Tmpl8::vec2& pos, Tmpl8::vec2& delta) {
 		if (!delta.y) return;
-		addBlowerPosition(delta.y / (100 / interactionBoundingBox_.getSize().y));
+		addBlowerPosition(delta.y / (100 / getInteractableSize().y));
 	});
 
 	mouseMoveHandler.setOnMouseDragStart([this]() {

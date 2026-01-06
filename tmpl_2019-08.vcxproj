@@ -285,6 +285,7 @@
     <ClInclude Include="creature.hpp" />
     <ClInclude Include="creatureType.hpp" />
     <ClInclude Include="husbandry.hpp" />
+    <ClInclude Include="interactable.hpp" />
     <ClInclude Include="inventory.hpp" />
     <ClInclude Include="inventorySlot.hpp" />
     <ClInclude Include="objectList.hpp" />
@@ -323,7 +324,6 @@
     <ClInclude Include="object.hpp" />
     <ClInclude Include="objectRepository.hpp" />
     <ClInclude Include="objectSignals.hpp" />
-    <ClInclude Include="observableBoundingBox.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="playerSignals.hpp" />
     <ClInclude Include="playScreen.hpp" />

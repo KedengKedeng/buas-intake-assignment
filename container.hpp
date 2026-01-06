@@ -1,5 +1,6 @@
 #pragma once
 #include "object.hpp"
+#include "boundingBox.hpp"
 #include <map>
 
 enum class Justification {
@@ -34,5 +35,6 @@ protected:
 	std::map<int64_t, std::unique_ptr<Object>> objects_ = {};
 private:
 	void spreadObjects();
+
 	Justification justification_;
 };

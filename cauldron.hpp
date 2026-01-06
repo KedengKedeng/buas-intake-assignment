@@ -5,7 +5,7 @@
 
 class Cauldron : public Object {
 public:
-	Cauldron(): Object(0, Tmpl8::vec2(0), ObservableBoundingBox()) {};
+	Cauldron(): Object(0, Tmpl8::vec2(0), Tmpl8::vec2(0)) {};
 
 	void insertItem(std::shared_ptr<Item> item);
 	size_t getItemCount() { return items_.size(); }

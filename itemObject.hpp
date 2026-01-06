@@ -1,9 +1,9 @@
 #pragma once
 #include "object.hpp"
 #include "item.hpp"
-#include <cstdio>
+#include "interactable.hpp"
 
-class ItemObject : public Object {
+class ItemObject : public Object, public Interactable {
 public:
 	ItemObject(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Item> item);
 	~ItemObject();
@@ -11,9 +11,7 @@ public:
 	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
 	void process(float deltaTime) override {};
 
-protected:
-	void onInteractStart() override;
-	void onInteractEnd() override;
+	void subscribe() override;
 private:
 	std::shared_ptr<Item> item_;
 

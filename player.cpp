@@ -14,14 +14,15 @@ Player::Player(int64_t id, Tmpl8::vec2& pos) :
 		id,
 		pos,
 		Tmpl8::vec2(0),
-		ObservableBoundingBox(Tmpl8::vec2(-playerInteractionOffset), Tmpl8::vec2(0)),
 		spriteRepository.getAnimated("playeridleleft", playerSpriteFrameRate, playerSpriteScale),
 		spriteRepository.getAnimated("playeridleright", playerSpriteFrameRate, playerSpriteScale),
 		spriteRepository.getAnimated("playerwalkleft", playerSpriteFrameRate, playerSpriteScale),
-		spriteRepository.getAnimated("playerwalkright", playerSpriteFrameRate, playerSpriteScale)
+		spriteRepository.getAnimated("playerwalkright", playerSpriteFrameRate, playerSpriteScale),
+		true
 	) {
 	collidingBox_.setSize(Tmpl8::vec2(getTextureWidth(), getTextureHeight()));
-	interactionBoundingBox_.setSize(Tmpl8::vec2(getTextureWidth() + playerInteractionOffset * 2, getTextureHeight() + playerInteractionOffset * 2));
+	interactionBox_.setPos(Tmpl8::vec2(-playerInteractionOffset));
+	interactionBox_.setSize(Tmpl8::vec2(getTextureWidth() + playerInteractionOffset * 2, getTextureHeight() + playerInteractionOffset * 2));
 };
 
 void Player::subscribe() {

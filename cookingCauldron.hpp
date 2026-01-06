@@ -1,8 +1,9 @@
 #pragma once
 #include "cauldron.hpp"
 #include "animatedSprite.hpp"
+#include "interactable.hpp"
 
-class CookingCauldron : public Object {
+class CookingCauldron : public Object, public Interactable {
 public:
 	CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron);
 	~CookingCauldron();
@@ -14,9 +15,8 @@ public:
 	void drawFront(Tmpl8::Surface* surface);
 	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override {};
 	void process(float deltaTime) override;
-protected:
-	void onInteractStart() override;
-	void onInteractEnd() override;
+
+	void subscribe() override;
 private:
 	std::shared_ptr<Cauldron> cauldron_;
 	Sprite cauldronFront;

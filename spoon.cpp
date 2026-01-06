@@ -6,15 +6,16 @@
 Tmpl8::vec2 spoonVelocity = { 0, 7 };
 
 Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) : 
-	Object(id, pos, ObservableBoundingBox()), 
+	Object(id, pos, Tmpl8::vec2(0)),
 	Collider(),
+	Interactable(),
 	mouseMoveHandler(), 
 	sprite_(spriteRepository.get("spoon", 0.4)) 
 {
 	collidingBox_.setPos(Tmpl8::vec2(20));
-	collidingBox_.setSize(Tmpl8::vec2(sprite_.getWidth() - 40, sprite_.getHeight() - 40));
-	interactionBoundingBox_.setPos(Tmpl8::vec2(20));
-	interactionBoundingBox_.setSize(Tmpl8::vec2(sprite_.getWidth() - 40, sprite_.getHeight() - 40));
+	collidingBox_.setSize(Tmpl8::vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
+	interactionBox_.setPos(Tmpl8::vec2(20));
+	interactionBox_.setSize(Tmpl8::vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
 
 	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
 		return collidingBox_.at(pos_).isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));

@@ -4,13 +4,13 @@
 #include "objectSignals.hpp"
 
 ItemObject::ItemObject(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Item> item) :
-	Object(id, pos, ObservableBoundingBox()), item_(item) {
-	interactionBoundingBox_.setPos(Tmpl8::vec2(-10));
-	interactionBoundingBox_.setSize(Tmpl8::vec2(item_->sprite.getWidth() + 10, item_->sprite.getHeight() + 10));
-}
+	Object(id, pos, Tmpl8::vec2(0)),
+	item_(item), 
+	Interactable(Tmpl8::vec2(-10), Tmpl8::vec2(item->sprite.getWidth(), item->sprite.getHeight()) + 10, false) 
+{}
 
 ItemObject::~ItemObject() {
-	onInteractEnd();
+	interactionSignalUnsub();
 }
 
 void ItemObject::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
@@ -22,13 +22,15 @@ void ItemObject::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	drawOffset += drawOffsetStep;
 };
 
-void ItemObject::onInteractStart() {
-	interactionSignalUnsub = interactionSignal.subscribe([this]() {
-		itemPickedUp.emit(item_);
-		deleteObjectSignal.emit(getId());
-	});
-}
+void ItemObject::subscribe() {
+	unsubscribers.push_back(onInteractionStart.subscribe([this]() {
+		interactionSignalUnsub = interactionSignal.subscribe([this]() {
+			itemPickedUp.emit(item_);
+			deleteObjectSignal.emit(getId());
+		});
+	}));
 
-void ItemObject::onInteractEnd() {
-	interactionSignalUnsub();
+	unsubscribers.push_back(onInteractionEnd.subscribe([this]() {
+		interactionSignalUnsub();
+	}));
 }

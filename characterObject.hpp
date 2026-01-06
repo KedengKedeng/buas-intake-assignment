@@ -2,23 +2,24 @@
 #include "object.hpp"
 #include "spriteStack.hpp"
 #include "collider.hpp"
+#include "interactable.hpp"
 
 enum class LookingDirections {
 	LEFT,
 	RIGHT
 };
 
-class CharacterObject : public Object, public Collider {
+class CharacterObject : public Object, public Collider, public Interactable {
 public:
 	CharacterObject(
 		int64_t id, 
 		Tmpl8::vec2& pos, 
 		Tmpl8::vec2& size, 
-		ObservableBoundingBox& interactableBoundingBox,
 		AnimatedSprite& idleLeft,
 		AnimatedSprite& idleRight,
 		AnimatedSprite& walkLeft,
-		AnimatedSprite& walkRight
+		AnimatedSprite& walkRight,
+		bool isInteractor
 	);
 
 	void calculateMove();
