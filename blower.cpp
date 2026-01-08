@@ -6,9 +6,9 @@ Blower::Blower(int64_t id, Tmpl8::vec2& pos) :
 	Object(id, pos, Tmpl8::vec2(0)),
 	Interactable(),
 	mouseMoveHandler(), 
-	sprites_(spriteRepository.getAnimated("blower", 0, 0.4f).getFrames())
+	sprites_(spriteRepository.getSheet("blower"))
 {
-	interactionBox_.setSize(Tmpl8::vec2(sprites_[0].getWidth(), sprites_[0].getHeight()));
+	interactionBox_.setSize(Tmpl8::vec2(sprites_->getWidth(), sprites_->getHeight()));
 
 	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
 		return getInteractableBoundsAt(pos_).isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
@@ -38,7 +38,7 @@ void Blower::addBlowerPosition(float delta) {
 
 void Blower::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	int frame = static_cast<int>(floor(blowerPosition / 25));
-	sprites_[frame].draw(surface, pos_.x + offset.x, pos_.y + offset.y);
+	sprites_->getSprite(frame).drawScaled(surface, pos_.x + offset.x, pos_.y + offset.y, 0.4f);
 }
 
 void Blower::process(float deltaTime) {

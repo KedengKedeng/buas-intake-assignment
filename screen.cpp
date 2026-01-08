@@ -18,6 +18,7 @@ void Screen::unsubscribe() {
 }
 
 Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& velocity) {
+	// check if object has collider functionality
 	Collider* collider = dynamic_cast<Collider*>(&object);
 	if (collider == nullptr) return Tmpl8::vec2(0, 0);
 
@@ -26,6 +27,7 @@ Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& veloci
 	Tmpl8::vec2 collisionVec = velocity;
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
+		// check if object has collider functionality
 		auto object2 = it->second.get();
 		auto collider2 = dynamic_cast<Collider*>(object2);
 
@@ -58,11 +60,13 @@ Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& veloci
 }
 
 void Screen::interactionCheck(Object& object) {
+	// check if object has interactable functionality
 	Interactable* interactor = dynamic_cast<Interactable*>(&object);
 	if (interactor == nullptr || !interactor->isInteractor()) return;
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
 		auto object2 = it->second.get();
+		// check if object has interactable functionality
 		Interactable* interacted = dynamic_cast<Interactable*>(object2);
 		if (interacted == nullptr) continue;
 

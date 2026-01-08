@@ -39,9 +39,7 @@ void Container::spreadObjects() {
 
 	// get combined size of all elements
 	Tmpl8::vec2 combinedSize(0);
-	for (auto& object : objects_) {
-		combinedSize += object.second->getSize();
-	}
+	for (auto& object : objects_) combinedSize += object.second->getSize();
 
 	// calculate the gap between each element based on how much space
 	// they take up combined compared to the container size

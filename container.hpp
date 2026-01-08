@@ -1,6 +1,5 @@
 #pragma once
 #include "object.hpp"
-#include "boundingBox.hpp"
 #include <map>
 
 enum class Justification {

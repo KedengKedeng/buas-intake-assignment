@@ -140,6 +140,9 @@
     <ClCompile Include="surfaceRepository.cpp">
       <Filter>gameplay\sprites</Filter>
     </ClCompile>
+    <ClCompile Include="spritesheet.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="interactable.hpp">
       <Filter>systems\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="spritesheet.hpp">
+      <Filter>core\rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 #pragma once
 #include "object.hpp"
 #include "mouseMoveHandler.hpp"
-#include "sprite.hpp"
 #include "interactable.hpp"
+#include "spritesheet.hpp"
 
 class Blower : public Object, public Interactable {
 public:
@@ -19,5 +19,5 @@ private:
 	bool inflate = true;
 	float blowerPosition = 0;
 	MouseMoveHandler mouseMoveHandler;
-	std::vector<Sprite> sprites_;
+	std::shared_ptr<SpriteSheet> sprites_;
 };

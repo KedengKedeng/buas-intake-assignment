@@ -14,10 +14,10 @@ Player::Player(int64_t id, Tmpl8::vec2& pos) :
 		id,
 		pos,
 		Tmpl8::vec2(0),
-		spriteRepository.getAnimated("playeridleleft", playerSpriteFrameRate, playerSpriteScale),
-		spriteRepository.getAnimated("playeridleright", playerSpriteFrameRate, playerSpriteScale),
-		spriteRepository.getAnimated("playerwalkleft", playerSpriteFrameRate, playerSpriteScale),
-		spriteRepository.getAnimated("playerwalkright", playerSpriteFrameRate, playerSpriteScale),
+		AnimatedSprite(spriteRepository.getSheet("playeridleleft"), playerSpriteFrameRate, playerSpriteScale),
+		AnimatedSprite(spriteRepository.getSheet("playeridleright"), playerSpriteFrameRate, playerSpriteScale),
+		AnimatedSprite(spriteRepository.getSheet("playerwalkleft"), playerSpriteFrameRate, playerSpriteScale),
+		AnimatedSprite(spriteRepository.getSheet("playerwalkright"), playerSpriteFrameRate, playerSpriteScale),
 		true
 	) {
 	collidingBox_.setSize(Tmpl8::vec2(getTextureWidth(), getTextureHeight()));

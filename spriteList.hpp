@@ -11,14 +11,14 @@ void setupSpriteList() {
 	spriteRepository.insert("spoon", Sprite(surfaceRepository.get("spoon")));
 	spriteRepository.insert("test", Sprite(surfaceRepository.get("test")));
 
-	spriteRepository.insertAnimated("playeridleleft", AnimatedSprite(surfaceRepository.get("playeridleleft"), 3, 0, 1));
-	spriteRepository.insertAnimated("playeridleright", AnimatedSprite(surfaceRepository.get("playeridleright"), 3, 0, 1));
-	spriteRepository.insertAnimated("playerwalkleft", AnimatedSprite(surfaceRepository.get("playerwalkleft"), 4, 0, 1));
-	spriteRepository.insertAnimated("playerwalkright", AnimatedSprite(surfaceRepository.get("playerwalkright"), 4, 0, 1));
-	spriteRepository.insertAnimated("emptyburningcauldron", AnimatedSprite(surfaceRepository.get("emptyburningcauldron"), 8, 0, 1));
-	spriteRepository.insertAnimated("filledcauldron", AnimatedSprite(surfaceRepository.get("filledcauldron"), 8, 0, 1));
-	spriteRepository.insertAnimated("filledburningcauldron", AnimatedSprite(surfaceRepository.get("filledburningcauldron"), 8, 0, 1));
-	spriteRepository.insertAnimated("cauldroncloseupfire", AnimatedSprite(surfaceRepository.get("cauldroncloseupfire"), 6, 0, 1));
-	spriteRepository.insertAnimated("cauldroncloseupfilled", AnimatedSprite(surfaceRepository.get("cauldroncloseupfilled"), 8, 0, 1));
-	spriteRepository.insertAnimated("blower", AnimatedSprite(surfaceRepository.get("blower"), 4, 0, 1));
+	spriteRepository.insertSheet("playeridleleft", SpriteSheet(surfaceRepository.get("playeridleleft"), 1, 3));
+	spriteRepository.insertSheet("playeridleright", SpriteSheet(surfaceRepository.get("playeridleright"), 1, 3));
+	spriteRepository.insertSheet("playerwalkleft", SpriteSheet(surfaceRepository.get("playerwalkleft"), 1, 4));
+	spriteRepository.insertSheet("playerwalkright", SpriteSheet(surfaceRepository.get("playerwalkright"), 1, 4));
+	spriteRepository.insertSheet("emptyburningcauldron", SpriteSheet(surfaceRepository.get("emptyburningcauldron"), 1, 8));
+	spriteRepository.insertSheet("filledcauldron", SpriteSheet(surfaceRepository.get("filledcauldron"), 1, 8));
+	spriteRepository.insertSheet("filledburningcauldron", SpriteSheet(surfaceRepository.get("filledburningcauldron"), 1, 8));
+	spriteRepository.insertSheet("cauldroncloseupfire", SpriteSheet(surfaceRepository.get("cauldroncloseupfire"), 1, 6));
+	spriteRepository.insertSheet("cauldroncloseupfilled", SpriteSheet(surfaceRepository.get("cauldroncloseupfilled"), 1, 8));
+	spriteRepository.insertSheet("blower", SpriteSheet(surfaceRepository.get("blower"), 1, 4));
 }

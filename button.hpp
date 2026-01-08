@@ -2,7 +2,6 @@
 #include "surface.h"
 #include "object.hpp"
 #include "mouseSignals.hpp"
-#include "boundingBox.hpp"
 #include <string>
 
 class Button : public Object {

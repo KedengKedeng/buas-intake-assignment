@@ -4,7 +4,7 @@
 
 void setupCreatureTypeList() {
 	Sprite test = spriteRepository.get("test", 1.0f);
-	AnimatedSprite testSprite = AnimatedSprite(std::vector<Sprite>{test}, 1.0f);
+	AnimatedSprite testSprite = AnimatedSprite(std::make_shared<SpriteSheet>(std::vector<Sprite>{test}), 1.0f);
 	creatureTypeRepository.insert(std::make_shared<CreatureType>(
 		"testAnimal",
 		0,

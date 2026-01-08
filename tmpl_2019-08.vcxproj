@@ -241,6 +241,7 @@
     <ClCompile Include="mouseMoveHandler.cpp" />
     <ClCompile Include="objectList.cpp" />
     <ClCompile Include="spoon.cpp" />
+    <ClCompile Include="spritesheet.cpp" />
     <ClCompile Include="spriteStack.cpp" />
     <ClCompile Include="surfaceRepository.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
@@ -301,6 +302,7 @@
     <ClInclude Include="modal.hpp" />
     <ClInclude Include="screens.hpp" />
     <ClInclude Include="spoon.hpp" />
+    <ClInclude Include="spritesheet.hpp" />
     <ClInclude Include="spriteStack.hpp" />
     <ClInclude Include="countingStorage.hpp" />
     <ClInclude Include="surfaceList.hpp" />
