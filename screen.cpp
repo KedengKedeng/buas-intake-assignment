@@ -28,8 +28,8 @@ Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& veloci
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
 		// check if object has collider functionality
-		auto object2 = it->second.get();
-		auto collider2 = dynamic_cast<Collider*>(object2);
+		auto object2 = it->second;
+		auto collider2 = getObject<Collider>(object2->getId());
 
 		// the colliding object can be in this list and can hence check collision with itself.
 		// it would never be able to move if we dont check for this.
@@ -65,9 +65,9 @@ void Screen::interactionCheck(Object& object) {
 	if (interactor == nullptr || !interactor->isInteractor()) return;
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
-		auto object2 = it->second.get();
+		auto object2 = it->second;
 		// check if object has interactable functionality
-		Interactable* interacted = dynamic_cast<Interactable*>(object2);
+		auto interacted = getObject<Interactable>(object2->getId());
 		if (interacted == nullptr) continue;
 
 		BoundingBox interactorBounds = interactor->getInteractableBoundsAt(object.getPos());

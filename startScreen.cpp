@@ -9,14 +9,14 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	Tmpl8::vec2 containerSize = {70, 75};
 	Tmpl8::vec2 buttonSize = { 70, 20 };
 
-	auto container = std::make_unique<Container>(
+	auto container = std::make_shared<Container>(
 		getRandomNum(),
 		(Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) - containerSize) / 2,
 		containerSize,
 		Justification::VERTICAL
 	);
 
-	container->insertObject(std::make_unique<Button>(
+	container->insertObject(std::make_shared<Button>(
 		0,
 		[]() { changeScreen.emit(Screens::Play); },
 		std::string{ "Start game" },
@@ -25,7 +25,7 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 		2
 	));
 
-	container->insertObject(std::make_unique<Button>(
+	container->insertObject(std::make_shared<Button>(
 		1,
 		[]() { stackScreen.emit(Screens::SettingsMenu); },
 		std::string{ "Settings" },
@@ -34,7 +34,7 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 		2
 	));
 
-	container->insertObject(std::make_unique<Button>(
+	container->insertObject(std::make_shared<Button>(
 		2,
 		[]() { exit(0); },
 		std::string{ "exit" },
@@ -43,5 +43,5 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 		2
 	));
 
-	insertObject(std::move(container));
+	insertObject(container);
 };

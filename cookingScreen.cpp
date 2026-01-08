@@ -13,7 +13,7 @@
 CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<ChangeScreenCommand>(Screens::Play); });
 
-	std::unique_ptr<CookingCauldron> cauldron = std::make_unique<CookingCauldron>(getRandomNum(), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron")));
+	std::shared_ptr<CookingCauldron> cauldron = std::make_shared<CookingCauldron>(getRandomNum(), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron")));
 
 	// get a reference of the cauldron for operations on it specifically later
 	cauldronId = cauldron->getId();
@@ -24,19 +24,19 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	// cauldron collision walls
 	// the collision system doesnt allow for unique shapes past filled squares right now.
 	// so we have to instantiate each side like this outside of the object.
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(cauldronSize.x - 100, 80.0f), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80.0f, cauldronSize.y - 100), Tmpl8::vec2(cauldronSize.x - 140, 1.0f)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(cauldronSize.x - 100, 80.0f), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80.0f, cauldronSize.y - 100), Tmpl8::vec2(cauldronSize.x - 140, 1.0f)));
 
 	// screen edge collision walls
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, 0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(surface->GetWidth(), 0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_unique<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight()), Tmpl8::vec2(surface->GetWidth(), 1)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, 0), Tmpl8::vec2(1, surface->GetHeight())));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(surface->GetWidth(), 0), Tmpl8::vec2(1, surface->GetHeight())));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight()), Tmpl8::vec2(surface->GetWidth(), 1)));
 
 	// insert main interactable objects
-	insertObject(std::make_unique<Spoon>(0, cauldron->getPos() + Tmpl8::vec2(cauldronSize.x, 0.0f) / 2));
-	insertObject(std::make_unique<Blower>(1, cauldron->getPos() + Tmpl8::vec2(500, 180)));
-	insertObject(std::move(cauldron));
+	insertObject(std::make_shared<Spoon>(0, cauldron->getPos() + Tmpl8::vec2(cauldronSize.x, 0.0f) / 2));
+	insertObject(std::make_shared<Blower>(1, cauldron->getPos() + Tmpl8::vec2(500, 180)));
+	insertObject(cauldron);
 }
 
 CookingScreen::~CookingScreen() {
@@ -44,7 +44,7 @@ CookingScreen::~CookingScreen() {
 }
 
 void CookingScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
-	auto cauldron = dynamic_cast<CookingCauldron*>(objects_[cauldronId].get());
+	auto cauldron = getObject<CookingCauldron>(cauldronId);
 	cauldron->drawBack(surface);
 
 	Screen::draw(surface, offset);
@@ -83,7 +83,7 @@ void CookingScreen::subscribe() {
 
 		interactionCheck(object);
 
-		auto cauldron = dynamic_cast<CookingCauldron*>(objects_[cauldronId].get());
+		auto cauldron = getObject<CookingCauldron>(cauldronId);
 		if (trackSpoonMovement && oldPos != newPos) 
 			cauldron->stir(std::abs(collides.x));
 	}));

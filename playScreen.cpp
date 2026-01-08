@@ -32,8 +32,8 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 	createWorldBounds(-plotSpace, Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) + plotSpace);
 
 	// interactable objects
-	insertObject(std::make_unique<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron"))));
-	insertObject(std::make_unique<ItemObject>(getRandomNum(), Tmpl8::vec2(20, 50), itemRepository.get("testItem")));
+	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron"))));
+	insertObject(std::make_shared<ItemObject>(getRandomNum(), Tmpl8::vec2(20, 50), itemRepository.get("testItem")));
 }
 
 PlayScreen::~PlayScreen() {
@@ -41,10 +41,10 @@ PlayScreen::~PlayScreen() {
 }
 
 void PlayScreen::createWorldBounds(const Tmpl8::vec2& pos, const Tmpl8::vec2& size) {
-	insertObject(std::make_unique<Wall>(getRandomNum(), pos, Tmpl8::vec2(1.0f, size.y)));
-	insertObject(std::make_unique<Wall>(getRandomNum(), pos, Tmpl8::vec2(size.x, 1.0f)));
-	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(pos.x, pos.y + size.y), Tmpl8::vec2(size.x, 1.0f)));
-	insertObject(std::make_unique<Wall>(getRandomNum(), Tmpl8::vec2(pos.x + size.x, pos.y), Tmpl8::vec2(1.0f, size.y)));
+	insertObject(std::make_shared<Wall>(getRandomNum(), pos, Tmpl8::vec2(1.0f, size.y)));
+	insertObject(std::make_shared<Wall>(getRandomNum(), pos, Tmpl8::vec2(size.x, 1.0f)));
+	insertObject(std::make_shared<Wall>(getRandomNum(), Tmpl8::vec2(pos.x, pos.y + size.y), Tmpl8::vec2(size.x, 1.0f)));
+	insertObject(std::make_shared<Wall>(getRandomNum(), Tmpl8::vec2(pos.x + size.x, pos.y), Tmpl8::vec2(1.0f, size.y)));
 }
 
 void PlayScreen::deleteObject(int64_t id) {
@@ -79,9 +79,9 @@ void PlayScreen::subscribe() {
 	unsubscribers.push_back(itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {
 		// drop item on the ground if nothing is checking to pick it up
 		if (itemDropped.getListenerCount() == 0) {
-			std::unique_ptr<ItemObject> itemObject = std::make_unique<ItemObject>(getRandomNum(), player_.getPos(), item);
+			std::shared_ptr<ItemObject> itemObject = std::make_shared<ItemObject>(getRandomNum(), player_.getPos(), item);
 			itemObject->subscribe();
-			insertObject(std::move(itemObject));
+			insertObject(itemObject);
 		}
 		// otherwise allow said listener to pick up the item
 		else itemDropped.emit(item);

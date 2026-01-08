@@ -10,7 +10,7 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<CloseScreenCommand>(); });
 
 	Tmpl8::vec2 modalSize = { 100, 100 };
-	auto container = std::make_unique<Modal>(
+	auto container = std::make_shared<Modal>(
 		0,
 		Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) / 2 - modalSize / 2,
 		modalSize,
@@ -18,7 +18,7 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 		Justification::VERTICAL
 	);
 
-	container->insertObject(std::make_unique<Button>(
+	container->insertObject(std::make_shared<Button>(
 		0,
 		[]() {},
 		"test button",
@@ -26,7 +26,7 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 		Tmpl8::vec2(20)
 	));
 
-	insertObject(std::move(container));
+	insertObject(container);
 }
 
 void SettingsScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {

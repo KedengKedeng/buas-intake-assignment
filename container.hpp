@@ -1,6 +1,7 @@
 #pragma once
 #include "object.hpp"
 #include <map>
+#include <memory>
 
 enum class Justification {
 	NONE,
@@ -20,18 +21,18 @@ public:
 	virtual void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
 	virtual void process(float deltaTime) override;
 
-	virtual void insertObject(std::unique_ptr<Object> object);
+	virtual void insertObject(std::shared_ptr<Object> object);
 	void clearObjects() { objects_.clear(); }
 
 	template<typename T>
-	T* getObject(int64_t id) { return dynamic_cast<T*>(objects_[id].get()); }
-	virtual std::map<int64_t, std::unique_ptr<Object>>::iterator begin() { return objects_.begin(); }
-	virtual std::map<int64_t, std::unique_ptr<Object>>::iterator end() { return objects_.end(); }
+	std::shared_ptr<T> getObject(int64_t id) { return std::dynamic_pointer_cast<T>(objects_[id]); }
+	virtual std::map<int64_t, std::shared_ptr<Object>>::iterator begin() { return objects_.begin(); }
+	virtual std::map<int64_t, std::shared_ptr<Object>>::iterator end() { return objects_.end(); }
 
 	virtual void subscribe() override;
 	virtual void unsubscribe() override;
 protected:
-	std::map<int64_t, std::unique_ptr<Object>> objects_ = {};
+	std::map<int64_t, std::shared_ptr<Object>> objects_ = {};
 private:
 	void spreadObjects();
 

@@ -18,9 +18,9 @@ void Container::process(float deltaTime) {
 		object.second->process(deltaTime);
 }
 
-void Container::insertObject(std::unique_ptr<Object> object) {
+void Container::insertObject(std::shared_ptr<Object> object) {
 	int64_t id = object->getId();
-	objects_[id] = std::move(object);
+	objects_[id] = object;
 	spreadObjects();
 }
 

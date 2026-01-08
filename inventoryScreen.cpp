@@ -11,7 +11,7 @@ InventoryScreen::InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Invent
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<CloseScreenCommand>(); });
 
 	Tmpl8::vec2 size = { 400, 300 };
-	insertObject(std::make_unique<Modal>(0, Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
+	insertObject(std::make_shared<Modal>(0, Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
 		closeScreen.emit();
 	}, Justification::VERTICAL));
 }
@@ -20,9 +20,9 @@ void InventoryScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 	auto modal = getObject<Modal>(0);
 	auto items = inventory_->begin();
 	for (auto containers = modal->begin(); containers != modal->end(); containers++) {
-		Container* container = dynamic_cast<Container*>(containers->second.get());
+		auto container = std::dynamic_pointer_cast<Container>(containers->second);
 		for (auto inventorySlot = container->begin(); inventorySlot != container->end(); inventorySlot++) {
-			InventorySlot* slot = dynamic_cast<InventorySlot*>(inventorySlot->second.get());
+			auto slot = std::dynamic_pointer_cast<InventorySlot>(inventorySlot->second);
 
 			if (items != inventory_->end()) {
 				std::string itemName = const_cast<std::string&>(items->first);
@@ -48,11 +48,11 @@ void InventoryScreen::process(float deltaTime) {
 
 		int64_t id = 0;
 		for (int x = 0; x < drawRows; x++) {
-			container->insertObject(std::make_unique<Container>(id, Tmpl8::vec2(0), Tmpl8::vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL));
+			container->insertObject(std::make_shared<Container>(id, Tmpl8::vec2(0), Tmpl8::vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL));
 			auto horizontalContainer = container->getInnerObject<Container>(id);
 
 			for (int y = 0; y < maxItemsOnRow; y++) {
-				horizontalContainer->insertObject(std::make_unique<InventorySlot>(
+				horizontalContainer->insertObject(std::make_shared<InventorySlot>(
 					id, 
 					Tmpl8::vec2(0), 
 					inventorySlotSize, 
