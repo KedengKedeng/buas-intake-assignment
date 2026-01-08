@@ -23,9 +23,8 @@ void Button::subscribe() {
 
 	unsubscribers.push_back(onMouseDown.subscribe([this](Tmpl8::vec2& pos) {
 		BoundingBox absolutePosBounds = BoundingBox(pos_, size_);
-		BoundingBox mouseBounds = BoundingBox(pos, Tmpl8::vec2(1));
 
-		if (absolutePosBounds.isInBounds(mouseBounds))
+		if (absolutePosBounds.isInBounds(pos))
 			active = true;
 	}));
 

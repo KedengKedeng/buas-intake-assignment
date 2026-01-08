@@ -15,6 +15,10 @@ bool BoundingBox::isInBounds(BoundingBox& box) {
 	);
 }
 
+bool BoundingBox::isInBounds(Tmpl8::vec2& point) {
+    return isInBounds(BoundingBox(point, Tmpl8::vec2(0)));
+}
+
 CollisionResult BoundingBox::swept(BoundingBox& box, Tmpl8::vec2& velocity) {
     Tmpl8::vec2 firstPos = getPos();
     Tmpl8::vec2 firstSize = getSize();

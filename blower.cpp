@@ -11,7 +11,7 @@ Blower::Blower(int64_t id, Tmpl8::vec2& pos) :
 	interactionBox_.setSize(Tmpl8::vec2(sprites_->getWidth(), sprites_->getHeight()));
 
 	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
-		return getInteractableBoundsAt(pos_).isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
+		return getInteractableBoundsAt(pos_).isInBounds(pos);
 	});
 
 	mouseMoveHandler.setOnMouseDrag([this](Tmpl8::vec2& pos, Tmpl8::vec2& delta) {

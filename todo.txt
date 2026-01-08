@@ -14,7 +14,6 @@ short term:
 - add a text class to template for font sizes and text centering
 - switch over to systems (animation system, movement system, physics system)
 - replace std string in file operations with path
-- create is point in bounds function for bounding boxes
 
 todo for mvp:
 - keyboard input handling (done)

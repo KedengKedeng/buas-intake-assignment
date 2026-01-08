@@ -18,7 +18,7 @@ Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) :
 	interactionBox_.setSize(Tmpl8::vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
 
 	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
-		return collidingBox_.at(pos_).isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
+		return collidingBox_.at(pos_).isInBounds(pos);
 	});
 
 	mouseMoveHandler.setOnMouseDrag([this](Tmpl8::vec2& pos, Tmpl8::vec2& delta) {

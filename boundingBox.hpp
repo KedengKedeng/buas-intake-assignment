@@ -28,8 +28,9 @@ public:
 	// mainly used to compared bounding boxes on a plane.
 	BoundingBox at(Tmpl8::vec2& pos) { return BoundingBox(pos + pos_, size_); }
 
-	virtual bool isInBounds(BoundingBox& box);
-	virtual CollisionResult swept(BoundingBox& box, Tmpl8::vec2& velocity);
+	bool isInBounds(BoundingBox& box);
+	bool isInBounds(Tmpl8::vec2& point);
+	CollisionResult swept(BoundingBox& box, Tmpl8::vec2& velocity);
 protected:
 	SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity);
 
