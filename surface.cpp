@@ -149,7 +149,8 @@ void Surface::Resize( Surface* a_Orig )
 			unsigned int r = (((p1 & RedMask) * w1 + (p2 & RedMask) * w2 + (p3 & RedMask) * w3 + (p4 & RedMask) * w4) >> 8) & RedMask;
 			unsigned int g = (((p1 & GreenMask) * w1 + (p2 & GreenMask) * w2 + (p3 & GreenMask) * w3 + (p4 & GreenMask) * w4) >> 8) & GreenMask;
 			unsigned int b = (((p1 & BlueMask) * w1 + (p2 & BlueMask) * w2 + (p3 & BlueMask) * w3 + (p4 & BlueMask) * w4) >> 8) & BlueMask;
-			*(dst + u + v * m_Pitch) = (Pixel)(r + g + b);
+			unsigned int a = (((p1 & AlphaMask) * w1 + (p2 & AlphaMask) * w2 + (p3 & AlphaMask) * w3 + (p4 & AlphaMask) * w4) >> 8) & AlphaMask;
+			*(dst + u + v * m_Pitch) = (Pixel)(r + g + b + a);
 		}
 	}
 }

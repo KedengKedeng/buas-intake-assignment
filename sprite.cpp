@@ -56,17 +56,20 @@ void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float width, f
 
 	for (int ty = result.y; ty < result.y2; ty++)
 	{
-		// scale by given height and offset by sprite offset
 		int v = rect_.y + ((ty - y) / height) * rect_.height;
 
 		for (int tx = result.x; tx < result.x2; tx++)
 		{
-			// same as v
 			int u = rect_.x + ((tx - x) / width) * rect_.width;
 
-			Tmpl8::Pixel color = spriteBuffer[u + v * pitch_];
+			Tmpl8::Pixel src = spriteBuffer[u + v * pitch_];
+			unsigned int srcA = (src >> 24) & 0xFF;
 
-			if (color) targetBuffer[tx + ty * targetPitch] = color;
+			if (srcA == 0) continue;
+
+			Tmpl8::Pixel dst = targetBuffer[tx + ty * targetPitch];
+
+			targetBuffer[tx + ty * targetPitch] = Tmpl8::blendAlpha(src, dst);
 		}
 	}
 }

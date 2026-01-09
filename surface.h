@@ -6,21 +6,46 @@
 
 namespace Tmpl8 {
 
-constexpr int RedMask = 0xff0000;
-constexpr int GreenMask = 0x00ff00;
-constexpr int BlueMask = 0x0000ff;
+constexpr int RedMask = 0xff000000;
+constexpr int GreenMask = 0x00ff0000;
+constexpr int BlueMask = 0x0000ff00;
+constexpr int AlphaMask = 0x000000ff;
 
 typedef unsigned int Pixel; // unsigned int is assumed to be 32-bit, which seems a safe assumption.
+
+inline Pixel blendAlpha(Pixel foreground, Pixel background) {
+	unsigned int srcA = (foreground >> 24) & 0xFF;
+	unsigned int srcR = (foreground >> 16) & 0xFF;
+	unsigned int srcG = (foreground >> 8) & 0xFF;
+	unsigned int srcB = foreground & 0xFF;
+
+
+	unsigned int dstR = (background >> 16) & 0xFF;
+	unsigned int dstG = (background >> 8) & 0xFF;
+	unsigned int dstB = background & 0xFF;
+
+	unsigned int invA = 255 - srcA;
+
+	unsigned int outR = (srcR * srcA + dstR * invA) / 255;
+	unsigned int outG = (srcG * srcA + dstG * invA) / 255;
+	unsigned int outB = (srcB * srcA + dstB * invA) / 255;
+
+	unsigned int outA = srcA;
+
+	return (outA << 24) | (outR << 16) | (outG << 8) | outB;
+}
 
 inline Pixel AddBlend( Pixel a_Color1, Pixel a_Color2 )
 {
 	const unsigned int r = (a_Color1 & RedMask) + (a_Color2 & RedMask);
 	const unsigned int g = (a_Color1 & GreenMask) + (a_Color2 & GreenMask);
 	const unsigned int b = (a_Color1 & BlueMask) + (a_Color2 & BlueMask);
+	const unsigned int a = (a_Color1 & AlphaMask) + (a_Color2 & AlphaMask);
 	const unsigned r1 = (r & RedMask) | (RedMask * (r >> 24));
 	const unsigned g1 = (g & GreenMask) | (GreenMask * (g >> 16));
 	const unsigned b1 = (b & BlueMask) | (BlueMask * (b >> 8));
-	return (r1 + g1 + b1);
+	const unsigned a1 = (a & AlphaMask) | (AlphaMask) * (a);
+	return (r1 + g1 + b1 + a1);
 }
 
 // subtractive blending
@@ -29,10 +54,12 @@ inline Pixel SubBlend( Pixel a_Color1, Pixel a_Color2 )
 	int red = (a_Color1 & RedMask) - (a_Color2 & RedMask);
 	int green = (a_Color1 & GreenMask) - (a_Color2 & GreenMask);
 	int blue = (a_Color1 & BlueMask) - (a_Color2 & BlueMask);
+	int alpha = (a_Color1 & AlphaMask) - (a_Color2 & AlphaMask);
 	if (red < 0) red = 0;
 	if (green < 0) green = 0;
 	if (blue < 0) blue = 0;
-	return static_cast<Pixel>(red + green + blue);
+	if (alpha < 0) alpha = 0;
+	return static_cast<Pixel>(red + green + blue + alpha);
 }
 
 struct BoundsCheckResult {
