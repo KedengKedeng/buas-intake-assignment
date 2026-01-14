@@ -14,6 +14,8 @@ void Screen::process(float deltaTime) {
 
 void Screen::unsubscribe() {
 	Container::unsubscribe();
+	// not clearing between screen transitions causes some weird behavior.
+	// hence we clear just to be sure.
 	keyboardInput_.clearKeysDown();
 }
 

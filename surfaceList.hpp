@@ -19,4 +19,5 @@ void setupSurfaceList() {
 	surfaceRepository.insert("spoon", std::make_shared<Tmpl8::Surface>("assets/spoon.png"));
 	surfaceRepository.insert("blower", std::make_shared<Tmpl8::Surface>("assets/blower.png"));
 	surfaceRepository.insert("test", std::make_shared<Tmpl8::Surface>("assets/testsprite.png"));
+	surfaceRepository.insert("floor", std::make_shared<Tmpl8::Surface>("assets/floor.png"));
 }

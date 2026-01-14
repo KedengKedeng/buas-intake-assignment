@@ -21,4 +21,5 @@ void setupSpriteList() {
 	spriteRepository.insertSheet("cauldroncloseupfire", SpriteSheet(surfaceRepository.get("cauldroncloseupfire"), 1, 6));
 	spriteRepository.insertSheet("cauldroncloseupfilled", SpriteSheet(surfaceRepository.get("cauldroncloseupfilled"), 1, 8));
 	spriteRepository.insertSheet("blower", SpriteSheet(surfaceRepository.get("blower"), 1, 4));
+	spriteRepository.insertSheet("floor", SpriteSheet(surfaceRepository.get("floor"), 2, 2));
 }

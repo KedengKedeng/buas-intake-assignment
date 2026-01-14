@@ -307,6 +307,7 @@
     <ClInclude Include="countingStorage.hpp" />
     <ClInclude Include="surfaceList.hpp" />
     <ClInclude Include="surfaceRepository.hpp" />
+    <ClInclude Include="tilemap.hpp" />
     <ClInclude Include="worldCauldron.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />

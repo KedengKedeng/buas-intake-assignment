@@ -12,12 +12,20 @@
 #include "moveCommand.hpp"
 #include "interactionCommand.hpp"
 #include "screenCommands.hpp"
+#include "spriteRepository.hpp"
 
-const Tmpl8::vec2 PLOT_SIZE = { 300, 300 };
-const Tmpl8::vec2 PLOT_MARGINS = { 50, 50 };
+const float floorScale = 1.5f;
+const float tileSize = 32 * floorScale;
+const Tmpl8::vec2 PLOT_SIZE = { tileSize * 8, tileSize * 8 };
+const Tmpl8::vec2 PLOT_MARGINS = { tileSize * 2, tileSize * 2 };
 
-PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry)
-	: Screen(surface), player_(0, Tmpl8::vec2(100, 100)), inventory_(inventory), husbandry_(husbandry) {
+PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry) : 
+	Screen(surface), 
+	player_(0, Tmpl8::vec2(100, 100)), 
+	inventory_(inventory), 
+	husbandry_(husbandry),
+	floorTiles_(spriteRepository.getSheet("floor"), floorScale)
+{
 	keyboardInput_.registerHandler("walkLeft", []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ -1, 0 }); });
 	keyboardInput_.registerHandler("walkUp", []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, -1 }); });
 	keyboardInput_.registerHandler("walkDown", []() {return std::make_unique<MoveCommand>(Tmpl8::vec2{ 0, 1 }); });
@@ -27,13 +35,17 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 	keyboardInput_.registerHandler("inventory", []() {return std::make_unique<StackScreenCommand>(Screens::Inventory); });
 
 	auto& plots = husbandry_->getPlots();
-	Tmpl8::vec2 plotSpace = Tmpl8::vec2(10.0f, (PLOT_SIZE.y + PLOT_MARGINS.y) * ceil(plots.size() / 2.0f));
+	Tmpl8::vec2 plotSpace = Tmpl8::vec2(0.0f, (PLOT_SIZE.y + PLOT_MARGINS.y) * ceil(plots.size() / 2.0f));
+	Tmpl8::vec2 roomSize = Tmpl8::vec2(tileSize * 16, tileSize * 10);
 
-	createWorldBounds(-plotSpace, Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) + plotSpace);
+	createWorldBounds(-plotSpace, roomSize + plotSpace);
 
 	// interactable objects
 	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), Tmpl8::vec2(surface->GetWidth() / 2, surface->GetHeight() / 2), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron"))));
 	insertObject(std::make_shared<ItemObject>(getRandomNum(), Tmpl8::vec2(20, 50), itemRepository.get("testItem")));
+
+	std::vector<FloorTiles> tileTypes { FloorTiles::Ground1, FloorTiles::Ground2, FloorTiles::Ground3, FloorTiles::Ground4 };
+	floorTiles_.setSquare(Rect2<int>(-plotSpace.x, -plotSpace.y, roomSize.x + plotSpace.x, roomSize.y + plotSpace.y) / tileSize, tileTypes);
 }
 
 PlayScreen::~PlayScreen() {
@@ -52,7 +64,9 @@ void PlayScreen::deleteObject(int64_t id) {
 }
 
 void PlayScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+	surface->Clear(0x00);
 	auto drawOffset = player_.getPos() - (Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) - player_.getColliderSize()) / 2;
+	floorTiles_.draw(surface, -drawOffset);
 	Screen::draw(surface, -drawOffset);
 	player_.draw(surface, -drawOffset);
 }

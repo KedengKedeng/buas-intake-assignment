@@ -347,6 +347,9 @@
     <ClInclude Include="spritesheet.hpp">
       <Filter>core\rendering</Filter>
     </ClInclude>
+    <ClInclude Include="tilemap.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">
