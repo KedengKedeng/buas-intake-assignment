@@ -2,8 +2,8 @@
 #include "surface.h"
 #include "object.hpp"
 #include "vec2.hpp"
+#include "text.hpp"
 #include <functional>
-#include <string>
 
 class Button : public Object {
 public:
@@ -28,7 +28,7 @@ private:
 	int borderWidth_;
 	Tmpl8::Pixel color_;
 	Tmpl8::Pixel borderColor_;
-	std::string text_;
+	Text text_;
 
 	bool active = false;
 	bool hover = false;

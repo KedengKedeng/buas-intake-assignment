@@ -1,4 +1,5 @@
 #include "inventorySlot.hpp"
+#include "text.hpp"
 #include <format>
 
 InventorySlot::InventorySlot(int64_t id, vec2<float>& pos, vec2<float>& size, std::shared_ptr<Item> item, int amount, std::function<void(InventorySlot*, vec2<float>&)> onDragEndHandler)
@@ -41,8 +42,8 @@ void InventorySlot::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 			0.5f
 		);
 
-		vec2<int> pos(pos_.x + 10, pos_.y + size_.y - 10);
-		surface->Print(const_cast<char*>(std::format("x{}", amount_).c_str()), pos.x, pos.y, 0xfffffff);
+		vec2 pos(pos_.x + 10, pos_.y + size_.y - 10);
+		Text(std::format("x{}", amount_), 1, 0xffffff).draw(surface, pos);
 	}
 }
 

@@ -1,6 +1,5 @@
 short term:
 - base input class
-- any way to increase font size?
 - combine item and sprite repositories into a class
 - change interaction signal to be terminatable
 - create exit game signal
@@ -11,7 +10,6 @@ short term:
 - too much gap in first row of inventory. fix later.
 - try seperating logic from ui more
 - add success and fail into set and add functions?
-- add a text class to template for font sizes and text centering
 - switch over to systems (animation system, movement system, physics system)
 - replace std string in file operations with path
 

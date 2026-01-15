@@ -14,7 +14,7 @@ Button::Button(
 ) :
 	Object(id, pos, size),
 	handler_(handler),
-	text_(text),
+	text_(Text(const_cast<std::string&>(text), 1, 0x00)),
 	borderWidth_(borderWidth),
 	color_(color),
 	borderColor_(borderColor)
@@ -51,7 +51,7 @@ void Button::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 		color_
 	);
 
-	int textLeft = static_cast<int>(pos_.x + (size_.x - text_.size() * 6 ) / 2);
-	int textTop = static_cast<int>(pos_.y + (size_.y - 6) / 2);
-	surface->Print(const_cast<char*>(text_.c_str()), textLeft, textTop, 0x000000);
+	float textLeft = pos_.x + (size_.x - text_.getWidth()) / 2;
+	float textTop = pos_.y + (size_.y - text_.getHeight()) / 2;
+	text_.draw(surface, vec2(textLeft, textTop));
 }

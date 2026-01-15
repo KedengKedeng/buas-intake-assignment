@@ -128,19 +128,22 @@
     <ClCompile Include="countingStorage.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="sprite.cpp">
-      <Filter>core\rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="animatedSprite.cpp">
-      <Filter>core\rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="spriteStack.cpp">
-      <Filter>core\rendering</Filter>
-    </ClCompile>
     <ClCompile Include="surfaceRepository.cpp">
       <Filter>gameplay\sprites</Filter>
     </ClCompile>
+    <ClCompile Include="animatedSprite.cpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="sprite.cpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClCompile>
     <ClCompile Include="spritesheet.cpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="spriteStack.cpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="text.cpp">
       <Filter>core\rendering</Filter>
     </ClCompile>
   </ItemGroup>
@@ -320,15 +323,6 @@
     <ClInclude Include="countingStorage.hpp">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="sprite.hpp">
-      <Filter>core\rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="animatedSprite.hpp">
-      <Filter>core\rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="spriteStack.hpp">
-      <Filter>core\rendering</Filter>
-    </ClInclude>
     <ClInclude Include="surfaceRepository.hpp">
       <Filter>gameplay\sprites</Filter>
     </ClInclude>
@@ -344,9 +338,6 @@
     <ClInclude Include="interactable.hpp">
       <Filter>systems\collision</Filter>
     </ClInclude>
-    <ClInclude Include="spritesheet.hpp">
-      <Filter>core\rendering</Filter>
-    </ClInclude>
     <ClInclude Include="tilemap.hpp">
       <Filter>core\rendering</Filter>
     </ClInclude>
@@ -355,6 +346,24 @@
     </ClInclude>
     <ClInclude Include="numbers.hpp">
       <Filter>core\types\concepts</Filter>
+    </ClInclude>
+    <ClInclude Include="tooltip.hpp">
+      <Filter>ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="text.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="animatedSprite.hpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="sprite.hpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="spritesheet.hpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="spriteStack.hpp">
+      <Filter>core\rendering\sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -435,6 +444,9 @@
     </Filter>
     <Filter Include="core\types\concepts">
       <UniqueIdentifier>{ee324986-04dd-44db-aa3a-6afe0a87df56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\rendering\sprite">
+      <UniqueIdentifier>{070c0153-b20c-4862-84ce-e0eebc3c0684}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

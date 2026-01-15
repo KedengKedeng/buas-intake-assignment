@@ -244,6 +244,7 @@
     <ClCompile Include="spritesheet.cpp" />
     <ClCompile Include="spriteStack.cpp" />
     <ClCompile Include="surfaceRepository.cpp" />
+    <ClCompile Include="text.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
     <ClCompile Include="container.cpp" />
     <ClCompile Include="game.cpp" />
@@ -308,7 +309,9 @@
     <ClInclude Include="countingStorage.hpp" />
     <ClInclude Include="surfaceList.hpp" />
     <ClInclude Include="surfaceRepository.hpp" />
+    <ClInclude Include="text.hpp" />
     <ClInclude Include="tilemap.hpp" />
+    <ClInclude Include="tooltip.hpp" />
     <ClInclude Include="vec2.hpp" />
     <ClInclude Include="worldCauldron.hpp" />
     <ClInclude Include="command.hpp" />

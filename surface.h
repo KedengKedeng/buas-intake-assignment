@@ -84,10 +84,6 @@ public:
 	int GetPitch() { return m_Pitch; }
 	void SetPitch( int a_Pitch ) { m_Pitch = a_Pitch; }
 	// Special operations
-	void InitCharset();
-	void SetChar( int c, char* c1, char* c2, char* c3, char* c4, char* c5 );
-	void Centre( char* a_String, int y1, Pixel color );
-	void Print( char* a_String, int x1, int y1, Pixel color );
 	void Clear( Pixel a_Color );
 	void Line( float x1, float y1, float x2, float y2, Pixel color );
 	void Plot( int x, int y, Pixel c );
@@ -106,10 +102,6 @@ private:
 	int m_Width{0}, m_Height{0};
 	int m_Pitch{0};
 	int m_Flags{0};
-	// Static attributes for the buildin font
-	static char s_Font[51][5][6];
-	static bool fontInitialized;
-	int s_Transl[256]{};		
 };
 
 class Font
