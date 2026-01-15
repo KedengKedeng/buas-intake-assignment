@@ -1,13 +1,13 @@
 #pragma once
 #include "command.hpp"
 #include "playerSignals.hpp"
-#include "template.h"
+#include "vec2.hpp"
 
 class MoveCommand : public Command {
 public:
-	MoveCommand(Tmpl8::vec2& delta): delta_(delta) {};
+	MoveCommand(vec2<int8_t>& delta): delta_(delta) {};
 	void execute() override { walkSignal.emit(delta_); }
 	void undo() override { walkSignal.emit(-delta_); }
 private:
-	Tmpl8::vec2 delta_;
+	vec2<int8_t> delta_;
 };

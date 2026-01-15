@@ -1,7 +1,6 @@
 #pragma once
 #include "mouseInput.hpp"
 #include "screen.hpp"
-#include "template.h"
 #include "screens.hpp"
 
 namespace Tmpl8 {
@@ -16,7 +15,7 @@ public:
 	void Tick( float deltaTime );
 	void MouseUp(int button) { mouseInput.mouseUp(button)->execute(); }
 	void MouseDown(int button) { mouseInput.mouseDown(button)->execute(); }
-	void MouseMove(int x, int y) { mouseInput.setMousePos(Tmpl8::vec2(x, y))->execute(); }
+	void MouseMove(int x, int y) { mouseInput.setMousePos(vec2<float>(x, y))->execute(); }
 	void KeyUp(int key) { currentScreens[currentScreens.size() - 1]->keyUp(key); }
 	void KeyDown(int key) { currentScreens[currentScreens.size() - 1]->keyDown(key); }
 private:

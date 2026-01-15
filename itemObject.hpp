@@ -5,10 +5,10 @@
 
 class ItemObject : public Object, public Interactable {
 public:
-	ItemObject(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Item> item);
+	ItemObject(int64_t id, vec2<float>& pos, std::shared_ptr<Item> item);
 	~ItemObject();
 
-	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	void process(float deltaTime) override {};
 
 	void subscribe() override;

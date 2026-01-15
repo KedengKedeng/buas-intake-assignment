@@ -1,7 +1,8 @@
 #pragma once
 #include "surface.h"
 #include "object.hpp"
-#include "mouseSignals.hpp"
+#include "vec2.hpp"
+#include <functional>
 #include <string>
 
 class Button : public Object {
@@ -10,14 +11,14 @@ public:
 		int64_t id,
 		std::function<void()> handler,
 		const std::string& text,
-		Tmpl8::vec2& pos = Tmpl8::vec2(0),
-		Tmpl8::vec2& size = Tmpl8::vec2(0),
+		vec2<float>& pos = vec2<float>(0.0f),
+		vec2<float>& size = vec2<float>(0.0f),
 		int borderWidth = 1,
 		Tmpl8::Pixel color = 0xffffff,
 		Tmpl8::Pixel borderColor = 0x000000
 	);
 
-	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	void process(float deltaTime) override {}
 
 	void subscribe() override;

@@ -1,6 +1,6 @@
 #include "object.hpp"
 
-Object::Object(int64_t id, const Tmpl8::vec2& pos, const Tmpl8::vec2& size) :
+Object::Object(int64_t id, const vec2<float>& pos, const vec2<float>& size) :
 	id_(id), pos_(pos), size_(size) {};
 
 Object::~Object() {

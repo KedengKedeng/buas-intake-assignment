@@ -11,7 +11,7 @@ public:
 
 	int getRows() { return rows_; }
 	int getColumns() { return columns_; }
-	int getSpriteCount() { return sprites_.size(); }
+	int getSpriteCount() { return static_cast<int>(sprites_.size()); }
 
 	Sprite& getSprite(int row, int column);
 	Sprite& getSprite(int index);

@@ -3,25 +3,25 @@
 #include "sprite.hpp"
 #include "spriteRepository.hpp"
 
-Tmpl8::vec2 spoonVelocity = { 0, 7 };
+vec2<float> spoonVelocity( 0.0f, 7.0f );
 
-Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) : 
-	Object(id, pos, Tmpl8::vec2(0)),
+Spoon::Spoon(int64_t id, vec2<float>& pos) : 
+	Object(id, pos, vec2(0.0f)),
 	Collider(),
 	Interactable(),
 	mouseMoveHandler(), 
 	sprite_(spriteRepository.get("spoon", 0.4)) 
 {
-	collidingBox_.setPos(Tmpl8::vec2(20));
-	collidingBox_.setSize(Tmpl8::vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
-	interactionBox_.setPos(Tmpl8::vec2(20));
-	interactionBox_.setSize(Tmpl8::vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
+	collidingBox_.setPos(vec2(20.0f));
+	collidingBox_.setSize(vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
+	interactionBox_.setPos(vec2(20.0f));
+	interactionBox_.setSize(vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
 
-	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
+	mouseMoveHandler.setInteractionCheck([this](vec2<float>& pos) {
 		return collidingBox_.at(pos_).isInBounds(pos);
 	});
 
-	mouseMoveHandler.setOnMouseDrag([this](Tmpl8::vec2& pos, Tmpl8::vec2& delta) {
+	mouseMoveHandler.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
 		requestMove.emit(pos_, delta, *this);
 	});
 
@@ -34,7 +34,7 @@ Spoon::Spoon(int64_t id, Tmpl8::vec2& pos) :
 	});
 }
 
-void Spoon::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+void Spoon::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	sprite_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);
 }
 

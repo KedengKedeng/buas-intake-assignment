@@ -1,6 +1,5 @@
 #include "game.h"
 #include "surface.h"
-#include "button.hpp"
 #include "playScreen.hpp"
 #include "startScreen.hpp"
 #include "settingsScreen.hpp"
@@ -102,6 +101,6 @@ namespace Tmpl8
 			func();
 		}
 
-		for (auto& screen : currentScreens) screen->draw(surface_, Tmpl8::vec2(0));
+		for (auto& screen : currentScreens) screen->draw(surface_, vec2(0.0f));
 	}
 };

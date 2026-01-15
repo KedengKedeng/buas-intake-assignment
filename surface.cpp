@@ -50,7 +50,7 @@ Surface::Surface( const std::string& a_File )
 	if (!f) 
 	{
 		char t[128];
-		sprintf( t, "File not found: %s", a_File );
+		sprintf( t, "File not found: %s", a_File.c_str() );
 		NotifyUser( t ); 
 		return;
 	}

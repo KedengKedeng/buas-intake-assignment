@@ -2,19 +2,19 @@
 #include "objectSignals.hpp"
 #include "spriteRepository.hpp"
 
-Blower::Blower(int64_t id, Tmpl8::vec2& pos) :
-	Object(id, pos, Tmpl8::vec2(0)),
+Blower::Blower(int64_t id, vec2<float>& pos) :
+	Object(id, pos, vec2(0.0f)),
 	Interactable(),
 	mouseMoveHandler(), 
 	sprites_(spriteRepository.getSheet("blower"))
 {
-	interactionBox_.setSize(Tmpl8::vec2(sprites_->getWidth(), sprites_->getHeight()));
+	interactionBox_.setSize(vec2<float>(sprites_->getWidth(), sprites_->getHeight()));
 
-	mouseMoveHandler.setInteractionCheck([this](Tmpl8::vec2& pos) {
+	mouseMoveHandler.setInteractionCheck([this](vec2<float>& pos) {
 		return getInteractableBoundsAt(pos_).isInBounds(pos);
 	});
 
-	mouseMoveHandler.setOnMouseDrag([this](Tmpl8::vec2& pos, Tmpl8::vec2& delta) {
+	mouseMoveHandler.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
 		if (!delta.y) return;
 		addBlowerPosition(delta.y / (100 / getInteractableSize().y));
 	});
@@ -36,7 +36,7 @@ void Blower::addBlowerPosition(float delta) {
 	blowedSignal.emit(blowerPosition - oldBlowerPos);
 };
 
-void Blower::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+void Blower::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	int frame = static_cast<int>(floor(blowerPosition / 25));
 	sprites_->getSprite(frame).drawScaled(surface, pos_.x + offset.x, pos_.y + offset.y, 0.4f);
 }

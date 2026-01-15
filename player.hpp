@@ -5,7 +5,7 @@
 
 class Player : public CharacterObject {
 public:
-	Player(int64_t id, Tmpl8::vec2& pos);
+	Player(int64_t id, vec2<float>& pos);
 
 	void subscribe() override;
 };

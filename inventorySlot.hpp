@@ -2,27 +2,28 @@
 #include "item.hpp"
 #include "object.hpp"
 #include "mouseMoveHandler.hpp"
+#include "boundingBox.hpp"
 
 class InventorySlot : public Object {
 public:
 	InventorySlot(
 		int64_t id,
-		Tmpl8::vec2& pos,
-		Tmpl8::vec2& size,
+		vec2<float>& pos,
+		vec2<float>& size,
 		std::shared_ptr<Item> item,
 		int amount,
-		std::function<void(InventorySlot*, Tmpl8::vec2&)> onDragEndHandler
+		std::function<void(InventorySlot*, vec2<float>&)> onDragEndHandler
 	);
 
 	void setItem(std::shared_ptr<Item> item, int amount) { item_ = item; amount_ = amount; }
 	std::shared_ptr<Item> getItem() { return item_; }
 
-	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 
 	void subscribe() override;
 	void unsubscribe() override;
 private:
-	Tmpl8::vec2 dragPos = { 0, 0 };
+	vec2<float> dragPos = { 0, 0 };
 	bool dragging = false;
 
 	MouseMoveHandler mouseMoveHandler_;

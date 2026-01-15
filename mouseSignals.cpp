@@ -1,5 +1,5 @@
 #include "mouseSignals.hpp"
 
-Signal<Tmpl8::vec2&> onMouseDown{};
+Signal<vec2<float>&> onMouseDown{};
 Signal<> onMouseUp{};
-Signal<Tmpl8::vec2&> mouseMoved{};
+Signal<vec2<float>&> mouseMoved{};

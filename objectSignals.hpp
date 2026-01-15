@@ -12,4 +12,4 @@ extern Signal<> blowerInteracted;
 extern Signal<> blowerInteractionEnded;
 extern Signal<float> blowedSignal;
 
-extern Signal<Tmpl8::vec2&, Tmpl8::vec2&, Object&> requestMove;
+extern Signal<vec2<float>&, vec2<float>&, Object&> requestMove;

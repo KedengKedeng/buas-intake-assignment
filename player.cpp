@@ -5,33 +5,33 @@
 #include <cmath>
 #include "spriteRepository.hpp"
 
-const int playerInteractionOffset = 10;
+const float playerInteractionOffset = 10.0f;
 const float playerSpriteScale = 2.5f;
 const float playerSpriteFrameRate = 0.005f;
 
-Player::Player(int64_t id, Tmpl8::vec2& pos) :
+Player::Player(int64_t id, vec2<float>& pos) :
 	CharacterObject(
 		id,
 		pos,
-		Tmpl8::vec2(0),
+		vec2(0.0f),
 		AnimatedSprite(spriteRepository.getSheet("playeridleleft"), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepository.getSheet("playeridleright"), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepository.getSheet("playerwalkleft"), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepository.getSheet("playerwalkright"), playerSpriteFrameRate, playerSpriteScale),
 		true
 	) {
-	collidingBox_.setSize(Tmpl8::vec2(getTextureWidth(), getTextureHeight()));
-	interactionBox_.setPos(Tmpl8::vec2(-playerInteractionOffset));
-	interactionBox_.setSize(Tmpl8::vec2(getTextureWidth() + playerInteractionOffset * 2, getTextureHeight() + playerInteractionOffset * 2));
+	collidingBox_.setSize(vec2(getTextureWidth(), getTextureHeight()));
+	interactionBox_.setPos(vec2(-playerInteractionOffset));
+	interactionBox_.setSize(vec2(getTextureWidth() + playerInteractionOffset * 2, getTextureHeight() + playerInteractionOffset * 2));
 };
 
 void Player::subscribe() {
 	CharacterObject::subscribe();
 
-	unsubscribers.push_back(walkSignal.subscribe([this](Tmpl8::vec2& delta) {
+	unsubscribers.push_back(walkSignal.subscribe([this](vec2<int8_t>& delta) {
 		addDelta(delta);
 
-		Tmpl8::vec2 delta_ = getDelta();
+		auto delta_ = getDelta();
 
 		if (delta_.x < 0) setLookingDirection(LookingDirections::LEFT);
 		if (delta_.x > 0) setLookingDirection(LookingDirections::RIGHT);

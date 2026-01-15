@@ -1,7 +1,7 @@
 #pragma once 
 #include "signal.hpp"
-#include "template.h"
+#include "vec2.hpp"
 
-extern Signal<Tmpl8::vec2&> onMouseDown;
+extern Signal<vec2<float>&> onMouseDown;
 extern Signal<> onMouseUp;
-extern Signal<Tmpl8::vec2&> mouseMoved;
+extern Signal<vec2<float>&> mouseMoved;

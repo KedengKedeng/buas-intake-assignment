@@ -1,6 +1,5 @@
 #pragma once
-#include "template.h"
-#include "signal.hpp"
+#include "vec2.hpp"
 
 struct CollisionResult {
 	float normalX;
@@ -10,30 +9,29 @@ struct CollisionResult {
 };
 
 struct SweptAxisResult {
-	Tmpl8::vec2 timings;
+	vec2<float> timings;
 	bool collision;
 };
 
 class BoundingBox {
 public:
-	BoundingBox() : pos_(Tmpl8::vec2(0)), size_(Tmpl8::vec2(0)) {}
-	BoundingBox(const Tmpl8::vec2& pos, const Tmpl8::vec2& size): pos_(pos), size_(size) {};
+	BoundingBox() : pos_(vec2<float>(0.0f)), size_(vec2<float>(0.0f)) {}
+	BoundingBox(const vec2<float>& pos, const vec2<float>& size): pos_(pos), size_(size) {};
 
-	Tmpl8::vec2 getPos() { return pos_; }
-	void setPos(Tmpl8::vec2& pos) { pos_ = pos; }
-	Tmpl8::vec2 getSize() { return size_; }
-	void setSize(Tmpl8::vec2& size) { size_ = size; }
+	vec2<float> getPos() { return pos_; }
+	void setPos(vec2<float>& pos) { pos_ = pos; }
+	vec2<float> getSize() { return size_; }
+	void setSize(vec2<float>& size) { size_ = size; }
 
 	// return a version of the bounding box with the given position added.
 	// mainly used to compared bounding boxes on a plane.
-	BoundingBox at(Tmpl8::vec2& pos) { return BoundingBox(pos + pos_, size_); }
+	BoundingBox at(vec2<float>& pos) { return BoundingBox(pos + pos_, size_); }
 
 	bool isInBounds(BoundingBox& box);
-	bool isInBounds(Tmpl8::vec2& point);
-	CollisionResult swept(BoundingBox& box, Tmpl8::vec2& velocity);
+	bool isInBounds(vec2<float>& point);
+	CollisionResult swept(BoundingBox& box, vec2<float>& velocity);
 protected:
 	SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity);
 
-	Tmpl8::vec2 pos_;
-	Tmpl8::vec2 size_;
+	vec2<float> pos_, size_;
 };

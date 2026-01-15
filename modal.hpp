@@ -4,7 +4,7 @@
 
 class Modal : public Container {
 public:
-	Modal(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::function<void()> onExitHandler, Justification justification);
+	Modal(int64_t id, vec2<float>& pos, vec2<float>& size, std::function<void()> onExitHandler, Justification justification);
 
 	void insertObject(std::shared_ptr<Object> object) override { innerContainer_.insertObject(std::move(object)); }
 
@@ -13,7 +13,7 @@ public:
 	std::map<int64_t, std::shared_ptr<Object>>::iterator begin() override { return innerContainer_.begin(); }
 	std::map<int64_t, std::shared_ptr<Object>>::iterator end() override { return innerContainer_.end(); }
 
-	virtual void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	virtual void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 
 	virtual void subscribe() override;
 	virtual void unsubscribe() override;

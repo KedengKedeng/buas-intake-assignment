@@ -5,7 +5,7 @@
 
 class Cauldron : public Object {
 public:
-	Cauldron(): Object(0, Tmpl8::vec2(0), Tmpl8::vec2(0)) {};
+	Cauldron(): Object(0, vec2<float>(0.0f), vec2<float>(0.0f)) {};
 
 	void insertItem(std::shared_ptr<Item> item);
 	size_t getItemCount() { return items_.size(); }
@@ -14,7 +14,7 @@ public:
 	void addTemp(float delta);
 	float getTemp();
 
-	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override {};
+	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override {};
 private:
 	float amountToStir = 0;
 	float neededTemp = 0;

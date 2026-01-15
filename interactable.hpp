@@ -1,17 +1,18 @@
 #pragma once
 #include "boundingBox.hpp"
+#include "signal.hpp"
 
 class Interactable {
 public:
 	Interactable () : interactionBox_(), isInteractor_(false) {}
-	Interactable(const Tmpl8::vec2& pos, const Tmpl8::vec2& size, bool isInteractor) :
+	Interactable(const vec2<float>& pos, const vec2<float>& size, bool isInteractor) :
 		interactionBox_(pos, size), isInteractor_(isInteractor) {}
 
 	BoundingBox getInteractableBounds() { return interactionBox_; }
-	BoundingBox getInteractableBoundsAt(Tmpl8::vec2& pos) { return interactionBox_.at(pos); }
+	BoundingBox getInteractableBoundsAt(vec2<float>& pos) { return interactionBox_.at(pos); }
 
-	Tmpl8::vec2 getInteractablePos() { return interactionBox_.getPos(); }
-	Tmpl8::vec2 getInteractableSize() { return interactionBox_.getSize(); }
+	vec2<float> getInteractablePos() { return interactionBox_.getPos(); }
+	vec2<float> getInteractableSize() { return interactionBox_.getSize(); }
 
 	bool isInteractor() { return isInteractor_; }
 

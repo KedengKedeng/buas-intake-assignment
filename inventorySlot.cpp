@@ -1,10 +1,10 @@
 #include "inventorySlot.hpp"
 #include <format>
 
-InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, std::shared_ptr<Item> item, int amount, std::function<void(InventorySlot*, Tmpl8::vec2&)> onDragEndHandler)
+InventorySlot::InventorySlot(int64_t id, vec2<float>& pos, vec2<float>& size, std::shared_ptr<Item> item, int amount, std::function<void(InventorySlot*, vec2<float>&)> onDragEndHandler)
 	: Object(id, pos, size), mouseMoveHandler_(){
-	mouseMoveHandler_.setInteractionCheck([this](Tmpl8::vec2& pos) {
-		return BoundingBox(pos_, size_).isInBounds(BoundingBox(pos, Tmpl8::vec2(0)));
+	mouseMoveHandler_.setInteractionCheck([this](vec2<float>& pos) {
+		return BoundingBox(pos_, size_).isInBounds(pos);
 	});
 
 	mouseMoveHandler_.setOnMouseDragStart([this]() {
@@ -12,7 +12,7 @@ InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, st
 		dragging = true;
 	});
 
-	mouseMoveHandler_.setOnMouseDrag([this](Tmpl8::vec2& pos, Tmpl8::vec2& delta) {
+	mouseMoveHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
 		dragPos += delta;
 	});
 
@@ -22,14 +22,14 @@ InventorySlot::InventorySlot(int64_t id, Tmpl8::vec2& pos, Tmpl8::vec2& size, st
 	});
 }
 
-void InventorySlot::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
-	Tmpl8::vec2 pos = dragging ? dragPos : pos_;
+void InventorySlot::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+	vec2<float> pos = dragging ? dragPos : pos_;
 
 	surface->Box(
-		pos_.x,
-		pos_.y,
-		pos_.x + size_.x,
-		pos_.y + size_.y,
+		static_cast<int>(pos_.x),
+		static_cast<int>(pos_.y),
+		static_cast<int>(pos_.x + size_.x),
+		static_cast<int>(pos_.y + size_.y),
 		0x000000
 	);
 
@@ -41,7 +41,7 @@ void InventorySlot::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
 			0.5f
 		);
 
-		Tmpl8::vec2 pos = Tmpl8::vec2(pos_.x + 10, pos_.y + size_.y - 10);
+		vec2<int> pos(pos_.x + 10, pos_.y + size_.y - 10);
 		surface->Print(const_cast<char*>(std::format("x{}", amount_).c_str()), pos.x, pos.y, 0xfffffff);
 	}
 }

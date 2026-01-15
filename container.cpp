@@ -2,13 +2,13 @@
 
 Container::Container(
 	int64_t id,
-	Tmpl8::vec2& pos,
-	Tmpl8::vec2& size,
+	vec2<float>& pos,
+	vec2<float>& size,
 	Justification justification
 )
 	: Object(id, pos, size), justification_(justification) { };
 
-void Container::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+void Container::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	for (auto& object : objects_)
 		object.second->draw(surface, offset);
 }
@@ -38,19 +38,19 @@ void Container::spreadObjects() {
 	if (justification_ == Justification::NONE) return;
 
 	// get combined size of all elements
-	Tmpl8::vec2 combinedSize(0);
+	vec2<float> combinedSize(0.0f);
 	for (auto& object : objects_) combinedSize += object.second->getSize();
 
 	// calculate the gap between each element based on how much space
 	// they take up combined compared to the container size
-	Tmpl8::vec2 gap = (size_ - combinedSize) / static_cast<float>(objects_.size());
+	vec2<float> gap = (size_ - combinedSize) / static_cast<float>(objects_.size());
 
 	// spread objects by gap
-	Tmpl8::vec2 currentPos = pos_;
+	vec2<float> currentPos = pos_;
 	for (auto& object : objects_) {
 		object.second->setPos(currentPos);
 
-		Tmpl8::vec2 objectSize = object.second->getSize();
+		vec2<float> objectSize = object.second->getSize();
 		if (justification_ == Justification::VERTICAL) currentPos.y += objectSize.y + gap.y;
 		if (justification_ == Justification::HORIZONTAL) currentPos.x += objectSize.x + gap.x;
 	}

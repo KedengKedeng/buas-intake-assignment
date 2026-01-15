@@ -1,8 +1,6 @@
 #include "cookingScreen.hpp"
-#include "wall.hpp"
 #include "spoon.hpp"
 #include "screenSignals.hpp"
-#include "keyboardSignals.hpp"
 #include "objectSignals.hpp"
 #include "invisibleBarrier.hpp"
 #include "random.hpp"
@@ -18,24 +16,24 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	// get a reference of the cauldron for operations on it specifically later
 	cauldronId = cauldron->getId();
 
-	cauldron->setPos(Tmpl8::vec2(surface->GetWidth() / 2 - 100, surface->GetHeight()) - cauldron->getPos());
-	auto cauldronSize = cauldron->getSize() + Tmpl8::vec2(220, 80);
+	cauldron->setPos(vec2<float>(surface->GetWidth() / 2 - 100, surface->GetHeight()) - cauldron->getPos());
+	auto cauldronSize = cauldron->getSize() + vec2(220, 80);
 
 	// cauldron collision walls
 	// the collision system doesnt allow for unique shapes past filled squares right now.
 	// so we have to instantiate each side like this outside of the object.
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(cauldronSize.x - 100, 80.0f), Tmpl8::vec2(40.0f, cauldronSize.y - 80)));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + Tmpl8::vec2(80.0f, cauldronSize.y - 100), Tmpl8::vec2(cauldronSize.x - 140, 1.0f)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + vec2(80.0f), vec2(40.0f, cauldronSize.y - 80)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + vec2(cauldronSize.x - 100, 80.0f), vec2(40.0f, cauldronSize.y - 80)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + vec2(80.0f, cauldronSize.y - 100), vec2(cauldronSize.x - 140, 1.0f)));
 
 	// screen edge collision walls
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, 0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(surface->GetWidth(), 0), Tmpl8::vec2(1, surface->GetHeight())));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), Tmpl8::vec2(0, surface->GetHeight()), Tmpl8::vec2(surface->GetWidth(), 1)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2(0.0f), vec2<float>(1, surface->GetHeight())));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(surface->GetWidth(), 0), vec2<float>(1, surface->GetHeight())));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, surface->GetHeight()), vec2<float>(surface->GetWidth(), 1)));
 
 	// insert main interactable objects
-	insertObject(std::make_shared<Spoon>(0, cauldron->getPos() + Tmpl8::vec2(cauldronSize.x, 0.0f) / 2));
-	insertObject(std::make_shared<Blower>(1, cauldron->getPos() + Tmpl8::vec2(500, 180)));
+	insertObject(std::make_shared<Spoon>(0, cauldron->getPos() + vec2(cauldronSize.x, 0.0f) / 2));
+	insertObject(std::make_shared<Blower>(1, cauldron->getPos() + vec2(500, 180)));
 	insertObject(cauldron);
 }
 
@@ -43,7 +41,7 @@ CookingScreen::~CookingScreen() {
 	unsubscribe();
 }
 
-void CookingScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+void CookingScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	auto cauldron = getObject<CookingCauldron>(cauldronId);
 	cauldron->drawBack(surface);
 
@@ -73,13 +71,13 @@ void CookingScreen::subscribe() {
 		blowedSignalUnsub();
 	}));
 
-	unsubscribers.push_back(requestMove.subscribe([this](Tmpl8::vec2& oldPos, Tmpl8::vec2& velocity, Object& object) {
-		Tmpl8::vec2 collides = objectsCollideWithBounds(object, velocity);
+	unsubscribers.push_back(requestMove.subscribe([this](vec2<float>& oldPos, vec2<float>& velocity, Object& object) {
+		auto collides = objectsCollideWithBounds(object, velocity);
 
-		Tmpl8::vec2 newPos = oldPos + newPos;
+		auto newPos = oldPos + collides;
 
 		if (oldPos != newPos) 
-			object.setPos(oldPos + collides);
+			object.setPos(newPos);
 
 		interactionCheck(object);
 

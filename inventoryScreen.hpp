@@ -6,11 +6,11 @@ class InventoryScreen : public Screen {
 public:
 	InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory);
 
-	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	void process(float deltaTime) override;
 private:
 	int drawRows = 0;
 	int maxItemsOnRow = 9;
-	Tmpl8::vec2 inventorySlotSize = { 30, 30 };
+	vec2<float> inventorySlotSize = { 30.0f, 30.0f };
 	std::shared_ptr<Inventory> inventory_;
 };

@@ -3,5 +3,5 @@
 
 class Inventory : public CountingStorage {
 public:
-	int getItemTypeCount() { return count.size(); }
+	int getItemTypeCount() { return static_cast<int>(count.size()); }
 };

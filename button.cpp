@@ -1,11 +1,13 @@
 #include "button.hpp"
+#include "mouseSignals.hpp"
+#include "boundingBox.hpp"
 
 Button::Button(
 	int64_t id,
 	std::function<void()> handler,
 	const std::string& text,
-	Tmpl8::vec2& pos,
-	Tmpl8::vec2& size,
+	vec2<float>& pos,
+	vec2<float>& size,
 	int borderWidth,
 	Tmpl8::Pixel color,
 	Tmpl8::Pixel borderColor
@@ -21,8 +23,8 @@ Button::Button(
 void Button::subscribe() {
 	Object::subscribe();
 
-	unsubscribers.push_back(onMouseDown.subscribe([this](Tmpl8::vec2& pos) {
-		BoundingBox absolutePosBounds = BoundingBox(pos_, size_);
+	unsubscribers.push_back(onMouseDown.subscribe([this](vec2<float>& pos) {
+		BoundingBox absolutePosBounds(pos_, size_);
 
 		if (absolutePosBounds.isInBounds(pos))
 			active = true;
@@ -35,7 +37,7 @@ void Button::subscribe() {
 	}));
 }
 
-void Button::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+void Button::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	int left = static_cast<int>(pos_.x);
 	int top = static_cast<int>(pos_.y);
 	int right = static_cast<int>(pos_.x + size_.x);

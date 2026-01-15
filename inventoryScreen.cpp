@@ -5,18 +5,19 @@
 #include "inventorySlot.hpp"
 #include "itemsRepository.hpp"
 #include "itemSignals.hpp"
+#include "boundingBox.hpp"
 
 InventoryScreen::InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory) 
 	: Screen(surface), inventory_(inventory) {
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<CloseScreenCommand>(); });
 
-	Tmpl8::vec2 size = { 400, 300 };
-	insertObject(std::make_shared<Modal>(0, Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
+	vec2 size( 400.0f, 300.0f );
+	insertObject(std::make_shared<Modal>(0, vec2<float>(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
 		closeScreen.emit();
 	}, Justification::VERTICAL));
 }
 
-void InventoryScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+void InventoryScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	auto modal = getObject<Modal>(0);
 	auto items = inventory_->begin();
 	for (auto containers = modal->begin(); containers != modal->end(); containers++) {
@@ -48,20 +49,20 @@ void InventoryScreen::process(float deltaTime) {
 
 		int64_t id = 0;
 		for (int x = 0; x < drawRows; x++) {
-			container->insertObject(std::make_shared<Container>(id, Tmpl8::vec2(0), Tmpl8::vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL));
+			container->insertObject(std::make_shared<Container>(id, vec2(0.0f), vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL));
 			auto horizontalContainer = container->getInnerObject<Container>(id);
 
 			for (int y = 0; y < maxItemsOnRow; y++) {
 				horizontalContainer->insertObject(std::make_shared<InventorySlot>(
 					id, 
-					Tmpl8::vec2(0), 
+					vec2(0.0f), 
 					inventorySlotSize, 
 					nullptr, 
 					0,
-					[this, container](InventorySlot* slot, Tmpl8::vec2& pos) {
-						BoundingBox containerBounds = BoundingBox(container->getPos(), container->getSize());
+					[this, container](InventorySlot* slot, vec2<float>& pos) {
+						BoundingBox containerBounds(container->getPos(), container->getSize());
 						// drop item when user drags it out of the bounds of the modal
-						if (!containerBounds.isInBounds(BoundingBox(pos, Tmpl8::vec2(0)))) {
+						if (!containerBounds.isInBounds(pos)) {
 							auto item = slot->getItem();
 							if (item == nullptr) return;
 							inventory_->remove(item->name);

@@ -1,11 +1,12 @@
 #include "boundingBox.hpp"
+#include <algorithm>
 
 // simple aabb bounds checking
 bool BoundingBox::isInBounds(BoundingBox& box) {
-	Tmpl8::vec2 firstPos = getPos();
-	Tmpl8::vec2 firstSize = getSize();
-	Tmpl8::vec2 secondPos = box.getPos();
-	Tmpl8::vec2 secondSize = box.getSize();
+	auto firstPos = getPos();
+	auto firstSize = getSize();
+	auto secondPos = box.getPos();
+	auto secondSize = box.getSize();
 
 	return (
 		firstPos.x < secondPos.x + secondSize.x &&
@@ -15,15 +16,15 @@ bool BoundingBox::isInBounds(BoundingBox& box) {
 	);
 }
 
-bool BoundingBox::isInBounds(Tmpl8::vec2& point) {
-    return isInBounds(BoundingBox(point, Tmpl8::vec2(0)));
+bool BoundingBox::isInBounds(vec2<float>& point) {
+    return isInBounds(BoundingBox(point, vec2<float>(0.0f)));
 }
 
-CollisionResult BoundingBox::swept(BoundingBox& box, Tmpl8::vec2& velocity) {
-    Tmpl8::vec2 firstPos = getPos();
-    Tmpl8::vec2 firstSize = getSize();
-    Tmpl8::vec2 secondPos = box.getPos();
-    Tmpl8::vec2 secondSize = box.getSize();
+CollisionResult BoundingBox::swept(BoundingBox& box, vec2<float>& velocity) {
+    auto firstPos = getPos();
+    auto firstSize = getSize();
+    auto secondPos = box.getPos();
+    auto secondSize = box.getSize();
 
     // check collisions for each side
     SweptAxisResult resultX = getSweptTimings(firstPos.x, secondPos.x, firstSize.x, secondSize.x, velocity.x);
@@ -48,8 +49,8 @@ CollisionResult BoundingBox::swept(BoundingBox& box, Tmpl8::vec2& velocity) {
 }
 
 SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity) {
-    Tmpl8::vec2 difference(0, 0);
-    Tmpl8::vec2 timings(
+    vec2<float> difference(0.0f);
+    vec2<float> timings(
         -std::numeric_limits<float>::infinity(),
         std::numeric_limits<float>::infinity()
     );
@@ -57,7 +58,7 @@ SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, fl
     if (velocity == 0.0f) {
         // the object can stil be colliding on a side even if it isnt moving.
         // so these if statements have to be seperate to account for that.
-        if (firstPos + firstSize < secondPos || secondPos + secondSize < firstPos) return { Tmpl8::vec2(1), false};
+        if (firstPos + firstSize < secondPos || secondPos + secondSize < firstPos) return { vec2(1.0f), false};
     }
     else {
         // do slightly different swept checks based on if the collision is forwards or backwards.

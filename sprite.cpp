@@ -56,11 +56,11 @@ void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float width, f
 
 	for (int ty = result.y; ty < result.y2; ty++)
 	{
-		int v = rect_.y + ((ty - y) / height) * rect_.height;
+		int v = static_cast<int>(rect_.y + ((ty - y) / height) * rect_.height);
 
 		for (int tx = result.x; tx < result.x2; tx++)
 		{
-			int u = rect_.x + ((tx - x) / width) * rect_.width;
+			int u = static_cast<int>(rect_.x + ((tx - x) / width) * rect_.width);
 
 			Tmpl8::Pixel src = spriteBuffer[u + v * pitch_];
 			unsigned int srcA = (src >> 24) & 0xFF;

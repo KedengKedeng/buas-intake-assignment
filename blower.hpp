@@ -3,14 +3,15 @@
 #include "mouseMoveHandler.hpp"
 #include "interactable.hpp"
 #include "spritesheet.hpp"
+#include "vec2.hpp"
 
 class Blower : public Object, public Interactable {
 public:
-	Blower(int64_t id, Tmpl8::vec2& pos);
+	Blower(int64_t id, vec2<float>& pos);
 
 	void addBlowerPosition(float delta);
 
-	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	void process(float deltaTime) override;
 
 	void subscribe() override;

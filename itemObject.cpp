@@ -3,17 +3,17 @@
 #include "itemSignals.hpp"
 #include "objectSignals.hpp"
 
-ItemObject::ItemObject(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<Item> item) :
-	Object(id, pos, Tmpl8::vec2(0)),
+ItemObject::ItemObject(int64_t id, vec2<float>& pos, std::shared_ptr<Item> item) :
+	Object(id, pos, vec2(0.0f)),
 	item_(item), 
-	Interactable(Tmpl8::vec2(-10), Tmpl8::vec2(item->sprite.getWidth(), item->sprite.getHeight()) + 10, false) 
+	Interactable(vec2(-10.0f), vec2(item->sprite.getWidth(), item->sprite.getHeight()) + 10, false) 
 {}
 
 ItemObject::~ItemObject() {
 	interactionSignalUnsub();
 }
 
-void ItemObject::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+void ItemObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	item_->sprite.draw(surface, pos_.x + offset.x, pos_.y + offset.y + drawOffset);
 
 	// Get item to bob up and down.

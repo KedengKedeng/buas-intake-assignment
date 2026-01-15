@@ -5,19 +5,19 @@
 #include "collider.hpp"
 #include "interactable.hpp"
 
-extern Tmpl8::vec2 spoonVelocity;
+extern vec2<float> spoonVelocity;
 
 class Spoon : public Object, public Collider, public Interactable {
 public:
-	Spoon(int64_t id, Tmpl8::vec2& pos);
+	Spoon(int64_t id, vec2<float>& pos);
 
 	void subscribe() override;
 	void unsubscribe() override;
 
-	void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	void process(float deltaTime) override;
 private:
-	Tmpl8::vec2 velocity = spoonVelocity;
+	vec2<float> velocity = spoonVelocity;
 
 	MouseMoveHandler mouseMoveHandler;
 	Sprite sprite_;

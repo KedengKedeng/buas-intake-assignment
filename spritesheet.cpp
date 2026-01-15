@@ -2,7 +2,7 @@
 
 SpriteSheet::SpriteSheet(const SpriteList& sprites) :
 	sprites_(std::move(sprites)),
-	rows_(sprites_.size()),
+	rows_(static_cast<int>(sprites_.size())),
 	columns_(1)
 {}
 

@@ -19,14 +19,14 @@ void Screen::unsubscribe() {
 	keyboardInput_.clearKeysDown();
 }
 
-Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& velocity) {
+vec2<float> Screen::objectsCollideWithBounds(Object& object, vec2<float>& velocity) {
 	// check if object has collider functionality
 	Collider* collider = dynamic_cast<Collider*>(&object);
-	if (collider == nullptr) return Tmpl8::vec2(0, 0);
+	if (collider == nullptr) return vec2(0.0f);
 
 	BoundingBox bounds = collider->getColliderBoundsAt(object.getPos());
 
-	Tmpl8::vec2 collisionVec = velocity;
+	auto collisionVec = velocity;
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
 		// check if object has collider functionality
@@ -39,7 +39,7 @@ Tmpl8::vec2 Screen::objectsCollideWithBounds(Object& object, Tmpl8::vec2& veloci
 
 		CollisionResult result = bounds.swept(collider2->getColliderBoundsAt(object2->getPos()), velocity);
 		if (result.collision) {
-			Tmpl8::vec2 allowedMovement(0, 0);
+			vec2 allowedMovement(0.0f);
 
 			allowedMovement.x += velocity.x * result.time;
 			allowedMovement.y += velocity.y * result.time;

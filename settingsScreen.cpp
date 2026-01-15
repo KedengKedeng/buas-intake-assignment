@@ -2,17 +2,16 @@
 #include "container.hpp"
 #include "button.hpp"
 #include "screenSignals.hpp"
-#include "keyboardSignals.hpp"
 #include "screenCommands.hpp"
 #include "modal.hpp"
 
 SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<CloseScreenCommand>(); });
 
-	Tmpl8::vec2 modalSize = { 100, 100 };
+	vec2<float> modalSize(100, 100);
 	auto container = std::make_shared<Modal>(
 		0,
-		Tmpl8::vec2(surface->GetWidth(), surface->GetHeight()) / 2 - modalSize / 2,
+		vec2<float>(surface->GetWidth(), surface->GetHeight()) / 2 - modalSize / 2,
 		modalSize,
 		[]() {closeScreen.emit(); },
 		Justification::VERTICAL
@@ -22,13 +21,13 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 		0,
 		[]() {},
 		"test button",
-		Tmpl8::vec2(0),
-		Tmpl8::vec2(20)
+		vec2(0.0f),
+		vec2(20.0f)
 	));
 
 	insertObject(container);
 }
 
-void SettingsScreen::draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) {
+void SettingsScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	Screen::draw(surface, offset);
 }

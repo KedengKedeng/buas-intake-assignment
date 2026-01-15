@@ -1,10 +1,10 @@
 #include "creature.hpp"
 
-Creature::Creature(int64_t id, Tmpl8::vec2& pos, std::shared_ptr<CreatureType> creatureType) :
+Creature::Creature(int64_t id, vec2<float>& pos, std::shared_ptr<CreatureType> creatureType) :
 	CharacterObject(
 		id, 
 		pos, 
-		Tmpl8::vec2(0),
+		vec2(0.0f),
 		creatureType->idleLeft,
 		creatureType->idleRight,
 		creatureType->walkLeft,

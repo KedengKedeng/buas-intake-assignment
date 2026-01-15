@@ -1,6 +1,5 @@
 #pragma once
-#include "template.h"
-#include "boundingBox.hpp"
+#include "vec2.hpp"
 #include <functional>
 
 class MouseMoveHandler {
@@ -8,23 +7,23 @@ public:
 	MouseMoveHandler();
 	~MouseMoveHandler();
 
-	void setOnMouseMove(std::function<void(Tmpl8::vec2&, Tmpl8::vec2&)> handler);
-	void setOnMouseDrag(std::function<void(Tmpl8::vec2&, Tmpl8::vec2&)> handler);
+	void setOnMouseMove(std::function<void(vec2<float>&, vec2<float>&)> handler);
+	void setOnMouseDrag(std::function<void(vec2<float>&, vec2<float>&)> handler);
 	void setOnMouseDragStart(std::function<void()> handler);
 	void setOnMouseDragEnd(std::function<void()> handler);
-	void setInteractionCheck(std::function<bool(Tmpl8::vec2&)> func) { interactionCheck = func; }
+	void setInteractionCheck(std::function<bool(vec2<float>&)> func) { interactionCheck = func; }
 
 	void subscribe();
 	void unsubscribe();
 private:
-	std::function<void(Tmpl8::vec2&, Tmpl8::vec2&)> onMouseMoveHandler_;
-	std::function<void(Tmpl8::vec2&, Tmpl8::vec2&)> onMouseDragHandler_;
+	std::function<void(vec2<float>&, vec2<float>&)> onMouseMoveHandler_;
+	std::function<void(vec2<float>&, vec2<float>&)> onMouseDragHandler_;
 	std::function<void()> onMouseDragStartHandler_;
 	std::function<void()> onMouseDragEndHandler_;
-	std::function<bool(Tmpl8::vec2&)> interactionCheck = [](Tmpl8::vec2& _) {return false; };
+	std::function<bool(vec2<float>&)> interactionCheck = [](vec2<float>& _) {return false; };
 
 	bool mouseDown = false;
-	Tmpl8::vec2 oldPos = Tmpl8::vec2(0);
+	vec2<float> oldPos = vec2(0.0f);
 
 	std::function<void()> onMouseMoveUnsub = []() {};
 	std::function<void()> onMouseDownUnsub = []() {};

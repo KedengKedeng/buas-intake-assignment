@@ -1,5 +1,6 @@
 #pragma once
 #include "object.hpp"
+#include "vec2.hpp"
 #include <map>
 #include <memory>
 
@@ -13,12 +14,12 @@ class Container : public Object {
 public:
 	Container(
 		int64_t id, 
-		Tmpl8::vec2& pos, 
-		Tmpl8::vec2& size,
+		vec2<float>& pos, 
+		vec2<float>& size,
 		Justification justification
 	);
 
-	virtual void draw(Tmpl8::Surface* surface, const Tmpl8::vec2& offset) override;
+	virtual void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	virtual void process(float deltaTime) override;
 
 	virtual void insertObject(std::shared_ptr<Object> object);

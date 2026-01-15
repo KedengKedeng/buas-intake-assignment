@@ -350,6 +350,12 @@
     <ClInclude Include="tilemap.hpp">
       <Filter>core\rendering</Filter>
     </ClInclude>
+    <ClInclude Include="vec2.hpp">
+      <Filter>core\math</Filter>
+    </ClInclude>
+    <ClInclude Include="numbers.hpp">
+      <Filter>core\types\concepts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">
@@ -423,6 +429,12 @@
     </Filter>
     <Filter Include="core\math">
       <UniqueIdentifier>{77fba2d8-8dfe-409e-890f-de247fd38a86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\types">
+      <UniqueIdentifier>{7731ee56-6e1e-4db2-8983-27ef4ba39ab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\types\concepts">
+      <UniqueIdentifier>{ee324986-04dd-44db-aa3a-6afe0a87df56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

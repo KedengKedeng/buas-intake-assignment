@@ -289,6 +289,7 @@
     <ClInclude Include="interactable.hpp" />
     <ClInclude Include="inventory.hpp" />
     <ClInclude Include="inventorySlot.hpp" />
+    <ClInclude Include="numbers.hpp" />
     <ClInclude Include="objectList.hpp" />
     <ClInclude Include="plot.hpp" />
     <ClInclude Include="rect2.hpp" />
@@ -308,6 +309,7 @@
     <ClInclude Include="surfaceList.hpp" />
     <ClInclude Include="surfaceRepository.hpp" />
     <ClInclude Include="tilemap.hpp" />
+    <ClInclude Include="vec2.hpp" />
     <ClInclude Include="worldCauldron.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />
