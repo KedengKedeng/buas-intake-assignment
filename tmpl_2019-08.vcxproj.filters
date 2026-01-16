@@ -146,6 +146,9 @@
     <ClCompile Include="text.cpp">
       <Filter>core\rendering</Filter>
     </ClCompile>
+    <ClCompile Include="string.cpp">
+      <Filter>core\util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -364,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="spriteStack.hpp">
       <Filter>core\rendering\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="string.hpp">
+      <Filter>core\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

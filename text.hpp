@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "vec2.hpp"
 #include "surface.h"
 
@@ -7,12 +8,13 @@ class Text {
 public:
 	Text(std::string& text, int fontScale, Tmpl8::Pixel color);
 
-	int getWidth() { return (1 + 5) * fontSize_ * static_cast<int>(text_.size()); }
-	int getHeight() { return 5 * fontSize_; }
+	int getWidth();
+	int getLineWidth(std::string& text) { return 6 * fontSize_ * static_cast<int>(text.size()); }
+	int getHeight() { return 6 * fontSize_ * static_cast<int>(text_.size()); }
 
 	void draw(Tmpl8::Surface*, vec2<float>& pos);
 private:
-	std::string text_;
+	std::vector<std::string> text_;
 	int fontSize_;
 	Tmpl8::Pixel color_;
 

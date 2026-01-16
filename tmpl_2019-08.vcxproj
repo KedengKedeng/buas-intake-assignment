@@ -243,6 +243,7 @@
     <ClCompile Include="spoon.cpp" />
     <ClCompile Include="spritesheet.cpp" />
     <ClCompile Include="spriteStack.cpp" />
+    <ClCompile Include="string.cpp" />
     <ClCompile Include="surfaceRepository.cpp" />
     <ClCompile Include="text.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
@@ -307,6 +308,7 @@
     <ClInclude Include="spritesheet.hpp" />
     <ClInclude Include="spriteStack.hpp" />
     <ClInclude Include="countingStorage.hpp" />
+    <ClInclude Include="string.hpp" />
     <ClInclude Include="surfaceList.hpp" />
     <ClInclude Include="surfaceRepository.hpp" />
     <ClInclude Include="text.hpp" />
