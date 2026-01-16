@@ -1,11 +1,9 @@
 #pragma once
 #include "object.hpp"
 #include "spriteStack.hpp"
-#include "item.hpp"
 #include "cauldron.hpp"
 #include "collider.hpp"
 #include "interactable.hpp"
-#include <vector>
 
 class WorldCauldron : public Object, public Collider, public Interactable {
 public:

@@ -33,7 +33,7 @@ void WorldCauldron::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	if (cauldron_->getTemp() > 200) spriteNum += 2;
 	sprites_.setSprite(spriteNum);
 
-	sprites_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);
+	sprites_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);\
 }
 
 void WorldCauldron::process(float deltaTime) {

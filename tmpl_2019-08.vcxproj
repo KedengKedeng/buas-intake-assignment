@@ -246,6 +246,7 @@
     <ClCompile Include="string.cpp" />
     <ClCompile Include="surfaceRepository.cpp" />
     <ClCompile Include="text.cpp" />
+    <ClCompile Include="tooltip.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
     <ClCompile Include="container.cpp" />
     <ClCompile Include="game.cpp" />

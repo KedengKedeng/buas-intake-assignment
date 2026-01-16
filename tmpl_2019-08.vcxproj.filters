@@ -149,6 +149,9 @@
     <ClCompile Include="string.cpp">
       <Filter>core\util</Filter>
     </ClCompile>
+    <ClCompile Include="tooltip.cpp">
+      <Filter>ui\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
