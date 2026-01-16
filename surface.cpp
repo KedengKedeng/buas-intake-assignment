@@ -172,31 +172,6 @@ void Surface::Plot( int x, int y, Pixel c )
 	if ((x >= 0) && (y >= 0) && (x < m_Width) && (y < m_Height)) m_Buffer[x + y * m_Pitch] = c;
 }
 
-void Surface::Box( int x1, int y1, int x2, int y2, Pixel c )
-{
-	Line( (float)x1, (float)y1, (float)x2, (float)y1, c );
-	Line( (float)x2, (float)y1, (float)x2, (float)y2, c );
-	Line( (float)x1, (float)y2, (float)x2, (float)y2, c );
-	Line( (float)x1, (float)y1, (float)x1, (float)y2, c );
-}
-
-void Surface::Bar( int x1, int y1, int x2, int y2, Pixel c )
-{
-	BoundsCheckResult result = checkBounds(x1, y1, x2, y2, GetWidth(), GetHeight());
-	x1 = result.x;
-	x2 = result.x2;
-	y1 = result.y;
-	y2 = result.y2;
-	if (result.dontPrint) return;
-
-	Pixel* a = x1 + y1 * m_Pitch + m_Buffer;
-	for ( int y = y1; y <= y2; y++ )
-	{
-		for ( int x = 0; x <= (x2 - x1); x++ ) a[x] = c;
-		a += m_Pitch;
-	}
-}
-
 void Surface::CopyTo( Surface* a_Dst, int a_X, int a_Y )
 {
 	Pixel* dst = a_Dst->GetBuffer();

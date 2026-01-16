@@ -38,16 +38,12 @@ void Button::subscribe() {
 }
 
 void Button::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	int left = static_cast<int>(pos_.x);
-	int top = static_cast<int>(pos_.y);
-	int right = static_cast<int>(pos_.x + size_.x);
-	int bottom = static_cast<int>(pos_.y + size_.y);
-	surface->Bar(left, top, right, bottom, borderColor_);
+	surface->Bar(pos_.x, pos_.y, pos_.x + size_.x, pos_.y + size_.y, borderColor_);
 	surface->Bar(
-		left + borderWidth_, 
-		top + borderWidth_, 
-		right - borderWidth_, 
-		bottom - borderWidth_, 
+		pos_.x + borderWidth_, 
+		pos_.y + borderWidth_, 
+		pos_.x + size_.x - borderWidth_,
+		pos_.y + size_.y - borderWidth_,
 		color_
 	);
 

@@ -27,10 +27,10 @@ void InventorySlot::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	vec2<float> pos = dragging ? dragPos : pos_;
 
 	surface->Box(
-		static_cast<int>(pos_.x),
-		static_cast<int>(pos_.y),
-		static_cast<int>(pos_.x + size_.x),
-		static_cast<int>(pos_.y + size_.y),
+		pos_.x,
+		pos_.y,
+		pos_.x + size_.x,
+		pos_.y + size_.y,
 		0x000000
 	);
 

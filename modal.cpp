@@ -11,10 +11,10 @@ Modal::Modal(int64_t id, vec2<float>& pos, vec2<float>& size, std::function<void
 
 void Modal::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	surface->Bar(
-		static_cast<int>(pos_.x),
-		static_cast<int>(pos_.y),
-		static_cast<int>(pos_.x + size_.x),
-		static_cast<int>(pos_.y + size_.y),
+		pos_.x,
+		pos_.y,
+		pos_.x + size_.x,
+		pos_.y + size_.y,
 		0xffffff
 	);
 

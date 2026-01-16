@@ -9,10 +9,10 @@ Tooltip::Tooltip(int64_t id, vec2<float>& pos, std::string& text) :
 
 void Tooltip::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	surface->Bar(
-		static_cast<int>(pos_.x + offset.x),
-		static_cast<int>(pos_.y + offset.y),
-		static_cast<int>(pos_.x + size_.x + offset.x),
-		static_cast<int>(pos_.y + size_.y + offset.y),
+		pos_.x + offset.x,
+		pos_.y + offset.y,
+		pos_.x + size_.x + offset.x,
+		pos_.y + size_.y + offset.y,
 		0xffffff
 	);
 

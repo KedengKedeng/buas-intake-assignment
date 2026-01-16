@@ -3,6 +3,8 @@
 
 #pragma once
 #include <string>
+#include "numbers.hpp"
+#include "vec2.hpp"
 
 namespace Tmpl8 {
 
@@ -83,16 +85,48 @@ public:
 	int GetHeight() { return m_Height; }
 	int GetPitch() { return m_Pitch; }
 	void SetPitch( int a_Pitch ) { m_Pitch = a_Pitch; }
+
 	// Special operations
 	void Clear( Pixel a_Color );
+
 	void Line( float x1, float y1, float x2, float y2, Pixel color );
 	void Plot( int x, int y, Pixel c );
 	void LoadImage( const char* a_File );
 	void CopyTo( Surface* a_Dst, int a_X, int a_Y );
 	void BlendCopyTo( Surface* a_Dst, int a_X, int a_Y );
 	void ScaleColor( unsigned int a_Scale );
-	void Box( int x1, int y1, int x2, int y2, Pixel color );
-	void Bar( int x1, int y1, int x2, int y2, Pixel color );
+
+	template<Arithmatic T>
+	void Box( T x1, T y1, T x2, T y2, Pixel color ) {
+		vec2<float> pos(x1, y1);
+		vec2<float> pos2(x2, y2);
+		Line(pos.x, pos.y, pos2.x, pos.x, color);
+		Line(pos2.x, pos.y, pos2.x, pos2.y, color);
+		Line(pos.x, pos2.y, pos2.x, pos2.y, color);
+		Line(pos.x, pos.y, pos.x, pos2.y, color);
+	}
+
+	template<Arithmatic T>
+	void Bar(T x1, T y1, T x2, T y2, Pixel color) {
+		BoundsCheckResult result = checkBounds(
+			static_cast<int>(x1),
+			static_cast<int>(y1),
+			static_cast<int>(x2),
+			static_cast<int>(y2),
+			GetWidth(),
+			GetHeight()
+		);
+
+		if (result.dontPrint) return;
+
+		Pixel* a = result.x + result.y * m_Pitch + m_Buffer;
+		for (int y = result.y; y <= result.y2; y++)
+		{
+			for (int x = 0; x <= (result.x2 - result.x); x++) a[x] = color;
+			a += m_Pitch;
+		}
+	}
+
 	void Resize( Surface* a_Orig );
 
 	BoundsCheckResult checkBounds(int x1, int y1, int x2, int y2, int targetWidth, int targetHeight);
