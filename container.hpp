@@ -19,6 +19,9 @@ public:
 		Justification justification
 	);
 
+	// containers also need to update the positions of their children
+	void setPos(vec2<float>& pos) override;
+
 	virtual void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	virtual void process(float deltaTime) override;
 

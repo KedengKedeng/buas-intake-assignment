@@ -11,7 +11,7 @@ public:
 
 	int64_t getId() { return id_; }
 
-	void setPos(vec2<float>& pos) { pos_ = pos; }
+	virtual void setPos(vec2<float>& pos) { pos_ = pos; }
 	vec2<float> getPos() { return pos_; }
 	void setSize(vec2<float>& size) { size_ = size; }
 	vec2<float> getSize() { return size_; }

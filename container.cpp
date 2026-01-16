@@ -8,6 +8,14 @@ Container::Container(
 )
 	: Object(id, pos, size), justification_(justification) { };
 
+void Container::setPos(vec2<float>& pos) {
+	vec2 delta = pos_ - pos;
+	for (auto& it = begin(); it != end(); it++)
+		it->second->setPos(it->second->getPos() + delta);
+	pos_ = pos;
+	spreadObjects();
+}
+
 void Container::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	for (auto& object : objects_)
 		object.second->draw(surface, offset);
@@ -45,12 +53,15 @@ void Container::spreadObjects() {
 	// they take up combined compared to the container size
 	vec2<float> gap = (size_ - combinedSize) / static_cast<float>(objects_.size());
 
+	printf("-----------\n");
+
 	// spread objects by gap
 	vec2<float> currentPos = pos_;
 	for (auto& object : objects_) {
 		object.second->setPos(currentPos);
 
 		vec2<float> objectSize = object.second->getSize();
+		printf("%.f, %.f, %.f\n", currentPos.x, currentPos.y, objectSize.y);
 		if (justification_ == Justification::VERTICAL) currentPos.y += objectSize.y + gap.y;
 		if (justification_ == Justification::HORIZONTAL) currentPos.x += objectSize.x + gap.x;
 	}
