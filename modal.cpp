@@ -10,13 +10,7 @@ Modal::Modal(int64_t id, vec2<float>& pos, vec2<float>& size, std::function<void
 }
 
 void Modal::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	surface->Bar(
-		pos_.x,
-		pos_.y,
-		pos_.x + size_.x,
-		pos_.y + size_.y,
-		0xffffff
-	);
+	surface->Bar(pos_, pos_ + size_, 0xffffff);
 
 	exitButton.draw(surface, offset);
 	innerContainer_.draw(surface, offset);

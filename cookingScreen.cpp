@@ -11,12 +11,15 @@
 CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<ChangeScreenCommand>(Screens::Play); });
 
+	int surfaceWidth = surface->GetWidth();
+	int surfaceHeight = surface->GetHeight();
+
 	std::shared_ptr<CookingCauldron> cauldron = std::make_shared<CookingCauldron>(getRandomNum(), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron")));
 
 	// get a reference of the cauldron for operations on it specifically later
 	cauldronId = cauldron->getId();
 
-	cauldron->setPos(vec2<float>(surface->GetWidth() / 2 - 100, surface->GetHeight()) - cauldron->getPos());
+	cauldron->setPos(vec2<float>(surfaceWidth / 2 - 100, surfaceHeight) - cauldron->getPos());
 	auto cauldronSize = cauldron->getSize() + vec2(220, 80);
 
 	// cauldron collision walls
@@ -27,9 +30,9 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + vec2(80.0f, cauldronSize.y - 100), vec2(cauldronSize.x - 140, 1.0f)));
 
 	// screen edge collision walls
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2(0.0f), vec2<float>(1, surface->GetHeight())));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(surface->GetWidth(), 0), vec2<float>(1, surface->GetHeight())));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, surface->GetHeight()), vec2<float>(surface->GetWidth(), 1)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2(0.0f), vec2<float>(1, surfaceHeight)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(surfaceWidth, 0), vec2<float>(1, surfaceHeight)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, surfaceHeight), vec2<float>(surfaceWidth, 1)));
 
 	// insert main interactable objects
 	insertObject(std::make_shared<Spoon>(0, cauldron->getPos() + vec2(cauldronSize.x, 0.0f) / 2));

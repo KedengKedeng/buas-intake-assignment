@@ -5,6 +5,7 @@
 #include <string>
 #include "numbers.hpp"
 #include "vec2.hpp"
+#include "template.h"
 
 namespace Tmpl8 {
 
@@ -69,6 +70,8 @@ struct BoundsCheckResult {
 	bool dontPrint;
 };
 
+int LineOutCode(float x, float y, float xMin, float xMax, float yMin, float yMax);
+
 class Surface
 {
 	enum { OWNER = 1 };
@@ -89,7 +92,50 @@ public:
 	// Special operations
 	void Clear( Pixel a_Color );
 
-	void Line( float x1, float y1, float x2, float y2, Pixel color );
+	template<Arithmatic T>
+	void Line(vec2<T>& pos_, vec2<T>& pos2_, Pixel color) {
+		// clip (Cohen-Sutherland, https://en.wikipedia.org/wiki/Cohen%E2%80%93Sutherland_algorithm)
+		// make sure given positions are converted to floats
+		vec2<float> pos(pos_.x, pos_.y);
+		vec2<float> pos2(pos2_.x, pos2_.y);
+
+		const float xmin = 0, ymin = 0, xmax = ScreenWidth - 1, ymax = ScreenHeight - 1;
+		int c0 = LineOutCode(pos.x, pos.y, xmin, xmax, ymin, ymax);
+		int c1 = LineOutCode(pos2.x, pos2.y, xmin, xmax, ymin, ymax);
+		bool accept = false;
+		while (1)
+		{
+			if (!(c0 | c1)) { 
+				accept = true; 
+				break; 
+			}
+			else if (c0 & c1) break; 
+			else {
+				float x = 1.0f, y = 1.0f;
+				const int co = c0 ? c0 : c1;
+				if (co & 8) x = pos.x + (pos2.x - pos.x) * (ymax - pos.y) / (pos2.y - pos.y), y = ymax;
+				else if (co & 4) x = pos.x + (pos2.x - pos.x) * (ymin - pos.y) / (pos2.y - pos.y), y = ymin;
+				else if (co & 2) y = pos.y + (pos2.y - pos.y) * (xmax - pos.x) / (pos2.x - pos.x), x = xmax;
+				else if (co & 1) y = pos.y + (pos2.y - pos.y) * (xmin - pos.x) / (pos2.x - pos.x), x = xmin;
+				if (co == c0) pos.x = x, pos.y = y, c0 = LineOutCode(pos.x, pos.y, xmin, xmax, ymin, ymax);
+				else pos2.x = x, pos2.y = y, c1 = LineOutCode(pos2.x, pos2.y, xmin, xmax, ymin, ymax);
+			}
+		}
+		if (!accept) return;
+		float b = pos2.x - pos.x;
+		float h = pos2.y - pos.y;
+		float l = fabsf(b);
+		if (fabsf(h) > l) l = fabsf(h);
+		int il = static_cast<int>(l);
+		float dx = b / l;
+		float dy = h / l;
+		for (int i = 0; i <= il; i++)
+		{
+			*(m_Buffer + static_cast<int>(pos.x) + static_cast<int>(pos.y) * m_Pitch) = color;
+			pos.x += dx, pos.y += dy;
+		}
+	}
+
 	void Plot( int x, int y, Pixel c );
 	void LoadImage( const char* a_File );
 	void CopyTo( Surface* a_Dst, int a_X, int a_Y );
@@ -97,22 +143,20 @@ public:
 	void ScaleColor( unsigned int a_Scale );
 
 	template<Arithmatic T>
-	void Box( T x1, T y1, T x2, T y2, Pixel color ) {
-		vec2<float> pos(x1, y1);
-		vec2<float> pos2(x2, y2);
-		Line(pos.x, pos.y, pos2.x, pos.x, color);
-		Line(pos2.x, pos.y, pos2.x, pos2.y, color);
-		Line(pos.x, pos2.y, pos2.x, pos2.y, color);
-		Line(pos.x, pos.y, pos.x, pos2.y, color);
+	void Box( vec2<T>& pos, vec2<T>& pos2, Pixel color ) {
+		Line(pos, vec2(pos2.x, pos.y), color);
+		Line(vec2(pos2.x, pos.y), pos2, color);
+		Line(vec2(pos.x, pos2.y), pos2, color);
+		Line(pos, vec2(pos.x, pos2.y), color);
 	}
 
 	template<Arithmatic T>
-	void Bar(T x1, T y1, T x2, T y2, Pixel color) {
+	void Bar(vec2<T>& pos, vec2<T>& pos2, Pixel color) {
 		BoundsCheckResult result = checkBounds(
-			static_cast<int>(x1),
-			static_cast<int>(y1),
-			static_cast<int>(x2),
-			static_cast<int>(y2),
+			static_cast<int>(pos.x),
+			static_cast<int>(pos.y),
+			static_cast<int>(pos2.x),
+			static_cast<int>(pos2.y),
 			GetWidth(),
 			GetHeight()
 		);

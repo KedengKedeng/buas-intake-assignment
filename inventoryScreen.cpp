@@ -65,8 +65,8 @@ void InventoryScreen::process(float deltaTime) {
 						if (!containerBounds.isInBounds(pos)) {
 							auto item = slot->getItem();
 							if (item == nullptr) return;
-							inventory_->remove(item->name);
 							pushToScreenQueue.emit(Screens::Play, [item]() { itemDroppedFromInventory.emit(item); });
+							inventory_->remove(item->name);
 						}
 					}
 				));

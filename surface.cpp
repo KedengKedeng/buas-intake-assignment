@@ -2,7 +2,6 @@
 // IGAD/BUAS(NHTV)/UU - Jacco Bikker - 2006-2020
 
 #include "surface.h"
-#include "template.h"
 #include <cassert>
 #include <cstring>
 #include "FreeImage.h"
@@ -129,42 +128,6 @@ void Surface::Resize( Surface* a_Orig )
 int LineOutCode(float x, float y, float xMin, float xMax, float yMin, float yMax)
 {
 	return (((x) < xMin) ? 1 : (((x) > xMax) ? 2 : 0)) + (((y) < yMin) ? 4 : (((y) > yMax) ? 8 : 0));
-}
-	
-void Surface::Line( float x1, float y1, float x2, float y2, Pixel c )
-{
-	// clip (Cohen-Sutherland, https://en.wikipedia.org/wiki/Cohen%E2%80%93Sutherland_algorithm)
-	const float xmin = 0, ymin = 0, xmax = ScreenWidth - 1, ymax = ScreenHeight - 1;
-	int c0 = LineOutCode( x1, y1, xmin, xmax, ymin, ymax ), c1 = LineOutCode( x2, y2, xmin, xmax, ymin, ymax);
-	bool accept = false;
-	while (1) 
-	{
-		if (!(c0 | c1)) { accept = true; break; } 
-		else if (c0 & c1) break; else 
-		{
-            float x = 1.0f, y = 1.0f;
-			const int co = c0 ? c0 : c1;
-			if (co & 8) x = x1 + (x2 - x1) * (ymax - y1) / (y2 - y1), y = ymax;
-			else if (co & 4) x = x1 + (x2 - x1) * (ymin - y1) / (y2 - y1), y = ymin;
-			else if (co & 2) y = y1 + (y2 - y1) * (xmax - x1) / (x2 - x1), x = xmax;
-			else if (co & 1) y = y1 + (y2 - y1) * (xmin - x1) / (x2 - x1), x = xmin;
-			if (co == c0) x1 = x, y1 = y, c0 = LineOutCode( x1, y1, xmin, xmax, ymin, ymax);
-			else x2 = x, y2 = y, c1 = LineOutCode( x2, y2, xmin, xmax, ymin, ymax);
-		}
-	}
-	if (!accept) return;
-	float b = x2 - x1;
-	float h = y2 - y1;
-	float l = fabsf( b );
-	if (fabsf ( h ) > l) l = fabsf( h );
-	int il = (int)l;
-	float dx = b / (float)l;
-	float dy = h / (float)l;
-	for ( int i = 0; i <= il; i++ )
-	{
-		*(m_Buffer + (int)x1 + (int)y1 * m_Pitch) = c;
-		x1 += dx, y1 += dy;
-	}
 }
 
 void Surface::Plot( int x, int y, Pixel c )

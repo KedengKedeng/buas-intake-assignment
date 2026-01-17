@@ -26,13 +26,7 @@ InventorySlot::InventorySlot(int64_t id, vec2<float>& pos, vec2<float>& size, st
 void InventorySlot::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	vec2<float> pos = dragging ? dragPos : pos_;
 
-	surface->Box(
-		pos_.x,
-		pos_.y,
-		pos_.x + size_.x,
-		pos_.y + size_.y,
-		0x000000
-	);
+	surface->Box(pos_, pos_ + size_, 0x000000);
 
 	if (item_ != nullptr) {
 		item_->sprite.drawScaled(
