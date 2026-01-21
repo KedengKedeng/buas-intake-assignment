@@ -1,6 +1,7 @@
 #include "screen.hpp"
 #include "collider.hpp"
 #include "interactable.hpp"
+#include "objectSignals.hpp"
 
 void Screen::process(float deltaTime) {
 	Container::process(deltaTime);
@@ -10,6 +11,24 @@ void Screen::process(float deltaTime) {
 		auto func = queue.front();
 		func();
 	}
+}
+
+
+void Screen::deleteObject(int64_t id) {
+	objects_.erase(id);
+}
+
+void Screen::subscribe() {
+	Container::subscribe();
+
+	unsubscribers.push_back(deleteObjectSignal.subscribe([this](int64_t id) {
+		queue.push([this, id]() {deleteObject(id); });
+	}));
+
+	unsubscribers.push_back(createObjectSignal.subscribe([this](std::shared_ptr<Object> object) {
+		insertObject(object);
+		object->subscribe();
+	}));
 }
 
 void Screen::unsubscribe() {
@@ -89,5 +108,5 @@ void Screen::interactionCheck(Object& object) {
 			alreadyInteracting.erase(it->first);
 			interacted->onInteractionEnd.emit();
 		}
-	}
+	}\
 }

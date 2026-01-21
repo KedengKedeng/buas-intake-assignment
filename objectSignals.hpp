@@ -1,8 +1,8 @@
 #pragma once
 #include "signal.hpp"
-#include "template.h"
 #include "object.hpp"
 
+extern Signal<std::shared_ptr<Object>> createObjectSignal;
 extern Signal<int64_t> deleteObjectSignal;
 
 extern Signal<> cauldronInteracted;

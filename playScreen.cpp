@@ -4,7 +4,6 @@
 #include "worldCauldron.hpp"
 #include "itemObject.hpp"
 #include "itemSignals.hpp"
-#include "interactionSignal.hpp"
 #include "itemsRepository.hpp"
 #include "keyboardSignals.hpp"
 #include "screenSignals.hpp"
@@ -13,6 +12,7 @@
 #include "interactionCommand.hpp"
 #include "screenCommands.hpp"
 #include "spriteRepository.hpp"
+#include "plotObject.hpp"
 
 const float floorScale = 1.5f;
 const float tileSize = 32 * floorScale;
@@ -38,6 +38,7 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 	vec2 plotSpace(0.0f, (PLOT_SIZE.y + PLOT_MARGINS.y) * ceil(plots.size() / 2.0f));
 	vec2 roomSize(tileSize * 16, tileSize * 10);
 
+	createPlotObjects(husbandry, -plotSpace);
 	createWorldBounds(-plotSpace, roomSize + plotSpace);
 
 	// interactable objects
@@ -48,8 +49,20 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 	floorTiles_.setSquare(Rect2<int>(-plotSpace.x, -plotSpace.y, roomSize.x + plotSpace.x, roomSize.y + plotSpace.y) / tileSize, tileTypes);
 }
 
-PlayScreen::~PlayScreen() {
-	unsubscribe();
+void PlayScreen::createPlotObjects(std::shared_ptr<Husbandry> husbandry, const vec2<float>& pos) {
+	auto& plots = husbandry->getPlots();
+	int plotsPerRow = static_cast<int>(ceil(plots.size() / 2.0f));
+	vec2 currentPos = pos;
+	int currentPlot = 0;
+	for (auto& plot : plots) {
+		insertObject(std::make_shared<PlotObject>(getRandomNum(), currentPos, PLOT_SIZE, plot));
+		if (currentPlot == plotsPerRow) {
+			currentPos = pos + PLOT_SIZE;
+			currentPos.x += PLOT_MARGINS.x;
+		}
+		currentPos.y -= PLOT_SIZE.y - PLOT_MARGINS.y; 
+		currentPlot++;
+	}
 }
 
 void PlayScreen::createWorldBounds(const vec2<float>& pos, const vec2<float>& size) {
@@ -57,10 +70,6 @@ void PlayScreen::createWorldBounds(const vec2<float>& pos, const vec2<float>& si
 	insertObject(std::make_shared<Wall>(getRandomNum(), pos, vec2(size.x, 1.0f)));
 	insertObject(std::make_shared<Wall>(getRandomNum(), vec2(pos.x, pos.y + size.y), vec2(size.x, 1.0f)));
 	insertObject(std::make_shared<Wall>(getRandomNum(), vec2(pos.x + size.x, pos.y), vec2(1.0f, size.y)));
-}
-
-void PlayScreen::deleteObject(int64_t id) {
-	objects_.erase(id);
 }
 
 void PlayScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
@@ -81,10 +90,6 @@ void PlayScreen::subscribe() {
 	Screen::subscribe();
 
 	player_.subscribe();
-
-	unsubscribers.push_back(deleteObjectSignal.subscribe([this](int64_t id) {
-		queue.push([this, id]() {deleteObject(id); });
-	}));
 
 	unsubscribers.push_back(itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
 		inventory_->add(item->name);

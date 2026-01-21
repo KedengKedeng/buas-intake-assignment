@@ -31,7 +31,7 @@ namespace Tmpl8
 
 		std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
 		std::shared_ptr<Husbandry> husbandry = std::make_shared<Husbandry>();
-		husbandry->addPlot(std::make_shared<Plot>());
+		husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository.get(std::string("testAnimal"))));
 
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
 		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry);

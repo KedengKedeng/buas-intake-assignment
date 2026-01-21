@@ -11,12 +11,12 @@ struct CreatureType {
 		const AnimatedSprite& walkLeft, 
 		const AnimatedSprite& walkRight
 	) :
-		name(std::move(name)), 
+		name(name), 
 		price(price), 
-		idleLeft(std::move(idleLeft)), 
-		idleRight(std::move(idleRight)), 
-		walkLeft(std::move(walkLeft)), 
-		walkRight(std::move(walkRight)) 
+		idleLeft(idleLeft), 
+		idleRight(idleRight), 
+		walkLeft(walkLeft), 
+		walkRight(walkRight) 
 	{ }
 
 	std::string name;

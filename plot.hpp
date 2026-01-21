@@ -4,6 +4,7 @@
 class Plot {
 public:
 	Plot() {};
+	Plot(std::shared_ptr<CreatureType> type) : creatureType_(type) {}
 
 	std::shared_ptr<CreatureType> getType() { return creatureType_; }
 	void setCreatureType(std::shared_ptr<CreatureType> creatureType) { creatureType_ = creatureType; }
@@ -18,7 +19,7 @@ public:
 	int getLevel() { return level_; }
 private:
 	bool bought_ = false;
-	std::shared_ptr<CreatureType> creatureType_ = nullptr;
+	std::shared_ptr<CreatureType> creatureType_;
 	int amount_ = 0;
 	int level_ = 0;
 };

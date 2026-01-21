@@ -6,7 +6,10 @@ class Interactable {
 public:
 	Interactable () : interactionBox_(), isInteractor_(false) {}
 	Interactable(const vec2<float>& pos, const vec2<float>& size, bool isInteractor) :
-		interactionBox_(pos, size), isInteractor_(isInteractor) {}
+		interactionBox_(pos, size), isInteractor_(isInteractor) {
+		onInteractionStart.subscribe([this]() {isInteracting = true; });
+		onInteractionEnd.subscribe([this]() {isInteracting = false; });
+	}
 
 	BoundingBox getInteractableBounds() { return interactionBox_; }
 	BoundingBox getInteractableBoundsAt(vec2<float>& pos) { return interactionBox_.at(pos); }
@@ -21,4 +24,6 @@ public:
 protected:
 	bool isInteractor_;
 	BoundingBox interactionBox_;
+
+	bool isInteracting = false;
 };

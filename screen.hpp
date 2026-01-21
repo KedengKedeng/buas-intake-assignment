@@ -15,6 +15,9 @@ public:
 
 	virtual void process(float deltaTime) override;
 
+	void deleteObject(int64_t id);
+
+	virtual void subscribe() override;
 	virtual void unsubscribe() override;
 
 	void pushToQueue(std::function<void()> func) { queue.push(func); }

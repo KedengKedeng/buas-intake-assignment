@@ -1,5 +1,6 @@
 #include "objectSignals.hpp"
 
+Signal<std::shared_ptr<Object>> createObjectSignal{};
 Signal<int64_t> deleteObjectSignal{};
 
 Signal<> cauldronInteracted{};

@@ -15,11 +15,9 @@ enum class FloorTiles {
 class PlayScreen : public Screen {
 public:
 	PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry);
-	~PlayScreen();
 
+	void createPlotObjects(std::shared_ptr<Husbandry> husbandry, const vec2<float>& pos);
 	void createWorldBounds(const vec2<float>& pos, const vec2<float>& size);
-
-	void deleteObject(int64_t id);
 
 	void process(float deltaTime) override;
 	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;

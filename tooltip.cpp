@@ -1,6 +1,6 @@
 #include "tooltip.hpp"
 
-Tooltip::Tooltip(int64_t id, vec2<float>& pos, std::string& text) :
+Tooltip::Tooltip(int64_t id, const vec2<float>& pos, std::string& text) :
 	Object(id, pos, vec2(0.0f)),
 	text_(Text(text, 1, 0x00))
 {

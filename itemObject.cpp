@@ -9,10 +9,6 @@ ItemObject::ItemObject(int64_t id, vec2<float>& pos, std::shared_ptr<Item> item)
 	Interactable(vec2(-10.0f), vec2(item->sprite.getWidth(), item->sprite.getHeight()) + 10, false) 
 {}
 
-ItemObject::~ItemObject() {
-	interactionSignalUnsub();
-}
-
 void ItemObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	item_->sprite.draw(surface, pos_.x + offset.x, pos_.y + offset.y + drawOffset);
 
@@ -23,14 +19,9 @@ void ItemObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 };
 
 void ItemObject::subscribe() {
-	unsubscribers.push_back(onInteractionStart.subscribe([this]() {
-		interactionSignalUnsub = interactionSignal.subscribe([this]() {
-			itemPickedUp.emit(item_);
-			deleteObjectSignal.emit(getId());
-		});
-	}));
-
-	unsubscribers.push_back(onInteractionEnd.subscribe([this]() {
-		interactionSignalUnsub();
+	unsubscribers.push_back(interactionSignal.subscribe([this]() {
+		if (!isInteracting) return;
+		itemPickedUp.emit(item_);
+		deleteObjectSignal.emit(getId());
 	}));
 }

@@ -240,6 +240,7 @@
     <ClCompile Include="modal.cpp" />
     <ClCompile Include="mouseMoveHandler.cpp" />
     <ClCompile Include="objectList.cpp" />
+    <ClCompile Include="plotObject.cpp" />
     <ClCompile Include="spoon.cpp" />
     <ClCompile Include="spritesheet.cpp" />
     <ClCompile Include="spriteStack.cpp" />
@@ -295,6 +296,7 @@
     <ClInclude Include="numbers.hpp" />
     <ClInclude Include="objectList.hpp" />
     <ClInclude Include="plot.hpp" />
+    <ClInclude Include="plotObject.hpp" />
     <ClInclude Include="rect2.hpp" />
     <ClInclude Include="screenCommands.hpp" />
     <ClInclude Include="container.hpp" />

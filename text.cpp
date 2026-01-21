@@ -24,23 +24,29 @@ void Text::draw(Tmpl8::Surface* surface, vec2<float>& pos) {
 		fontInitialized = true;
 	}
 
+	int width = getWidth();
+	int height = getHeight();
+
+	auto result = surface->checkBounds(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(pos.x) + width, static_cast<int>(pos.y) + height, surface->GetWidth(), surface->GetHeight());
+	if (result.dontPrint) return;
+
 	int pitch = surface->GetPitch();
 
-	Tmpl8::Pixel* pixel = surface->GetBuffer() + static_cast<int>(pos.x) + static_cast<int>(pos.y) * pitch;
-	for (auto& text = text_.begin(); text != text_.end(); text++, pixel += 6 * fontSize_ * pitch) {
+	Tmpl8::Pixel* pixel = surface->GetBuffer() + result.x + result.y * pitch;
+	for (auto& text : text_) {
 		// make sure smaller texts center around the longest line
-		int offset = (getWidth() - getLineWidth(*text)) / 2;
+		int offset = (width - getLineWidth(text)) / 2;
 		Tmpl8::Pixel* columnPixel = pixel + offset;
 
-		for (int i = 0; i < static_cast<int>(text->size()); i++, columnPixel += 6 * fontSize_)
+		for (int i = 0; i < static_cast<int>(text.size()); i++, columnPixel += 6 * fontSize_)
 		{
-			char currentChar = (*text)[i];
+			char currentChar = text[i];
 
 			long glyphIndex = 0;
 			// map lower case to upper case letters
 			if ((currentChar >= 'A') && (currentChar <= 'Z')) glyphIndex = s_Transl[(unsigned short)(currentChar - ('A' - 'a'))];
 			else glyphIndex = s_Transl[(unsigned short)currentChar];
-			char* glyphBitmap = (char*)s_Font[glyphIndex];
+			char* glyphBitmap = reinterpret_cast<char*>(s_Font[glyphIndex]);
 
 			Tmpl8::Pixel* newPixel = columnPixel;
 
@@ -62,6 +68,7 @@ void Text::draw(Tmpl8::Surface* surface, vec2<float>& pos) {
 				glyphBitmap += 5;
 			}
 		}
+		pixel += 6 * fontSize_ * pitch;
 	}
 }
 

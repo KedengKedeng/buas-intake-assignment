@@ -6,7 +6,6 @@
 class ItemObject : public Object, public Interactable {
 public:
 	ItemObject(int64_t id, vec2<float>& pos, std::shared_ptr<Item> item);
-	~ItemObject();
 
 	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	void process(float deltaTime) override {};
@@ -20,6 +19,4 @@ private:
 	float minDrawOffset = 0;
 	float maxDrawOffset = 20;
 	float drawOffsetStep = 0.5f;
-
-	std::function<void()> interactionSignalUnsub = []() {};
 };
