@@ -36,8 +36,8 @@ public:
 protected:
 	float getTextureWidth() { return sprites_.getWidth(); }
 	float getTextureHeight() { return sprites_.getHeight(); }
-private:
 	vec2<float> velocity = { 6, 6 };
+private:
 	vec2<int8_t> delta_ = { 0, 0 };
 
 	LookingDirections lookingDirection_ = LookingDirections::LEFT;

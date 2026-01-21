@@ -19,7 +19,7 @@ PlotObject::~PlotObject() {
 
 void PlotObject::addAnimal() {
 	int64_t id = getRandomNum();
-	createObjectSignal.emit(std::make_shared<Creature>(id, pos_, plot_->getType()));
+	createObjectSignal.emit(std::make_shared<Creature>(id, pos_ + 1, plot_->getType()));
 	animalIds.push_back(id);
 }
 

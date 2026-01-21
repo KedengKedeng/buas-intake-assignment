@@ -1,4 +1,5 @@
 #include "creature.hpp"
+#include "random.hpp"
 
 Creature::Creature(int64_t id, vec2<float>& pos, std::shared_ptr<CreatureType> creatureType) :
 	CharacterObject(
@@ -10,4 +11,42 @@ Creature::Creature(int64_t id, vec2<float>& pos, std::shared_ptr<CreatureType> c
 		creatureType->walkLeft,
 		creatureType->walkRight,
 		false
-	), creatureType_(creatureType) {}
+	), creatureType_(creatureType) 
+{
+	velocity = { 3.0f, 3.0f };
+}
+
+void Creature::process(float deltaTime) {
+	CharacterObject::process(deltaTime);
+
+	if (timePassed > timeUntilStateChange) {
+		addDelta(-getDelta());
+		changeState();
+	}
+
+	timePassed += deltaTime;
+}
+
+// let creatures just wander around randomly
+void Creature::changeState() {
+	CreatureState newType = static_cast<CreatureState>(getRandomNum() % static_cast<int>(CreatureState::IDLE));
+	timePassed = 0;
+	timeUntilStateChange = static_cast<float>(getRandomNum() % 1200 + 300);
+
+	switch (newType) {
+		case CreatureState::WALK_LEFT:
+			addDelta(vec2<int8_t>(-1, 0));
+			break;
+		case CreatureState::WALK_RIGHT:
+			addDelta(vec2<int8_t>(1, 0));
+			break;
+		case CreatureState::WALK_UP:
+			addDelta(vec2<int8_t>(0, -1));
+			break;
+		case CreatureState::WALK_DOWN:
+			addDelta(vec2<int8_t>(0, 1));
+			break;
+	default:
+		break;
+	}
+}
