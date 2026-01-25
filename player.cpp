@@ -20,7 +20,7 @@ Player::Player(int64_t id, vec2<float>& pos) :
 		AnimatedSprite(spriteRepository.getSheet("playerwalkright"), playerSpriteFrameRate, playerSpriteScale),
 		true
 	) {
-	collidingBox_.setSize(vec2(getTextureWidth(), getTextureHeight()));
+	collidingBoxes_.push_back(BoundingBox(vec2(0.0f), vec2(getTextureWidth(), getTextureHeight())));
 	interactionBox_.setPos(vec2(-playerInteractionOffset));
 	interactionBox_.setSize(vec2(getTextureWidth() + playerInteractionOffset * 2, getTextureHeight() + playerInteractionOffset * 2));
 };

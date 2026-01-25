@@ -12,13 +12,12 @@ Spoon::Spoon(int64_t id, vec2<float>& pos) :
 	mouseMoveHandler(), 
 	sprite_(spriteRepository.get("spoon", 0.4)) 
 {
-	collidingBox_.setPos(vec2(20.0f));
-	collidingBox_.setSize(vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
+	collidingBoxes_.push_back(BoundingBox(vec2(20.0f), vec2(sprite_.getWidth(), sprite_.getHeight()) - 40));
 	interactionBox_.setPos(vec2(20.0f));
 	interactionBox_.setSize(vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
 
 	mouseMoveHandler.setInteractionCheck([this](vec2<float>& pos) {
-		return collidingBox_.at(pos_).isInBounds(pos);
+		return interactionBox_.at(pos_).isInBounds(pos);
 	});
 
 	mouseMoveHandler.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {

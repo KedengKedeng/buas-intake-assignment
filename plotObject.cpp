@@ -7,9 +7,15 @@
 PlotObject::PlotObject(int64_t id, const vec2<float>& pos, const vec2<float>& size, std::shared_ptr<Plot> plot) :
 	Object(id, pos, size),
 	Interactable(vec2(0.0f), size, false),
+	Collider(),
 	tooltip_(Tooltip(0, pos, std::string("buy"))),
 	plot_(plot)
 {
+	collidingBoxes_.push_back(BoundingBox(vec2(0.0f), vec2(1.0f, size.y)));
+	collidingBoxes_.push_back(BoundingBox(vec2(0.0f), vec2(size.x, 1.0f)));
+	collidingBoxes_.push_back(BoundingBox(vec2(0.0f, size.y - 1), vec2(size.x, 1.0f)));
+	collidingBoxes_.push_back(BoundingBox(vec2(size.x - 1, 0.0f), vec2(1.0f, size.y)));
+
 	tooltip_.setPos(pos_ + (size_ - tooltip_.getSize()) / 2);
 }
 

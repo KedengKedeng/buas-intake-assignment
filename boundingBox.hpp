@@ -2,9 +2,9 @@
 #include "vec2.hpp"
 
 struct CollisionResult {
-	float normalX;
-	float normalY;
 	float time;
+	int8_t normalX;
+	int8_t normalY;
 	bool collision;
 };
 

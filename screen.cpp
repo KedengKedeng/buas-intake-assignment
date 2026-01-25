@@ -43,8 +43,6 @@ vec2<float> Screen::objectsCollideWithBounds(Object& object, vec2<float>& veloci
 	Collider* collider = dynamic_cast<Collider*>(&object);
 	if (collider == nullptr) return vec2(0.0f);
 
-	BoundingBox bounds = collider->getColliderBoundsAt(object.getPos());
-
 	auto collisionVec = velocity;
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
@@ -56,7 +54,7 @@ vec2<float> Screen::objectsCollideWithBounds(Object& object, vec2<float>& veloci
 		// it would never be able to move if we dont check for this.
 		if (object.getId() == object2->getId() || collider2 == nullptr) continue;
 
-		CollisionResult result = bounds.swept(collider2->getColliderBoundsAt(object2->getPos()), velocity);
+		CollisionResult result = collider->swept(*(collider2.get()), velocity, object.getPos(), object2->getPos());
 		if (result.collision) {
 			vec2 allowedMovement(0.0f);
 

@@ -74,7 +74,8 @@ void PlayScreen::createWorldBounds(const vec2<float>& pos, const vec2<float>& si
 
 void PlayScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	surface->Clear(0x00);
-	auto drawOffset = player_.getPos() - (vec2(surface->GetWidth(), surface->GetHeight()) - player_.getColliderSize()) / 2;
+	auto playerSize = player_.getColliderSize();
+	auto drawOffset = player_.getPos() - (vec2(surface->GetWidth(), surface->GetHeight()) - vec2(playerSize.width, playerSize.height)) / 2;
 	floorTiles_.draw(surface, -drawOffset);
 	Screen::draw(surface, -drawOffset);
 	player_.draw(surface, -drawOffset);

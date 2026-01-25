@@ -1,20 +1,26 @@
 #pragma once
 #include "boundingBox.hpp"
 #include "signal.hpp"
+#include "rect2.hpp"
 
 class Collider {
 public:
-	Collider() : collidingBox_() {}
-	Collider(const vec2<float>& pos, const vec2<float>& size): collidingBox_(pos, size) {}
+	Collider() : collidingBoxes_({}) {}
+	Collider(const vec2<float>& pos, const vec2<float>& size) : collidingBoxes_({ BoundingBox(pos, size) }) {}
+	Collider(const std::vector<BoundingBox>& boxes) : collidingBoxes_(std::move(boxes)) {}
 
-	BoundingBox getColliderBounds() { return collidingBox_; }
-	BoundingBox getColliderBoundsAt(vec2<float>& pos) { return collidingBox_.at(pos); }
+	std::vector<BoundingBox>& getColliderBounds() { return collidingBoxes_; }
 
-	vec2<float> getColliderPos() { return collidingBox_.getPos(); }
-	vec2<float> getColliderSize() { return collidingBox_.getSize(); }
+	Rect2<float> getColliderPos();
+	Rect2<float> getColliderSize();
+
+	CollisionResult swept(Collider& other, vec2<float>& velocity, vec2<float>& at, vec2<float>& otherAt);
+
+	std::vector<BoundingBox>::iterator begin() { return collidingBoxes_.begin(); }
+	std::vector<BoundingBox>::iterator end() { return collidingBoxes_.end(); }
 
 	Signal<> onCollisionStart{};
 	Signal<> onCollisionEnd{};
 protected:
-	BoundingBox collidingBox_;
+	std::vector<BoundingBox> collidingBoxes_;
 };

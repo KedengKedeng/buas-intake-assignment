@@ -3,8 +3,9 @@
 #include "object.hpp"
 #include "interactable.hpp"
 #include "tooltip.hpp"
+#include "collider.hpp"
 
-class PlotObject : public Object, public Interactable {
+class PlotObject : public Object, public Interactable, public Collider {
 public:
 	PlotObject(int64_t id, const vec2<float>& pos, const vec2<float>& size, std::shared_ptr<Plot> plot);
 	~PlotObject();

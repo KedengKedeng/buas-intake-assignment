@@ -30,7 +30,7 @@ CollisionResult BoundingBox::swept(BoundingBox& box, vec2<float>& velocity) {
     SweptAxisResult resultX = getSweptTimings(firstPos.x, secondPos.x, firstSize.x, secondSize.x, velocity.x);
     SweptAxisResult resultY = getSweptTimings(firstPos.y, secondPos.y, firstSize.y, secondSize.y, velocity.y);
 
-    if (!resultX.collision || !resultY.collision) return { false, 0, 0, 0 };
+    if (!resultX.collision || !resultY.collision) return { 0.0f, 0, 0, false };
 
     // check first possible collision time on each side
     float entryTime = std::max(resultX.timings.x, resultY.timings.x);
@@ -41,11 +41,11 @@ CollisionResult BoundingBox::swept(BoundingBox& box, vec2<float>& velocity) {
         return { false, 0, 0, 0 };
 
     // get the normal of the collision
-    float normalX = 0, normalY = 0;
-    if (resultX.timings.x > resultY.timings.x) normalX = (velocity.x > 0) ? -1.0f : 1.0f;
-    else normalY = (velocity.y > 0) ? -1.0f : 1.0f;
+    int8_t normalX = 0, normalY = 0;
+    if (resultX.timings.x > resultY.timings.x) normalX = (velocity.x > 0) ? -1 : 1;
+    else normalY = (velocity.y > 0) ? -1 : 1;
 
-    return { normalX, normalY, entryTime, true };
+    return { entryTime, normalX, normalY, true };
 }
 
 SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity) {

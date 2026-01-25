@@ -19,7 +19,7 @@ WorldCauldron::WorldCauldron(int64_t id, vec2<float>& pos, std::shared_ptr<Cauld
 		AnimatedSprite(spriteRepository.getSheet("filledburningcauldron"), cauldronSpriteFrameRate, cauldronSpriteScale)
 	}))
 {
-	collidingBox_.setSize(vec2(sprites_.getWidth(), sprites_.getHeight()));
+	collidingBoxes_.push_back(BoundingBox(vec2(0.0f), vec2(sprites_.getWidth(), sprites_.getHeight())));
 	interactionBox_.setSize(vec2(sprites_.getWidth(), sprites_.getHeight()) + 10);
 	pos_ = vec2(pos_.x - sprites_.getWidth() / 2, pos_.y - sprites_.getHeight() / 2);
 }

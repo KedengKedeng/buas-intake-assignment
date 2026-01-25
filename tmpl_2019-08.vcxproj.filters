@@ -155,6 +155,9 @@
     <ClCompile Include="plotObject.cpp">
       <Filter>gameplay\objects\world objects\husbandry</Filter>
     </ClCompile>
+    <ClCompile Include="collider.cpp">
+      <Filter>systems\collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />

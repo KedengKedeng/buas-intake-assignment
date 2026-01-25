@@ -5,7 +5,7 @@ Creature::Creature(int64_t id, vec2<float>& pos, std::shared_ptr<CreatureType> c
 	CharacterObject(
 		id, 
 		pos, 
-		vec2(0.0f),
+		vec2<float>(creatureType->idleLeft.getWidth(), creatureType->idleLeft.getHeight()),
 		creatureType->idleLeft,
 		creatureType->idleRight,
 		creatureType->walkLeft,

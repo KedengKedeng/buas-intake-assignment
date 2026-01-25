@@ -230,6 +230,7 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="cauldron.cpp" />
     <ClCompile Include="characterObject.cpp" />
+    <ClCompile Include="collider.cpp" />
     <ClCompile Include="cookingCauldron.cpp" />
     <ClCompile Include="cookingScreen.cpp" />
     <ClCompile Include="countingStorage.cpp" />
