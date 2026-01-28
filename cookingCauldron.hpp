@@ -2,11 +2,11 @@
 #include "cauldron.hpp"
 #include "animatedSprite.hpp"
 #include "interactable.hpp"
+#include "collider.hpp"
 
-class CookingCauldron : public Object, public Interactable {
+class CookingCauldron : public Object, public Interactable, public Collider {
 public:
 	CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron);
-	~CookingCauldron();
 
 	void stir(float delta) { cauldron_->stir(delta); }
 	void addTemp(float delta) { cauldron_->addTemp(delta); }

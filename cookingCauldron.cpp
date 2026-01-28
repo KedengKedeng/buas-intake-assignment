@@ -2,8 +2,8 @@
 #include "objectSignals.hpp"
 #include "spriteRepository.hpp"
 
-CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron) 
-	: Object(id, vec2(0.0f), vec2(0.0f)), 
+CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron) : 
+	Object(id, vec2(0.0f), vec2(0.0f)), 
 	cauldronFront(spriteRepository.get("cauldroncloseupfront", 0.5)), 
 	cauldronBack(spriteRepository.get("cauldroncloseupback", 0.5)),
 	cauldronInside(AnimatedSprite(spriteRepository.getSheet("cauldroncloseupfilled"), 0.005f, 0.5)),
@@ -11,15 +11,16 @@ CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron)
 	cauldron_(cauldron)
 {
 	pos_ = vec2(cauldronFront.getWidth() / 2, cauldronFront.getHeight());
+	size_ = vec2(cauldronFront.getWidth(), cauldronFront.getHeight());
+
+	collidingBoxes_.push_back(BoundingBox(vec2(80.0f), vec2(40.0f, size_.y - 80)));
+	collidingBoxes_.push_back(BoundingBox(vec2(size_.x - 100, 80.0f), vec2(40.0f, size_.y - 80)));
+	collidingBoxes_.push_back(BoundingBox(vec2(80.0f, size_.y - 100), vec2(size_.x - 140, 1.0f)));
 
 	// the asset has a lot of white space so we need to add an offset
 	// to make the bounding box feel a bit better
 	interactionBox_.setPos(vec2(120.0f, 80.0f));
 	interactionBox_.setSize(vec2(cauldronFront.getWidth() - 220, cauldronFront.getHeight() - 80));
-}
-
-CookingCauldron::~CookingCauldron() {
-
 }
 
 void CookingCauldron::drawBack(Tmpl8::Surface* surface) {

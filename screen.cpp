@@ -56,25 +56,14 @@ vec2<float> Screen::objectsCollideWithBounds(Object& object, vec2<float>& veloci
 		// it would never be able to move if we dont check for this.
 		if (object.getId() == object2->getId() || collider2 == nullptr) continue;
 
-		CollisionResult result = collider->swept(*(collider2.get()), velocity, object.getPos(), object2->getPos());
-		if (result.collision) {
-			vec2 allowedMovement(0.0f);
+		vec2 result = collider->swept(*(collider2.get()), velocity, object.getPos(), object2->getPos());
 
-			allowedMovement.x += velocity.x * result.time;
-			allowedMovement.y += velocity.y * result.time;
+		// Compare to collisions beforehand so the minimum collision in a direction is always chosen.
+		if (velocity.x >= 0.0f) collisionVec.x = std::min(collisionVec.x, result.x);
+		else collisionVec.x = std::max(collisionVec.x, result.x);
 
-			// Check for remaining times in case of diagonal movement.
-			float remainingTime = 1 - result.time;
-			if (result.normalX == 0.0f) allowedMovement.x += velocity.x * remainingTime;
-			if (result.normalY == 0.0f) allowedMovement.y += velocity.y * remainingTime;
-
-			// Compare to collisions beforehand so the minimum collision in a direction is always chosen.
-			if (velocity.x >= 0.0f) collisionVec.x = std::min(collisionVec.x, allowedMovement.x);
-			else collisionVec.x = std::max(collisionVec.x, allowedMovement.x);
-
-			if (velocity.y >= 0.0f) collisionVec.y = std::min(collisionVec.y, allowedMovement.y);
-			else collisionVec.y = std::max(collisionVec.y, allowedMovement.y);
-		}
+		if (velocity.y >= 0.0f) collisionVec.y = std::min(collisionVec.y, result.y);
+		else collisionVec.y = std::max(collisionVec.y, result.y);
 	}
 
 	return collisionVec;

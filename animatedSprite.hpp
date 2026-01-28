@@ -1,7 +1,5 @@
 #pragma once
 #include "spritesheet.hpp"
-#include "template.h"
-#include <vector>
 
 class AnimatedSprite {
 public:

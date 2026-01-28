@@ -33,15 +33,36 @@ Rect2<float> Collider::getColliderSize() {
 	return Rect2(minSize.x, minSize.y, maxSize.x, maxSize.y);
 }
 
-CollisionResult Collider::swept(Collider& other, vec2<float>& velocity, vec2<float>& at, vec2<float>& otherAt) {
-	CollisionResult result = { 1.0f, 0, 0, false };
+vec2<float> Collider::swept(Collider& other, vec2<float>& velocity, vec2<float>& at, vec2<float>& otherAt) {
+	auto collisionVec = velocity;
 
 	for (auto& box : collidingBoxes_) {
 		for (auto& otherBox = other.begin(); otherBox != other.end(); otherBox++) {
-			CollisionResult newResult = box.at(at).swept(otherBox->at(otherAt), velocity);
-			if (newResult.collision && std::min(result.time, newResult.time) == newResult.time) result = newResult;
+			CollisionResult result = box.at(at).swept(otherBox->at(otherAt), velocity);
+			if (result.collision) {
+				vec2 allowedMovement(0.0f);
+
+				allowedMovement.x += velocity.x * result.time;
+				allowedMovement.y += velocity.y * result.time;
+
+				// Check for remaining times in case of diagonal movement.
+				float remainingTime = 1 - result.time;
+				if (result.normalX == 0.0f) allowedMovement.x += velocity.x * remainingTime;
+				if (result.normalY == 0.0f) allowedMovement.y += velocity.y * remainingTime;
+
+				// Compare to collisions beforehand so the minimum collision in a direction is always chosen.
+				if (velocity.x >= 0.0f) collisionVec.x = std::min(collisionVec.x, allowedMovement.x);
+				else collisionVec.x = std::max(collisionVec.x, allowedMovement.x);
+
+				if (velocity.y >= 0.0f) collisionVec.y = std::min(collisionVec.y, allowedMovement.y);
+				else collisionVec.y = std::max(collisionVec.y, allowedMovement.y);
+			}
 		}
 	}
 
-	return result;
+	return collisionVec;
+}
+
+void Collider::drawColliders(Tmpl8::Surface* surface, const vec2<float>& offset) {
+	for (auto& box : collidingBoxes_) surface->Box(box.getPos() + offset, box.getPos() + offset + box.getSize(), 0xff0000ff);
 }

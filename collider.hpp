@@ -2,6 +2,7 @@
 #include "boundingBox.hpp"
 #include "signal.hpp"
 #include "rect2.hpp"
+#include "surface.h"
 
 class Collider {
 public:
@@ -14,10 +15,12 @@ public:
 	Rect2<float> getColliderPos();
 	Rect2<float> getColliderSize();
 
-	CollisionResult swept(Collider& other, vec2<float>& velocity, vec2<float>& at, vec2<float>& otherAt);
+	vec2<float> swept(Collider& other, vec2<float>& velocity, vec2<float>& at, vec2<float>& otherAt);
 
 	std::vector<BoundingBox>::iterator begin() { return collidingBoxes_.begin(); }
 	std::vector<BoundingBox>::iterator end() { return collidingBoxes_.end(); }
+
+	void drawColliders(Tmpl8::Surface* surface, const vec2<float>& offset);
 
 	Signal<> onCollisionStart{};
 	Signal<> onCollisionEnd{};
