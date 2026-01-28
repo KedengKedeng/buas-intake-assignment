@@ -143,9 +143,6 @@
     <ClCompile Include="collider.cpp">
       <Filter>systems\collision</Filter>
     </ClCompile>
-    <ClCompile Include="object.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
     <ClCompile Include="uiSignals.cpp">
       <Filter>gameplay\signals</Filter>
     </ClCompile>
@@ -157,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="characterObject.cpp">
       <Filter>gameplay\world objects</Filter>
+    </ClCompile>
+    <ClCompile Include="subscriptionManager.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="characterObject.hpp">
       <Filter>gameplay\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="subscriptionManager.hpp">
+      <Filter>systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

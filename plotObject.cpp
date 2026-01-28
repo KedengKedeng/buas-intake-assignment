@@ -36,15 +36,15 @@ void PlotObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 }
 
 void PlotObject::subscribe() {
-	unsubscribers.push_back(interactionSignal.subscribe([this]() {
+	addSubscription(interactionSignal.subscribe([this]() {
 		if (isInteracting) addAnimal();
 	}));
 
-	unsubscribers.push_back(onInteractionStart.subscribe([this]() {
+	addSubscription(onInteractionStart.subscribe([this]() {
 		showTooltip.emit(tooltip_);
 	}));
 
-	unsubscribers.push_back(onInteractionEnd.subscribe([this]() {
+	addSubscription(onInteractionEnd.subscribe([this]() {
 		removeTooltip.emit(tooltip_->getId());
 	}));
 }

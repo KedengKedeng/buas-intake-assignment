@@ -92,11 +92,11 @@ void PlayScreen::subscribe() {
 
 	player_.subscribe();
 
-	unsubscribers.push_back(itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
+	addSubscription(itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
 		inventory_->add(item->name);
 	}));
 
-	unsubscribers.push_back(itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {
+	addSubscription(itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {
 		// drop item on the ground if nothing is checking to pick it up
 		if (itemDropped.getListenerCount() == 0) {
 			std::shared_ptr<ItemObject> itemObject = std::make_shared<ItemObject>(getRandomNum(), player_.getPos(), item);
@@ -107,7 +107,7 @@ void PlayScreen::subscribe() {
 		else itemDropped.emit(item);
 	}));
 
-	unsubscribers.push_back(requestMove.subscribe([this](vec2<float>& oldPos, vec2<float>& velocity, Object& object) {
+	addSubscription(requestMove.subscribe([this](vec2<float>& oldPos, vec2<float>& velocity, Object& object) {
 		auto collides = objectsCollideWithBounds(object, velocity);
 
 		vec2<float> newPos = oldPos + collides;
@@ -118,11 +118,11 @@ void PlayScreen::subscribe() {
 		interactionCheck(object);
 	}));
 
-	unsubscribers.push_back(escapePressed.subscribe([]() {
+	addSubscription(escapePressed.subscribe([]() {
 		stackScreen.emit(Screens::SettingsMenu);
 	}));
 
-	unsubscribers.push_back(cauldronInteracted.subscribe([this]() {
+	addSubscription(cauldronInteracted.subscribe([this]() {
 		changeScreen.emit(Screens::Cooking);
 	}));
 }

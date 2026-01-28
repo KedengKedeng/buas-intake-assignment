@@ -2,8 +2,9 @@
 #include "object.hpp"
 #include "item.hpp"
 #include "interactable.hpp"
+#include "subscriptionManager.hpp"
 
-class ItemObject : public Object, public Interactable {
+class ItemObject : public Object, public Interactable, public SubscriptionManager {
 public:
 	ItemObject(int64_t id, vec2<float>& pos, std::shared_ptr<Item> item);
 

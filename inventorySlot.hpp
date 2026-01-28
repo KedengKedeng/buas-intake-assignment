@@ -2,9 +2,9 @@
 #include "item.hpp"
 #include "object.hpp"
 #include "mouseMoveHandler.hpp"
-#include "boundingBox.hpp"
+#include "subscriptionManager.hpp"
 
-class InventorySlot : public Object {
+class InventorySlot : public Object, public SubscriptionManager {
 public:
 	InventorySlot(
 		int64_t id,

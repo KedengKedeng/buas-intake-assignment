@@ -4,10 +4,11 @@
 #include "sprite.hpp"
 #include "collider.hpp"
 #include "interactable.hpp"
+#include "subscriptionManager.hpp"
 
 extern vec2<float> spoonVelocity;
 
-class Spoon : public Object, public Collider, public Interactable {
+class Spoon : public Object, public Collider, public Interactable, public SubscriptionManager {
 public:
 	Spoon(int64_t id, vec2<float>& pos);
 

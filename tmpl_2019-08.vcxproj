@@ -245,6 +245,7 @@
     <ClCompile Include="spritesheet.cpp" />
     <ClCompile Include="spriteStack.cpp" />
     <ClCompile Include="string.cpp" />
+    <ClCompile Include="subscriptionManager.cpp" />
     <ClCompile Include="surfaceRepository.cpp" />
     <ClCompile Include="text.cpp" />
     <ClCompile Include="tooltip.cpp" />
@@ -262,7 +263,6 @@
     <ClCompile Include="keyboardSignals.cpp" />
     <ClCompile Include="mouseInput.cpp" />
     <ClCompile Include="mouseSignals.cpp" />
-    <ClCompile Include="object.cpp" />
     <ClCompile Include="objectSignals.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSignals.cpp" />
@@ -312,6 +312,7 @@
     <ClInclude Include="spriteStack.hpp" />
     <ClInclude Include="countingStorage.hpp" />
     <ClInclude Include="string.hpp" />
+    <ClInclude Include="subscriptionManager.hpp" />
     <ClInclude Include="surfaceList.hpp" />
     <ClInclude Include="surfaceRepository.hpp" />
     <ClInclude Include="text.hpp" />

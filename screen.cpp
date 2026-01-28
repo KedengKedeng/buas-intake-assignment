@@ -22,13 +22,15 @@ void Screen::subscribe() {
 	Container::subscribe();
 	tooltipDispatcher_.subscribe();
 
-	unsubscribers.push_back(deleteObjectSignal.subscribe([this](int64_t id) {
+	addSubscription(deleteObjectSignal.subscribe([this](int64_t id) {
 		queue.push([this, id]() {deleteObject(id); });
 	}));
 
-	unsubscribers.push_back(createObjectSignal.subscribe([this](std::shared_ptr<Object> object) {
+	addSubscription(createObjectSignal.subscribe([this](std::shared_ptr<Object> object) {
 		insertObject(object);
-		object->subscribe();
+		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object);
+		if (subscriber == nullptr) return;
+		subscriber->subscribe();
 	}));
 }
 

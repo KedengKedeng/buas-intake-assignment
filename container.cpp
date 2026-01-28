@@ -33,13 +33,19 @@ void Container::insertObject(std::shared_ptr<Object> object) {
 }
 
 void Container::subscribe() {
-	for (auto& object : objects_) object.second->subscribe();
+	for (auto& object : objects_) {
+		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object.second);
+		if (subscriber != nullptr) subscriber->subscribe();
+	}
 }
 
 void Container::unsubscribe() {
-	Object::unsubscribe();
+	SubscriptionManager::unsubscribe();
 
-	for (auto& object : objects_) object.second->unsubscribe();
+	for (auto& object : objects_) {
+		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object.second);
+		if (subscriber != nullptr) subscriber->unsubscribe();
+	}
 }
 
 void Container::spreadObjects() {

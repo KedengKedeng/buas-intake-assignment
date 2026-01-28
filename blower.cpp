@@ -5,6 +5,7 @@
 Blower::Blower(int64_t id, vec2<float>& pos) :
 	Object(id, pos, vec2(0.0f)),
 	Interactable(),
+	SubscriptionManager(),
 	mouseMoveHandler(), 
 	sprites_(spriteRepository.getSheet("blower"))
 {
@@ -47,11 +48,10 @@ void Blower::process(float deltaTime) {
 }
 
 void Blower::subscribe() {
-	Object::subscribe();
 	mouseMoveHandler.subscribe();
 }
 
 void Blower::unsubscribe() {
-	Object::unsubscribe();
+	SubscriptionManager::unsubscribe();
 	mouseMoveHandler.unsubscribe();
 }

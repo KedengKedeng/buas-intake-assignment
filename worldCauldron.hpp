@@ -4,8 +4,9 @@
 #include "cauldron.hpp"
 #include "collider.hpp"
 #include "interactable.hpp"
+#include "subscriptionManager.hpp"
 
-class WorldCauldron : public Object, public Collider, public Interactable {
+class WorldCauldron : public Object, public Collider, public Interactable, public SubscriptionManager {
 public:
 	WorldCauldron(int64_t id, vec2<float>& pos, std::shared_ptr<Cauldron> cauldron);
 	~WorldCauldron();

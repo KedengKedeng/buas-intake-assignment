@@ -26,13 +26,9 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> 
 	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, surfaceHeight), vec2<float>(surfaceWidth, 1)));
 
 	// insert main interactable objects
-	insertObject(std::make_shared<Spoon>(0, cookingCauldron->getPos() + vec2(cookingCauldron->getSize().x - 20, 0.0f) / 2));
+	insertObject(std::make_shared<Spoon>(0, cookingCauldron->getPos() + vec2(cookingCauldron->getSize().x, -50.0f) / 2));
 	insertObject(std::make_shared<Blower>(1, cookingCauldron->getPos() + vec2(500, 180)));
 	insertObject(cookingCauldron);
-}
-
-CookingScreen::~CookingScreen() {
-	unsubscribe();
 }
 
 void CookingScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
@@ -47,25 +43,25 @@ void CookingScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 void CookingScreen::subscribe() {
 	Screen::subscribe();
 
-	unsubscribers.push_back(cauldronInteracted.subscribe([this]() {
+	addSubscription(cauldronInteracted.subscribe([this]() {
 		trackSpoonMovement = true;
 	}));
 
-	unsubscribers.push_back(cauldronInteractionEnded.subscribe([this]() {
+	addSubscription(cauldronInteractionEnded.subscribe([this]() {
 		trackSpoonMovement = false;
 	}));
 
-	unsubscribers.push_back(blowerInteracted.subscribe([this]() {
+	addSubscription(blowerInteracted.subscribe([this]() {
 		trackBlowerMovement = true;
 		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {onBlow(delta); });
 	}));
 
-	unsubscribers.push_back(blowerInteractionEnded.subscribe([this]() {
+	addSubscription(blowerInteractionEnded.subscribe([this]() {
 		trackBlowerMovement = false;
 		blowedSignalUnsub();
 	}));
 
-	unsubscribers.push_back(requestMove.subscribe([this](vec2<float>& oldPos, vec2<float>& velocity, Object& object) {
+	addSubscription(requestMove.subscribe([this](vec2<float>& oldPos, vec2<float>& velocity, Object& object) {
 		auto collides = objectsCollideWithBounds(object, velocity);
 
 		auto newPos = oldPos + collides;

@@ -1,5 +1,6 @@
 #include "inventorySlot.hpp"
 #include "text.hpp"
+#include "boundingBox.hpp"
 #include <format>
 
 InventorySlot::InventorySlot(int64_t id, vec2<float>& pos, vec2<float>& size, std::shared_ptr<Item> item, int amount, std::function<void(InventorySlot*, vec2<float>&)> onDragEndHandler)
@@ -42,13 +43,9 @@ void InventorySlot::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 }
 
 void InventorySlot::subscribe() {
-	Object::subscribe();
-
 	mouseMoveHandler_.subscribe();
 }
 
 void InventorySlot::unsubscribe() {
-	Object::unsubscribe();
-
 	mouseMoveHandler_.unsubscribe();
 }

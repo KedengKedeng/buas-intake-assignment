@@ -41,14 +41,12 @@ void WorldCauldron::process(float deltaTime) {
 }
 
 void WorldCauldron::subscribe() {
-	Object::subscribe();
-
-	unsubscribers.push_back(interactionSignal.subscribe([this]() {
+	addSubscription(interactionSignal.subscribe([this]() {
 		if (isInteracting) cauldronInteracted.emit();
 	}));
 
-	unsubscribers.push_back(onInteractionStart.subscribe([this]() {onInteractStart(); }));
-	unsubscribers.push_back(onInteractionEnd.subscribe([this]() {onInteractEnd(); }));
+	addSubscription(onInteractionStart.subscribe([this]() {onInteractStart(); }));
+	addSubscription(onInteractionEnd.subscribe([this]() {onInteractEnd(); }));
 }
 
 void WorldCauldron::onInteractStart() {

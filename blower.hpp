@@ -4,8 +4,9 @@
 #include "interactable.hpp"
 #include "spritesheet.hpp"
 #include "vec2.hpp"
+#include "subscriptionManager.hpp"
 
-class Blower : public Object, public Interactable {
+class Blower : public Object, public Interactable, public SubscriptionManager {
 public:
 	Blower(int64_t id, vec2<float>& pos);
 

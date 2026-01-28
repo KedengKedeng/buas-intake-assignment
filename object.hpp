@@ -1,13 +1,11 @@
 #pragma once
 #include "surface.h"
 #include "vec2.hpp"
-#include <vector>
-#include <functional>
 
 class Object {
 public:
-	Object(int64_t id, const vec2<float>& pos, const vec2<float>& size);
-	virtual ~Object();
+	Object(int64_t id, const vec2<float>& pos, const vec2<float>& size) :
+		id_(id), pos_(pos), size_(size) {};
 
 	int64_t getId() { return id_; }
 
@@ -18,13 +16,8 @@ public:
 
 	virtual void draw(Tmpl8::Surface* surface, const vec2<float>& offset) = 0;
 	virtual void process(float deltaTime) {};
-
-	virtual void subscribe() {};
-	virtual void unsubscribe();
 protected:
 	vec2<float> pos_, size_;
-
-	std::vector<std::function<void()>> unsubscribers = {};
 private:
 	int64_t id_;
 };

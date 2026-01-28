@@ -4,7 +4,7 @@
 
 class MouseMoveHandler {
 public:
-	MouseMoveHandler();
+	MouseMoveHandler() {};
 	~MouseMoveHandler();
 
 	void setOnMouseMove(std::function<void(vec2<float>&, vec2<float>&)> handler);

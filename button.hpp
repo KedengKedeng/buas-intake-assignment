@@ -3,9 +3,10 @@
 #include "object.hpp"
 #include "vec2.hpp"
 #include "text.hpp"
+#include "subscriptionManager.hpp"
 #include <functional>
 
-class Button : public Object {
+class Button : public Object, public SubscriptionManager {
 public:
 	Button(
 		int64_t id,

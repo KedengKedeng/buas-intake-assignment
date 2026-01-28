@@ -1,10 +1,12 @@
 #pragma once
 #include "cauldron.hpp"
+#include "object.hpp"
 #include "animatedSprite.hpp"
 #include "interactable.hpp"
 #include "collider.hpp"
+#include "subscriptionManager.hpp"
 
-class CookingCauldron : public Object, public Interactable, public Collider {
+class CookingCauldron : public Object, public Interactable, public Collider, public SubscriptionManager {
 public:
 	CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron);
 

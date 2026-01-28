@@ -21,16 +21,14 @@ Button::Button(
 {};
 
 void Button::subscribe() {
-	Object::subscribe();
-
-	unsubscribers.push_back(onMouseDown.subscribe([this](vec2<float>& pos) {
+	addSubscription(onMouseDown.subscribe([this](vec2<float>& pos) {
 		BoundingBox absolutePosBounds(pos_, size_);
 
 		if (absolutePosBounds.isInBounds(pos))
 			active = true;
 	}));
 
-	unsubscribers.push_back(onMouseUp.subscribe([this]() {
+	addSubscription(onMouseUp.subscribe([this]() {
 		if (active) handler_();
 
 		active = false;

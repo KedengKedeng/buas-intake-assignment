@@ -53,6 +53,6 @@ void CookingCauldron::process(float deltaTime) {
 }
 
 void CookingCauldron::subscribe() {
-	unsubscribers.push_back(onInteractionStart.subscribe([this]() {cauldronInteracted.emit(); }));
-	unsubscribers.push_back(onInteractionEnd.subscribe([this]() {printf("bguh"); cauldronInteractionEnded.emit(); }));
+	addSubscription(onInteractionStart.subscribe([this]() {cauldronInteracted.emit(); }));
+	addSubscription(onInteractionEnd.subscribe([this]() {cauldronInteractionEnded.emit(); }));
 }

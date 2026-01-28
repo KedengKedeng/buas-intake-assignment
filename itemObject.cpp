@@ -19,7 +19,7 @@ void ItemObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 };
 
 void ItemObject::subscribe() {
-	unsubscribers.push_back(interactionSignal.subscribe([this]() {
+	addSubscription(interactionSignal.subscribe([this]() {
 		if (!isInteracting) return;
 		itemPickedUp.emit(item_);
 		deleteObjectSignal.emit(getId());

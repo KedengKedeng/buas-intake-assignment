@@ -1,10 +1,6 @@
 #include "mouseMoveHandler.hpp"
 #include "mouseSignals.hpp"
 
-MouseMoveHandler::MouseMoveHandler() {
-
-}
-
 MouseMoveHandler::~MouseMoveHandler() {
 	unsubscribe();
 }
@@ -26,7 +22,6 @@ void MouseMoveHandler::setOnMouseDragStart(std::function<void()> handler) {
 void MouseMoveHandler::setOnMouseDragEnd(std::function<void()> handler) {
 	onMouseDragEndHandler_ = handler;
 }
-
 
 void MouseMoveHandler::subscribe() {
 	// dont bother subscribing if no drag handler has been set

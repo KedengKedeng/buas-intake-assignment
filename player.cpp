@@ -1,8 +1,5 @@
 #include "player.hpp"
 #include "playerSignals.hpp"
-#include "objectSignals.hpp"
-#include <algorithm>
-#include <cmath>
 #include "spriteRepository.hpp"
 
 const float playerInteractionOffset = 10.0f;
@@ -26,14 +23,12 @@ Player::Player(int64_t id, vec2<float>& pos) :
 };
 
 void Player::subscribe() {
-	CharacterObject::subscribe();
-
-	unsubscribers.push_back(walkSignal.subscribe([this](vec2<int8_t>& delta) {
+	addSubscription(walkSignal.subscribe([this](vec2<int8_t>& delta) {
 		addDelta(delta);
 
 		auto delta_ = getDelta();
 
 		if (delta_.x < 0) setLookingDirection(LookingDirections::LEFT);
 		if (delta_.x > 0) setLookingDirection(LookingDirections::RIGHT);
-		}));
+	}));
 }

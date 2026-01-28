@@ -1,6 +1,7 @@
 #pragma once
 #include "object.hpp"
 #include "vec2.hpp"
+#include "subscriptionManager.hpp"
 #include <map>
 #include <memory>
 
@@ -10,7 +11,7 @@ enum class Justification {
 	HORIZONTAL
 };
 
-class Container : public Object {
+class Container : public Object, public SubscriptionManager {
 public:
 	Container(
 		int64_t id, 
