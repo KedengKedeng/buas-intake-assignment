@@ -20,7 +20,7 @@ CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron)
 	// the asset has a lot of white space so we need to add an offset
 	// to make the bounding box feel a bit better
 	interactionBox_.setPos(vec2(120.0f, 80.0f));
-	interactionBox_.setSize(vec2(cauldronFront.getWidth() - 220, cauldronFront.getHeight() - 80));
+	interactionBox_.setSize(vec2(size_.x - 220, size_.y - 80));
 }
 
 void CookingCauldron::drawBack(Tmpl8::Surface* surface) {
@@ -54,5 +54,5 @@ void CookingCauldron::process(float deltaTime) {
 
 void CookingCauldron::subscribe() {
 	unsubscribers.push_back(onInteractionStart.subscribe([this]() {cauldronInteracted.emit(); }));
-	unsubscribers.push_back(onInteractionEnd.subscribe([this]() {cauldronInteractionEnded.emit(); }));
+	unsubscribers.push_back(onInteractionEnd.subscribe([this]() {printf("bguh"); cauldronInteractionEnded.emit(); }));
 }

@@ -8,7 +8,7 @@ vec2<float> spoonVelocity( 0.0f, 7.0f );
 Spoon::Spoon(int64_t id, vec2<float>& pos) : 
 	Object(id, pos, vec2(0.0f)),
 	Collider(),
-	Interactable(),
+	Interactable(vec2(0.0f), vec2(0.0f), true),
 	mouseMoveHandler(), 
 	sprite_(spriteRepository.get("spoon", 0.4)) 
 {

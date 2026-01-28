@@ -76,7 +76,7 @@ void CookingScreen::subscribe() {
 		interactionCheck(object);
 
 		auto cauldron = getObject<CookingCauldron>(cauldronId);
-		if (trackSpoonMovement && oldPos != newPos) 
+		if (trackSpoonMovement && collides != vec2(0.0f)) 
 			cauldron->stir(std::abs(collides.x));
 	}));
 
