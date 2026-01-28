@@ -240,7 +240,6 @@
     <ClCompile Include="inventorySlot.cpp" />
     <ClCompile Include="modal.cpp" />
     <ClCompile Include="mouseMoveHandler.cpp" />
-    <ClCompile Include="objectList.cpp" />
     <ClCompile Include="plotObject.cpp" />
     <ClCompile Include="spoon.cpp" />
     <ClCompile Include="spritesheet.cpp" />
@@ -264,7 +263,6 @@
     <ClCompile Include="mouseInput.cpp" />
     <ClCompile Include="mouseSignals.cpp" />
     <ClCompile Include="object.cpp" />
-    <ClCompile Include="objectRepository.cpp" />
     <ClCompile Include="objectSignals.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSignals.cpp" />
@@ -297,7 +295,6 @@
     <ClInclude Include="inventory.hpp" />
     <ClInclude Include="inventorySlot.hpp" />
     <ClInclude Include="numbers.hpp" />
-    <ClInclude Include="objectList.hpp" />
     <ClInclude Include="plot.hpp" />
     <ClInclude Include="plotObject.hpp" />
     <ClInclude Include="rect2.hpp" />
@@ -340,7 +337,6 @@
     <ClInclude Include="mouseSignals.hpp" />
     <ClInclude Include="moveCommand.hpp" />
     <ClInclude Include="object.hpp" />
-    <ClInclude Include="objectRepository.hpp" />
     <ClInclude Include="objectSignals.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="playerSignals.hpp" />

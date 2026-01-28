@@ -33,16 +33,16 @@
       <Filter>gameplay\signals</Filter>
     </ClCompile>
     <ClCompile Include="player.cpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClCompile>
     <ClCompile Include="wall.cpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClCompile>
     <ClCompile Include="itemRepository.cpp">
       <Filter>gameplay\items</Filter>
     </ClCompile>
     <ClCompile Include="itemObject.cpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClCompile>
     <ClCompile Include="spriteRepository.cpp">
       <Filter>gameplay\sprites</Filter>
@@ -71,32 +71,26 @@
     <ClCompile Include="keyboardSignals.cpp">
       <Filter>gameplay\signals</Filter>
     </ClCompile>
-    <ClCompile Include="objectRepository.cpp">
-      <Filter>gameplay\objects\repository</Filter>
-    </ClCompile>
     <ClCompile Include="worldCauldron.cpp">
-      <Filter>gameplay\objects\world objects\cauldron</Filter>
+      <Filter>gameplay\world objects\cauldron</Filter>
     </ClCompile>
     <ClCompile Include="cookingScreen.cpp">
       <Filter>ui\screens</Filter>
     </ClCompile>
-    <ClCompile Include="objectList.cpp">
-      <Filter>gameplay\objects\repository</Filter>
-    </ClCompile>
     <ClCompile Include="cookingCauldron.cpp">
-      <Filter>gameplay\objects\world objects\cauldron</Filter>
+      <Filter>gameplay\world objects\cauldron</Filter>
     </ClCompile>
     <ClCompile Include="mouseMoveHandler.cpp">
       <Filter>core\input\mouse</Filter>
     </ClCompile>
     <ClCompile Include="spoon.cpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClCompile>
     <ClCompile Include="cauldron.cpp">
-      <Filter>gameplay\objects\world objects\cauldron</Filter>
+      <Filter>gameplay\world objects\cauldron</Filter>
     </ClCompile>
     <ClCompile Include="blower.cpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClCompile>
     <ClCompile Include="inventoryScreen.cpp">
       <Filter>ui\screens</Filter>
@@ -112,9 +106,6 @@
     </ClCompile>
     <ClCompile Include="inventorySlot.cpp">
       <Filter>ui\components</Filter>
-    </ClCompile>
-    <ClCompile Include="characterObject.cpp">
-      <Filter>gameplay\objects</Filter>
     </ClCompile>
     <ClCompile Include="creatureTypeRepository.cpp">
       <Filter>gameplay\creaturetypes</Filter>
@@ -144,10 +135,10 @@
       <Filter>core\util</Filter>
     </ClCompile>
     <ClCompile Include="creature.cpp">
-      <Filter>gameplay\objects\world objects\husbandry</Filter>
+      <Filter>gameplay\world objects\husbandry</Filter>
     </ClCompile>
     <ClCompile Include="plotObject.cpp">
-      <Filter>gameplay\objects\world objects\husbandry</Filter>
+      <Filter>gameplay\world objects\husbandry</Filter>
     </ClCompile>
     <ClCompile Include="collider.cpp">
       <Filter>systems\collision</Filter>
@@ -163,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="tooltipDispatcher.cpp">
       <Filter>ui\components\tooltip</Filter>
+    </ClCompile>
+    <ClCompile Include="characterObject.cpp">
+      <Filter>gameplay\world objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +207,7 @@
       <Filter>gameplay\signals</Filter>
     </ClInclude>
     <ClInclude Include="wall.hpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClInclude>
     <ClInclude Include="startScreen.hpp">
       <Filter>ui\screens</Filter>
@@ -225,7 +219,7 @@
       <Filter>gameplay\items</Filter>
     </ClInclude>
     <ClInclude Include="itemObject.hpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClInclude>
     <ClInclude Include="spriteRepository.hpp">
       <Filter>gameplay\sprites</Filter>
@@ -257,35 +251,32 @@
     <ClInclude Include="keyboardSignals.hpp">
       <Filter>gameplay\signals</Filter>
     </ClInclude>
-    <ClInclude Include="objectRepository.hpp">
-      <Filter>gameplay\objects\repository</Filter>
-    </ClInclude>
     <ClInclude Include="worldCauldron.hpp">
-      <Filter>gameplay\objects\world objects\cauldron</Filter>
+      <Filter>gameplay\world objects\cauldron</Filter>
     </ClInclude>
     <ClInclude Include="cauldron.hpp">
-      <Filter>gameplay\objects\world objects\cauldron</Filter>
+      <Filter>gameplay\world objects\cauldron</Filter>
     </ClInclude>
     <ClInclude Include="cookingScreen.hpp">
       <Filter>ui\screens</Filter>
     </ClInclude>
     <ClInclude Include="cookingCauldron.hpp">
-      <Filter>gameplay\objects\world objects\cauldron</Filter>
+      <Filter>gameplay\world objects\cauldron</Filter>
     </ClInclude>
     <ClInclude Include="player.hpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClInclude>
     <ClInclude Include="mouseMoveHandler.hpp">
       <Filter>core\input\mouse</Filter>
     </ClInclude>
     <ClInclude Include="spoon.hpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClInclude>
     <ClInclude Include="invisibleBarrier.hpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClInclude>
     <ClInclude Include="blower.hpp">
-      <Filter>gameplay\objects\world objects</Filter>
+      <Filter>gameplay\world objects</Filter>
     </ClInclude>
     <ClInclude Include="screens.hpp">
       <Filter>ui\screens</Filter>
@@ -308,9 +299,6 @@
     <ClInclude Include="inventorySlot.hpp">
       <Filter>ui\components</Filter>
     </ClInclude>
-    <ClInclude Include="characterObject.hpp">
-      <Filter>gameplay\objects</Filter>
-    </ClInclude>
     <ClInclude Include="creatureTypeRepository.hpp">
       <Filter>gameplay\creaturetypes</Filter>
     </ClInclude>
@@ -325,9 +313,6 @@
     </ClInclude>
     <ClInclude Include="plot.hpp">
       <Filter>systems\husbandry</Filter>
-    </ClInclude>
-    <ClInclude Include="objectList.hpp">
-      <Filter>gameplay\objects\repository</Filter>
     </ClInclude>
     <ClInclude Include="countingStorage.hpp">
       <Filter>systems</Filter>
@@ -375,10 +360,10 @@
       <Filter>core\util</Filter>
     </ClInclude>
     <ClInclude Include="plotObject.hpp">
-      <Filter>gameplay\objects\world objects\husbandry</Filter>
+      <Filter>gameplay\world objects\husbandry</Filter>
     </ClInclude>
     <ClInclude Include="creature.hpp">
-      <Filter>gameplay\objects\world objects\husbandry</Filter>
+      <Filter>gameplay\world objects\husbandry</Filter>
     </ClInclude>
     <ClInclude Include="button.hpp">
       <Filter>ui\components</Filter>
@@ -394,6 +379,9 @@
     </ClInclude>
     <ClInclude Include="tooltipDispatcher.hpp">
       <Filter>ui\components\tooltip</Filter>
+    </ClInclude>
+    <ClInclude Include="characterObject.hpp">
+      <Filter>gameplay\world objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -433,18 +421,6 @@
     <Filter Include="gameplay\items">
       <UniqueIdentifier>{0569b2f3-5705-4e9e-8eaf-5635ae495ae1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="gameplay\objects">
-      <UniqueIdentifier>{8d9fc896-de6b-4621-9c13-d81c1be7fc81}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="gameplay\objects\world objects">
-      <UniqueIdentifier>{87c7c49a-e04e-4594-9e91-442fa62993a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="gameplay\objects\world objects\cauldron">
-      <UniqueIdentifier>{20cba432-7740-4170-ab0e-f2260c4316bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="gameplay\objects\repository">
-      <UniqueIdentifier>{b421812d-4b95-4415-b555-e63775cd9492}</UniqueIdentifier>
-    </Filter>
     <Filter Include="systems\collision">
       <UniqueIdentifier>{2de750f0-e8e2-4f3d-bdd7-23ef42d349f7}</UniqueIdentifier>
     </Filter>
@@ -475,14 +451,20 @@
     <Filter Include="core\rendering\sprite">
       <UniqueIdentifier>{070c0153-b20c-4862-84ce-e0eebc3c0684}</UniqueIdentifier>
     </Filter>
-    <Filter Include="gameplay\objects\world objects\husbandry">
-      <UniqueIdentifier>{24c5cfee-532e-4825-b7a9-40117c49e2bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="gameplay\signals">
       <UniqueIdentifier>{41334dba-d772-49e7-ab29-8518734ccd3a}</UniqueIdentifier>
     </Filter>
     <Filter Include="ui\components\tooltip">
       <UniqueIdentifier>{acb8e0f7-070c-4113-a844-340a4433e1c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameplay\world objects">
+      <UniqueIdentifier>{87c7c49a-e04e-4594-9e91-442fa62993a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameplay\world objects\cauldron">
+      <UniqueIdentifier>{20cba432-7740-4170-ab0e-f2260c4316bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameplay\world objects\husbandry">
+      <UniqueIdentifier>{24c5cfee-532e-4825-b7a9-40117c49e2bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

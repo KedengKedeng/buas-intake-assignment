@@ -4,30 +4,29 @@
 #include "objectSignals.hpp"
 #include "invisibleBarrier.hpp"
 #include "random.hpp"
-#include "objectRepository.hpp"
 #include "blower.hpp"
 #include "screenCommands.hpp"
 
-CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
+CookingScreen::CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron) : Screen(surface) {
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<ChangeScreenCommand>(Screens::Play); });
 
 	int surfaceWidth = surface->GetWidth();
 	int surfaceHeight = surface->GetHeight();
 
-	std::shared_ptr<CookingCauldron> cauldron = std::make_shared<CookingCauldron>(getRandomNum(), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron")));
+	std::shared_ptr<CookingCauldron> cookingCauldron = std::make_shared<CookingCauldron>(getRandomNum(), cauldron);
 
 	// get a reference of the cauldron for operations on it specifically later
-	cauldronId = cauldron->getId();
+	cauldronId = cookingCauldron->getId();
 
-	cauldron->setPos(vec2<float>(surfaceWidth / 2 - 100, surfaceHeight) - cauldron->getPos());
-	auto cauldronSize = cauldron->getSize() + vec2(220, 80);
+	cookingCauldron->setPos(vec2<float>(surfaceWidth / 2 - 100, surfaceHeight) - cookingCauldron->getPos());
+	auto cauldronSize = cookingCauldron->getSize() + vec2(220, 80);
 
 	// cauldron collision walls
 	// the collision system doesnt allow for unique shapes past filled squares right now.
 	// so we have to instantiate each side like this outside of the object.
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + vec2(80.0f), vec2(40.0f, cauldronSize.y - 80)));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + vec2(cauldronSize.x - 100, 80.0f), vec2(40.0f, cauldronSize.y - 80)));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cauldron->getPos() + vec2(80.0f, cauldronSize.y - 100), vec2(cauldronSize.x - 140, 1.0f)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cookingCauldron->getPos() + vec2(80.0f), vec2(40.0f, cauldronSize.y - 80)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cookingCauldron->getPos() + vec2(cauldronSize.x - 100, 80.0f), vec2(40.0f, cauldronSize.y - 80)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), cookingCauldron->getPos() + vec2(80.0f, cauldronSize.y - 100), vec2(cauldronSize.x - 140, 1.0f)));
 
 	// screen edge collision walls
 	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2(0.0f), vec2<float>(1, surfaceHeight)));
@@ -35,9 +34,9 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, surfaceHeight), vec2<float>(surfaceWidth, 1)));
 
 	// insert main interactable objects
-	insertObject(std::make_shared<Spoon>(0, cauldron->getPos() + vec2(cauldronSize.x, 0.0f) / 2));
-	insertObject(std::make_shared<Blower>(1, cauldron->getPos() + vec2(500, 180)));
-	insertObject(cauldron);
+	insertObject(std::make_shared<Spoon>(0, cookingCauldron->getPos() + vec2(cauldronSize.x, 0.0f) / 2));
+	insertObject(std::make_shared<Blower>(1, cookingCauldron->getPos() + vec2(500, 180)));
+	insertObject(cookingCauldron);
 }
 
 CookingScreen::~CookingScreen() {

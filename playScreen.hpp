@@ -4,6 +4,7 @@
 #include "inventory.hpp"
 #include "husbandry.hpp"
 #include "tilemap.hpp"
+#include "cauldron.hpp"
 
 enum class FloorTiles {
 	Ground1,
@@ -14,7 +15,7 @@ enum class FloorTiles {
 
 class PlayScreen : public Screen {
 public:
-	PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry);
+	PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry, std::shared_ptr<Cauldron> cauldron);
 
 	void createPlotObjects(std::shared_ptr<Husbandry> husbandry, const vec2<float>& pos);
 	void createWorldBounds(const vec2<float>& pos, const vec2<float>& size);

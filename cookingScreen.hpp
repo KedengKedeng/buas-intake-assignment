@@ -1,11 +1,10 @@
 #pragma once
 #include "screen.hpp"
 #include "cookingCauldron.hpp"
-#include <set>
 
 class CookingScreen : public Screen {
 public:
-	CookingScreen(Tmpl8::Surface* surface);
+	CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron);
 	~CookingScreen();
 
 	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;

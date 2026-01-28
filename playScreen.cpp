@@ -7,7 +7,6 @@
 #include "itemsRepository.hpp"
 #include "keyboardSignals.hpp"
 #include "screenSignals.hpp"
-#include "objectRepository.hpp"
 #include "moveCommand.hpp"
 #include "interactionCommand.hpp"
 #include "screenCommands.hpp"
@@ -19,7 +18,7 @@ const float tileSize = 32 * floorScale;
 const vec2<float> PLOT_SIZE = { tileSize * 8, tileSize * 8 };
 const vec2<float> PLOT_MARGINS = { tileSize * 2, tileSize * 2 };
 
-PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry) : 
+PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry, std::shared_ptr<Cauldron> cauldron) :
 	Screen(surface), 
 	player_(0, vec2(100.0f)), 
 	inventory_(inventory), 
@@ -42,7 +41,7 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 	createWorldBounds(-plotSpace, roomSize + plotSpace);
 
 	// interactable objects
-	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2(surface->GetWidth() / 2.0f, surface->GetHeight() / 2.0f), std::dynamic_pointer_cast<Cauldron>(objectRepository.get("cauldron"))));
+	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2(surface->GetWidth() / 2.0f, surface->GetHeight() / 2.0f), cauldron));
 	insertObject(std::make_shared<ItemObject>(getRandomNum(), vec2(20.0f, 50.0f), itemRepository.get("testItem")));
 
 	std::vector<FloorTiles> tileTypes { FloorTiles::Ground1, FloorTiles::Ground2, FloorTiles::Ground3, FloorTiles::Ground4 };

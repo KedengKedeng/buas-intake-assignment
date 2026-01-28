@@ -8,11 +8,11 @@
 #include "screenSignals.hpp"
 #include "itemList.hpp"
 #include "spriteList.hpp"
-#include "objectList.hpp"
 #include "surfaceList.hpp"
 #include "creatureTypeList.hpp"
 #include "inventory.hpp"
 #include "husbandry.hpp"
+#include "cauldron.hpp"
 
 namespace Tmpl8
 {
@@ -25,18 +25,18 @@ namespace Tmpl8
 		setupSpriteList();
 		setupItemList();
 		setupCreatureTypeList();
-		setupObjectList();
 
 		mouseInput = MouseInput();
 
 		std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
 		std::shared_ptr<Husbandry> husbandry = std::make_shared<Husbandry>();
+		std::shared_ptr<Cauldron> cauldron = std::make_shared<Cauldron>();
 		husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository.get(std::string("testAnimal"))));
 
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
-		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry);
+		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry, cauldron);
 		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
-		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_);
+		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_, cauldron);
 		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_, inventory);
 
 		currentScreens.push_back(screens[Screens::TitleMenu]);
