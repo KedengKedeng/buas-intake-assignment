@@ -11,7 +11,7 @@ void Tooltip::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	surface->Bar(
 		pos_ + offset,
 		pos_ + size_ + offset,
-		0xffffff
+		0xffffffff
 	);
 
 	text_.draw(surface, pos_ + offset + 20);

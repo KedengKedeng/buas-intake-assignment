@@ -14,8 +14,8 @@ public:
 		vec2<float>& pos = vec2<float>(0.0f),
 		vec2<float>& size = vec2<float>(0.0f),
 		int borderWidth = 1,
-		Tmpl8::Pixel color = 0xffffff,
-		Tmpl8::Pixel borderColor = 0x000000
+		Tmpl8::Pixel color = 0xffffffff,
+		Tmpl8::Pixel borderColor = 0xff000000
 	);
 
 	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;

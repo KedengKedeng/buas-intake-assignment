@@ -166,7 +166,7 @@ public:
 		Pixel* a = result.x + result.y * m_Pitch + m_Buffer;
 		for (int y = result.y; y <= result.y2; y++)
 		{
-			for (int x = 0; x <= (result.x2 - result.x); x++) a[x] = color;
+			for (int x = 0; x <= (result.x2 - result.x); x++) a[x] = blendAlpha(color, a[x]);
 			a += m_Pitch;
 		}
 	}
