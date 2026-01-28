@@ -19,5 +19,5 @@ private:
 	std::vector<int64_t> animalIds = {};
 	std::shared_ptr<Plot> plot_;
 
-	Tooltip tooltip_;
+	std::shared_ptr<Tooltip> tooltip_;
 };

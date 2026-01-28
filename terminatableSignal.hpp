@@ -1,7 +1,6 @@
 #pragma once
 #include <functional>
 #include <list>
-#include <forward_list>
 
 template<typename... Args>
 class TerminatableSignal {

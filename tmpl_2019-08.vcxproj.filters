@@ -47,9 +47,6 @@
     <ClCompile Include="spriteRepository.cpp">
       <Filter>gameplay\sprites</Filter>
     </ClCompile>
-    <ClCompile Include="object.cpp">
-      <Filter>gameplay\objects</Filter>
-    </ClCompile>
     <ClCompile Include="interactionCommand.hpp">
       <Filter>core\input\commands</Filter>
     </ClCompile>
@@ -146,9 +143,6 @@
     <ClCompile Include="string.cpp">
       <Filter>core\util</Filter>
     </ClCompile>
-    <ClCompile Include="tooltip.cpp">
-      <Filter>ui\components</Filter>
-    </ClCompile>
     <ClCompile Include="creature.cpp">
       <Filter>gameplay\objects\world objects\husbandry</Filter>
     </ClCompile>
@@ -157,6 +151,18 @@
     </ClCompile>
     <ClCompile Include="collider.cpp">
       <Filter>systems\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="uiSignals.cpp">
+      <Filter>gameplay\signals</Filter>
+    </ClCompile>
+    <ClCompile Include="tooltip.cpp">
+      <Filter>ui\components\tooltip</Filter>
+    </ClCompile>
+    <ClCompile Include="tooltipDispatcher.cpp">
+      <Filter>ui\components\tooltip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,9 +184,6 @@
     </ClInclude>
     <ClInclude Include="moveCommand.hpp">
       <Filter>core\input\commands</Filter>
-    </ClInclude>
-    <ClInclude Include="object.hpp">
-      <Filter>gameplay\objects</Filter>
     </ClInclude>
     <ClInclude Include="playScreen.hpp">
       <Filter>ui\screens</Filter>
@@ -353,9 +356,6 @@
     <ClInclude Include="numbers.hpp">
       <Filter>core\types\concepts</Filter>
     </ClInclude>
-    <ClInclude Include="tooltip.hpp">
-      <Filter>ui\components</Filter>
-    </ClInclude>
     <ClInclude Include="text.hpp">
       <Filter>core\rendering</Filter>
     </ClInclude>
@@ -382,6 +382,18 @@
     </ClInclude>
     <ClInclude Include="button.hpp">
       <Filter>ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="object.hpp">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="uiSignals.hpp">
+      <Filter>gameplay\signals</Filter>
+    </ClInclude>
+    <ClInclude Include="tooltip.hpp">
+      <Filter>ui\components\tooltip</Filter>
+    </ClInclude>
+    <ClInclude Include="tooltipDispatcher.hpp">
+      <Filter>ui\components\tooltip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -468,6 +480,9 @@
     </Filter>
     <Filter Include="gameplay\signals">
       <UniqueIdentifier>{41334dba-d772-49e7-ab29-8518734ccd3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\components\tooltip">
+      <UniqueIdentifier>{acb8e0f7-070c-4113-a844-340a4433e1c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

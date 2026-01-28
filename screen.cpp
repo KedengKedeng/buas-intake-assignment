@@ -20,6 +20,7 @@ void Screen::deleteObject(int64_t id) {
 
 void Screen::subscribe() {
 	Container::subscribe();
+	tooltipDispatcher_.subscribe();
 
 	unsubscribers.push_back(deleteObjectSignal.subscribe([this](int64_t id) {
 		queue.push([this, id]() {deleteObject(id); });
@@ -33,6 +34,7 @@ void Screen::subscribe() {
 
 void Screen::unsubscribe() {
 	Container::unsubscribe();
+	tooltipDispatcher_.unsubscribe();
 	// not clearing between screen transitions causes some weird behavior.
 	// hence we clear just to be sure.
 	keyboardInput_.clearKeysDown();
