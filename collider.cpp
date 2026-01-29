@@ -33,6 +33,10 @@ Rect2<float> Collider::getColliderSize() {
 	return Rect2(minSize.x, minSize.y, maxSize.x, maxSize.y);
 }
 
+void Collider::addCollider(const BoundingBox& box) {
+	collidingBoxes_.push_back(box);
+}
+
 vec2<float> Collider::swept(Collider& other, vec2<float>& velocity, vec2<float>& at, vec2<float>& otherAt) {
 	auto collisionVec = velocity;
 

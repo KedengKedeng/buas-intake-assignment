@@ -14,6 +14,7 @@ public:
 
 	Rect2<float> getColliderPos();
 	Rect2<float> getColliderSize();
+	void addCollider(const BoundingBox& box);
 
 	vec2<float> swept(Collider& other, vec2<float>& velocity, vec2<float>& at, vec2<float>& otherAt);
 
@@ -24,6 +25,6 @@ public:
 
 	Signal<> onCollisionStart{};
 	Signal<> onCollisionEnd{};
-protected:
+private:
 	std::vector<BoundingBox> collidingBoxes_;
 };
