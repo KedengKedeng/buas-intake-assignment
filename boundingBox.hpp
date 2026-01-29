@@ -30,7 +30,7 @@ public:
 	bool isInBounds(BoundingBox& box);
 	bool isInBounds(vec2<float>& point);
 	CollisionResult swept(BoundingBox& box, vec2<float>& velocity);
-protected:
+private:
 	SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity);
 
 	vec2<float> pos_, size_;

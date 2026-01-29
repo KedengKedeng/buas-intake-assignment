@@ -251,6 +251,7 @@
     <ClCompile Include="tooltip.cpp" />
     <ClCompile Include="tooltipDispatcher.cpp" />
     <ClCompile Include="uiSignals.cpp" />
+    <ClCompile Include="wallet.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
     <ClCompile Include="container.cpp" />
     <ClCompile Include="game.cpp" />
@@ -321,6 +322,7 @@
     <ClInclude Include="tooltipDispatcher.hpp" />
     <ClInclude Include="uiSignals.hpp" />
     <ClInclude Include="vec2.hpp" />
+    <ClInclude Include="wallet.hpp" />
     <ClInclude Include="worldCauldron.hpp" />
     <ClInclude Include="command.hpp" />
     <ClInclude Include="game.h" />

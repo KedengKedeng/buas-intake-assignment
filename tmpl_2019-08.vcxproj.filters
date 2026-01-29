@@ -158,6 +158,9 @@
     <ClCompile Include="subscriptionManager.cpp">
       <Filter>systems</Filter>
     </ClCompile>
+    <ClCompile Include="wallet.cpp">
+      <Filter>systems\currency</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -386,6 +389,9 @@
     <ClInclude Include="subscriptionManager.hpp">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="wallet.hpp">
+      <Filter>systems\currency</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">
@@ -468,6 +474,9 @@
     </Filter>
     <Filter Include="gameplay\world objects\husbandry">
       <UniqueIdentifier>{24c5cfee-532e-4825-b7a9-40117c49e2bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="systems\currency">
+      <UniqueIdentifier>{e19a5421-aee2-4d3b-aca7-5373ac90b392}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

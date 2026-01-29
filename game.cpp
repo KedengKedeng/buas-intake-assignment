@@ -13,6 +13,7 @@
 #include "inventory.hpp"
 #include "husbandry.hpp"
 #include "cauldron.hpp"
+#include "wallet.hpp"
 
 namespace Tmpl8
 {
@@ -31,6 +32,7 @@ namespace Tmpl8
 		std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
 		std::shared_ptr<Husbandry> husbandry = std::make_shared<Husbandry>();
 		std::shared_ptr<Cauldron> cauldron = std::make_shared<Cauldron>();
+		std::shared_ptr<Wallet> wallet = std::make_shared<Wallet>();
 		husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository.get(std::string("testAnimal"))));
 
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
@@ -84,8 +86,6 @@ namespace Tmpl8
 	void Game::Shutdown()
 	{
 	}
-
-	static int frame = 0;
 
 	// -----------------------------------------------------------
 	// Main application tick function
