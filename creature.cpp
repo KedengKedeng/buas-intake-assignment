@@ -36,9 +36,11 @@ void Creature::changeState() {
 	switch (newType) {
 		case CreatureState::WALK_LEFT:
 			addDelta(vec2<int8_t>(-1, 0));
+			setLookingDirection(LookingDirections::LEFT);
 			break;
 		case CreatureState::WALK_RIGHT:
 			addDelta(vec2<int8_t>(1, 0));
+			setLookingDirection(LookingDirections::RIGHT);
 			break;
 		case CreatureState::WALK_UP:
 			addDelta(vec2<int8_t>(0, -1));

@@ -4,7 +4,7 @@
 
 void setupCreatureTypeList() {
 	const float playerInteractionOffset = 10.0f;
-	const float playerSpriteScale = 1;
+	const float playerSpriteScale = 2;
 	const float playerSpriteFrameRate = 0.005f;
 	auto playerIdleLeft = AnimatedSprite(spriteRepository.getSheet("playeridleleft"), playerSpriteFrameRate, playerSpriteScale);
 	auto playerIdleRight = AnimatedSprite(spriteRepository.getSheet("playeridleright"), playerSpriteFrameRate, playerSpriteScale);
