@@ -3,6 +3,7 @@
 
 AnimalShopItem::AnimalShopItem(int64_t id, vec2<float>& pos, vec2<float>& size, std::shared_ptr<CreatureType> type, std::shared_ptr<Wallet> wallet) :
 	Container(id, pos, size, Justification::HORIZONTAL),
+	type_(type),
 	text_(type->name, 1, 0xff000000),
 	priceText_(std::format("cost: {}", type->price), 1, 0xff000000),
 	animalSprite_(type->idleRight),
@@ -29,6 +30,9 @@ void AnimalShopItem::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 
 	vec2 priceTextSize(priceText_.getWidth(), priceText_.getHeight());
 	priceText_.draw(surface, pos + size_ - priceTextSize);
+
+	// grey out the item if it cant be bought
+	if (wallet_->getCurrency() < type_->price) surface->Bar(pos, pos + size_, 0x30000000);
 }
 
 void AnimalShopItem::process(float deltaTime) {

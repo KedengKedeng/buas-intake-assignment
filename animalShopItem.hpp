@@ -11,6 +11,7 @@ public:
 	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	void process(float deltaTime) override;
 private:
+	std::shared_ptr<CreatureType> type_;
 	Text text_;
 	Text priceText_;
 	AnimatedSprite animalSprite_;
