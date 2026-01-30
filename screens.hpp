@@ -5,5 +5,6 @@ enum class Screens {
 	Play,
 	Cooking,
 	SettingsMenu,
-	Inventory
+	Inventory,
+	AnimalShop
 };

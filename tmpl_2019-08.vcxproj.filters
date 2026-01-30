@@ -17,9 +17,6 @@
     <ClCompile Include="boundingBox.cpp">
       <Filter>systems\collision</Filter>
     </ClCompile>
-    <ClCompile Include="startScreen.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
     <ClCompile Include="mouseInput.cpp">
       <Filter>core\input\mouse</Filter>
     </ClCompile>
@@ -160,6 +157,15 @@
     </ClCompile>
     <ClCompile Include="wallet.cpp">
       <Filter>systems\currency</Filter>
+    </ClCompile>
+    <ClCompile Include="animalShopScreen.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="startScreen.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="animalShopItem.cpp">
+      <Filter>ui\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -391,6 +397,12 @@
     </ClInclude>
     <ClInclude Include="wallet.hpp">
       <Filter>systems\currency</Filter>
+    </ClInclude>
+    <ClInclude Include="animalShopScreen.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="animalShopItem.hpp">
+      <Filter>ui\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

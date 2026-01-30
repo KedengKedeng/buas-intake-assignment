@@ -1,9 +1,4 @@
 #include "keyboardInput.hpp"
-#include "moveCommand.hpp"
-#include "interactionCommand.hpp"
-#include "keyboardCommand.hpp"
-#include "template.h"
-#include <vector>
 
 std::map<int, std::string> keyMapping = {
 	{4, "walkLeft"},
@@ -12,7 +7,8 @@ std::map<int, std::string> keyMapping = {
 	{7, "walkRight"},
 	{40, "interact"},
 	{41, "escape"},
-	{8, "inventory"}
+	{8, "inventory"},
+	{23, "t"}
 };
 
 void KeyboardInput::keyDown(int keyCode) {

@@ -224,6 +224,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animalShopItem.cpp" />
+    <ClCompile Include="animalShopScreen.cpp" />
     <ClCompile Include="animatedSprite.cpp" />
     <ClCompile Include="blower.cpp" />
     <ClCompile Include="boundingBox.cpp" />
@@ -280,6 +282,8 @@
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animalShopItem.hpp" />
+    <ClInclude Include="animalShopScreen.hpp" />
     <ClInclude Include="animatedSprite.hpp" />
     <ClInclude Include="blower.hpp" />
     <ClInclude Include="boundingBox.hpp" />

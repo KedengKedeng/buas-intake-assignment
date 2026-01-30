@@ -1,0 +1,36 @@
+#include "animalShopScreen.hpp"
+#include "modal.hpp"
+#include "screenCommands.hpp"
+#include "screenSignals.hpp"
+#include "creatureTypeRepository.hpp"
+#include "animalShopItem.hpp"
+
+AnimalShopScreen::AnimalShopScreen(Tmpl8::Surface* surface, std::shared_ptr<Wallet> wallet, std::shared_ptr<Husbandry> husbandry) :
+	Screen(surface),
+	wallet_(wallet),
+	husbandry_(husbandry)
+{
+	keyboardInput_.registerHandler("escape", []() {return std::make_unique<CloseScreenCommand>(); });
+
+	vec2 modalSize = vec2(200.0f, 200.0f);
+	vec2 modalPos = (vec2<float>(surface->GetWidth(), surface->GetHeight()) - modalSize) / 2;
+	std::shared_ptr<Modal> modal = std::make_shared<Modal>(
+		0, 
+		modalPos, 
+		modalSize, 
+		[this]() {closeScreen.emit(); }, 
+		Justification::VERTICAL
+	);
+
+	int id = 0;
+	for (auto& it = creatureTypeRepository.begin(); it != creatureTypeRepository.end(); it++) {
+		modal->insertObject(std::make_shared<AnimalShopItem>(id, vec2(0.0f), vec2(modalSize.x - modal->getPadding().x * 2, 50.0f), it->second, wallet_));
+		id++;
+	}
+
+	insertObject(modal);
+}
+
+void AnimalShopScreen::subscribe() {
+	Screen::subscribe();
+}

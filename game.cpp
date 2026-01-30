@@ -5,6 +5,7 @@
 #include "settingsScreen.hpp"
 #include "cookingScreen.hpp"
 #include "inventoryScreen.hpp"
+#include "animalShopScreen.hpp"
 #include "screenSignals.hpp"
 #include "itemList.hpp"
 #include "spriteList.hpp"
@@ -40,6 +41,7 @@ namespace Tmpl8
 		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
 		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_, cauldron);
 		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_, inventory);
+		screens[Screens::AnimalShop] = std::make_shared<AnimalShopScreen>(surface_, wallet, husbandry);
 
 		currentScreens.push_back(screens[Screens::TitleMenu]);
 		screens[Screens::TitleMenu]->subscribe();

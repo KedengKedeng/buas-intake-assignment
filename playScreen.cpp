@@ -32,6 +32,7 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 	keyboardInput_.registerHandler("interact", []() {return std::make_unique<InteractionCommand>(); });
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
 	keyboardInput_.registerHandler("inventory", []() {return std::make_unique<StackScreenCommand>(Screens::Inventory); });
+	keyboardInput_.registerHandler("t", []() {return std::make_unique<StackScreenCommand>(Screens::AnimalShop); });
 
 	auto& plots = husbandry_->getPlots();
 	vec2 plotSpace(0.0f, (PLOT_SIZE.y + PLOT_MARGINS.y) * ceil(plots.size() / 2.0f));

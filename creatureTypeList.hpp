@@ -3,14 +3,19 @@
 #include "spriteRepository.hpp"
 
 void setupCreatureTypeList() {
-	Sprite test = spriteRepository.get("test", 1.0f);
-	AnimatedSprite testSprite = AnimatedSprite(std::make_shared<SpriteSheet>(std::vector<Sprite>{test}), 1.0f);
+	const float playerInteractionOffset = 10.0f;
+	const float playerSpriteScale = 1;
+	const float playerSpriteFrameRate = 0.005f;
+	auto playerIdleLeft = AnimatedSprite(spriteRepository.getSheet("playeridleleft"), playerSpriteFrameRate, playerSpriteScale);
+	auto playerIdleRight = AnimatedSprite(spriteRepository.getSheet("playeridleright"), playerSpriteFrameRate, playerSpriteScale);
+	auto playerWalkLeft = AnimatedSprite(spriteRepository.getSheet("playerwalkleft"), playerSpriteFrameRate, playerSpriteScale);
+	auto playerWalkRight = AnimatedSprite(spriteRepository.getSheet("playerwalkright"), playerSpriteFrameRate, playerSpriteScale);
 	creatureTypeRepository.insert(std::make_shared<CreatureType>(
 		"testAnimal",
 		0,
-		testSprite,
-		testSprite,
-		testSprite,
-		testSprite
+		playerIdleLeft,
+		playerIdleRight,
+		playerWalkLeft,
+		playerWalkRight
 	));
 }
