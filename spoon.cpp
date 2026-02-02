@@ -9,26 +9,26 @@ Spoon::Spoon(int64_t id, vec2<float>& pos) :
 	Object(id, pos, vec2(0.0f)),
 	Collider(),
 	Interactable(vec2(0.0f), vec2(0.0f), true),
-	mouseMoveHandler(), 
+	mouseHandler(), 
 	sprite_(spriteRepository.get("spoon", 0.4)) 
 {
 	addCollider(BoundingBox(vec2(20.0f), vec2(sprite_.getWidth(), sprite_.getHeight()) - 40));
 	interactionBox_.setPos(vec2(20.0f));
 	interactionBox_.setSize(vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
 
-	mouseMoveHandler.setInteractionCheck([this](vec2<float>& pos) {
+	mouseHandler.setInteractionCheck([this](vec2<float>& pos) {
 		return interactionBox_.at(pos_).isInBounds(pos);
 	});
 
-	mouseMoveHandler.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
+	mouseHandler.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
 		requestMove.emit(pos_, delta, *this);
 	});
 
-	mouseMoveHandler.setOnMouseDragStart([this]() {
+	mouseHandler.setOnMouseDown([this]() {
 		velocity = { 0, 0 };
 	});
 
-	mouseMoveHandler.setOnMouseDragEnd([this]() {
+	mouseHandler.setOnMouseUp([this]() {
 		velocity = spoonVelocity;
 	});
 }
@@ -42,11 +42,11 @@ void Spoon::process(float deltaTime) {
 }
 
 void Spoon::subscribe() {
-	mouseMoveHandler.subscribe();
+	mouseHandler.subscribe();
 }
 
 void Spoon::unsubscribe() {
 	SubscriptionManager::unsubscribe();
 
-	mouseMoveHandler.unsubscribe();
+	mouseHandler.unsubscribe();
 }

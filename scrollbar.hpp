@@ -1,6 +1,6 @@
 #pragma once
 #include "object.hpp"
-#include "mouseMoveHandler.hpp"
+#include "mouseHandler.hpp"
 #include "subscriptionManager.hpp"
 #include <functional>
 
@@ -22,6 +22,6 @@ private:
 	float thumbPos_;
 	float thumbSize_;
 
-	MouseMoveHandler mouseMoveHandler_;
+	MouseHandler mouseHandler_;
 	std::function<void(vec2<float>)> onDrag_;
 };

@@ -6,26 +6,26 @@ Blower::Blower(int64_t id, vec2<float>& pos) :
 	Object(id, pos, vec2(0.0f)),
 	Interactable(),
 	SubscriptionManager(),
-	mouseMoveHandler(), 
+	mouseHandler_(), 
 	sprites_(spriteRepository.getSheet("blower"))
 {
 	interactionBox_.setSize(vec2<float>(sprites_->getWidth(), sprites_->getHeight()));
 
-	mouseMoveHandler.setInteractionCheck([this](vec2<float>& pos) {
+	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
 		return getInteractableBoundsAt(pos_).isInBounds(pos);
 	});
 
-	mouseMoveHandler.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
+	mouseHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
 		if (!delta.y) return;
 		addBlowerPosition(delta.y / (100 / getInteractableSize().y));
 	});
 
-	mouseMoveHandler.setOnMouseDragStart([this]() {
+	mouseHandler_.setOnMouseDown([this]() {
 		inflate = false;
 		blowerInteracted.emit();
 	});
 
-	mouseMoveHandler.setOnMouseDragEnd([this]() {
+	mouseHandler_.setOnMouseUp([this]() {
 		inflate = true;
 		blowerInteractionEnded.emit();
 	});
@@ -48,10 +48,10 @@ void Blower::process(float deltaTime) {
 }
 
 void Blower::subscribe() {
-	mouseMoveHandler.subscribe();
+	mouseHandler_.subscribe();
 }
 
 void Blower::unsubscribe() {
 	SubscriptionManager::unsubscribe();
-	mouseMoveHandler.unsubscribe();
+	mouseHandler_.unsubscribe();
 }

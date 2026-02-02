@@ -2,15 +2,15 @@
 #include "vec2.hpp"
 #include <functional>
 
-class MouseMoveHandler {
+class MouseHandler {
 public:
-	MouseMoveHandler() {};
-	~MouseMoveHandler();
+	MouseHandler() {};
+	~MouseHandler();
 
 	void setOnMouseMove(std::function<void(vec2<float>&, vec2<float>&)> handler);
 	void setOnMouseDrag(std::function<void(vec2<float>&, vec2<float>&)> handler);
-	void setOnMouseDragStart(std::function<void()> handler);
-	void setOnMouseDragEnd(std::function<void()> handler);
+	void setOnMouseDown(std::function<void()> handler);
+	void setOnMouseUp(std::function<void()> handler);
 	void setInteractionCheck(std::function<bool(vec2<float>&)> func) { interactionCheck = func; }
 
 	void subscribe();
@@ -18,8 +18,8 @@ public:
 private:
 	std::function<void(vec2<float>&, vec2<float>&)> onMouseMoveHandler_;
 	std::function<void(vec2<float>&, vec2<float>&)> onMouseDragHandler_;
-	std::function<void()> onMouseDragStartHandler_;
-	std::function<void()> onMouseDragEndHandler_;
+	std::function<void()> onMouseDownHandler_;
+	std::function<void()> onMouseUpHandler_;
 	std::function<bool(vec2<float>&)> interactionCheck = [](vec2<float>& _) {return false; };
 
 	bool mouseDown = false;

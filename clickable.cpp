@@ -2,7 +2,7 @@
 
 Clickable::Clickable(std::function<void()> handler) :
 	handler_(handler),
-	mouseMoveHandler_()
+	mouseHandler_()
 {
-	mouseMoveHandler_.setOnMouseDragEnd(handler_);
+	mouseHandler_.setOnMouseUp(handler_);
 }

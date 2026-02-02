@@ -1,6 +1,6 @@
 #pragma once
 #include "object.hpp"
-#include "mouseMoveHandler.hpp"
+#include "mouseHandler.hpp"
 #include "interactable.hpp"
 #include "spritesheet.hpp"
 #include "vec2.hpp"
@@ -20,6 +20,6 @@ public:
 private:
 	bool inflate = true;
 	float blowerPosition = 0;
-	MouseMoveHandler mouseMoveHandler;
+	MouseHandler mouseHandler_;
 	std::shared_ptr<SpriteSheet> sprites_;
 };

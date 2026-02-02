@@ -4,21 +4,21 @@
 #include <format>
 
 InventorySlot::InventorySlot(int64_t id, vec2<float>& pos, vec2<float>& size, std::shared_ptr<Item> item, int amount, std::function<void(InventorySlot*, vec2<float>&)> onDragEndHandler)
-	: Object(id, pos, size), mouseMoveHandler_(){
-	mouseMoveHandler_.setInteractionCheck([this](vec2<float>& pos) {
+	: Object(id, pos, size), mouseHandler_(){
+	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
 		return BoundingBox(pos_, size_).isInBounds(pos);
 	});
 
-	mouseMoveHandler_.setOnMouseDragStart([this]() {
+	mouseHandler_.setOnMouseDown([this]() {
 		dragPos = pos_;
 		dragging = true;
 	});
 
-	mouseMoveHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
+	mouseHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
 		dragPos += delta;
 	});
 
-	mouseMoveHandler_.setOnMouseDragEnd([this, onDragEndHandler]() {
+	mouseHandler_.setOnMouseUp([this, onDragEndHandler]() {
 		onDragEndHandler(this, dragPos);
 		dragging = false;
 	});
@@ -43,9 +43,9 @@ void InventorySlot::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 }
 
 void InventorySlot::subscribe() {
-	mouseMoveHandler_.subscribe();
+	mouseHandler_.subscribe();
 }
 
 void InventorySlot::unsubscribe() {
-	mouseMoveHandler_.unsubscribe();
+	mouseHandler_.unsubscribe();
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "item.hpp"
 #include "object.hpp"
-#include "mouseMoveHandler.hpp"
+#include "mouseHandler.hpp"
 #include "subscriptionManager.hpp"
 
 class InventorySlot : public Object, public SubscriptionManager {
@@ -26,7 +26,7 @@ private:
 	vec2<float> dragPos = { 0, 0 };
 	bool dragging = false;
 
-	MouseMoveHandler mouseMoveHandler_;
+	MouseHandler mouseHandler_;
 	std::shared_ptr<Item> item_;
 	int amount_ = 0;
 };

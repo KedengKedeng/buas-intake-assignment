@@ -18,14 +18,14 @@ Button::Button(
 	color_(color),
 	borderColor_(borderColor)
 {
-	mouseMoveHandler_.setInteractionCheck([this](vec2<float>& pos) {
+	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
 		return BoundingBox(pos_, size_).isInBounds(pos);
 	});
 };
 
 void Button::subscribe() {
-	mouseMoveHandler_.subscribe();
-	addSubscription([this]() {mouseMoveHandler_.unsubscribe(); });
+	mouseHandler_.subscribe();
+	addSubscription([this]() {mouseHandler_.unsubscribe(); });
 }
 
 void Button::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {

@@ -77,9 +77,6 @@
     <ClCompile Include="cookingCauldron.cpp">
       <Filter>gameplay\world objects\cauldron</Filter>
     </ClCompile>
-    <ClCompile Include="mouseMoveHandler.cpp">
-      <Filter>core\input\mouse</Filter>
-    </ClCompile>
     <ClCompile Include="spoon.cpp">
       <Filter>gameplay\world objects</Filter>
     </ClCompile>
@@ -172,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="clickable.cpp">
       <Filter>ui\components\clickables</Filter>
+    </ClCompile>
+    <ClCompile Include="mouseHandler.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,9 +280,6 @@
     </ClInclude>
     <ClInclude Include="player.hpp">
       <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="mouseMoveHandler.hpp">
-      <Filter>core\input\mouse</Filter>
     </ClInclude>
     <ClInclude Include="spoon.hpp">
       <Filter>gameplay\world objects</Filter>
@@ -415,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="clickable.hpp">
       <Filter>ui\components\clickables</Filter>
+    </ClInclude>
+    <ClInclude Include="mouseHandler.hpp">
+      <Filter>systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -243,7 +243,7 @@
     <ClCompile Include="inventoryScreen.cpp" />
     <ClCompile Include="inventorySlot.cpp" />
     <ClCompile Include="modal.cpp" />
-    <ClCompile Include="mouseMoveHandler.cpp" />
+    <ClCompile Include="mouseHandler.cpp" />
     <ClCompile Include="plotObject.cpp" />
     <ClCompile Include="scrollbar.cpp" />
     <ClCompile Include="spoon.cpp" />
@@ -313,7 +313,7 @@
     <ClInclude Include="cookingScreen.hpp" />
     <ClInclude Include="inventoryScreen.hpp" />
     <ClInclude Include="invisibleBarrier.hpp" />
-    <ClInclude Include="mouseMoveHandler.hpp" />
+    <ClInclude Include="mouseHandler.hpp" />
     <ClInclude Include="modal.hpp" />
     <ClInclude Include="screens.hpp" />
     <ClInclude Include="scrollbar.hpp" />

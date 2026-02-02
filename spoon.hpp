@@ -1,5 +1,5 @@
 #pragma once
-#include "mouseMoveHandler.hpp"
+#include "mouseHandler.hpp"
 #include "object.hpp"
 #include "sprite.hpp"
 #include "collider.hpp"
@@ -20,6 +20,6 @@ public:
 private:
 	vec2<float> velocity = spoonVelocity;
 
-	MouseMoveHandler mouseMoveHandler;
+	MouseHandler mouseHandler;
 	Sprite sprite_;
 };

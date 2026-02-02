@@ -3,17 +3,17 @@
 
 Scrollbar::Scrollbar(int64_t id, vec2<float>& pos, vec2<float>& size, vec2<float>& parentSize, std::function<void(vec2<float>)> onDrag) :
 	Object(id, pos, size),
-	mouseMoveHandler_(),
+	mouseHandler_(),
 	parentSize_(parentSize),
 	thumbPos_(0),
 	thumbSize_(getThumbSize()),
 	onDrag_(onDrag)
 {
-	mouseMoveHandler_.setInteractionCheck([this](vec2<float>& pos) {
+	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
 		return BoundingBox(pos_, size_).isInBounds(pos);
 	});
 
-	mouseMoveHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
+	mouseHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
 		thumbPos_ = std::max(std::min(pos.y, pos_.y + size_.y - thumbSize_), pos_.y);
 		onDrag_(vec2(0.0f, (thumbPos_ - pos_.y) / (size_.y) * parentSize_.y));
 	});
@@ -36,13 +36,13 @@ void Scrollbar::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 void Scrollbar::subscribe() {
 	SubscriptionManager::subscribe();
 
-	mouseMoveHandler_.subscribe();
+	mouseHandler_.subscribe();
 }
 
 void Scrollbar::unsubscribe() {
 	SubscriptionManager::unsubscribe();
 
-	mouseMoveHandler_.unsubscribe();
+	mouseHandler_.unsubscribe();
 }
 
 float Scrollbar::getThumbSize() {

@@ -1,11 +1,11 @@
 #pragma once
-#include "mouseMoveHandler.hpp"
+#include "mouseHandler.hpp"
 
 class Clickable {
 public:
 	Clickable(std::function<void()> handler);
 protected:
-	MouseMoveHandler mouseMoveHandler_;
+	MouseHandler mouseHandler_;
 private:
 	std::function<void()> handler_;
 };
