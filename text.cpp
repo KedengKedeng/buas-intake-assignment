@@ -13,11 +13,12 @@ Text::Text(std::string& text, int fontSize, Tmpl8::Pixel color) :
 
 int Text::getWidth() { 
 	size_t maxSize = 0;
-	for (auto& text = text_.begin(); text != text_.end(); text++) if (text->size() > maxSize) maxSize = text->size();
+	for (auto& text : text_) if (text.size() > maxSize) maxSize = text.size();
 	return 6 * fontSize_ * static_cast<int>(maxSize); 
 }
 
-void Text::draw(Tmpl8::Surface* surface, vec2<float>& pos) {
+void Text::draw(Tmpl8::Surface* surface, vec2<float>& pos)
+{
 	if (!fontInitialized)
 	{
 		InitCharset();
@@ -27,50 +28,78 @@ void Text::draw(Tmpl8::Surface* surface, vec2<float>& pos) {
 	int width = getWidth();
 	int height = getHeight();
 
-	auto result = surface->checkBounds(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(pos.x) + width, static_cast<int>(pos.y) + height, surface->GetWidth(), surface->GetHeight());
+	int startX = static_cast<int>(floor(pos.x));
+	int startY = static_cast<int>(floor(pos.y));
+
+	auto result = surface->checkBounds(
+		startX,
+		startY,
+		startX + width,
+		startY + height,
+		surface->GetWidth(),
+		surface->GetHeight()
+	);
+
 	if (result.dontPrint) return;
 
 	int pitch = surface->GetPitch();
+	Tmpl8::Pixel* buffer = surface->GetBuffer();
 
-	Tmpl8::Pixel* pixel = surface->GetBuffer() + result.x + result.y * pitch;
-	for (auto& text : text_) {
-		// make sure smaller texts center around the longest line
+	int penY = startY;
+
+	for (auto& text : text_)
+	{
 		int offset = (width - getLineWidth(text)) / 2;
-		Tmpl8::Pixel* columnPixel = pixel + offset;
+		int penX = startX + offset;
 
-		for (int i = 0; i < static_cast<int>(text.size()); i++, columnPixel += 6 * fontSize_)
+		for (int i = 0; i < static_cast<int>(text.size()); i++, penX += 6 * fontSize_)
 		{
 			char currentChar = text[i];
-
 			long glyphIndex = 0;
-			// map lower case to upper case letters
-			if ((currentChar >= 'A') && (currentChar <= 'Z')) glyphIndex = s_Transl[(unsigned short)(currentChar - ('A' - 'a'))];
-			else glyphIndex = s_Transl[(unsigned short)currentChar];
+
+			if ((currentChar >= 'A') && (currentChar <= 'Z'))
+				glyphIndex = s_Transl[(unsigned short)(currentChar - ('A' - 'a'))];
+			else
+				glyphIndex = s_Transl[(unsigned short)currentChar];
+
 			char* glyphBitmap = reinterpret_cast<char*>(s_Font[glyphIndex]);
 
-			Tmpl8::Pixel* newPixel = columnPixel;
+			for (int glyphRow = 0; glyphRow < 5; glyphRow++, glyphBitmap++)
+			{
+				for (int row = 0; row < fontSize_; row++)
+				{
+					int y = penY + glyphRow * fontSize_ + row;
+					if (y < result.y || y >= result.y2) continue;
 
-			for (int glyphRow = 0; glyphRow < 5; glyphRow++, glyphBitmap++) {
-				// scale in width
-				for (int row = 0; row < fontSize_; row++, newPixel += pitch) {
-					for (int glyphColumn = 0; glyphColumn < 5; glyphColumn++) {
-						// scale in height
-						for (int column = 0; column < fontSize_; column++) {
-							if (*glyphBitmap == 'o') {
-								*(newPixel + column + (glyphColumn * fontSize_)) = color_;
-								*(newPixel + column + (glyphColumn * fontSize_) + pitch) = 0;
+					for (int glyphColumn = 0; glyphColumn < 5; glyphColumn++)
+					{
+						for (int column = 0; column < fontSize_; column++)
+						{
+							int x = penX + glyphColumn * fontSize_ + column;
+							if (x < result.x || x >= result.x2) continue;
+
+							if (*glyphBitmap == 'o')
+							{
+								buffer[x + y * pitch] = color_;
+								// not needed but makes it look a bit nicer
+								if (y + 1 < result.y2)
+									buffer[x + (y + 1) * pitch] = color_;
 							}
 						}
 						glyphBitmap++;
 					}
+					// reset bitmap to start of the characters 
 					glyphBitmap -= 5;
 				}
+				// go to the next character
 				glyphBitmap += 5;
 			}
 		}
-		pixel += 6 * fontSize_ * pitch;
+		// advance to next column
+		penY += 6 * fontSize_;
 	}
 }
+
 
 void Text::SetChar(int c, char* c1, char* c2, char* c3, char* c4, char* c5)
 {

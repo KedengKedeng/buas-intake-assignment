@@ -18,4 +18,67 @@ void setupCreatureTypeList() {
 		playerWalkLeft,
 		playerWalkRight
 	));
+
+	creatureTypeRepository.insert(std::make_shared<CreatureType>(
+		"testAnimal2",
+		100,
+		playerIdleLeft,
+		playerIdleRight,
+		playerWalkLeft,
+		playerWalkRight
+	));
+
+	creatureTypeRepository.insert(std::make_shared<CreatureType>(
+		"testAnimal3",
+		20,
+		playerIdleLeft,
+		playerIdleRight,
+		playerWalkLeft,
+		playerWalkRight
+	));
+
+	creatureTypeRepository.insert(std::make_shared<CreatureType>(
+		"testAnimal4",
+		20,
+		playerIdleLeft,
+		playerIdleRight,
+		playerWalkLeft,
+		playerWalkRight
+	));
+
+	creatureTypeRepository.insert(std::make_shared<CreatureType>(
+		"testAnimal5",
+		20,
+		playerIdleLeft,
+		playerIdleRight,
+		playerWalkLeft,
+		playerWalkRight
+	));
+
+	creatureTypeRepository.insert(std::make_shared<CreatureType>(
+		"testAnimal6",
+		20,
+		playerIdleLeft,
+		playerIdleRight,
+		playerWalkLeft,
+		playerWalkRight
+	));
+
+	creatureTypeRepository.insert(std::make_shared<CreatureType>(
+		"testAnimal7",
+		20,
+		playerIdleLeft,
+		playerIdleRight,
+		playerWalkLeft,
+		playerWalkRight
+	));
+
+	creatureTypeRepository.insert(std::make_shared<CreatureType>(
+		"testAnimal8",
+		20,
+		playerIdleLeft,
+		playerIdleRight,
+		playerWalkLeft,
+		playerWalkRight
+	));
 }

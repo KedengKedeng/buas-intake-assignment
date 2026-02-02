@@ -14,29 +14,28 @@ constexpr int GreenMask = 0x00ff0000;
 constexpr int BlueMask = 0x0000ff00;
 constexpr int AlphaMask = 0x000000ff;
 
-typedef unsigned int Pixel; // unsigned int is assumed to be 32-bit, which seems a safe assumption.
+typedef uint32_t Pixel; // unsigned int is assumed to be 32-bit, which seems a safe assumption.
 
-inline Pixel blendAlpha(Pixel foreground, Pixel background) {
-	unsigned int srcA = (foreground >> 24) & 0xFF;
-	unsigned int srcR = (foreground >> 16) & 0xFF;
-	unsigned int srcG = (foreground >> 8) & 0xFF;
-	unsigned int srcB = foreground & 0xFF;
+inline Pixel blendAlpha(Pixel fg, Pixel bg) {
+	uint32_t srcA = (fg >> 24) & 0xFF;
+	uint32_t srcR = (fg >> 16) & 0xFF;
+	uint32_t srcG = (fg >> 8) & 0xFF;
+	uint32_t srcB = fg & 0xFF;
 
+	uint32_t dstA = (bg >> 24) & 0xFF;
+	uint32_t dstR = (bg >> 16) & 0xFF;
+	uint32_t dstG = (bg >> 8) & 0xFF;
+	uint32_t dstB = bg & 0xFF;
 
-	unsigned int dstR = (background >> 16) & 0xFF;
-	unsigned int dstG = (background >> 8) & 0xFF;
-	unsigned int dstB = background & 0xFF;
+	uint32_t outA = srcA + dstA * (255 - srcA) / 255;
 
-	unsigned int invA = 255 - srcA;
-
-	unsigned int outR = (srcR * srcA + dstR * invA) / 255;
-	unsigned int outG = (srcG * srcA + dstG * invA) / 255;
-	unsigned int outB = (srcB * srcA + dstB * invA) / 255;
-
-	unsigned int outA = srcA;
+	uint32_t outR = (srcR * srcA + dstR * dstA * (255 - srcA) / 255) / 255;
+	uint32_t outG = (srcG * srcA + dstG * dstA * (255 - srcA) / 255) / 255;
+	uint32_t outB = (srcB * srcA + dstB * dstA * (255 - srcA) / 255) / 255;
 
 	return (outA << 24) | (outR << 16) | (outG << 8) | outB;
 }
+
 
 inline Pixel AddBlend( Pixel a_Color1, Pixel a_Color2 )
 {
@@ -99,7 +98,7 @@ public:
 		vec2<float> pos(pos_.x, pos_.y);
 		vec2<float> pos2(pos2_.x, pos2_.y);
 
-		const float xmin = 0, ymin = 0, xmax = ScreenWidth - 1, ymax = ScreenHeight - 1;
+		const float xmin = 0, ymin = 0, xmax = static_cast<float>(m_Width - 1), ymax = static_cast<float>(m_Height - 1);
 		int c0 = LineOutCode(pos.x, pos.y, xmin, xmax, ymin, ymax);
 		int c1 = LineOutCode(pos2.x, pos2.y, xmin, xmax, ymin, ymax);
 		bool accept = false;
@@ -131,7 +130,9 @@ public:
 		float dy = h / l;
 		for (int i = 0; i <= il; i++)
 		{
-			*(m_Buffer + static_cast<int>(pos.x) + static_cast<int>(pos.y) * m_Pitch) = color;
+			int px = static_cast<int>(pos.x);
+			int py = static_cast<int>(pos.y);
+			if (px > 0 && px < m_Width && py > 0 && py < m_Height) *(m_Buffer + px + py * m_Pitch) = color;
 			pos.x += dx, pos.y += dy;
 		}
 	}
@@ -153,10 +154,10 @@ public:
 	template<Arithmatic T>
 	void Bar(vec2<T>& pos, vec2<T>& pos2, Pixel color) {
 		BoundsCheckResult result = checkBounds(
-			static_cast<int>(pos.x),
-			static_cast<int>(pos.y),
-			static_cast<int>(pos2.x),
-			static_cast<int>(pos2.y),
+			static_cast<int>(floor(pos.x)),
+			static_cast<int>(floor(pos.y)),
+			static_cast<int>(floor(pos2.x)),
+			static_cast<int>(floor(pos2.y)),
 			GetWidth(),
 			GetHeight()
 		);
@@ -164,9 +165,9 @@ public:
 		if (result.dontPrint) return;
 
 		Pixel* a = result.x + result.y * m_Pitch + m_Buffer;
-		for (int y = result.y; y <= result.y2; y++)
+		for (int y = result.y; y < result.y2; y++)
 		{
-			for (int x = 0; x <= (result.x2 - result.x); x++) a[x] = blendAlpha(color, a[x]);
+			for (int x = 0; x < (result.x2 - result.x); x++) a[x] = blendAlpha(color, a[x]);
 			a += m_Pitch;
 		}
 	}

@@ -14,7 +14,7 @@ InventoryScreen::InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Invent
 	vec2 size( 400.0f, 300.0f );
 	insertObject(std::make_shared<Modal>(0, vec2<float>(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
 		closeScreen.emit();
-	}, Justification::VERTICAL));
+	}, Justification::VERTICAL, vec2(10.0f), true));
 }
 
 void InventoryScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
@@ -49,7 +49,7 @@ void InventoryScreen::process(float deltaTime) {
 
 		int64_t id = 0;
 		for (int x = 0; x < drawRows; x++) {
-			container->insertObject(std::make_shared<Container>(id, vec2(0.0f), vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL));
+			container->insertObject(std::make_shared<Container>(id, vec2(0.0f), vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL, vec2(10.0f, 0.0f)));
 			auto horizontalContainer = container->getInnerObject<Container>(id);
 
 			for (int y = 0; y < maxItemsOnRow; y++) {

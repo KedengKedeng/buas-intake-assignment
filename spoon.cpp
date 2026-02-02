@@ -38,7 +38,7 @@ void Spoon::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 }
 
 void Spoon::process(float deltaTime) {
-	//if (velocity.x || velocity.y) requestMove.emit(pos_, velocity, *this);
+	if (velocity.x || velocity.y) requestMove.emit(pos_, velocity, *this);
 }
 
 void Spoon::subscribe() {

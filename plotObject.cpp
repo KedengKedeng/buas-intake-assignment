@@ -32,7 +32,7 @@ void PlotObject::addAnimal() {
 }
 
 void PlotObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	surface->Box(pos_ + offset, pos_ + size_ + offset, 0xff);
+	surface->Box(pos_ + offset, pos_ + size_ + offset, 0xff0000ff);
 }
 
 void PlotObject::subscribe() {

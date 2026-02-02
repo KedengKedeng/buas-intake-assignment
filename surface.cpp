@@ -127,7 +127,11 @@ void Surface::Resize( Surface* a_Orig )
 
 int LineOutCode(float x, float y, float xMin, float xMax, float yMin, float yMax)
 {
-	return (((x) < xMin) ? 1 : (((x) > xMax) ? 2 : 0)) + (((y) < yMin) ? 4 : (((y) > yMax) ? 8 : 0));
+	return (
+		(x < xMin) ? 1 : ((x > xMax) ? 2 : 0)
+	) + (
+		(y < yMin) ? 4 : ((y > yMax) ? 8 : 0)
+	);
 }
 
 void Surface::Plot( int x, int y, Pixel c )
@@ -164,32 +168,43 @@ void Surface::CopyTo( Surface* a_Dst, int a_X, int a_Y )
 	}
 }
 
-void Surface::BlendCopyTo( Surface* a_Dst, int a_X, int a_Y )
+void Surface::BlendCopyTo(Surface* a_Dst, int a_X, int a_Y)
 {
+	if (!m_Buffer || !a_Dst || !a_Dst->GetBuffer())
+		return;
+
 	Pixel* dst = a_Dst->GetBuffer();
 	Pixel* src = m_Buffer;
-	if ((src) && (dst)) 
+
+	int srcWidth = m_Width;
+	int srcHeight = m_Height;
+	int srcPitch = m_Pitch;        // in pixels
+	int dstWidth = a_Dst->GetWidth();
+	int dstHeight = a_Dst->GetHeight();
+	int dstPitch = a_Dst->GetPitch(); // in pixels
+
+	// Clip width and height if overflowing destination
+	if (a_X < 0) { src += -a_X; srcWidth += a_X; a_X = 0; } // reduce width
+	if (a_Y < 0) { src += (-a_Y) * srcPitch; srcHeight += a_Y; a_Y = 0; }
+
+	if ((a_X + srcWidth) > dstWidth)  srcWidth = dstWidth - a_X;
+	if ((a_Y + srcHeight) > dstHeight) srcHeight = dstHeight - a_Y;
+
+	// Nothing to copy
+	if (srcWidth <= 0 || srcHeight <= 0)
+		return;
+
+	// Start at destination pixel
+	dst += a_X + a_Y * dstPitch;
+
+	for (int y = 0; y < srcHeight; ++y)
 	{
-		int srcwidth = m_Width;
-		int srcheight = m_Height;
-		int srcpitch = m_Pitch;
-		int dstwidth = a_Dst->GetWidth();
-		int dstheight = a_Dst->GetHeight();
-		int dstpitch = a_Dst->GetPitch();
-		if ((srcwidth + a_X) > dstwidth) srcwidth = dstwidth - a_X;
-		if ((srcheight + a_Y) > dstheight) srcheight = dstheight - a_Y;
-		if (a_X < 0) src -= a_X, srcwidth += a_X, a_X =0;
-		if (a_Y < 0) src -= a_Y * srcpitch, srcheight += a_Y, a_Y = 0;
-		if ((srcwidth > 0) && (srcheight > 0))
+		for (int x = 0; x < srcWidth; ++x)
 		{
-			dst += a_X + dstpitch * a_Y;
-			for ( int y = 0; y < srcheight; y++ )
-			{
-				for ( int x = 0; x < srcwidth; x++ ) dst[x] = AddBlend( dst[x], src[x] );
-				dst += dstpitch;
-				src += srcpitch;
-			}
+			dst[x] = blendAlpha(src[x], dst[x]); // Use corrected alpha blending
 		}
+		src += srcPitch;
+		dst += dstPitch;
 	}
 }
 

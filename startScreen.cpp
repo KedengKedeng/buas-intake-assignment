@@ -14,7 +14,8 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 		getRandomNum(),
 		(vec2<float>(surface->GetWidth(), surface->GetHeight()) - containerSize) / 2,
 		containerSize,
-		Justification::VERTICAL
+		Justification::VERTICAL,
+		vec2(0.0f, 10.0f)
 	);
 
 	container->insertObject(std::make_shared<Button>(

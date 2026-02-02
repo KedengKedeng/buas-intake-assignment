@@ -95,12 +95,6 @@
     <ClCompile Include="button.cpp">
       <Filter>ui\components</Filter>
     </ClCompile>
-    <ClCompile Include="container.cpp">
-      <Filter>ui\components</Filter>
-    </ClCompile>
-    <ClCompile Include="modal.cpp">
-      <Filter>ui\components</Filter>
-    </ClCompile>
     <ClCompile Include="inventorySlot.cpp">
       <Filter>ui\components</Filter>
     </ClCompile>
@@ -165,6 +159,15 @@
       <Filter>ui\screens</Filter>
     </ClCompile>
     <ClCompile Include="animalShopItem.cpp">
+      <Filter>ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="container.cpp">
+      <Filter>ui\components\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="modal.cpp">
+      <Filter>ui\components\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="scrollbar.cpp">
       <Filter>ui\components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -299,12 +302,6 @@
     <ClInclude Include="inventory.hpp">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="container.hpp">
-      <Filter>ui\components</Filter>
-    </ClInclude>
-    <ClInclude Include="modal.hpp">
-      <Filter>ui\components</Filter>
-    </ClInclude>
     <ClInclude Include="inventorySlot.hpp">
       <Filter>ui\components</Filter>
     </ClInclude>
@@ -404,6 +401,15 @@
     <ClInclude Include="animalShopItem.hpp">
       <Filter>ui\components</Filter>
     </ClInclude>
+    <ClInclude Include="container.hpp">
+      <Filter>ui\components\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="modal.hpp">
+      <Filter>ui\components\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="scrollbar.hpp">
+      <Filter>ui\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">
@@ -489,6 +495,9 @@
     </Filter>
     <Filter Include="systems\currency">
       <UniqueIdentifier>{e19a5421-aee2-4d3b-aca7-5373ac90b392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\components\containers">
+      <UniqueIdentifier>{72aff4de-3f84-4f93-a448-8126cbc3cdb4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

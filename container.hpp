@@ -2,6 +2,7 @@
 #include "object.hpp"
 #include "vec2.hpp"
 #include "subscriptionManager.hpp"
+#include "scrollbar.hpp"
 #include <map>
 #include <memory>
 
@@ -14,10 +15,12 @@ enum class Justification {
 class Container : public Object, public SubscriptionManager {
 public:
 	Container(
-		int64_t id, 
-		vec2<float>& pos, 
+		int64_t id,
+		vec2<float>& pos,
 		vec2<float>& size,
-		Justification justification
+		Justification justification,
+		vec2<float>& gap,
+		bool scrollable = false
 	);
 
 	// containers also need to update the positions of their children
@@ -42,4 +45,10 @@ private:
 	void spreadObjects();
 
 	Justification justification_;
+	vec2<float> gap_;
+	bool scrollable_;
+
+	std::shared_ptr<Tmpl8::Surface> drawingSurface;
+	Scrollbar scrollbar_;
+	vec2<float> scrollOffset = vec2(0.0f);
 };

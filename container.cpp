@@ -4,9 +4,17 @@ Container::Container(
 	int64_t id,
 	vec2<float>& pos,
 	vec2<float>& size,
-	Justification justification
+	Justification justification,
+	vec2<float>& gap,
+	bool scrollable
 )
-	: Object(id, pos, size), justification_(justification) { };
+	: Object(id, pos, size),
+	justification_(justification), 
+	gap_(gap),
+	drawingSurface(std::make_shared<Tmpl8::Surface>(scrollable ? static_cast<int>(size.x) + 1 : 0, scrollable ? static_cast<int>(size.y) + 1 : 0)),
+	scrollable_(scrollable),
+	scrollbar_(0, pos_ + vec2(size.x, 0.0f), vec2(20.0f, size_.y), size_, [this](vec2<float> offset) {scrollOffset = offset; })
+{ };
 
 void Container::setPos(vec2<float>& pos) {
 	vec2 delta = pos_ - pos;
@@ -17,8 +25,22 @@ void Container::setPos(vec2<float>& pos) {
 }
 
 void Container::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	for (auto& object : objects_)
-		object.second->draw(surface, offset);
+	if (scrollable_) {
+		// use another surface to contain everything within the context
+		// of the container
+		drawingSurface->Clear(0x00);
+
+		for (auto& object : objects_)
+			object.second->draw(drawingSurface.get(), offset - scrollOffset - pos_ + 1);
+
+		drawingSurface->BlendCopyTo(surface, static_cast<int>(floor(pos_.x)) - 1, static_cast<int>(floor(pos_.y)) - 1);
+		scrollbar_.draw(surface, offset);
+	}
+	else {
+		// draw normally
+		for (auto& object : objects_)
+			object.second->draw(surface, offset);
+	}
 }
 
 void Container::process(float deltaTime) {
@@ -37,6 +59,8 @@ void Container::subscribe() {
 		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object.second);
 		if (subscriber != nullptr) subscriber->subscribe();
 	}
+
+	if (scrollable_) scrollbar_.subscribe();
 }
 
 void Container::unsubscribe() {
@@ -46,6 +70,8 @@ void Container::unsubscribe() {
 		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object.second);
 		if (subscriber != nullptr) subscriber->unsubscribe();
 	}
+
+	scrollbar_.unsubscribe();
 }
 
 void Container::spreadObjects() {
@@ -55,17 +81,15 @@ void Container::spreadObjects() {
 	vec2<float> combinedSize(0.0f);
 	for (auto& object : objects_) combinedSize += object.second->getSize();
 
-	// calculate the gap between each element based on how much space
-	// they take up combined compared to the container size
-	vec2<float> gap = (size_ - combinedSize) / static_cast<float>(objects_.size());
-
 	// spread objects by gap
 	vec2<float> currentPos = pos_;
 	for (auto& object : objects_) {
 		object.second->setPos(currentPos);
 
 		vec2<float> objectSize = object.second->getSize();
-		if (justification_ == Justification::VERTICAL) currentPos.y += objectSize.y + gap.y;
-		if (justification_ == Justification::HORIZONTAL) currentPos.x += objectSize.x + gap.x;
+		if (justification_ == Justification::VERTICAL) currentPos.y += objectSize.y + gap_.y;
+		if (justification_ == Justification::HORIZONTAL) currentPos.x += objectSize.x + gap_.x;
 	}
+
+	scrollbar_.setParentSize(vec2(std::max(currentPos.x - pos_.x, size_.x), std::max(currentPos.y - pos_.y, size_.y)));
 }

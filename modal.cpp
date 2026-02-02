@@ -2,10 +2,10 @@
 
 vec2 BUTTON_SIZE(10.0f);
 
-Modal::Modal(int64_t id, vec2<float>& pos, vec2<float>& size, std::function<void()> onExitHandler, Justification justification)
-	: Container(id, pos, size, Justification::VERTICAL), 
+Modal::Modal(int64_t id, vec2<float>& pos, vec2<float>& size, std::function<void()> onExitHandler, Justification justification, vec2<float>& gap, bool scrollable)
+	: Container(id, pos, size, Justification::VERTICAL, gap), 
 	exitButton(0, onExitHandler, "X", vec2(pos.x + size.x - BUTTON_SIZE.x, pos.y), BUTTON_SIZE),
-	innerContainer_(0, pos + BUTTON_SIZE, size - BUTTON_SIZE, justification)
+	innerContainer_(0, pos + BUTTON_SIZE, size - BUTTON_SIZE, justification, gap, scrollable)
 {}
 
 vec2<float> Modal::getPadding() {

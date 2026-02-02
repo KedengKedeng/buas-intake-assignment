@@ -2,7 +2,7 @@
 #include <format>
 
 AnimalShopItem::AnimalShopItem(int64_t id, vec2<float>& pos, vec2<float>& size, std::shared_ptr<CreatureType> type, std::shared_ptr<Wallet> wallet) :
-	Container(id, pos, size, Justification::HORIZONTAL),
+	Container(id, pos, size, Justification::HORIZONTAL, vec2(0.0f, 10.0f)),
 	type_(type),
 	text_(type->name, 2, 0xff000000),
 	priceText_(std::format("cost: {}", type->price), 2, 0xff000000),

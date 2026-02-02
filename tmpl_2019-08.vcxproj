@@ -45,6 +45,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -243,6 +244,7 @@
     <ClCompile Include="modal.cpp" />
     <ClCompile Include="mouseMoveHandler.cpp" />
     <ClCompile Include="plotObject.cpp" />
+    <ClCompile Include="scrollbar.cpp" />
     <ClCompile Include="spoon.cpp" />
     <ClCompile Include="spritesheet.cpp" />
     <ClCompile Include="spriteStack.cpp" />
@@ -312,6 +314,7 @@
     <ClInclude Include="mouseMoveHandler.hpp" />
     <ClInclude Include="modal.hpp" />
     <ClInclude Include="screens.hpp" />
+    <ClInclude Include="scrollbar.hpp" />
     <ClInclude Include="spoon.hpp" />
     <ClInclude Include="spritesheet.hpp" />
     <ClInclude Include="spriteStack.hpp" />

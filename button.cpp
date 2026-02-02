@@ -14,7 +14,7 @@ Button::Button(
 ) :
 	Object(id, pos, size),
 	handler_(handler),
-	text_(Text(const_cast<std::string&>(text), 1, 0x00)),
+	text_(Text(const_cast<std::string&>(text), 1, 0xff000000)),
 	borderWidth_(borderWidth),
 	color_(color),
 	borderColor_(borderColor)
@@ -36,14 +36,15 @@ void Button::subscribe() {
 }
 
 void Button::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	surface->Bar(pos_, pos_ + size_, borderColor_);
+	vec2 pos = pos_ + offset;
+	surface->Bar(pos, pos + size_, borderColor_);
 	surface->Bar(
-		pos_ + borderWidth_,
-		pos_ + size_ - borderWidth_,
+		pos + borderWidth_,
+		pos + size_ - borderWidth_,
 		color_
 	);
 
-	float textLeft = pos_.x + (size_.x - text_.getWidth()) / 2;
-	float textTop = pos_.y + (size_.y - text_.getHeight()) / 2;
+	float textLeft = pos.x + (size_.x - text_.getWidth()) / 2;
+	float textTop = pos.y + (size_.y - text_.getHeight()) / 2;
 	text_.draw(surface, vec2(textLeft, textTop));
 }

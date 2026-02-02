@@ -19,7 +19,9 @@ AnimalShopScreen::AnimalShopScreen(Tmpl8::Surface* surface, std::shared_ptr<Wall
 		modalPos, 
 		modalSize, 
 		[this]() {closeScreen.emit(); }, 
-		Justification::VERTICAL
+		Justification::VERTICAL,
+		vec2(10.0f),
+		true
 	);
 
 	int id = 0;
@@ -29,8 +31,4 @@ AnimalShopScreen::AnimalShopScreen(Tmpl8::Surface* surface, std::shared_ptr<Wall
 	}
 
 	insertObject(modal);
-}
-
-void AnimalShopScreen::subscribe() {
-	Screen::subscribe();
 }

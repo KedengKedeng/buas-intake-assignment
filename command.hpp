@@ -2,6 +2,8 @@
 
 class Command {
 public:
+	virtual ~Command() = default;
+
 	virtual void execute() {};
 	virtual void undo() {};
 };

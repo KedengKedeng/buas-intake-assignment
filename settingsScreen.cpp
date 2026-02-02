@@ -14,7 +14,8 @@ SettingsScreen::SettingsScreen(Tmpl8::Surface* surface) : Screen(surface) {
 		vec2<float>(surface->GetWidth(), surface->GetHeight()) / 2 - modalSize / 2,
 		modalSize,
 		[]() {closeScreen.emit(); },
-		Justification::VERTICAL
+		Justification::VERTICAL,
+		vec2(10.0f)
 	);
 
 	container->insertObject(std::make_shared<Button>(

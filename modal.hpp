@@ -4,7 +4,15 @@
 
 class Modal : public Container {
 public:
-	Modal(int64_t id, vec2<float>& pos, vec2<float>& size, std::function<void()> onExitHandler, Justification justification);
+	Modal(
+		int64_t id,
+		vec2<float>& pos,
+		vec2<float>& size,
+		std::function<void()> onExitHandler,
+		Justification justification,
+		vec2<float>& gap,
+		bool scrollable = false
+	);
 
 	void insertObject(std::shared_ptr<Object> object) override { innerContainer_.insertObject(std::move(object)); }
 

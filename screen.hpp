@@ -10,9 +10,12 @@
 
 class Screen : public Container {
 public:
-	Screen(Tmpl8::Surface* surface)
+	Screen(Tmpl8::Surface* surface) :
 		// screens are really just a container the size of the screen arent they? :)
-		: Container(0, vec2(0.0f), vec2(0.0f), Justification::NONE), keyboardInput_(), tooltipDispatcher_() {};
+		Container(0, vec2(0.0f), vec2<float>(surface->GetWidth(), surface->GetHeight()), Justification::NONE, vec2(0.0f)), 
+		keyboardInput_(), 
+		tooltipDispatcher_() 
+	{};
 
 	virtual void process(float deltaTime) override;
 
