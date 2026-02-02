@@ -79,7 +79,7 @@ void PlayScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	floorTiles_.draw(surface, -drawOffset);
 	Screen::draw(surface, -drawOffset);
 	player_.draw(surface, -drawOffset);
-	tooltipDispatcher_.draw(surface, -drawOffset);
+	drawDispatcher_.draw(surface, -drawOffset);
 }
 
 void PlayScreen::process(float deltaTime) {

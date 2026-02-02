@@ -6,7 +6,7 @@
 #include "container.hpp"
 #include "keyboardInput.hpp"
 #include "vec2.hpp"
-#include "tooltipDispatcher.hpp"
+#include "drawDispatcher.hpp"
 
 class Screen : public Container {
 public:
@@ -14,7 +14,7 @@ public:
 		// screens are really just a container the size of the screen arent they? :)
 		Container(0, vec2(0.0f), vec2<float>(surface->GetWidth(), surface->GetHeight()), Justification::NONE, vec2(0.0f)), 
 		keyboardInput_(), 
-		tooltipDispatcher_() 
+		drawDispatcher_() 
 	{};
 
 	virtual void process(float deltaTime) override;
@@ -30,7 +30,7 @@ public:
 	void keyUp(int keyCode) { keyboardInput_.keyUp(keyCode); }
 protected:
 	KeyboardInput keyboardInput_;
-	TooltipDispatcher tooltipDispatcher_;
+	DrawDispatcher drawDispatcher_;
 
 	void interactionCheck(Object& object);
 	std::set<int64_t> alreadyInteracting = {};

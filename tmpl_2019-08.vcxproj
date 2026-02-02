@@ -254,7 +254,7 @@
     <ClCompile Include="surfaceRepository.cpp" />
     <ClCompile Include="text.cpp" />
     <ClCompile Include="tooltip.cpp" />
-    <ClCompile Include="tooltipDispatcher.cpp" />
+    <ClCompile Include="drawDispatcher.cpp" />
     <ClCompile Include="uiSignals.cpp" />
     <ClCompile Include="wallet.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
@@ -328,7 +328,7 @@
     <ClInclude Include="text.hpp" />
     <ClInclude Include="tilemap.hpp" />
     <ClInclude Include="tooltip.hpp" />
-    <ClInclude Include="tooltipDispatcher.hpp" />
+    <ClInclude Include="drawDispatcher.hpp" />
     <ClInclude Include="uiSignals.hpp" />
     <ClInclude Include="vec2.hpp" />
     <ClInclude Include="wallet.hpp" />

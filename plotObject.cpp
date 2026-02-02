@@ -22,7 +22,7 @@ PlotObject::PlotObject(int64_t id, const vec2<float>& pos, const vec2<float>& si
 
 PlotObject::~PlotObject() {
 	for (auto id : animalIds) deleteObjectSignal.emit(id);
-	removeTooltip.emit(tooltip_->getId());
+	removeDrawOnTop.emit(tooltip_->getId());
 }
 
 void PlotObject::addAnimal() {
@@ -41,10 +41,10 @@ void PlotObject::subscribe() {
 	}));
 
 	addSubscription(onInteractionStart.subscribe([this]() {
-		showTooltip.emit(tooltip_);
+		drawOnTop.emit(tooltip_->getId(), [this](Tmpl8::Surface* surface, const vec2<float>& offset) {tooltip_->draw(surface, offset); });
 	}));
 
 	addSubscription(onInteractionEnd.subscribe([this]() {
-		removeTooltip.emit(tooltip_->getId());
+		removeDrawOnTop.emit(tooltip_->getId());
 	}));
 }
