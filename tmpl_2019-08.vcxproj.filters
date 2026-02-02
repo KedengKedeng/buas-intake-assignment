@@ -173,6 +173,12 @@
     <ClCompile Include="drawDispatcher.cpp">
       <Filter>systems</Filter>
     </ClCompile>
+    <ClCompile Include="textureTooltip.cpp">
+      <Filter>ui\components\tooltip</Filter>
+    </ClCompile>
+    <ClCompile Include="plot.cpp">
+      <Filter>systems\husbandry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -415,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="drawDispatcher.hpp">
       <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="textureTooltip.hpp">
+      <Filter>ui\components\tooltip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

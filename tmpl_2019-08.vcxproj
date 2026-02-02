@@ -28,23 +28,23 @@
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -244,6 +244,7 @@
     <ClCompile Include="inventorySlot.cpp" />
     <ClCompile Include="modal.cpp" />
     <ClCompile Include="mouseHandler.cpp" />
+    <ClCompile Include="plot.cpp" />
     <ClCompile Include="plotObject.cpp" />
     <ClCompile Include="scrollbar.cpp" />
     <ClCompile Include="spoon.cpp" />
@@ -253,6 +254,7 @@
     <ClCompile Include="subscriptionManager.cpp" />
     <ClCompile Include="surfaceRepository.cpp" />
     <ClCompile Include="text.cpp" />
+    <ClCompile Include="textureTooltip.cpp" />
     <ClCompile Include="tooltip.cpp" />
     <ClCompile Include="drawDispatcher.cpp" />
     <ClCompile Include="uiSignals.cpp" />
@@ -326,6 +328,7 @@
     <ClInclude Include="surfaceList.hpp" />
     <ClInclude Include="surfaceRepository.hpp" />
     <ClInclude Include="text.hpp" />
+    <ClInclude Include="textureTooltip.hpp" />
     <ClInclude Include="tilemap.hpp" />
     <ClInclude Include="tooltip.hpp" />
     <ClInclude Include="drawDispatcher.hpp" />

@@ -1,6 +1,6 @@
 #pragma once
 #include "surface.h"
-#include "sprite.hpp"
+#include "animatedSprite.hpp"
 #include <string>
 
 enum class ItemTypes {
@@ -10,7 +10,7 @@ enum class ItemTypes {
 };
 
 struct Item {
-	Item(ItemTypes itemType, Tmpl8::Pixel color, float smell, float weight, const std::string& name, Sprite& sprite):
+	Item(ItemTypes itemType, Tmpl8::Pixel color, float smell, float weight, const std::string& name, AnimatedSprite& sprite):
 		itemType(itemType), color(color), smell(smell), weight(weight), name(name), sprite(sprite){};
 
 	ItemTypes itemType;
@@ -18,5 +18,5 @@ struct Item {
 	float smell;
 	float weight;
 	std::string name;
-	Sprite sprite;
+	AnimatedSprite sprite;
 };

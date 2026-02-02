@@ -17,7 +17,10 @@ public:
 	void setLevel(int level) { level_ = level; }
 	void levelUp() { level_++; }
 	int getLevel() { return level_; }
+
+	std::shared_ptr<Item> progressProduction(float timePassed);
 private:
+	float productionTimePassed = 0;
 	bool bought_ = false;
 	std::shared_ptr<CreatureType> creatureType_;
 	int amount_ = 0;

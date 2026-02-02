@@ -55,7 +55,7 @@ void PlayScreen::createPlotObjects(std::shared_ptr<Husbandry> husbandry, const v
 	vec2 currentPos = pos;
 	int currentPlot = 0;
 	for (auto& plot : plots) {
-		insertObject(std::make_shared<PlotObject>(getRandomNum(), currentPos, PLOT_SIZE, plot));
+		insertObject(std::make_shared<PlotObject>(getRandomNum(), currentPos, PLOT_SIZE, plot, inventory_));
 		if (currentPlot == plotsPerRow) {
 			currentPos = pos + PLOT_SIZE;
 			currentPos.x += PLOT_MARGINS.x;
