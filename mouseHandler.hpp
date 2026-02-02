@@ -1,8 +1,9 @@
 #pragma once
 #include "vec2.hpp"
+#include "subscriptionManager.hpp"
 #include <functional>
 
-class MouseHandler {
+class MouseHandler : public SubscriptionManager {
 public:
 	MouseHandler() {};
 	~MouseHandler();
@@ -13,8 +14,8 @@ public:
 	void setOnMouseUp(std::function<void()> handler);
 	void setInteractionCheck(std::function<bool(vec2<float>&)> func) { interactionCheck = func; }
 
-	void subscribe();
-	void unsubscribe();
+	void subscribe() override;
+	void unsubscribe() override;
 private:
 	std::function<void(vec2<float>&, vec2<float>&)> onMouseMoveHandler_;
 	std::function<void(vec2<float>&, vec2<float>&)> onMouseDragHandler_;
@@ -24,8 +25,4 @@ private:
 
 	bool mouseDown = false;
 	vec2<float> oldPos = vec2(0.0f);
-
-	std::function<void()> onMouseMoveUnsub = []() {};
-	std::function<void()> onMouseDownUnsub = []() {};
-	std::function<void()> onMouseUpUnsub = []() {};
 };

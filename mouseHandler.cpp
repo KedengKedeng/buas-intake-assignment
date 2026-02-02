@@ -24,30 +24,28 @@ void MouseHandler::setOnMouseUp(std::function<void()> handler) {
 }
 
 void MouseHandler::subscribe() {
-	onMouseDownUnsub = onMouseDown.subscribe([this](vec2<float>& pos) {
+	addSubscription(onMouseDown.subscribe([this](vec2<float>& pos) {
 		if (interactionCheck(pos)) mouseDown = true;
 		if (onMouseDownHandler_ != nullptr) onMouseDownHandler_();
-	});
+	}));
 
-	onMouseUpUnsub = onMouseUp.subscribe([this]() {
+	addSubscription(onMouseUp.subscribe([this]() {
 		if (mouseDown && onMouseUpHandler_ != nullptr) onMouseUpHandler_();
 		mouseDown = false;
-	});
+	}));
 
-	onMouseMoveUnsub = mouseMoved.subscribe([this](vec2<float>& pos) {
+	addSubscription(mouseMoved.subscribe([this](vec2<float>& pos) {
 		vec2<float> delta = pos - oldPos;
 
 		if (onMouseMoveHandler_ != nullptr) onMouseMoveHandler_(pos, delta);
 		if (onMouseDragHandler_ != nullptr && mouseDown == true) onMouseDragHandler_(pos, delta);
 
 		oldPos = pos;
-	});
+	}));
 }
 
 void MouseHandler::unsubscribe() {
-	mouseDown = false;
+	SubscriptionManager::unsubscribe();
 
-	onMouseDownUnsub();
-	onMouseUpUnsub();
-	onMouseMoveUnsub();
+	mouseDown = false;
 }
