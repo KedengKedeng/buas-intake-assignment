@@ -152,9 +152,6 @@
     <ClCompile Include="startScreen.cpp">
       <Filter>ui\screens</Filter>
     </ClCompile>
-    <ClCompile Include="animalShopItem.cpp">
-      <Filter>ui\components</Filter>
-    </ClCompile>
     <ClCompile Include="container.cpp">
       <Filter>ui\components\containers</Filter>
     </ClCompile>
@@ -172,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="mouseHandler.cpp">
       <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="animalShopItem.cpp">
+      <Filter>ui\components\clickables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,9 +395,6 @@
     <ClInclude Include="animalShopScreen.hpp">
       <Filter>ui\screens</Filter>
     </ClInclude>
-    <ClInclude Include="animalShopItem.hpp">
-      <Filter>ui\components</Filter>
-    </ClInclude>
     <ClInclude Include="container.hpp">
       <Filter>ui\components\containers</Filter>
     </ClInclude>
@@ -415,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="mouseHandler.hpp">
       <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="animalShopItem.hpp">
+      <Filter>ui\components\clickables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

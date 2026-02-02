@@ -1,7 +1,6 @@
 #include "countingStorage.hpp"
 
-void CountingStorage::add(std::string& name) {
-	if (!count.count(name)) count[name] = 0;
+void CountingStorage::add(const std::string& name) {
 	count[name]++;
 }
 

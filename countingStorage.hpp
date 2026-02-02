@@ -4,7 +4,7 @@
 
 class CountingStorage {
 public:
-	void add(std::string& itemName);
+	void add(const std::string& itemName);
 	void remove(std::string& itemName);
 
 	std::map<std::string, int>::iterator begin() { return count.begin(); }

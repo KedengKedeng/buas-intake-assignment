@@ -5,7 +5,7 @@
 
 class Husbandry : public CountingStorage {
 public:
-	Husbandry() {};
+	Husbandry() : CountingStorage() {};
 
 	void addPlot(std::shared_ptr<Plot> plot) { plots_.push_back(plot); }
 	std::vector<std::shared_ptr<Plot>>& getPlots() { return plots_; }

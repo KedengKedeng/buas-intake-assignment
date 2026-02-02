@@ -26,7 +26,14 @@ AnimalShopScreen::AnimalShopScreen(Tmpl8::Surface* surface, std::shared_ptr<Wall
 
 	int id = 0;
 	for (auto& it = creatureTypeRepository.begin(); it != creatureTypeRepository.end(); it++) {
-		modal->insertObject(std::make_shared<AnimalShopItem>(id, vec2(0.0f), vec2(modalSize.x - modal->getPadding().x * 2, 100.0f), it->second, wallet_));
+		modal->insertObject(std::make_shared<AnimalShopItem>(
+			id, 
+			vec2(0.0f), 
+			vec2(modalSize.x - modal->getPadding().x * 2, 100.0f), 
+			it->second, 
+			wallet_, 
+			husbandry_
+		));
 		id++;
 	}
 
