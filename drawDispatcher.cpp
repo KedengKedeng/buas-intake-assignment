@@ -11,6 +11,6 @@ void DrawDispatcher::subscribe() {
 	}));
 }
 
-void DrawDispatcher::draw(Tmpl8::Surface* surface, vec2<float>& offset) {
+void DrawDispatcher::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	for (auto& drawFunc : toDraw) drawFunc.second(surface, offset);
 }

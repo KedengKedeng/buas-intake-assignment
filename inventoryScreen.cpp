@@ -38,6 +38,7 @@ void InventoryScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	}
 
 	Screen::draw(surface, offset);
+	drawDispatcher_.draw(surface, offset);
 }
 
 void InventoryScreen::process(float deltaTime) {
