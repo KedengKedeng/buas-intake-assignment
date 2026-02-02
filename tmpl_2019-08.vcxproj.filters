@@ -92,9 +92,6 @@
     <ClCompile Include="inventoryScreen.cpp">
       <Filter>ui\screens</Filter>
     </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>ui\components</Filter>
-    </ClCompile>
     <ClCompile Include="inventorySlot.cpp">
       <Filter>ui\components</Filter>
     </ClCompile>
@@ -169,6 +166,12 @@
     </ClCompile>
     <ClCompile Include="scrollbar.cpp">
       <Filter>ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>ui\components\clickables</Filter>
+    </ClCompile>
+    <ClCompile Include="clickable.cpp">
+      <Filter>ui\components\clickables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -371,9 +374,6 @@
     <ClInclude Include="creature.hpp">
       <Filter>gameplay\world objects\husbandry</Filter>
     </ClInclude>
-    <ClInclude Include="button.hpp">
-      <Filter>ui\components</Filter>
-    </ClInclude>
     <ClInclude Include="object.hpp">
       <Filter>systems</Filter>
     </ClInclude>
@@ -409,6 +409,12 @@
     </ClInclude>
     <ClInclude Include="scrollbar.hpp">
       <Filter>ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="button.hpp">
+      <Filter>ui\components\clickables</Filter>
+    </ClInclude>
+    <ClInclude Include="clickable.hpp">
+      <Filter>ui\components\clickables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -498,6 +504,9 @@
     </Filter>
     <Filter Include="ui\components\containers">
       <UniqueIdentifier>{72aff4de-3f84-4f93-a448-8126cbc3cdb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\components\clickables">
+      <UniqueIdentifier>{fb775c4d-7c69-4f8a-a144-7ecce2608786}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

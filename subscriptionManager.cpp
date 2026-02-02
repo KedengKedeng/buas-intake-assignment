@@ -9,6 +9,6 @@ void SubscriptionManager::unsubscribe() {
 	unsubscribers.clear();
 }
 
-void SubscriptionManager::addSubscription(std::function<void()>& func) {
+void SubscriptionManager::addSubscription(std::function<void()> func) {
 	unsubscribers.push_back(func);
 }

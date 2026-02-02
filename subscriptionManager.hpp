@@ -9,7 +9,7 @@ public:
 	virtual void subscribe() {};
 	virtual void unsubscribe();
 
-	void addSubscription(std::function<void()>& sub);
+	void addSubscription(std::function<void()> sub);
 private:
 	std::vector<std::function<void()>> unsubscribers = {};
 };
