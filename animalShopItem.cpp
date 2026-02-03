@@ -35,7 +35,7 @@ void AnimalShopItem::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 
 	surface->Bar(pos + 10, pos + vec2(size.y - 10), 0xff000000);
 	vec2<float> spriteSize(animalSprite_.getWidth() * 0.75f, animalSprite_.getHeight() * 0.75f);
-	auto spritePos = pos + (size - spriteSize) / 2;
+	auto spritePos = pos + (vec2(size.y) - spriteSize) / 2;
 	animalSprite_.drawScaled(surface, spritePos.x, spritePos.y, 0.75f);
 
 	vec2 textSize = vec2<float>(text_.getWidth(), text_.getHeight());

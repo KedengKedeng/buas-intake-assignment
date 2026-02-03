@@ -246,6 +246,7 @@
     <ClCompile Include="mouseHandler.cpp" />
     <ClCompile Include="plot.cpp" />
     <ClCompile Include="plotObject.cpp" />
+    <ClCompile Include="recipeBook.cpp" />
     <ClCompile Include="scrollbar.cpp" />
     <ClCompile Include="spoon.cpp" />
     <ClCompile Include="spritesheet.cpp" />
@@ -308,6 +309,7 @@
     <ClInclude Include="numbers.hpp" />
     <ClInclude Include="plot.hpp" />
     <ClInclude Include="plotObject.hpp" />
+    <ClInclude Include="recipeBook.hpp" />
     <ClInclude Include="rect2.hpp" />
     <ClInclude Include="screenCommands.hpp" />
     <ClInclude Include="container.hpp" />

@@ -26,6 +26,7 @@ namespace Tmpl8
 		setupSurfaceList();
 		setupSpriteList();
 		setupItemList();
+		setupRecipeList();
 		setupCreatureTypeList();
 
 		mouseInput = MouseInput();

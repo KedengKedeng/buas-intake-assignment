@@ -1,4 +1,5 @@
 #include "cauldron.hpp"
+#include "recipeBook.hpp"
 
 void Cauldron::insertItem(std::shared_ptr<Item> item) { 
 	items_.push_back(item); 
@@ -6,14 +7,22 @@ void Cauldron::insertItem(std::shared_ptr<Item> item) {
 }
 
 void Cauldron::stir(float delta) {
-	if (items_.size() == 0) return;
+	if (items_.size() == 0 || temp < 200) return;
 
 	amountToStir -= delta;
 
 	if (amountToStir <= 0) {
+		auto output = recipeBook.lookup(items_);
+
+		if (output == nullptr) {
+			amountToStir += 1000 * items_.size();
+			return;
+		}
+
 		amountToStir = 0;
-		printf("stirring complete \n");
 		items_.clear();
+		temp = 0;
+		printf(output->name.c_str());
 	}
 }
 
