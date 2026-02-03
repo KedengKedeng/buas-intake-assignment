@@ -3,7 +3,7 @@
 #include "vec2.hpp"
 #include "subscriptionManager.hpp"
 #include "scrollbar.hpp"
-#include <map>
+#include <unordered_map>
 #include <memory>
 
 enum class Justification {
@@ -34,13 +34,13 @@ public:
 
 	template<typename T>
 	std::shared_ptr<T> getObject(int64_t id) { return std::dynamic_pointer_cast<T>(objects_[id]); }
-	virtual std::map<int64_t, std::shared_ptr<Object>>::iterator begin() { return objects_.begin(); }
-	virtual std::map<int64_t, std::shared_ptr<Object>>::iterator end() { return objects_.end(); }
+	virtual std::unordered_map<int64_t, std::shared_ptr<Object>>::iterator begin() { return objects_.begin(); }
+	virtual std::unordered_map<int64_t, std::shared_ptr<Object>>::iterator end() { return objects_.end(); }
 
 	virtual void subscribe() override;
 	virtual void unsubscribe() override;
 protected:
-	std::map<int64_t, std::shared_ptr<Object>> objects_ = {};
+	std::unordered_map<int64_t, std::shared_ptr<Object>> objects_ = {};
 private:
 	void spreadObjects();
 

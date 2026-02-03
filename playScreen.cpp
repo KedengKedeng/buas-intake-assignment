@@ -43,7 +43,6 @@ PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inven
 
 	// interactable objects
 	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2(surface->GetWidth() / 2.0f, surface->GetHeight() / 2.0f), cauldron));
-	insertObject(std::make_shared<ItemObject>(getRandomNum(), vec2(20.0f, 50.0f), itemRepository.get("testItem")));
 
 	std::vector<FloorTiles> tileTypes { FloorTiles::Ground1, FloorTiles::Ground2, FloorTiles::Ground3, FloorTiles::Ground4 };
 	floorTiles_.setSquare(Rect2<int>(-plotSpace.x, -plotSpace.y, roomSize.x + plotSpace.x, roomSize.y + plotSpace.y) / tileSize, tileTypes);
