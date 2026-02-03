@@ -10,13 +10,16 @@ ItemObject::ItemObject(int64_t id, vec2<float>& pos, std::shared_ptr<Item> item)
 {}
 
 void ItemObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	item_->sprite.draw(surface, pos_.x + offset.x, pos_.y + offset.y + drawOffset);
+	auto pos = getPos() + offset;
+	item_->sprite.draw(surface, pos.x, pos.y + drawOffset);
+};
 
+void ItemObject::process(float deltaTime) {
 	// Get item to bob up and down.
 	if (drawOffset >= maxDrawOffset) drawOffsetStep = -0.5f;
 	if (drawOffset <= minDrawOffset) drawOffsetStep = 0.5f;
 	drawOffset += drawOffsetStep;
-};
+}
 
 void ItemObject::subscribe() {
 	addSubscription(interactionSignal.subscribe([this]() {

@@ -12,7 +12,7 @@ Blower::Blower(int64_t id, vec2<float>& pos) :
 	interactionBox_.setSize(vec2<float>(sprites_->getWidth(), sprites_->getHeight()));
 
 	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
-		return getInteractableBoundsAt(pos_).isInBounds(pos);
+		return getInteractableBoundsAt(getPos()).isInBounds(pos);
 	});
 
 	mouseHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
@@ -39,7 +39,8 @@ void Blower::addBlowerPosition(float delta) {
 
 void Blower::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	int frame = static_cast<int>(floor(blowerPosition / 25));
-	sprites_->getSprite(frame).drawScaled(surface, pos_.x + offset.x, pos_.y + offset.y, 0.4f);
+	auto pos = getPos() + offset;
+	sprites_->getSprite(frame).drawScaled(surface, pos.x, pos.y, 0.4f);
 }
 
 void Blower::process(float deltaTime) {

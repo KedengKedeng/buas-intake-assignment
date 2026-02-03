@@ -16,8 +16,7 @@ public:
 
 	virtual void draw(Tmpl8::Surface* surface, const vec2<float>& offset) = 0;
 	virtual void process(float deltaTime) {};
-protected:
-	vec2<float> pos_, size_;
 private:
 	int64_t id_;
+	vec2<float> pos_, size_;
 };

@@ -10,40 +10,43 @@ CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron)
 	fire(AnimatedSprite(spriteRepository.getSheet("cauldroncloseupfire"), 0.005f, 0.4)),
 	cauldron_(cauldron)
 {
-	pos_ = vec2(cauldronFront.getWidth() / 2, cauldronFront.getHeight());
-	size_ = vec2(cauldronFront.getWidth(), cauldronFront.getHeight());
+	setPos(vec2(cauldronFront.getWidth() / 2, cauldronFront.getHeight()));
+	setSize(vec2(cauldronFront.getWidth(), cauldronFront.getHeight()));
 
-	addCollider(BoundingBox(vec2(80.0f), vec2(40.0f, size_.y - 80)));
-	addCollider(BoundingBox(vec2(size_.x - 100, 80.0f), vec2(40.0f, size_.y - 80)));
-	addCollider(BoundingBox(vec2(80.0f, size_.y - 100), vec2(size_.x - 140, 1.0f)));
+	auto size = getSize();
+	addCollider(BoundingBox(vec2(80.0f), vec2(40.0f, size.y - 80)));
+	addCollider(BoundingBox(vec2(size.x - 100, 80.0f), vec2(40.0f, size.y - 80)));
+	addCollider(BoundingBox(vec2(80.0f, size.y - 100), vec2(size.x - 140, 1.0f)));
 
 	// the asset has a lot of white space so we need to add an offset
 	// to make the bounding box feel a bit better
 	interactionBox_.setPos(vec2(120.0f, 80.0f));
-	interactionBox_.setSize(vec2(size_.x - 220, size_.y - 80));
+	interactionBox_.setSize(vec2(size.x - 220, size.y - 80));
 }
 
 void CookingCauldron::drawBack(Tmpl8::Surface* surface) {
-	cauldronBack.draw(surface, pos_.x, pos_.y);
+	auto pos = getPos();
+	cauldronBack.draw(surface, pos.x, pos.y);
 
 	if (cauldron_->getItemCount() != 0) {
 		cauldronInside.draw(
 			surface,
-			pos_.x + (cauldronFront.getWidth() / 2 - cauldronInside.getWidth() / 2),
-			pos_.y
+			pos.x + (cauldronFront.getWidth() / 2 - cauldronInside.getWidth() / 2),
+			pos.y
 		);
 	};
 }
 
 void CookingCauldron::drawFront(Tmpl8::Surface* surface) {
-	cauldronFront.draw(surface, pos_.x, pos_.y);
+	auto pos = getPos();
+	cauldronFront.draw(surface, pos.x, pos.y);
 
 	fire.draw(
 		surface,
-		pos_.x + (cauldronFront.getWidth() / 2 - fire.getWidth() / 2), 
+		pos.x + (cauldronFront.getWidth() / 2 - fire.getWidth() / 2), 
 		// offset the height by the temperature of the cauldron.
 		// this gives a little effect where the fire springs up as the cauldron gets hotter.
-		pos_.y + (cauldronFront.getHeight() - (fire.getHeight() - 20)) + (200 - std::min(cauldron_->getTemp() / 4, 200.0f))
+		pos.y + (cauldronFront.getHeight() - (fire.getHeight() - 20)) + (200 - std::min(cauldron_->getTemp() / 4, 200.0f))
 	);
 }
 

@@ -13,14 +13,14 @@ Container::Container(
 	gap_(gap),
 	drawingSurface(std::make_shared<Tmpl8::Surface>(scrollable ? static_cast<int>(size.x) + 1 : 0, scrollable ? static_cast<int>(size.y) + 1 : 0)),
 	scrollable_(scrollable),
-	scrollbar_(0, pos_ + vec2(size.x, 0.0f), vec2(20.0f, size_.y), size_, [this](vec2<float> offset) {scrollOffset = offset; })
+	scrollbar_(0, pos + vec2(size.x, 0.0f), vec2(20.0f, size.y), size, [this](vec2<float> offset) {scrollOffset = offset; })
 { };
 
 void Container::setPos(vec2<float>& pos) {
-	vec2 delta = pos_ - pos;
+	vec2 delta = getPos() - pos;
 	for (auto& it = begin(); it != end(); it++)
 		it->second->setPos(it->second->getPos() + delta);
-	pos_ = pos;
+	Object::setPos(pos);
 	spreadObjects();
 }
 
@@ -30,10 +30,12 @@ void Container::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 		// of the container
 		drawingSurface->Clear(0x00);
 
-		for (auto& object : objects_)
-			object.second->draw(drawingSurface.get(), offset - scrollOffset - pos_ + 1);
+		auto pos = getPos();
 
-		drawingSurface->BlendCopyTo(surface, static_cast<int>(floor(pos_.x)) - 1, static_cast<int>(floor(pos_.y)) - 1);
+		for (auto& object : objects_)
+			object.second->draw(drawingSurface.get(), offset - scrollOffset - pos + 1);
+
+		drawingSurface->BlendCopyTo(surface, static_cast<int>(floor(pos.x)) - 1, static_cast<int>(floor(pos.y)) - 1);
 		scrollbar_.draw(surface, offset);
 	}
 	else {
@@ -82,7 +84,7 @@ void Container::spreadObjects() {
 	for (auto& object : objects_) combinedSize += object.second->getSize();
 
 	// spread objects by gap
-	vec2<float> currentPos = pos_;
+	vec2<float> currentPos = getPos();
 	for (auto& object : objects_) {
 		object.second->setPos(currentPos);
 
@@ -91,5 +93,7 @@ void Container::spreadObjects() {
 		if (justification_ == Justification::HORIZONTAL) currentPos.x += objectSize.x + gap_.x;
 	}
 
-	scrollbar_.setParentSize(vec2(std::max(currentPos.x - pos_.x, size_.x), std::max(currentPos.y - pos_.y, size_.y)));
+	auto pos = currentPos - getPos();
+	auto size = getSize();
+	scrollbar_.setParentSize(vec2(std::max(pos.x, size.x), std::max(pos.y, size.y)));
 }

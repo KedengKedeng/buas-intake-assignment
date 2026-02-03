@@ -18,7 +18,7 @@ PlotObject::PlotObject(int64_t id, const vec2<float>& pos, const vec2<float>& si
 	addCollider(BoundingBox(vec2(0.0f, size.y - 1), vec2(size.x - 1, 1.0f)));
 	addCollider(BoundingBox(vec2(size.x - 1, 0.0f), vec2(1.0f, size.y - 1)));
 
-	tooltip_->setPos(pos_ + (size_ - tooltip_->getSize()) / 2);
+	tooltip_->setPos(getPos() + (getSize() - tooltip_->getSize()) / 2);
 }
 
 PlotObject::~PlotObject() {
@@ -28,13 +28,14 @@ PlotObject::~PlotObject() {
 
 void PlotObject::addAnimal() {
 	int64_t id = getRandomNum();
-	createObjectSignal.emit(std::make_shared<Creature>(id, pos_ + 1, plot_->getType()));
+	createObjectSignal.emit(std::make_shared<Creature>(id, getPos() + 1, plot_->getType()));
 	animalIds.push_back(id);
 	plot_->addCreature();
 }
 
 void PlotObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	surface->Box(pos_ + offset, pos_ + size_ + offset, 0xff0000ff);
+	auto pos = getPos() + offset;
+	surface->Box(pos, pos + getSize(), 0xff0000ff);
 }
 
 void PlotObject::process(float deltaTime) {

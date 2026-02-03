@@ -7,17 +7,17 @@
 InventorySlot::InventorySlot(int64_t id, vec2<float>& pos, vec2<float>& size, std::shared_ptr<Item> item, int amount, std::function<void(InventorySlot*, vec2<float>&)> onDragEndHandler)
 	: Object(id, pos, size), mouseHandler_(){
 	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
-		return BoundingBox(pos_, size_).isInBounds(pos);
+		return BoundingBox(getPos(), getSize()).isInBounds(pos);
 	});
 
 	mouseHandler_.setOnMouseDown([this]() {
-		dragPos = pos_;
+		dragPos = getPos();
 		dragging = true;
 
 		drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, const vec2<float>& offset) {
 			if (item_ == nullptr) return;
 
-			vec2 itemPos = dragPos + offset + (size_ - vec2(item_->sprite.getWidth(), item_->sprite.getHeight()) / 2) / 2;
+			vec2 itemPos = dragPos + offset + (getSize() - vec2(item_->sprite.getWidth(), item_->sprite.getHeight()) / 2) / 2;
 			item_->sprite.drawScaled(surface, itemPos.x, itemPos.y, 0.5f);
 		});
 	});
@@ -34,14 +34,15 @@ InventorySlot::InventorySlot(int64_t id, vec2<float>& pos, vec2<float>& size, st
 }
 
 void InventorySlot::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	vec2 pos = pos_ + offset;
+	auto pos = getPos() + offset;
+	auto size = getSize();
 
-	surface->Box(pos, pos + size_, 0xff000000);
+	surface->Box(pos, pos + size, 0xff000000);
 
 	if (item_ != nullptr && !dragging) {
-		vec2 itemPos = pos + (size_ - vec2(item_->sprite.getWidth(), item_->sprite.getHeight()) / 2) / 2;
+		vec2 itemPos = pos + (size - vec2(item_->sprite.getWidth(), item_->sprite.getHeight()) / 2) / 2;
 		item_->sprite.drawScaled(surface, itemPos.x, itemPos.y, 0.5f);
-		Text(std::format("x{}", amount_), 1, 0xffffffff).draw(surface, vec2(pos.x + 10, pos.y + size_.y - 10));
+		Text(std::format("x{}", amount_), 1, 0xffffffff).draw(surface, vec2(pos.x + 10, pos.y + size.y - 10));
 	}
 }
 

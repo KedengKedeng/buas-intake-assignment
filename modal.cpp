@@ -14,7 +14,8 @@ vec2<float> Modal::getPadding() {
 
 void Modal::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	surface->Bar(vec2(0.0f), vec2<float>(surface->GetWidth(), surface->GetHeight()), 0x40000000);
-	surface->Bar(pos_, pos_ + size_, 0xffffffff);
+	auto pos = getPos();
+	surface->Bar(pos, pos + getSize(), 0xffffffff);
 
 	exitButton.draw(surface, offset);
 	innerContainer_.draw(surface, offset);

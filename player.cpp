@@ -26,9 +26,9 @@ void Player::subscribe() {
 	addSubscription(walkSignal.subscribe([this](vec2<int8_t>& delta) {
 		addDelta(delta);
 
-		auto delta_ = getDelta();
+		auto newDelta = getDelta();
 
-		if (delta_.x < 0) setLookingDirection(LookingDirections::LEFT);
-		if (delta_.x > 0) setLookingDirection(LookingDirections::RIGHT);
+		if (newDelta.x < 0) setLookingDirection(LookingDirections::LEFT);
+		if (newDelta.x > 0) setLookingDirection(LookingDirections::RIGHT);
 	}));
 }

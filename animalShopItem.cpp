@@ -22,33 +22,30 @@ AnimalShopItem::AnimalShopItem(
 	husbandry_(husbandry)
 {
 	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
-		return BoundingBox(pos_, size_).isInBounds(pos);
+		return BoundingBox(getPos(), getSize()).isInBounds(pos);
 	});
 }
 
 void AnimalShopItem::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	int padding = 20;
-	vec2 pos = pos_ + offset;
-	surface->Bar(pos, pos + size_, 0xffffffff);
-	surface->Box(pos, pos + size_, 0xff000000);
+	auto pos = getPos() + offset;
+	auto size = getSize();
+	surface->Bar(pos, pos + size, 0xffffffff);
+	surface->Box(pos, pos + size, 0xff000000);
 
-	surface->Bar(pos + 10, pos + vec2(size_.y - 10), 0xff000000);
+	surface->Bar(pos + 10, pos + vec2(size.y - 10), 0xff000000);
 	vec2<float> spriteSize(animalSprite_.getWidth() * 0.75f, animalSprite_.getHeight() * 0.75f);
-	animalSprite_.drawScaled(
-		surface, 
-		pos.x + (size_.y - spriteSize.x) / 2, 
-		pos.y + (size_.y - spriteSize.y) / 2,
-		0.75f
-	);
+	auto spritePos = pos + (size - spriteSize) / 2;
+	animalSprite_.drawScaled(surface, spritePos.x, spritePos.y, 0.75f);
 
 	vec2 textSize = vec2<float>(text_.getWidth(), text_.getHeight());
-	text_.draw(surface, pos + (size_ - textSize) / 2);
+	text_.draw(surface, pos + (size - textSize) / 2);
 
 	vec2 priceTextSize(priceText_.getWidth(), priceText_.getHeight());
-	priceText_.draw(surface, pos + size_ - priceTextSize);
+	priceText_.draw(surface, pos + size - priceTextSize);
 
 	// grey out the item if it cant be bought
-	if (wallet_->getCurrency() < type_->price) surface->Bar(pos, pos + size_, 0x50000000);
+	if (wallet_->getCurrency() < type_->price) surface->Bar(pos, pos + size, 0x50000000);
 }
 
 void AnimalShopItem::process(float deltaTime) {

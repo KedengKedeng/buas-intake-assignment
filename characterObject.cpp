@@ -24,7 +24,7 @@ void CharacterObject::calculateMove() {
 
 	vec2<float> calculatedVelocity = velocity / sidewardsPenalty * delta_;
 
-	requestMove.emit(pos_, calculatedVelocity, *this);
+	requestMove.emit(getPos(), calculatedVelocity, *this);
 }
 
 void CharacterObject::process(float deltaTime) {
@@ -36,5 +36,6 @@ void CharacterObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	if (delta_.x || delta_.y) sprites_.setSprite(static_cast<int>(lookingDirection_) + 2); // set to running animations
 	else sprites_.setSprite(static_cast<int>(lookingDirection_)); // set to idle animations
 
-	sprites_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);
+	auto pos = getPos() + offset;
+	sprites_.draw(surface, pos.x, pos.y);
 }

@@ -17,11 +17,11 @@ Spoon::Spoon(int64_t id, vec2<float>& pos) :
 	interactionBox_.setSize(vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
 
 	mouseHandler.setInteractionCheck([this](vec2<float>& pos) {
-		return interactionBox_.at(pos_).isInBounds(pos);
+		return interactionBox_.at(getPos()).isInBounds(pos);
 	});
 
 	mouseHandler.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
-		requestMove.emit(pos_, delta, *this);
+		requestMove.emit(getPos(), delta, *this);
 	});
 
 	mouseHandler.setOnMouseDown([this]() {
@@ -34,11 +34,12 @@ Spoon::Spoon(int64_t id, vec2<float>& pos) :
 }
 
 void Spoon::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	sprite_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);
+	auto pos = getPos() + offset;
+	sprite_.draw(surface, pos.x, pos.y);
 }
 
 void Spoon::process(float deltaTime) {
-	if (velocity.x || velocity.y) requestMove.emit(pos_, velocity, *this);
+	if (velocity.x || velocity.y) requestMove.emit(getPos(), velocity, *this);
 }
 
 void Spoon::subscribe() {

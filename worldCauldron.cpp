@@ -20,8 +20,11 @@ WorldCauldron::WorldCauldron(int64_t id, vec2<float>& pos, std::shared_ptr<Cauld
 	}))
 {
 	addCollider(BoundingBox(vec2(0.0f), vec2(sprites_.getWidth(), sprites_.getHeight())));
-	interactionBox_.setSize(vec2(sprites_.getWidth(), sprites_.getHeight()) + 10);
-	pos_ = vec2(pos_.x - sprites_.getWidth() / 2, pos_.y - sprites_.getHeight() / 2);
+
+	vec2<float> spriteSize(sprites_.getWidth(), sprites_.getHeight());
+	interactionBox_.setSize(spriteSize + 10);
+
+	setPos(getPos() - (spriteSize / 2));
 }
 
 WorldCauldron::~WorldCauldron() {
@@ -33,7 +36,8 @@ void WorldCauldron::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	if (cauldron_->getTemp() > 200) spriteNum += 2;
 	sprites_.setSprite(spriteNum);
 
-	sprites_.draw(surface, pos_.x + offset.x, pos_.y + offset.y);\
+	auto pos = getPos() + offset;
+	sprites_.draw(surface, pos.x, pos.y);
 }
 
 void WorldCauldron::process(float deltaTime) {

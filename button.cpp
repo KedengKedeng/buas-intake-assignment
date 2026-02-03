@@ -19,7 +19,7 @@ Button::Button(
 	borderColor_(borderColor)
 {
 	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
-		return BoundingBox(pos_, size_).isInBounds(pos);
+		return BoundingBox(getPos(), getSize()).isInBounds(pos);
 	});
 };
 
@@ -29,15 +29,14 @@ void Button::subscribe() {
 }
 
 void Button::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	vec2 pos = pos_ + offset;
-	surface->Bar(pos, pos + size_, borderColor_);
+	auto pos = getPos() + offset;
+	auto size = getSize();
+	surface->Bar(pos, pos + size, borderColor_);
 	surface->Bar(
 		pos + borderWidth_,
-		pos + size_ - borderWidth_,
+		pos + size - borderWidth_,
 		color_
 	);
 
-	float textLeft = pos.x + (size_.x - text_.getWidth()) / 2;
-	float textTop = pos.y + (size_.y - text_.getHeight()) / 2;
-	text_.draw(surface, vec2(textLeft, textTop));
+	text_.draw(surface, pos + (size - vec2<float>(text_.getWidth(), text_.getHeight())) / 2);
 }

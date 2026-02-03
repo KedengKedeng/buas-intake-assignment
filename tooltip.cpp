@@ -8,11 +8,7 @@ Tooltip::Tooltip(int64_t id, const vec2<float>& pos, std::string& text) :
 }
 
 void Tooltip::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	surface->Bar(
-		pos_ + offset,
-		pos_ + size_ + offset,
-		0xffffffff
-	);
-
-	text_.draw(surface, pos_ + offset + 20);
+	auto pos = getPos() + offset;
+	surface->Bar(pos, pos + getSize(), 0xffffffff);
+	text_.draw(surface, pos + 20);
 }

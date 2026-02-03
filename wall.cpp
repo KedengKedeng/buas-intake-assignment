@@ -1,9 +1,7 @@
 #include "wall.hpp"
 
 void Wall::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	surface->Bar(
-		pos_ + offset,
-		pos_ + offset + size_,
-		0xffffffff
-	);
+	auto pos = getPos() + offset;
+	auto size = getSize();
+	surface->Bar(pos, pos + size, 0xffffffff);
 }
