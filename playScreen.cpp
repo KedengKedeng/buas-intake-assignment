@@ -11,6 +11,8 @@
 #include "screenCommands.hpp"
 #include "spriteRepository.hpp"
 #include "plotObject.hpp"
+#include "text.hpp"
+#include <format>
 
 const float floorScale = 1.5f;
 const float tileSize = 32 * floorScale;
@@ -21,12 +23,14 @@ PlayScreen::PlayScreen(
 	Tmpl8::Surface* surface, 
 	std::shared_ptr<Inventory> inventory, 
 	std::shared_ptr<Husbandry> husbandry, 
-	std::shared_ptr<Cauldron> cauldron
+	std::shared_ptr<Cauldron> cauldron,
+	std::shared_ptr<Wallet> wallet
 ) :
 	Screen(surface), 
 	player_(0, vec2(100.0f)), 
 	inventory_(inventory), 
 	husbandry_(husbandry),
+	wallet_(wallet),
 	floorTiles_(spriteRepository.getSheet("floor"), floorScale)
 {
 	keyboardInput_.registerHandler("walkLeft", []() {return std::make_unique<MoveCommand>(vec2<int8_t>(-1, 0)); });
@@ -77,12 +81,19 @@ void PlayScreen::createWorldBounds(const vec2<float>& pos, const vec2<float>& si
 
 void PlayScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	surface->Clear(0x00);
+
 	auto playerSize = player_.getColliderSize();
 	auto drawOffset = player_.getPos() - (vec2(surface->GetWidth(), surface->GetHeight()) - vec2(playerSize.width, playerSize.height)) / 2;
+
 	floorTiles_.draw(surface, -drawOffset);
 	Screen::draw(surface, -drawOffset);
 	player_.draw(surface, -drawOffset);
+
 	drawDispatcher_.draw(surface, -drawOffset);
+
+	Text walletText(std::format("money: {}", wallet_->getCurrency()), 2, 0xff000000);
+	surface->Bar(vec2(0.0f), vec2<float>(walletText.getWidth(), walletText.getHeight()), 0xffffffff);
+	walletText.draw(surface, vec2(0.0f));
 }
 
 void PlayScreen::process(float deltaTime) {

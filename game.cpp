@@ -38,7 +38,7 @@ namespace Tmpl8
 		husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository.get(std::string("testAnimal"))));
 
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
-		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry, cauldron);
+		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry, cauldron, wallet);
 		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
 		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_, cauldron, inventory);
 		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_, inventory);
