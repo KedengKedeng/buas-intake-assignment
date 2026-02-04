@@ -1,23 +1,23 @@
-#include "inventoryScreen.hpp"
+#include "inventoryScene.hpp"
 #include "modal.hpp"
-#include "screenSignals.hpp"
-#include "screenCommands.hpp"
+#include "sceneSignals.hpp"
+#include "sceneCommands.hpp"
 #include "inventorySlot.hpp"
 #include "itemsRepository.hpp"
 #include "itemSignals.hpp"
 #include "boundingBox.hpp"
 
-InventoryScreen::InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory) 
-	: Screen(surface), inventory_(inventory) {
-	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<CloseScreenCommand>(); });
+InventoryScene::InventoryScene(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory) 
+	: Scene(surface), inventory_(inventory) {
+	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<CloseSceneCommand>(); });
 
 	vec2 size( 400.0f, 300.0f );
 	insertObject(std::make_shared<Modal>(0, vec2<float>(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
-		closeScreen.emit();
+		closeScene.emit();
 	}, Justification::VERTICAL, vec2(10.0f), true));
 }
 
-void InventoryScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void InventoryScene::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	auto modal = getObject<Modal>(0);
 	auto items = inventory_->begin();
 	for (auto containers = modal->begin(); containers != modal->end(); containers++) {
@@ -37,11 +37,11 @@ void InventoryScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 		}
 	}
 
-	Screen::draw(surface, offset);
+	Scene::draw(surface, offset);
 	drawDispatcher_.draw(surface, offset);
 }
 
-void InventoryScreen::process(float deltaTime) {
+void InventoryScene::process(float deltaTime) {
 	int itemCount = std::max(static_cast<int>(ceil(inventory_->getItemTypeCount() / maxItemsOnRow)), 3);
 	if (itemCount != drawRows) {
 		drawRows = itemCount;
@@ -66,7 +66,7 @@ void InventoryScreen::process(float deltaTime) {
 						if (!containerBounds.isInBounds(pos)) {
 							auto item = slot->getItem();
 							if (item == nullptr) return;
-							pushToScreenQueue.emit(Screens::Play, [item]() { itemDroppedFromInventory.emit(item); });
+							pushToSceneQueue.emit(Scenes::Play, [item]() { itemDroppedFromInventory.emit(item); });
 							inventory_->remove(item->name);
 						}
 					}

@@ -226,7 +226,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="animalShopItem.cpp" />
-    <ClCompile Include="animalShopScreen.cpp" />
+    <ClCompile Include="animalShopScene.cpp" />
     <ClCompile Include="animatedSprite.cpp" />
     <ClCompile Include="blower.cpp" />
     <ClCompile Include="boundingBox.cpp" />
@@ -236,11 +236,11 @@
     <ClCompile Include="clickable.cpp" />
     <ClCompile Include="collider.cpp" />
     <ClCompile Include="cookingCauldron.cpp" />
-    <ClCompile Include="cookingScreen.cpp" />
+    <ClCompile Include="cookingScene.cpp" />
     <ClCompile Include="countingStorage.cpp" />
     <ClCompile Include="creature.cpp" />
     <ClCompile Include="creatureTypeRepository.cpp" />
-    <ClCompile Include="inventoryScreen.cpp" />
+    <ClCompile Include="inventoryScene.cpp" />
     <ClCompile Include="inventorySlot.cpp" />
     <ClCompile Include="modal.cpp" />
     <ClCompile Include="mouseHandler.cpp" />
@@ -275,21 +275,21 @@
     <ClCompile Include="objectSignals.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSignals.cpp" />
-    <ClCompile Include="playScreen.cpp" />
+    <ClCompile Include="playScene.cpp" />
     <ClCompile Include="random.cpp" />
-    <ClCompile Include="screen.cpp" />
-    <ClCompile Include="screenSignals.cpp" />
-    <ClCompile Include="settingsScreen.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="sceneSignals.cpp" />
+    <ClCompile Include="settingsScene.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="spriteRepository.cpp" />
-    <ClCompile Include="startScreen.cpp" />
+    <ClCompile Include="startScene.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="template.cpp" />
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animalShopItem.hpp" />
-    <ClInclude Include="animalShopScreen.hpp" />
+    <ClInclude Include="animalShopScene.hpp" />
     <ClInclude Include="animatedSprite.hpp" />
     <ClInclude Include="blower.hpp" />
     <ClInclude Include="boundingBox.hpp" />
@@ -311,15 +311,15 @@
     <ClInclude Include="plotObject.hpp" />
     <ClInclude Include="recipeBook.hpp" />
     <ClInclude Include="rect2.hpp" />
-    <ClInclude Include="screenCommands.hpp" />
+    <ClInclude Include="sceneCommands.hpp" />
     <ClInclude Include="objectContainer.hpp" />
     <ClInclude Include="cookingCauldron.hpp" />
-    <ClInclude Include="cookingScreen.hpp" />
-    <ClInclude Include="inventoryScreen.hpp" />
+    <ClInclude Include="cookingScene.hpp" />
+    <ClInclude Include="inventoryScene.hpp" />
     <ClInclude Include="invisibleBarrier.hpp" />
     <ClInclude Include="mouseHandler.hpp" />
     <ClInclude Include="modal.hpp" />
-    <ClInclude Include="screens.hpp" />
+    <ClInclude Include="scenes.hpp" />
     <ClInclude Include="scrollbar.hpp" />
     <ClInclude Include="spoon.hpp" />
     <ClInclude Include="spritesheet.hpp" />
@@ -357,16 +357,16 @@
     <ClInclude Include="objectSignals.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="playerSignals.hpp" />
-    <ClInclude Include="playScreen.hpp" />
+    <ClInclude Include="playScene.hpp" />
     <ClInclude Include="random.hpp" />
-    <ClInclude Include="screen.hpp" />
-    <ClInclude Include="screenSignals.hpp" />
-    <ClInclude Include="settingsScreen.hpp" />
+    <ClInclude Include="scene.hpp" />
+    <ClInclude Include="sceneSignals.hpp" />
+    <ClInclude Include="settingsScene.hpp" />
     <ClInclude Include="signal.hpp" />
     <ClInclude Include="sprite.hpp" />
     <ClInclude Include="spriteList.hpp" />
     <ClInclude Include="spriteRepository.hpp" />
-    <ClInclude Include="startScreen.hpp" />
+    <ClInclude Include="startScene.hpp" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="template.h" />
     <ClInclude Include="terminatableSignal.hpp" />

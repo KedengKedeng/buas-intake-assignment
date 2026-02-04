@@ -1,9 +1,9 @@
-#include "screen.hpp"
+#include "scene.hpp"
 #include "collider.hpp"
 #include "interactable.hpp"
 #include "objectSignals.hpp"
 
-void Screen::process(float deltaTime) {
+void Scene::process(float deltaTime) {
 	ObjectContainer::process(deltaTime);
 
 	// Process the entire queue
@@ -13,7 +13,7 @@ void Screen::process(float deltaTime) {
 	}
 }
 
-void Screen::subscribe() {
+void Scene::subscribe() {
 	ObjectContainer::subscribe();
 	drawDispatcher_.subscribe();
 
@@ -29,29 +29,28 @@ void Screen::subscribe() {
 	}));
 }
 
-void Screen::unsubscribe() {
+void Scene::unsubscribe() {
 	ObjectContainer::unsubscribe();
 	drawDispatcher_.unsubscribe();
-	// not clearing between screen transitions causes some weird behavior.
+	// not clearing between scene transitions causes some weird behavior.
 	// hence we clear just to be sure.
 	keyboardInput_.clearKeysDown();
 }
 
-vec2<float> Screen::objectsCollideWithBounds(Object& object, vec2<float>& velocity) {
+vec2<float> Scene::objectsCollideWithBounds(Object& object, vec2<float>& velocity) {
 	// check if object has collider functionality
 	Collider* collider = dynamic_cast<Collider*>(&object);
 	if (collider == nullptr) return vec2(0.0f);
 
 	auto collisionVec = velocity;
 
-	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
+	for (auto& [id, object2] : objects_) {
 		// check if object has collider functionality
-		auto object2 = it->second;
-		auto collider2 = getObject<Collider>(object2->getId());
+		auto collider2 = getObject<Collider>(id);
 
 		// the colliding object can be in this list and can hence check collision with itself.
 		// it would never be able to move if we dont check for this.
-		if (object.getId() == object2->getId() || collider2 == nullptr) continue;
+		if (object.getId() == id || collider2 == nullptr) continue;
 
 		vec2 result = collider->swept(*(collider2.get()), velocity, object.getPos(), object2->getPos());
 
@@ -66,14 +65,12 @@ vec2<float> Screen::objectsCollideWithBounds(Object& object, vec2<float>& veloci
 	return collisionVec;
 }
 
-void Screen::interactionCheck(Object& object) {
+void Scene::interactionCheck(Object& object) {
 	// check if object has interactable functionality
 	Interactable* interactor = dynamic_cast<Interactable*>(&object);
 	if (interactor == nullptr || !interactor->isInteractor()) return;
 
-	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
-		auto id = it->first;
-		auto object2 = it->second;
+	for (auto& [id, object2] : objects_) {
 		// check if object has interactable functionality
 		auto interacted = getObject<Interactable>(id);
 		if (interacted == nullptr) continue;

@@ -1,18 +1,18 @@
-#include "cookingScreen.hpp"
+#include "cookingScene.hpp"
 #include "spoon.hpp"
-#include "screenSignals.hpp"
+#include "sceneSignals.hpp"
 #include "objectSignals.hpp"
 #include "invisibleBarrier.hpp"
 #include "random.hpp"
 #include "blower.hpp"
-#include "screenCommands.hpp"
+#include "sceneCommands.hpp"
 
-CookingScreen::CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory) : 
-	Screen(surface),
+CookingScene::CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory) : 
+	Scene(surface),
 	inventory_(inventory),
 	cauldron_(cauldron)
 {
-	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<ChangeScreenCommand>(Screens::Play); });
+	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<ChangeSceneCommand>(Scenes::Play); });
 	keyboardInput_.registerHandler(KeyFunctions::ResetCauldron, [this]() {
 		auto& items = cauldron_->getItems();
 		for (auto& item : items) inventory_->add(item->name);
@@ -30,7 +30,7 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> 
 
 	cookingCauldron->setPos(vec2<float>(surfaceWidth / 2 - 100, surfaceHeight) - cookingCauldron->getPos());
 
-	// screen edge collision walls
+	// scene edge collision walls
 	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2(0.0f), vec2<float>(1, surfaceHeight)));
 	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(surfaceWidth, 0), vec2<float>(1, surfaceHeight)));
 	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, surfaceHeight), vec2<float>(surfaceWidth, 1)));
@@ -41,17 +41,17 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> 
 	insertObject(cookingCauldron);
 }
 
-void CookingScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void CookingScene::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	auto cauldron = getObject<CookingCauldron>(cauldronId);
 	cauldron->drawBack(surface);
 
-	Screen::draw(surface, offset);
+	Scene::draw(surface, offset);
 
 	cauldron->drawFront(surface);
 }
 
-void CookingScreen::subscribe() {
-	Screen::subscribe();
+void CookingScene::subscribe() {
+	Scene::subscribe();
 
 	addSubscription(cauldronInteracted.subscribe([this]() {
 		trackSpoonMovement = true;
@@ -90,8 +90,8 @@ void CookingScreen::subscribe() {
 		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {cauldron_->addTemp(delta); });
 }
 
-void CookingScreen::unsubscribe() {
-	Screen::unsubscribe();
+void CookingScene::unsubscribe() {
+	Scene::unsubscribe();
 
 	blowedSignalUnsub();
 }

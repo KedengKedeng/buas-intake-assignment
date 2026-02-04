@@ -1,10 +1,10 @@
 #pragma once
-#include "screen.hpp"
+#include "scene.hpp"
 #include "inventory.hpp"
 
-class InventoryScreen : public Screen {
+class InventoryScene : public Scene {
 public:
-	InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory);
+	InventoryScene(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory);
 
 	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
 	void process(float deltaTime) override;

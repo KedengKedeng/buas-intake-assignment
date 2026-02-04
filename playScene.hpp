@@ -1,5 +1,5 @@
 #pragma once
-#include "screen.hpp"
+#include "scene.hpp"
 #include "player.hpp"
 #include "inventory.hpp"
 #include "husbandry.hpp"
@@ -14,9 +14,9 @@ enum class FloorTiles {
 	Ground4
 };
 
-class PlayScreen : public Screen {
+class PlayScene : public Scene {
 public:
-	PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Wallet> wallet);
+	PlayScene(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Wallet> wallet);
 
 	void createPlotObjects(std::shared_ptr<Husbandry> husbandry, const vec2<float>& pos);
 	void createWorldBounds(const vec2<float>& pos, const vec2<float>& size);

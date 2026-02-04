@@ -8,10 +8,10 @@
 #include "vec2.hpp"
 #include "drawDispatcher.hpp"
 
-class Screen : public ObjectContainer {
+class Scene : public ObjectContainer {
 public:
-	Screen(Tmpl8::Surface* surface) :
-		// screens are really just a container the size of the screen arent they? :)
+	Scene(Tmpl8::Surface* surface) :
+		// scenes are really just a container the size of the screen arent they? :)
 		ObjectContainer(0, vec2(0.0f), vec2<float>(surface->GetWidth(), surface->GetHeight()), Justification::NONE, vec2(0.0f)), 
 		keyboardInput_(), 
 		drawDispatcher_() 

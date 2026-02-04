@@ -1,12 +1,12 @@
 #include "game.h"
 #include "surface.h"
-#include "playScreen.hpp"
-#include "startScreen.hpp"
-#include "settingsScreen.hpp"
-#include "cookingScreen.hpp"
-#include "inventoryScreen.hpp"
-#include "animalShopScreen.hpp"
-#include "screenSignals.hpp"
+#include "playScene.hpp"
+#include "startScene.hpp"
+#include "settingsScene.hpp"
+#include "cookingScene.hpp"
+#include "inventoryScene.hpp"
+#include "animalShopScene.hpp"
+#include "sceneSignals.hpp"
 #include "itemList.hpp"
 #include "spriteList.hpp"
 #include "surfaceList.hpp"
@@ -37,48 +37,48 @@ namespace Tmpl8
 		std::shared_ptr<Wallet> wallet = std::make_shared<Wallet>();
 		husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository.get(std::string("testAnimal"))));
 
-		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
-		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry, cauldron, wallet);
-		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
-		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_, cauldron, inventory);
-		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_, inventory);
-		screens[Screens::AnimalShop] = std::make_shared<AnimalShopScreen>(surface_, wallet, husbandry);
+		scenes[Scenes::TitleMenu] = std::make_shared<StartScene>(surface_);
+		scenes[Scenes::Play] = std::make_shared<PlayScene>(surface_, inventory, husbandry, cauldron, wallet);
+		scenes[Scenes::SettingsMenu] = std::make_shared<SettingsScene>(surface_);
+		scenes[Scenes::Cooking] = std::make_shared<CookingScene>(surface_, cauldron, inventory);
+		scenes[Scenes::Inventory] = std::make_shared<InventoryScene>(surface_, inventory);
+		scenes[Scenes::AnimalShop] = std::make_shared<AnimalShopScene>(surface_, wallet, husbandry);
 
-		currentScreens.push_back(screens[Screens::TitleMenu]);
-		screens[Screens::TitleMenu]->subscribe();
+		currentScenes.push_back(scenes[Scenes::TitleMenu]);
+		scenes[Scenes::TitleMenu]->subscribe();
 
-		pushToCurrentScreenQueue.subscribe([this](std::function<void()> func) {
-			currentScreens[0]->pushToQueue(func);
+		pushToCurrentSceneQueue.subscribe([this](std::function<void()> func) {
+			currentScenes[0]->pushToQueue(func);
 		});
 
-		pushToScreenQueue.subscribe([this](Screens screen, std::function<void()> func) {
-			screens[screen]->pushToQueue(func);
+		pushToSceneQueue.subscribe([this](Scenes scene, std::function<void()> func) {
+			scenes[scene]->pushToQueue(func);
 		});
 
-		changeScreen.subscribe([this](Screens screen) { 
-			queue.push([this, screen]() {
-				for (auto& screen : currentScreens) screen->unsubscribe();
-				currentScreens.clear();
-				currentScreens.push_back(screens[screen]);
-				auto screen = currentScreens.end() - 1;
-				screen->get()->subscribe();
+		changeScene.subscribe([this](Scenes scene) { 
+			queue.push([this, scene]() {
+				for (auto& scene : currentScenes) scene->unsubscribe();
+				currentScenes.clear();
+				currentScenes.push_back(scenes[scene]);
+				auto scene = currentScenes.end() - 1;
+				scene->get()->subscribe();
 			});
 		});
 
-		stackScreen.subscribe([this](Screens screen) {
-			queue.push([this, screen]() {
-				for (auto& screen : currentScreens) screen->unsubscribe();
-				currentScreens.push_back(screens[screen]);
-				auto screen = currentScreens.end() - 1;
-				screen->get()->subscribe();
+		stackScene.subscribe([this](Scenes scene) {
+			queue.push([this, scene]() {
+				for (auto& scene : currentScenes) scene->unsubscribe();
+				currentScenes.push_back(scenes[scene]);
+				auto scene = currentScenes.end() - 1;
+				scene->get()->subscribe();
 			});
 		});
 
-		closeScreen.subscribe([this]() {
+		closeScene.subscribe([this]() {
 			queue.push([this]() {
-				(currentScreens.end() - 1)->get()->unsubscribe();
-				currentScreens.pop_back();
-				(currentScreens.end() - 1)->get()->subscribe();
+				(currentScenes.end() - 1)->get()->unsubscribe();
+				currentScenes.pop_back();
+				(currentScenes.end() - 1)->get()->subscribe();
 			});
 		});
 	}
@@ -97,13 +97,13 @@ namespace Tmpl8
 	{
 		surface_->Clear(0xFF6495ED);
 
-		currentScreens[currentScreens.size() - 1]->process(deltaTime);
+		currentScenes[currentScenes.size() - 1]->process(deltaTime);
 
 		for (; !queue.empty(); queue.pop()) {
 			auto func = queue.front();
 			func();
 		}
 
-		for (auto& screen : currentScreens) screen->draw(surface_, vec2(0.0f));
+		for (auto& scene : currentScenes) scene->draw(surface_, vec2(0.0f));
 	}
 };

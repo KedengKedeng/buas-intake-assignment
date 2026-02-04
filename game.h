@@ -1,7 +1,7 @@
 #pragma once
 #include "mouseInput.hpp"
-#include "screen.hpp"
-#include "screens.hpp"
+#include "scene.hpp"
+#include "scenes.hpp"
 
 namespace Tmpl8 {
 
@@ -16,11 +16,11 @@ public:
 	void MouseUp(int button) { mouseInput.mouseUp(button)->execute(); }
 	void MouseDown(int button) { mouseInput.mouseDown(button)->execute(); }
 	void MouseMove(int x, int y) { mouseInput.setMousePos(vec2<float>(x, y))->execute(); }
-	void KeyUp(int key) { currentScreens[currentScreens.size() - 1]->keyUp(key); }
-	void KeyDown(int key) { currentScreens[currentScreens.size() - 1]->keyDown(key); }
+	void KeyUp(int key) { currentScenes[currentScenes.size() - 1]->keyUp(key); }
+	void KeyDown(int key) { currentScenes[currentScenes.size() - 1]->keyDown(key); }
 private:
-	std::map<Screens, std::shared_ptr<Screen>> screens;
-	std::vector<std::shared_ptr<Screen>> currentScreens;
+	std::map<Scenes, std::shared_ptr<Scene>> scenes;
+	std::vector<std::shared_ptr<Scene>> currentScenes;
 	Surface* surface_;
 	MouseInput mouseInput;
 	std::queue<std::function<void()>> queue = {};

@@ -1,14 +1,14 @@
-#include "playScreen.hpp"
+#include "playScene.hpp"
 #include "objectSignals.hpp"
 #include "wall.hpp"
 #include "worldCauldron.hpp"
 #include "itemObject.hpp"
 #include "itemSignals.hpp"
 #include "keyboardSignals.hpp"
-#include "screenSignals.hpp"
+#include "sceneSignals.hpp"
 #include "moveCommand.hpp"
 #include "interactionCommand.hpp"
-#include "screenCommands.hpp"
+#include "sceneCommands.hpp"
 #include "spriteRepository.hpp"
 #include "plotObject.hpp"
 #include "text.hpp"
@@ -19,14 +19,14 @@ const float tileSize = 32 * floorScale;
 const vec2<float> PLOT_SIZE = { tileSize * 8, tileSize * 8 };
 const vec2<float> PLOT_MARGINS = { tileSize * 2, tileSize * 2 };
 
-PlayScreen::PlayScreen(
+PlayScene::PlayScene(
 	Tmpl8::Surface* surface, 
 	std::shared_ptr<Inventory> inventory, 
 	std::shared_ptr<Husbandry> husbandry, 
 	std::shared_ptr<Cauldron> cauldron,
 	std::shared_ptr<Wallet> wallet
 ) :
-	Screen(surface), 
+	Scene(surface), 
 	player_(0, vec2(100.0f)), 
 	inventory_(inventory), 
 	husbandry_(husbandry),
@@ -38,9 +38,9 @@ PlayScreen::PlayScreen(
 	keyboardInput_.registerHandler(KeyFunctions::WalkDown, []() {return std::make_unique<MoveCommand>(vec2<int8_t>(0, 1)); });
 	keyboardInput_.registerHandler(KeyFunctions::WalkRight, []() {return std::make_unique<MoveCommand>(vec2<int8_t>(1, 0)); });
 	keyboardInput_.registerHandler(KeyFunctions::Interact, []() {return std::make_unique<InteractionCommand>(); });
-	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
-	keyboardInput_.registerHandler(KeyFunctions::Inventory, []() {return std::make_unique<StackScreenCommand>(Screens::Inventory); });
-	keyboardInput_.registerHandler(KeyFunctions::OpenShop, []() {return std::make_unique<StackScreenCommand>(Screens::AnimalShop); });
+	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<StackSceneCommand>(Scenes::SettingsMenu); });
+	keyboardInput_.registerHandler(KeyFunctions::Inventory, []() {return std::make_unique<StackSceneCommand>(Scenes::Inventory); });
+	keyboardInput_.registerHandler(KeyFunctions::OpenShop, []() {return std::make_unique<StackSceneCommand>(Scenes::AnimalShop); });
 
 	auto& plots = husbandry_->getPlots();
 	vec2 plotSpace(0.0f, (PLOT_SIZE.y + PLOT_MARGINS.y) * ceil(plots.size() / 2.0f));
@@ -56,7 +56,7 @@ PlayScreen::PlayScreen(
 	floorTiles_.setSquare(Rect2<int>(-plotSpace.x, -plotSpace.y, roomSize.x + plotSpace.x, roomSize.y + plotSpace.y) / tileSize, tileTypes);
 }
 
-void PlayScreen::createPlotObjects(std::shared_ptr<Husbandry> husbandry, const vec2<float>& pos) {
+void PlayScene::createPlotObjects(std::shared_ptr<Husbandry> husbandry, const vec2<float>& pos) {
 	auto& plots = husbandry->getPlots();
 	int plotsPerRow = static_cast<int>(ceil(plots.size() / 2.0f));
 	vec2 currentPos = pos;
@@ -72,21 +72,21 @@ void PlayScreen::createPlotObjects(std::shared_ptr<Husbandry> husbandry, const v
 	}
 }
 
-void PlayScreen::createWorldBounds(const vec2<float>& pos, const vec2<float>& size) {
+void PlayScene::createWorldBounds(const vec2<float>& pos, const vec2<float>& size) {
 	insertObject(std::make_shared<Wall>(getRandomNum(), pos, vec2(1.0f, size.y)));
 	insertObject(std::make_shared<Wall>(getRandomNum(), pos, vec2(size.x, 1.0f)));
 	insertObject(std::make_shared<Wall>(getRandomNum(), vec2(pos.x, pos.y + size.y), vec2(size.x, 1.0f)));
 	insertObject(std::make_shared<Wall>(getRandomNum(), vec2(pos.x + size.x, pos.y), vec2(1.0f, size.y)));
 }
 
-void PlayScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void PlayScene::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	surface->Clear(0x00);
 
 	auto playerSize = player_.getColliderSize();
 	auto drawOffset = player_.getPos() - (vec2(surface->GetWidth(), surface->GetHeight()) - vec2(playerSize.width, playerSize.height)) / 2;
 
 	floorTiles_.draw(surface, -drawOffset);
-	Screen::draw(surface, -drawOffset);
+	Scene::draw(surface, -drawOffset);
 	player_.draw(surface, -drawOffset);
 
 	drawDispatcher_.draw(surface, -drawOffset);
@@ -96,14 +96,14 @@ void PlayScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	walletText.draw(surface, vec2(0.0f));
 }
 
-void PlayScreen::process(float deltaTime) {
+void PlayScene::process(float deltaTime) {
 	player_.process(deltaTime);
 
-	Screen::process(deltaTime);
+	Scene::process(deltaTime);
 }
 
-void PlayScreen::subscribe() {
-	Screen::subscribe();
+void PlayScene::subscribe() {
+	Scene::subscribe();
 
 	player_.subscribe();
 
@@ -134,16 +134,16 @@ void PlayScreen::subscribe() {
 	}));
 
 	addSubscription(escapePressed.subscribe([]() {
-		stackScreen.emit(Screens::SettingsMenu);
+		stackScene.emit(Scenes::SettingsMenu);
 	}));
 
 	addSubscription(cauldronInteracted.subscribe([this]() {
-		changeScreen.emit(Screens::Cooking);
+		changeScene.emit(Scenes::Cooking);
 	}));
 }
 
-void PlayScreen::unsubscribe() {
-	Screen::unsubscribe();
+void PlayScene::unsubscribe() {
+	Scene::unsubscribe();
 
 	player_.unsubscribe();
 }

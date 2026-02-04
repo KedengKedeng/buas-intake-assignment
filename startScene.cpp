@@ -1,11 +1,11 @@
-#include "startScreen.hpp"
+#include "startScene.hpp"
 #include "button.hpp"
-#include "screenSignals.hpp"
-#include "screenCommands.hpp"
+#include "sceneSignals.hpp"
+#include "sceneCommands.hpp"
 #include "random.hpp"
 
-StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
-	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
+StartScene::StartScene(Tmpl8::Surface* surface) : Scene(surface) {
+	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<StackSceneCommand>(Scenes::SettingsMenu); });
 
 	vec2<float> containerSize(70, 75);
 	vec2<float> buttonSize(70, 20);
@@ -20,7 +20,7 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 
 	container->insertObject(std::make_shared<Button>(
 		0,
-		[]() { changeScreen.emit(Screens::Play); },
+		[]() { changeScene.emit(Scenes::Play); },
 		std::string{ "Start game" },
 		vec2(0.0f),
 		buttonSize,
@@ -29,7 +29,7 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 
 	container->insertObject(std::make_shared<Button>(
 		1,
-		[]() { stackScreen.emit(Screens::SettingsMenu); },
+		[]() { stackScene.emit(Scenes::SettingsMenu); },
 		std::string{ "Settings" },
 		vec2(0.0f),
 		buttonSize,

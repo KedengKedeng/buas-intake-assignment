@@ -1,6 +1,6 @@
 #pragma once
 
-enum class Screens {
+enum class Scenes {
 	TitleMenu,
 	Play,
 	Cooking,
