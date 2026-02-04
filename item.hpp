@@ -6,17 +6,15 @@
 enum class ItemTypes {
 	Animal,
 	Plant,
-	Fungi
+	Fungi,
+	Product
 };
 
 struct Item {
-	Item(ItemTypes itemType, Tmpl8::Pixel color, float smell, float weight, const std::string& name, AnimatedSprite& sprite):
-		itemType(itemType), color(color), smell(smell), weight(weight), name(name), sprite(sprite){};
+	Item(ItemTypes itemType, const std::string& name, AnimatedSprite& sprite):
+		itemType(itemType), name(name), sprite(sprite){};
 
 	ItemTypes itemType;
-	Tmpl8::Pixel color;
-	float smell;
-	float weight;
 	std::string name;
 	AnimatedSprite sprite;
 };

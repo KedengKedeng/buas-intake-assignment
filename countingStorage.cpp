@@ -7,6 +7,7 @@ void CountingStorage::add(const std::string& name) {
 void CountingStorage::remove(const std::string& name) {
 	if (!count.count(name) || !count[name]) return;
 	count[name]--;
+	if (!count[name]) count.erase(name);
 }
 
 int CountingStorage::get(const std::string& name) {

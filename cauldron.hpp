@@ -12,6 +12,9 @@ public:
 	void stir(float delta);
 	void addTemp(float delta);
 	float getTemp();
+
+	void reset();
+	std::vector<std::shared_ptr<Item>>& getItems();
 private:
 	float amountToStir = 0;
 	float neededTemp = 0;

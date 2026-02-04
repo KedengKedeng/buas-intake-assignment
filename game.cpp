@@ -40,7 +40,7 @@ namespace Tmpl8
 		screens[Screens::TitleMenu] = std::make_shared<StartScreen>(surface_);
 		screens[Screens::Play] = std::make_shared<PlayScreen>(surface_, inventory, husbandry, cauldron);
 		screens[Screens::SettingsMenu] = std::make_shared<SettingsScreen>(surface_);
-		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_, cauldron);
+		screens[Screens::Cooking] = std::make_shared<CookingScreen>(surface_, cauldron, inventory);
 		screens[Screens::Inventory] = std::make_shared<InventoryScreen>(surface_, inventory);
 		screens[Screens::AnimalShop] = std::make_shared<AnimalShopScreen>(surface_, wallet, husbandry);
 

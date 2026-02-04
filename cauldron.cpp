@@ -27,9 +27,20 @@ void Cauldron::stir(float delta) {
 }
 
 void Cauldron::addTemp(float delta) {
+	if (delta < 0) return;
 	temp += delta;
 }
 
 float Cauldron::getTemp() {
 	return temp;
+}
+
+void Cauldron::reset() {
+	temp = 0;
+	items_.clear();
+	amountToStir = 0;
+}
+
+std::vector<std::shared_ptr<Item>>& Cauldron::getItems() {
+	return items_;
 }

@@ -8,7 +8,8 @@ std::map<int, std::string> keyMapping = {
 	{40, "interact"},
 	{41, "escape"},
 	{8, "inventory"},
-	{23, "t"}
+	{23, "openShop"},
+	{21, "resetCauldron"}
 };
 
 void KeyboardInput::keyDown(int keyCode) {

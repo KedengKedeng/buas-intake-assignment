@@ -7,8 +7,18 @@
 #include "blower.hpp"
 #include "screenCommands.hpp"
 
-CookingScreen::CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron) : Screen(surface) {
+CookingScreen::CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory) : 
+	Screen(surface),
+	inventory_(inventory),
+	cauldron_(cauldron)
+{
 	keyboardInput_.registerHandler("escape", []() {return std::make_unique<ChangeScreenCommand>(Screens::Play); });
+	keyboardInput_.registerHandler("resetCauldron", [this]() {
+		auto& items = cauldron_->getItems();
+		for (auto& item : items) inventory_->add(item->name);
+		cauldron_->reset();
+		return std::make_unique<Command>();
+	});
 
 	int surfaceWidth = surface->GetWidth();
 	int surfaceHeight = surface->GetHeight();
@@ -53,7 +63,7 @@ void CookingScreen::subscribe() {
 
 	addSubscription(blowerInteracted.subscribe([this]() {
 		trackBlowerMovement = true;
-		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {onBlow(delta); });
+		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {cauldron_->addTemp(delta); });
 	}));
 
 	addSubscription(blowerInteractionEnded.subscribe([this]() {
@@ -71,14 +81,13 @@ void CookingScreen::subscribe() {
 
 		interactionCheck(object);
 
-		auto cauldron = getObject<CookingCauldron>(cauldronId);
 		if (trackSpoonMovement && collides != vec2(0.0f)) 
-			cauldron->stir(std::abs(collides.x));
+			cauldron_->stir(std::abs(collides.x));
 	}));
 
 	// Only subscribe if the blower is being interacted with
 	if (trackBlowerMovement)
-		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {onBlow(delta); });
+		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {cauldron_->addTemp(delta); });
 }
 
 void CookingScreen::unsubscribe() {
