@@ -261,7 +261,7 @@
     <ClCompile Include="uiSignals.cpp" />
     <ClCompile Include="wallet.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
-    <ClCompile Include="container.cpp" />
+    <ClCompile Include="objectContainer.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="interactionCommand.hpp" />
     <ClCompile Include="interactionSignal.cpp" />
@@ -312,7 +312,7 @@
     <ClInclude Include="recipeBook.hpp" />
     <ClInclude Include="rect2.hpp" />
     <ClInclude Include="screenCommands.hpp" />
-    <ClInclude Include="container.hpp" />
+    <ClInclude Include="objectContainer.hpp" />
     <ClInclude Include="cookingCauldron.hpp" />
     <ClInclude Include="cookingScreen.hpp" />
     <ClInclude Include="inventoryScreen.hpp" />

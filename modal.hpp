@@ -1,8 +1,8 @@
 #pragma once
-#include "container.hpp"
+#include "objectContainer.hpp"
 #include "button.hpp"
 
-class Modal : public Container {
+class Modal : public ObjectContainer {
 public:
 	Modal(
 		int64_t id,
@@ -29,6 +29,6 @@ public:
 	virtual void subscribe() override;
 	virtual void unsubscribe() override;
 private:
-	Container innerContainer_;
+	ObjectContainer innerContainer_;
 	Button exitButton;
 };

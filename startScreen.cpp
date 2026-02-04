@@ -10,7 +10,7 @@ StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
 	vec2<float> containerSize(70, 75);
 	vec2<float> buttonSize(70, 20);
 
-	auto container = std::make_shared<Container>(
+	auto container = std::make_shared<ObjectContainer>(
 		getRandomNum(),
 		(vec2<float>(surface->GetWidth(), surface->GetHeight()) - containerSize) / 2,
 		containerSize,

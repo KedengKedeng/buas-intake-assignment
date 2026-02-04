@@ -12,9 +12,9 @@ enum class Justification {
 	HORIZONTAL
 };
 
-class Container : public Object, public SubscriptionManager {
+class ObjectContainer : public Object, public SubscriptionManager {
 public:
-	Container(
+	ObjectContainer(
 		int64_t id,
 		vec2<float>& pos,
 		vec2<float>& size,
@@ -30,6 +30,8 @@ public:
 	virtual void process(float deltaTime) override;
 
 	virtual void insertObject(std::shared_ptr<Object> object);
+	void deleteObject(int64_t id);
+
 	void clearObjects() { objects_.clear(); }
 
 	template<typename T>

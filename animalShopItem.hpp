@@ -1,12 +1,12 @@
 #pragma once
-#include "container.hpp"
+#include "objectContainer.hpp"
 #include "creatureType.hpp"
 #include "text.hpp"
 #include "wallet.hpp"
 #include "husbandry.hpp"
 #include "clickable.hpp"
 
-class AnimalShopItem : public Container, public Clickable {
+class AnimalShopItem : public ObjectContainer, public Clickable {
 public:
 	AnimalShopItem(
 		int64_t id, 

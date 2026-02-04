@@ -1,6 +1,6 @@
-#include "container.hpp"
+#include "objectContainer.hpp"
 
-Container::Container(
+ObjectContainer::ObjectContainer(
 	int64_t id,
 	vec2<float>& pos,
 	vec2<float>& size,
@@ -16,7 +16,7 @@ Container::Container(
 	scrollbar_(0, pos + vec2(size.x, 0.0f), vec2(20.0f, size.y), size, [this](vec2<float> offset) {scrollOffset = offset; })
 { };
 
-void Container::setPos(vec2<float>& pos) {
+void ObjectContainer::setPos(vec2<float>& pos) {
 	vec2 delta = getPos() - pos;
 	for (auto& [id, object] : objects_)
 		object->setPos(object->getPos() + delta);
@@ -24,7 +24,7 @@ void Container::setPos(vec2<float>& pos) {
 	spreadObjects();
 }
 
-void Container::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void ObjectContainer::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	if (scrollable_) {
 		// use another surface to contain everything within the context
 		// of the container
@@ -45,18 +45,22 @@ void Container::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	}
 }
 
-void Container::process(float deltaTime) {
+void ObjectContainer::process(float deltaTime) {
 	for (auto& [id, object] : objects_)
 		object->process(deltaTime);
 }
 
-void Container::insertObject(std::shared_ptr<Object> object) {
+void ObjectContainer::insertObject(std::shared_ptr<Object> object) {
 	int64_t id = object->getId();
 	objects_[id] = object;
 	spreadObjects();
 }
 
-void Container::subscribe() {
+void ObjectContainer::deleteObject(int64_t id) {
+	objects_.erase(id);
+}
+
+void ObjectContainer::subscribe() {
 	for (auto& [id, object] : objects_) {
 		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object);
 		if (subscriber != nullptr) subscriber->subscribe();
@@ -65,7 +69,7 @@ void Container::subscribe() {
 	if (scrollable_) scrollbar_.subscribe();
 }
 
-void Container::unsubscribe() {
+void ObjectContainer::unsubscribe() {
 	SubscriptionManager::unsubscribe();
 
 	for (auto& [id, object] : objects_) {
@@ -76,7 +80,7 @@ void Container::unsubscribe() {
 	scrollbar_.unsubscribe();
 }
 
-void Container::spreadObjects() {
+void ObjectContainer::spreadObjects() {
 	if (justification_ == Justification::NONE) return;
 
 	// get combined size of all elements

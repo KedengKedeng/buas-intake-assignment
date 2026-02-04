@@ -9,7 +9,7 @@ AnimalShopItem::AnimalShopItem(
 	std::shared_ptr<Wallet> wallet,
 	std::shared_ptr<Husbandry> husbandry
 ) :
-	Container(id, pos, size, Justification::HORIZONTAL, vec2(0.0f, 10.0f)),
+	ObjectContainer(id, pos, size, Justification::HORIZONTAL, vec2(0.0f, 10.0f)),
 	Clickable([this]() {
 		bool success = wallet_->requestPayment(type_->price);
 		if (success) husbandry_->add(type_->name);
@@ -49,13 +49,13 @@ void AnimalShopItem::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 }
 
 void AnimalShopItem::process(float deltaTime) {
-	Container::process(deltaTime);
+	ObjectContainer::process(deltaTime);
 
 	animalSprite_.process(deltaTime);
 }
 
 void AnimalShopItem::subscribe() {
-	Container::subscribe();
+	ObjectContainer::subscribe();
 
 	mouseHandler_.subscribe();
 	addSubscription([this]() {mouseHandler_.unsubscribe(); });

@@ -4,7 +4,7 @@
 #include "objectSignals.hpp"
 
 void Screen::process(float deltaTime) {
-	Container::process(deltaTime);
+	ObjectContainer::process(deltaTime);
 
 	// Process the entire queue
 	for (; !queue.empty(); queue.pop()) {
@@ -13,13 +13,8 @@ void Screen::process(float deltaTime) {
 	}
 }
 
-
-void Screen::deleteObject(int64_t id) {
-	objects_.erase(id);
-}
-
 void Screen::subscribe() {
-	Container::subscribe();
+	ObjectContainer::subscribe();
 	drawDispatcher_.subscribe();
 
 	addSubscription(deleteObjectSignal.subscribe([this](int64_t id) {
@@ -35,7 +30,7 @@ void Screen::subscribe() {
 }
 
 void Screen::unsubscribe() {
-	Container::unsubscribe();
+	ObjectContainer::unsubscribe();
 	drawDispatcher_.unsubscribe();
 	// not clearing between screen transitions causes some weird behavior.
 	// hence we clear just to be sure.

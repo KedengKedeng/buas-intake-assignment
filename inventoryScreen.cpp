@@ -21,7 +21,7 @@ void InventoryScreen::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 	auto modal = getObject<Modal>(0);
 	auto items = inventory_->begin();
 	for (auto containers = modal->begin(); containers != modal->end(); containers++) {
-		auto container = std::dynamic_pointer_cast<Container>(containers->second);
+		auto container = std::dynamic_pointer_cast<ObjectContainer>(containers->second);
 		for (auto inventorySlot = container->begin(); inventorySlot != container->end(); inventorySlot++) {
 			auto slot = std::dynamic_pointer_cast<InventorySlot>(inventorySlot->second);
 
@@ -50,8 +50,8 @@ void InventoryScreen::process(float deltaTime) {
 
 		int64_t id = 0;
 		for (int x = 0; x < drawRows; x++) {
-			container->insertObject(std::make_shared<Container>(id, vec2(0.0f), vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL, vec2(10.0f, 0.0f)));
-			auto horizontalContainer = container->getInnerObject<Container>(id);
+			container->insertObject(std::make_shared<ObjectContainer>(id, vec2(0.0f), vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL, vec2(10.0f, 0.0f)));
+			auto horizontalContainer = container->getInnerObject<ObjectContainer>(id);
 
 			for (int y = 0; y < maxItemsOnRow; y++) {
 				horizontalContainer->insertObject(std::make_shared<InventorySlot>(
