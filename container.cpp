@@ -18,8 +18,8 @@ Container::Container(
 
 void Container::setPos(vec2<float>& pos) {
 	vec2 delta = getPos() - pos;
-	for (auto& it = begin(); it != end(); it++)
-		it->second->setPos(it->second->getPos() + delta);
+	for (auto& [id, object] : objects_)
+		object->setPos(object->getPos() + delta);
 	Object::setPos(pos);
 	spreadObjects();
 }
@@ -32,22 +32,22 @@ void Container::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
 
 		auto pos = getPos();
 
-		for (auto& object : objects_)
-			object.second->draw(drawingSurface.get(), offset - scrollOffset - pos + 1);
+		for (auto& [id, object] : objects_)
+			object->draw(drawingSurface.get(), offset - scrollOffset - pos + 1);
 
 		drawingSurface->BlendCopyTo(surface, static_cast<int>(floor(pos.x)) - 1, static_cast<int>(floor(pos.y)) - 1);
 		scrollbar_.draw(surface, offset);
 	}
 	else {
 		// draw normally
-		for (auto& object : objects_)
-			object.second->draw(surface, offset);
+		for (auto& [id, object] : objects_)
+			object->draw(surface, offset);
 	}
 }
 
 void Container::process(float deltaTime) {
-	for (auto& object : objects_)
-		object.second->process(deltaTime);
+	for (auto& [id, object] : objects_)
+		object->process(deltaTime);
 }
 
 void Container::insertObject(std::shared_ptr<Object> object) {
@@ -57,8 +57,8 @@ void Container::insertObject(std::shared_ptr<Object> object) {
 }
 
 void Container::subscribe() {
-	for (auto& object : objects_) {
-		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object.second);
+	for (auto& [id, object] : objects_) {
+		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object);
 		if (subscriber != nullptr) subscriber->subscribe();
 	}
 
@@ -68,8 +68,8 @@ void Container::subscribe() {
 void Container::unsubscribe() {
 	SubscriptionManager::unsubscribe();
 
-	for (auto& object : objects_) {
-		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object.second);
+	for (auto& [id, object] : objects_) {
+		auto subscriber = std::dynamic_pointer_cast<SubscriptionManager>(object);
 		if (subscriber != nullptr) subscriber->unsubscribe();
 	}
 
@@ -81,14 +81,14 @@ void Container::spreadObjects() {
 
 	// get combined size of all elements
 	vec2<float> combinedSize(0.0f);
-	for (auto& object : objects_) combinedSize += object.second->getSize();
+	for (auto& [id, object] : objects_) combinedSize += object->getSize();
 
 	// spread objects by gap
 	vec2<float> currentPos = getPos();
-	for (auto& object : objects_) {
-		object.second->setPos(currentPos);
+	for (auto& [id, object] : objects_) {
+		object->setPos(currentPos);
 
-		vec2<float> objectSize = object.second->getSize();
+		vec2<float> objectSize = object->getSize();
 		if (justification_ == Justification::VERTICAL) currentPos.y += objectSize.y + gap_.y;
 		if (justification_ == Justification::HORIZONTAL) currentPos.x += objectSize.x + gap_.x;
 	}

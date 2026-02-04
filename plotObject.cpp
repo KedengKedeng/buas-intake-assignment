@@ -52,7 +52,7 @@ void PlotObject::subscribe() {
 	addSubscription(interactionSignal.subscribe([this]() {
 		if (isInteracting) {
 			if (availableForPickup.size() != 0) {
-				for (auto& item : availableForPickup) for (int x = 0; x < item.second; x++) inventory_->add(item.first->name);
+				for (auto& [item, count] : availableForPickup) for (int x = 0; x < count; x++) inventory_->add(item->name);
 				availableForPickup.clear();
 				return;
 			}
@@ -70,15 +70,15 @@ void PlotObject::subscribe() {
 			if (availableForPickup.size() == 0) return;
 
 			vec2 itemSizes(0.0f);
-			for (auto& item : availableForPickup) itemSizes += vec2<float>(item.first->sprite.getWidth() + 10, 0.0f);
+			for (auto& [item, count] : availableForPickup) itemSizes += vec2<float>(item->sprite.getWidth() + 10, 0.0f);
 			itemSizes.y += availableForPickup.begin()->first->sprite.getHeight();
 
 			auto pos = getPos() + (getSize() - itemSizes) / 2 + offset;
 			surface->Bar(pos - 10, pos + itemSizes + 10, 0xffffffff);
 
-			for (auto& item : availableForPickup) {
-				item.first->sprite.draw(surface, pos.x, pos.y);
-				pos += vec2<float>(item.first->sprite.getWidth() + 10, 0.0f);
+			for (auto& [item, count] : availableForPickup) {
+				item->sprite.draw(surface, pos.x, pos.y);
+				pos += vec2<float>(item->sprite.getWidth() + 10, 0.0f);
 			}
 		});
 	}));

@@ -77,26 +77,27 @@ void Screen::interactionCheck(Object& object) {
 	if (interactor == nullptr || !interactor->isInteractor()) return;
 
 	for (auto& it = objects_.begin(); it != objects_.end(); it++) {
+		auto id = it->first;
 		auto object2 = it->second;
 		// check if object has interactable functionality
-		auto interacted = getObject<Interactable>(object2->getId());
+		auto interacted = getObject<Interactable>(id);
 		if (interacted == nullptr) continue;
 
 		BoundingBox interactorBounds = interactor->getInteractableBoundsAt(object.getPos());
 		BoundingBox interactedBounds = interacted->getInteractableBoundsAt(object2->getPos());
 		bool result = interactorBounds.isInBounds(interactedBounds);
 
-		bool foundInteractingObject = alreadyInteracting.find(it->first) != alreadyInteracting.end();
+		bool foundInteractingObject = alreadyInteracting.find(id) != alreadyInteracting.end();
 		// add to a list of already interacting objects.
 		// if not kept track it would emit onIntersectStart every frame
 		if (result && !foundInteractingObject) {
-			alreadyInteracting.insert(it->first);
+			alreadyInteracting.insert(id);
 			interacted->onInteractionStart.emit();
 		}
 
 		// remove from list if no longer interacting
 		if (!result && foundInteractingObject) {
-			alreadyInteracting.erase(it->first);
+			alreadyInteracting.erase(id);
 			interacted->onInteractionEnd.emit();
 		}
 	}\
