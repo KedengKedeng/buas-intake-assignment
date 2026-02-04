@@ -9,7 +9,6 @@ PlotObject::PlotObject(int64_t id, const vec2<float>& pos, const vec2<float>& si
 	Object(id, pos, size),
 	Interactable(vec2(0.0f), size, false),
 	Collider(),
-	tooltip_(std::make_shared<Tooltip>(0, pos, std::string("buy"))),
 	plot_(plot),
 	inventory_(inventory)
 {
@@ -17,13 +16,11 @@ PlotObject::PlotObject(int64_t id, const vec2<float>& pos, const vec2<float>& si
 	addCollider(BoundingBox(vec2(0.0f), vec2(size.x - 1, 1.0f)));
 	addCollider(BoundingBox(vec2(0.0f, size.y - 1), vec2(size.x - 1, 1.0f)));
 	addCollider(BoundingBox(vec2(size.x - 1, 0.0f), vec2(1.0f, size.y - 1)));
-
-	tooltip_->setPos(getPos() + (getSize() - tooltip_->getSize()) / 2);
 }
 
 PlotObject::~PlotObject() {
 	for (auto id : animalIds) deleteObjectSignal.emit(id);
-	removeDrawOnTop.emit(tooltip_->getId());
+	removeDrawOnTop.emit(getId());
 }
 
 void PlotObject::addAnimal() {
@@ -54,10 +51,24 @@ void PlotObject::subscribe() {
 	}));
 
 	addSubscription(onInteractionStart.subscribe([this]() {
-		drawOnTop.emit(tooltip_->getId(), [this](Tmpl8::Surface* surface, const vec2<float>& offset) {tooltip_->draw(surface, offset); });
+		drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, const vec2<float>& offset) {
+			if (availableForPickup.size() == 0) return;
+
+			vec2 itemSizes(0.0f);
+			for (auto& item : availableForPickup) itemSizes += vec2<float>(item.first->sprite.getWidth() + 10, 0.0f);
+			itemSizes.y += availableForPickup.begin()->first->sprite.getHeight();
+
+			auto pos = getPos() + (getSize() - itemSizes) / 2 + offset;
+			surface->Bar(pos - 10, pos + itemSizes + 10, 0xffffffff);
+
+			for (auto& item : availableForPickup) {
+				item.first->sprite.draw(surface, pos.x, pos.y);
+				pos += vec2<float>(item.first->sprite.getWidth() + 10, 0.0f);
+			}
+		});
 	}));
 
 	addSubscription(onInteractionEnd.subscribe([this]() {
-		removeDrawOnTop.emit(tooltip_->getId());
+		removeDrawOnTop.emit(getId());
 	}));
 }

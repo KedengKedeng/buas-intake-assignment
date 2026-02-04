@@ -2,7 +2,6 @@
 #include "plot.hpp"
 #include "object.hpp"
 #include "interactable.hpp"
-#include "tooltip.hpp"
 #include "collider.hpp"
 #include "subscriptionManager.hpp"
 #include "inventory.hpp"
@@ -25,6 +24,4 @@ private:
 	std::shared_ptr<Inventory> inventory_;
 
 	std::map<std::shared_ptr<Item>, int> availableForPickup = {};
-
-	std::shared_ptr<Tooltip> tooltip_;
 };
