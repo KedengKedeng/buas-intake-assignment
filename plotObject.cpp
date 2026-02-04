@@ -5,12 +5,20 @@
 #include "creature.hpp"
 #include "uiSignals.hpp"
 
-PlotObject::PlotObject(int64_t id, const vec2<float>& pos, const vec2<float>& size, std::shared_ptr<Plot> plot, std::shared_ptr<Inventory> inventory) :
+PlotObject::PlotObject(
+	int64_t id, 
+	const vec2<float>& pos, 
+	const vec2<float>& size, 
+	std::shared_ptr<Plot> plot, 
+	std::shared_ptr<Inventory> inventory,
+	std::shared_ptr<Husbandry> husbandry
+) :
 	Object(id, pos, size),
 	Interactable(vec2(0.0f), size, false),
 	Collider(),
 	plot_(plot),
-	inventory_(inventory)
+	inventory_(inventory),
+	husbandry_(husbandry)
 {
 	addCollider(BoundingBox(vec2(0.0f), vec2(1.0f, size.y - 1)));
 	addCollider(BoundingBox(vec2(0.0f), vec2(size.x - 1, 1.0f)));
@@ -46,7 +54,14 @@ void PlotObject::subscribe() {
 			if (availableForPickup.size() != 0) {
 				for (auto& item : availableForPickup) for (int x = 0; x < item.second; x++) inventory_->add(item.first->name);
 				availableForPickup.clear();
-			} else addAnimal();
+				return;
+			}
+			
+			std::string typeName = plot_->getType()->name;
+			if (husbandry_->get(typeName)) {
+				addAnimal();
+				husbandry_->remove(typeName);
+			}
 		}
 	}));
 

@@ -18,7 +18,12 @@ const float tileSize = 32 * floorScale;
 const vec2<float> PLOT_SIZE = { tileSize * 8, tileSize * 8 };
 const vec2<float> PLOT_MARGINS = { tileSize * 2, tileSize * 2 };
 
-PlayScreen::PlayScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry, std::shared_ptr<Cauldron> cauldron) :
+PlayScreen::PlayScreen(
+	Tmpl8::Surface* surface, 
+	std::shared_ptr<Inventory> inventory, 
+	std::shared_ptr<Husbandry> husbandry, 
+	std::shared_ptr<Cauldron> cauldron
+) :
 	Screen(surface), 
 	player_(0, vec2(100.0f)), 
 	inventory_(inventory), 
@@ -54,7 +59,7 @@ void PlayScreen::createPlotObjects(std::shared_ptr<Husbandry> husbandry, const v
 	vec2 currentPos = pos;
 	int currentPlot = 0;
 	for (auto& plot : plots) {
-		insertObject(std::make_shared<PlotObject>(getRandomNum(), currentPos, PLOT_SIZE, plot, inventory_));
+		insertObject(std::make_shared<PlotObject>(getRandomNum(), currentPos, PLOT_SIZE, plot, inventory_, husbandry_));
 		if (currentPlot == plotsPerRow) {
 			currentPos = pos + PLOT_SIZE;
 			currentPos.x += PLOT_MARGINS.x;

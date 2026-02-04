@@ -5,11 +5,19 @@
 #include "collider.hpp"
 #include "subscriptionManager.hpp"
 #include "inventory.hpp"
+#include "husbandry.hpp"
 #include <map>
 
 class PlotObject : public Object, public Interactable, public Collider, public SubscriptionManager {
 public:
-	PlotObject(int64_t id, const vec2<float>& pos, const vec2<float>& size, std::shared_ptr<Plot> plot, std::shared_ptr<Inventory> inventory);
+	PlotObject(
+		int64_t id, 
+		const vec2<float>& pos, 
+		const vec2<float>& size, 
+		std::shared_ptr<Plot> plot, 
+		std::shared_ptr<Inventory> inventory, 
+		std::shared_ptr<Husbandry> husbandry
+	);
 	~PlotObject();
 
 	void addAnimal();
@@ -22,6 +30,7 @@ private:
 	std::vector<int64_t> animalIds = {};
 	std::shared_ptr<Plot> plot_;
 	std::shared_ptr<Inventory> inventory_;
+	std::shared_ptr<Husbandry> husbandry_;
 
 	std::map<std::shared_ptr<Item>, int> availableForPickup = {};
 };

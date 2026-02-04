@@ -1,5 +1,4 @@
 #pragma once
-#include "creature.hpp"
 #include "plot.hpp"
 #include "countingStorage.hpp"
 
