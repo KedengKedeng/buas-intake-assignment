@@ -12,8 +12,8 @@ CookingScreen::CookingScreen(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> 
 	inventory_(inventory),
 	cauldron_(cauldron)
 {
-	keyboardInput_.registerHandler("escape", []() {return std::make_unique<ChangeScreenCommand>(Screens::Play); });
-	keyboardInput_.registerHandler("resetCauldron", [this]() {
+	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<ChangeScreenCommand>(Screens::Play); });
+	keyboardInput_.registerHandler(KeyFunctions::ResetCauldron, [this]() {
 		auto& items = cauldron_->getItems();
 		for (auto& item : items) inventory_->add(item->name);
 		cauldron_->reset();

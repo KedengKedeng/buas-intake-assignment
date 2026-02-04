@@ -10,7 +10,7 @@ AnimalShopScreen::AnimalShopScreen(Tmpl8::Surface* surface, std::shared_ptr<Wall
 	wallet_(wallet),
 	husbandry_(husbandry)
 {
-	keyboardInput_.registerHandler("escape", []() {return std::make_unique<CloseScreenCommand>(); });
+	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<CloseScreenCommand>(); });
 
 	vec2 modalSize = vec2(400.0f, 400.0f);
 	vec2 modalPos = (vec2<float>(surface->GetWidth(), surface->GetHeight()) - modalSize) / 2;

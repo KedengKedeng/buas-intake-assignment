@@ -5,7 +5,7 @@
 #include "random.hpp"
 
 StartScreen::StartScreen(Tmpl8::Surface* surface) : Screen(surface) {
-	keyboardInput_.registerHandler("escape", []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
+	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<StackScreenCommand>(Screens::SettingsMenu); });
 
 	vec2<float> containerSize(70, 75);
 	vec2<float> buttonSize(70, 20);

@@ -5,16 +5,28 @@
 #include <map>
 #include <functional>
 
-extern std::map<int, std::string> keyMapping;
+enum class KeyFunctions {
+	WalkLeft,
+	WalkUp,
+	WalkDown,
+	WalkRight,
+	Interact,
+	Escape,
+	Inventory,
+	OpenShop,
+	ResetCauldron
+};
+
+extern std::map<int, KeyFunctions> keyMapping;
 
 class KeyboardInput {
 public:
 	void keyDown(int keyCode);
 	void keyUp(int keyCode);
 
-	void registerHandler(const std::string& action, std::function<std::unique_ptr<Command>()> handler) { handlers[action] = handler; }
+	void registerHandler(KeyFunctions action, std::function<std::unique_ptr<Command>()> handler) { handlers[action] = handler; }
 	void clearKeysDown();
 private:
 	std::map<int, std::unique_ptr<Command>> keysDown = {};
-	std::map<std::string, std::function<std::unique_ptr<Command>()>> handlers = {};
+	std::map<KeyFunctions, std::function<std::unique_ptr<Command>()>> handlers = {};
 };

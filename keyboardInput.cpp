@@ -1,15 +1,15 @@
 #include "keyboardInput.hpp"
 
-std::map<int, std::string> keyMapping = {
-	{4, "walkLeft"},
-	{26, "walkUp"},
-	{22, "walkDown"},
-	{7, "walkRight"},
-	{40, "interact"},
-	{41, "escape"},
-	{8, "inventory"},
-	{23, "openShop"},
-	{21, "resetCauldron"}
+std::map<int, KeyFunctions> keyMapping = {
+	{4, KeyFunctions::WalkLeft},
+	{26, KeyFunctions::WalkUp},
+	{22, KeyFunctions::WalkDown},
+	{7, KeyFunctions::WalkRight},
+	{40, KeyFunctions::Interact},
+	{41, KeyFunctions::Escape},
+	{8, KeyFunctions::Inventory},
+	{23, KeyFunctions::OpenShop},
+	{21, KeyFunctions::ResetCauldron}
 };
 
 void KeyboardInput::keyDown(int keyCode) {

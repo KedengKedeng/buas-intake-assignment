@@ -9,7 +9,7 @@
 
 InventoryScreen::InventoryScreen(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory) 
 	: Screen(surface), inventory_(inventory) {
-	keyboardInput_.registerHandler("escape", []() {return std::make_unique<CloseScreenCommand>(); });
+	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<CloseScreenCommand>(); });
 
 	vec2 size( 400.0f, 300.0f );
 	insertObject(std::make_shared<Modal>(0, vec2<float>(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
