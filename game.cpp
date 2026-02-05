@@ -10,11 +10,11 @@
 #include "itemList.hpp"
 #include "spriteList.hpp"
 #include "surfaceList.hpp"
-#include "creatureTypeList.hpp"
 #include "inventory.hpp"
 #include "husbandry.hpp"
 #include "cauldron.hpp"
 #include "wallet.hpp"
+#include "creatureTypeRepository.hpp"
 
 namespace Tmpl8
 {
@@ -27,7 +27,6 @@ namespace Tmpl8
 		setupSpriteList();
 		setupItemList();
 		setupRecipeList();
-		setupCreatureTypeList();
 
 		mouseInput = MouseInput();
 
@@ -35,8 +34,11 @@ namespace Tmpl8
 		std::shared_ptr<Husbandry> husbandry = std::make_shared<Husbandry>();
 		std::shared_ptr<Cauldron> cauldron = std::make_shared<Cauldron>();
 		std::shared_ptr<Wallet> wallet = std::make_shared<Wallet>();
-		husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository.get(std::string("testAnimal"))));
 
+		for (int x = static_cast<int>(CreatureTypes::FIRST); x != static_cast<int>(CreatureTypes::LAST); x++)
+			husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository().get(CreatureTypes(x))));
+
+		// init all scenes
 		scenes[Scenes::TitleMenu] = std::make_shared<StartScene>(surface_);
 		scenes[Scenes::Play] = std::make_shared<PlayScene>(surface_, inventory, husbandry, cauldron, wallet);
 		scenes[Scenes::SettingsMenu] = std::make_shared<SettingsScene>(surface_);
@@ -44,6 +46,7 @@ namespace Tmpl8
 		scenes[Scenes::Inventory] = std::make_shared<InventoryScene>(surface_, inventory);
 		scenes[Scenes::AnimalShop] = std::make_shared<AnimalShopScene>(surface_, wallet, husbandry);
 
+		// set title menu as start scene
 		currentScenes.push_back(scenes[Scenes::TitleMenu]);
 		scenes[Scenes::TitleMenu]->subscribe();
 
@@ -99,6 +102,8 @@ namespace Tmpl8
 
 		currentScenes[currentScenes.size() - 1]->process(deltaTime);
 
+		// in case of scene switches we want the current scene to first finish processing
+		// and then switch. hence this queue.
 		for (; !queue.empty(); queue.pop()) {
 			auto func = queue.front();
 			func();

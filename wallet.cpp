@@ -9,7 +9,7 @@ void Wallet::addCurrency(int amount) {
 }
 
 bool Wallet::requestPayment(int amount) {
-	if (amount < currency_) return false;
+	if (amount > currency_) return false;
 	currency_ -= amount;
 	return true;
 }

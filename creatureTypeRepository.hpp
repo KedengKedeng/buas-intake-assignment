@@ -1,18 +1,34 @@
 #pragma once
 #include <map>
-#include <string>
 #include <memory>
 #include "creatureType.hpp"
 
-class CreatureTypeRepository {
-public:
-	void insert(std::shared_ptr<CreatureType> creatureType) { registry_.insert({ creatureType->name, creatureType }); }
-	std::shared_ptr<CreatureType> get(std::string& name) { return registry_.at(name); }
-
-	std::map<std::string, std::shared_ptr<CreatureType>>::iterator begin() { return registry_.begin(); }
-	std::map<std::string, std::shared_ptr<CreatureType>>::iterator end() { return registry_.end(); }
-private:
-	std::map<std::string, std::shared_ptr<CreatureType>> registry_ = {};
+enum class CreatureTypes {
+	FIRST = 0,
+	BlueSlime = 0,
+	GreenSlime,
+	IceDragon,
+	WindDragon,
+	EarthDragon,
+	FireDragon,
+	LAST
 };
 
-extern CreatureTypeRepository creatureTypeRepository;
+class CreatureTypeRepository {
+	using CreatureTypeMap = std::map<CreatureTypes, std::shared_ptr<CreatureType>>;
+public:
+	CreatureTypeRepository();
+
+	void insert(CreatureTypes identifier, std::shared_ptr<CreatureType> creatureType);
+	std::shared_ptr<CreatureType> get(CreatureTypes type);
+
+	CreatureTypeMap::iterator begin() { return registry_.begin(); }
+	CreatureTypeMap::iterator end() { return registry_.end(); }
+private:
+	CreatureTypeMap registry_ = {};
+};
+
+static CreatureTypeRepository& creatureTypeRepository() {
+	static CreatureTypeRepository repo;
+	return repo;
+}

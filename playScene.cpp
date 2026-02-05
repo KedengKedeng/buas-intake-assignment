@@ -17,7 +17,7 @@
 const float floorScale = 1.5f;
 const float tileSize = 32 * floorScale;
 const vec2<float> PLOT_SIZE = { tileSize * 8, tileSize * 8 };
-const vec2<float> PLOT_MARGINS = { tileSize * 2, tileSize * 2 };
+const vec2<float> PLOT_MARGINS = { tileSize * 3, tileSize * 3 };
 
 PlayScene::PlayScene(
 	Tmpl8::Surface* surface, 
@@ -43,10 +43,10 @@ PlayScene::PlayScene(
 	keyboardInput_.registerHandler(KeyFunctions::OpenShop, []() {return std::make_unique<StackSceneCommand>(Scenes::AnimalShop); });
 
 	auto& plots = husbandry_->getPlots();
-	vec2 plotSpace(0.0f, (PLOT_SIZE.y + PLOT_MARGINS.y) * ceil(plots.size() / 2.0f));
+	vec2 plotSpace(PLOT_MARGINS.x, (PLOT_SIZE.y + PLOT_MARGINS.y) * ceil(plots.size() / 2.0f));
 	vec2 roomSize(tileSize * 16, tileSize * 10);
 
-	createPlotObjects(husbandry, -plotSpace);
+	createPlotObjects(husbandry, vec2(-PLOT_MARGINS.x, -roomSize.y));
 	createWorldBounds(-plotSpace, roomSize + plotSpace);
 
 	// interactable objects
@@ -62,12 +62,12 @@ void PlayScene::createPlotObjects(std::shared_ptr<Husbandry> husbandry, vec2<flo
 	vec2 currentPos = pos;
 	int currentPlot = 0;
 	for (auto& plot : plots) {
-		insertObject(std::make_shared<PlotObject>(getRandomNum(), currentPos, PLOT_SIZE, plot, inventory_, husbandry_));
 		if (currentPlot == plotsPerRow) {
-			currentPos = pos + PLOT_SIZE;
-			currentPos.x += PLOT_MARGINS.x;
+			currentPos = pos;
+			currentPos.x += PLOT_MARGINS.x + PLOT_SIZE.x;
 		}
-		currentPos.y -= PLOT_SIZE.y - PLOT_MARGINS.y; 
+		insertObject(std::make_shared<PlotObject>(getRandomNum(), currentPos, PLOT_SIZE, plot, inventory_, husbandry_));
+		currentPos.y -= (PLOT_SIZE.y + PLOT_MARGINS.y); 
 		currentPlot++;
 	}
 }

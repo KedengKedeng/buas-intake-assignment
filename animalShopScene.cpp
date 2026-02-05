@@ -25,7 +25,8 @@ AnimalShopScene::AnimalShopScene(Tmpl8::Surface* surface, std::shared_ptr<Wallet
 	);
 
 	int id = 0;
-	for (auto& it = creatureTypeRepository.begin(); it != creatureTypeRepository.end(); it++) {
+	auto& repo = creatureTypeRepository();
+	for (auto& it = repo.begin(); it != repo.end(); it++) {
 		modal->insertObject(std::make_shared<AnimalShopItem>(
 			id, 
 			vec2(0.0f), 

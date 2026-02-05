@@ -68,5 +68,8 @@ vec2<float> Collider::swept(Collider& other, vec2<float> velocity, vec2<float> a
 }
 
 void Collider::drawColliders(Tmpl8::Surface* surface, const vec2<float>& offset) {
-	for (auto& box : collidingBoxes_) surface->Box(box.getPos() + offset, box.getPos() + offset + box.getSize(), 0xff0000ff);
+	for (auto& box : collidingBoxes_) {
+		auto pos = box.getPos() + offset;
+		surface->Box(pos, pos + box.getSize(), 0xff0000ff);
+	}
 }
