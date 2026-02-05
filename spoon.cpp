@@ -5,7 +5,7 @@
 
 vec2<float> spoonVelocity( 0.0f, 7.0f );
 
-Spoon::Spoon(int64_t id, vec2<float>& pos) : 
+Spoon::Spoon(int64_t id, vec2<float> pos) : 
 	Object(id, pos, vec2(0.0f)),
 	Collider(),
 	Interactable(vec2(0.0f), vec2(0.0f), true),
@@ -33,7 +33,7 @@ Spoon::Spoon(int64_t id, vec2<float>& pos) :
 	});
 }
 
-void Spoon::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void Spoon::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	sprite_.draw(surface, pos.x, pos.y);
 }

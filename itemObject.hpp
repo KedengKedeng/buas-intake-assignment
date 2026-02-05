@@ -6,14 +6,14 @@
 
 class ItemObject : public Object, public Interactable, public SubscriptionManager {
 public:
-	ItemObject(int64_t id, vec2<float>& pos, std::shared_ptr<Item> item);
+	ItemObject(int64_t id, vec2<float> pos, std::shared_ptr<Item> item);
 
-	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
+	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 	void process(float deltaTime) override;
 
 	void subscribe() override;
 private:
-	std::shared_ptr<Item> item_;
+	const std::shared_ptr<Item> item_;
 
 	// TODO: randomize?
 	float drawOffset = 0;

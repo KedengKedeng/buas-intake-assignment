@@ -5,12 +5,12 @@ MouseHandler::~MouseHandler() {
 	unsubscribe();
 }
 
-void MouseHandler::setOnMouseMove(std::function<void(vec2<float>&, vec2<float>&)> handler) {
+void MouseHandler::setOnMouseMove(std::function<void(vec2<float>, vec2<float>)> handler) {
 	unsubscribe();
 	onMouseMoveHandler_ = handler;
 }
 
-void MouseHandler::setOnMouseDrag(std::function<void(vec2<float>&, vec2<float>&)> handler) {
+void MouseHandler::setOnMouseDrag(std::function<void(vec2<float>, vec2<float>)> handler) {
 	unsubscribe();
 	onMouseDragHandler_ = handler;
 }
@@ -24,7 +24,7 @@ void MouseHandler::setOnMouseUp(std::function<void()> handler) {
 }
 
 void MouseHandler::subscribe() {
-	addSubscription(onMouseDown.subscribe([this](vec2<float>& pos) {
+	addSubscription(onMouseDown.subscribe([this](vec2<float> pos) {
 		if (interactionCheck(pos)) mouseDown = true;
 		if (onMouseDownHandler_ != nullptr) onMouseDownHandler_();
 	}));
@@ -34,7 +34,7 @@ void MouseHandler::subscribe() {
 		mouseDown = false;
 	}));
 
-	addSubscription(mouseMoved.subscribe([this](vec2<float>& pos) {
+	addSubscription(mouseMoved.subscribe([this](vec2<float> pos) {
 		vec2<float> delta = pos - oldPos;
 
 		if (onMouseMoveHandler_ != nullptr) onMouseMoveHandler_(pos, delta);

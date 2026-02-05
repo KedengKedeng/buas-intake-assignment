@@ -7,14 +7,14 @@ public:
 	Cauldron() {};
 
 	void insertItem(std::shared_ptr<Item> item);
-	size_t getItemCount() { return items_.size(); }
+	size_t getItemCount() const { return items_.size(); }
 
 	void stir(float delta);
 	void addTemp(float delta);
-	float getTemp();
+	float getTemp() const;
 
 	void reset();
-	std::vector<std::shared_ptr<Item>>& getItems();
+	const std::vector<std::shared_ptr<Item>>& getItems() const;
 private:
 	float amountToStir = 0;
 	float neededTemp = 0;

@@ -3,11 +3,9 @@
 
 class Wallet {
 public:
-	int getCurrency();
+	int getCurrency() const;
 	void addCurrency(int amount);
 	bool requestPayment(int amount);
-
-	Signal<int> currencyUpdated{};
 private:
 	int currency_ = 0;
 };

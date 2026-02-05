@@ -6,7 +6,7 @@ const float playerInteractionOffset = 10.0f;
 const float playerSpriteScale = 2.5f;
 const float playerSpriteFrameRate = 0.005f;
 
-Player::Player(int64_t id, vec2<float>& pos) :
+Player::Player(int64_t id, vec2<float> pos) :
 	CharacterObject(
 		id,
 		pos,
@@ -23,7 +23,7 @@ Player::Player(int64_t id, vec2<float>& pos) :
 };
 
 void Player::subscribe() {
-	addSubscription(walkSignal.subscribe([this](vec2<int8_t>& delta) {
+	addSubscription(walkSignal.subscribe([this](vec2<int8_t> delta) {
 		addDelta(delta);
 
 		auto newDelta = getDelta();

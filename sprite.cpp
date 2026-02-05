@@ -16,7 +16,7 @@ Sprite::Sprite(std::shared_ptr<Tmpl8::Surface> surface, float scale) :
 	surface_(surface)
 {}
 
-Sprite::Sprite(Sprite& other, float scale):
+Sprite::Sprite(const Sprite& other, float scale):
 	pitch_(other.pitch_),
 	rect_(other.rect_),
 	scale_(scale),
@@ -24,19 +24,19 @@ Sprite::Sprite(Sprite& other, float scale):
 	surface_(other.surface_) 
 {}
 
-void Sprite::draw(Tmpl8::Surface* target, float x, float y)
+void Sprite::draw(Tmpl8::Surface* target, float x, float y) const
 {
 	drawScaled(target, x, y, 1.0f);
 }
 
 // keeps aspect ratio
-void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float scale)
+void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float scale) const
 {
 	drawScaled(target, x, y, getWidth() * scale, getHeight() * scale);
 }
 
 // scales into any size
-void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float width, float height)
+void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float width, float height) const
 {
 	if (width == 0 || height == 0) return;
 

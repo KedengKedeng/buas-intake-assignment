@@ -6,16 +6,22 @@
 
 class Scrollbar : public Object, public SubscriptionManager {
 public:
-	Scrollbar(int64_t id, vec2<float>& pos, vec2<float>& size, vec2<float>& parentSize, std::function<void(vec2<float>)> onDrag);
+	Scrollbar(
+		int64_t id, 
+		vec2<float> pos, 
+		vec2<float> size, 
+		vec2<float> parentSize, 
+		std::function<void(vec2<float>)> onDrag
+	);
 	
 	void setParentSize(vec2<float>& size);
 
-	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
+	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 
 	void subscribe() override;
 	void unsubscribe() override;
 private:
-	float getThumbSize();
+	float getThumbSize() const;
 
 	vec2<float> parentSize_;
 

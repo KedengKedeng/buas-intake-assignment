@@ -4,17 +4,17 @@
 
 class Object {
 public:
-	Object(int64_t id, const vec2<float>& pos, const vec2<float>& size) :
+	Object(int64_t id, vec2<float> pos, vec2<float> size) :
 		id_(id), pos_(pos), size_(size) {};
 
-	int64_t getId() { return id_; }
+	int64_t getId() const { return id_; }
 
-	virtual void setPos(vec2<float>& pos) { pos_ = pos; }
-	vec2<float> getPos() { return pos_; }
-	void setSize(vec2<float>& size) { size_ = size; }
-	vec2<float> getSize() { return size_; }
+	virtual void setPos(vec2<float> pos) { pos_ = pos; }
+	vec2<float> getPos() const { return pos_; }
+	void setSize(vec2<float> size) { size_ = size; }
+	vec2<float> getSize() const { return size_; }
 
-	virtual void draw(Tmpl8::Surface* surface, const vec2<float>& offset) = 0;
+	virtual void draw(Tmpl8::Surface* surface, vec2<float> offset) const = 0;
 	virtual void process(float deltaTime) {};
 private:
 	int64_t id_;

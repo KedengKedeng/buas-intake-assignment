@@ -5,8 +5,8 @@ Button::Button(
 	int64_t id,
 	std::function<void()> handler,
 	const std::string& text,
-	vec2<float>& pos,
-	vec2<float>& size,
+	vec2<float> pos,
+	vec2<float> size,
 	int borderWidth,
 	Tmpl8::Pixel color,
 	Tmpl8::Pixel borderColor
@@ -28,7 +28,7 @@ void Button::subscribe() {
 	addSubscription([this]() {mouseHandler_.unsubscribe(); });
 }
 
-void Button::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void Button::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	auto size = getSize();
 	surface->Bar(pos, pos + size, borderColor_);

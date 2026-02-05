@@ -8,11 +8,11 @@ public:
 	MouseHandler() {};
 	~MouseHandler();
 
-	void setOnMouseMove(std::function<void(vec2<float>&, vec2<float>&)> handler);
-	void setOnMouseDrag(std::function<void(vec2<float>&, vec2<float>&)> handler);
+	void setOnMouseMove(std::function<void(vec2<float>, vec2<float>)> handler);
+	void setOnMouseDrag(std::function<void(vec2<float>, vec2<float>)> handler);
 	void setOnMouseDown(std::function<void()> handler);
 	void setOnMouseUp(std::function<void()> handler);
-	void setInteractionCheck(std::function<bool(vec2<float>&)> func) { interactionCheck = func; }
+	void setInteractionCheck(std::function<bool(vec2<float>)> func) { interactionCheck = func; }
 
 	void subscribe() override;
 	void unsubscribe() override;

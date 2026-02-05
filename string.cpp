@@ -1,6 +1,6 @@
 #include "string.hpp"
 
-std::vector<std::string> split(std::string& text, const std::string& delimiter) {
+std::vector<std::string> split(const std::string& text, const std::string& delimiter) {
     std::vector<std::string> tokens;
     size_t startPos = 0;
     size_t endPos = 0;

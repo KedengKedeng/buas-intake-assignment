@@ -5,19 +5,19 @@
 class Interactable {
 public:
 	Interactable () : interactionBox_(), isInteractor_(false) {}
-	Interactable(const vec2<float>& pos, const vec2<float>& size, bool isInteractor) :
+	Interactable(vec2<float> pos, vec2<float> size, bool isInteractor) :
 		interactionBox_(pos, size), isInteractor_(isInteractor) {
 		onInteractionStart.subscribe([this]() {isInteracting = true; });
 		onInteractionEnd.subscribe([this]() {isInteracting = false; });
 	}
 
-	BoundingBox getInteractableBounds() { return interactionBox_; }
-	BoundingBox getInteractableBoundsAt(vec2<float>& pos) { return interactionBox_.at(pos); }
+	const BoundingBox& getInteractableBounds() const { return interactionBox_; }
+	BoundingBox getInteractableBoundsAt(vec2<float> pos) const { return interactionBox_.at(pos); }
 
-	vec2<float> getInteractablePos() { return interactionBox_.getPos(); }
-	vec2<float> getInteractableSize() { return interactionBox_.getSize(); }
+	vec2<float> getInteractablePos() const { return interactionBox_.getPos(); }
+	vec2<float> getInteractableSize() const { return interactionBox_.getSize(); }
 
-	bool isInteractor() { return isInteractor_; }
+	bool isInteractor() const { return isInteractor_; }
 
 	Signal<> onInteractionStart{};
 	Signal<> onInteractionEnd{};

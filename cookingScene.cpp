@@ -6,6 +6,7 @@
 #include "random.hpp"
 #include "blower.hpp"
 #include "sceneCommands.hpp"
+#include "cookingCauldron.hpp"
 
 CookingScene::CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory) : 
 	Scene(surface),
@@ -41,13 +42,13 @@ CookingScene::CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> ca
 	insertObject(cookingCauldron);
 }
 
-void CookingScene::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void CookingScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto cauldron = getObject<CookingCauldron>(cauldronId);
-	cauldron->drawBack(surface);
+	cauldron->drawBack(surface, offset);
 
 	Scene::draw(surface, offset);
 
-	cauldron->drawFront(surface);
+	cauldron->drawFront(surface, offset);
 }
 
 void CookingScene::subscribe() {

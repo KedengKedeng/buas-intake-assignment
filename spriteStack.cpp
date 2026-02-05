@@ -4,6 +4,6 @@ void SpriteStack::process(float deltaTime) {
 	sprites_[currentSprite_].process(deltaTime);
 }
 
-void SpriteStack::draw(Tmpl8::Surface* surface, float x, float y) {
+void SpriteStack::draw(Tmpl8::Surface* surface, float x, float y) const {
 	sprites_[currentSprite_].draw(surface, x, y);
 };

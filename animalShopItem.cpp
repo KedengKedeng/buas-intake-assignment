@@ -4,7 +4,8 @@
 
 AnimalShopItem::AnimalShopItem(
 	int64_t id, 
-	vec2<float>& pos, vec2<float>& size, 
+	vec2<float> pos, 
+	vec2<float> size, 
 	std::shared_ptr<CreatureType> type, 
 	std::shared_ptr<Wallet> wallet,
 	std::shared_ptr<Husbandry> husbandry
@@ -26,7 +27,7 @@ AnimalShopItem::AnimalShopItem(
 	});
 }
 
-void AnimalShopItem::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void AnimalShopItem::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	int padding = 20;
 	auto pos = getPos() + offset;
 	auto size = getSize();

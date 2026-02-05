@@ -17,7 +17,7 @@ InventoryScene::InventoryScene(Tmpl8::Surface* surface, std::shared_ptr<Inventor
 	}, Justification::VERTICAL, vec2(10.0f), true));
 }
 
-void InventoryScene::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void InventoryScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto modal = getObject<Modal>(0);
 	auto items = inventory_->begin();
 	for (auto containers = modal->begin(); containers != modal->end(); containers++) {

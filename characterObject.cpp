@@ -3,17 +3,17 @@
 
 CharacterObject::CharacterObject(
 	int64_t id,
-	vec2<float>& pos,
-	vec2<float>& size,
-	AnimatedSprite& idleLeft,
-	AnimatedSprite& idleRight,
-	AnimatedSprite& walkLeft,
-	AnimatedSprite& walkRight,
+	vec2<float> pos,
+	vec2<float> size,
+	const AnimatedSprite& idleLeft,
+	const AnimatedSprite& idleRight,
+	const AnimatedSprite& walkLeft,
+	const AnimatedSprite& walkRight,
 	bool isInteractor
 ) : 
 	Object(id, pos, size), 
-	Collider(vec2<float>(0.0f), size),
-	Interactable(vec2<float>(-10.0f), size + 10, isInteractor),
+	Collider(vec2(0.0f), size),
+	Interactable(vec2(-10.0f), size + 10, isInteractor),
 	sprites_(std::vector<AnimatedSprite>({idleLeft, idleRight, walkLeft, walkRight}))
 {}
 
@@ -32,7 +32,7 @@ void CharacterObject::process(float deltaTime) {
 	calculateMove();
 }
 
-void CharacterObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void CharacterObject::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	if (delta_.x || delta_.y) sprites_.setSprite(static_cast<int>(lookingDirection_) + 2); // set to running animations
 	else sprites_.setSprite(static_cast<int>(lookingDirection_)); // set to idle animations
 

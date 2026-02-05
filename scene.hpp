@@ -30,10 +30,10 @@ protected:
 	KeyboardInput keyboardInput_;
 	DrawDispatcher drawDispatcher_;
 
-	void interactionCheck(Object& object);
+	void interactionCheck(const Object& object);
 	std::set<int64_t> alreadyInteracting = {};
 
 	std::queue<std::function<void()>> queue = {};
 
-	vec2<float> objectsCollideWithBounds(Object& object, vec2<float>& velocity);
+	vec2<float> objectsCollideWithBounds(const Object& object, vec2<float> velocity) const;
 };

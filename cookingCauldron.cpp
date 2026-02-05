@@ -24,8 +24,8 @@ CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron)
 	interactionBox_.setSize(vec2(size.x - 220, size.y - 80));
 }
 
-void CookingCauldron::drawBack(Tmpl8::Surface* surface) {
-	auto pos = getPos();
+void CookingCauldron::drawBack(Tmpl8::Surface* surface, vec2<float> offset) const {
+	auto pos = getPos() + offset;
 	cauldronBack.draw(surface, pos.x, pos.y);
 
 	if (cauldron_->getItemCount() != 0) {
@@ -37,7 +37,7 @@ void CookingCauldron::drawBack(Tmpl8::Surface* surface) {
 	};
 }
 
-void CookingCauldron::drawFront(Tmpl8::Surface* surface) {
+void CookingCauldron::drawFront(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto pos = getPos();
 	cauldronFront.draw(surface, pos.x, pos.y);
 

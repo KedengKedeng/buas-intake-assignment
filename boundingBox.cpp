@@ -2,7 +2,7 @@
 #include <algorithm>
 
 // simple aabb bounds checking
-bool BoundingBox::isInBounds(BoundingBox& box) {
+bool BoundingBox::isInBounds(const BoundingBox& box) const {
 	auto firstPos = getPos();
 	auto firstSize = getSize();
 	auto secondPos = box.getPos();
@@ -16,11 +16,11 @@ bool BoundingBox::isInBounds(BoundingBox& box) {
 	);
 }
 
-bool BoundingBox::isInBounds(vec2<float>& point) {
+bool BoundingBox::isInBounds(vec2<float> point) const {
     return isInBounds(BoundingBox(point, vec2<float>(0.0f)));
 }
 
-CollisionResult BoundingBox::swept(BoundingBox& box, vec2<float>& velocity) {
+CollisionResult BoundingBox::swept(const BoundingBox& box, vec2<float> velocity) const {
     auto firstPos = getPos();
     auto firstSize = getSize();
     auto secondPos = box.getPos();
@@ -48,7 +48,7 @@ CollisionResult BoundingBox::swept(BoundingBox& box, vec2<float>& velocity) {
     return { entryTime, normalX, normalY, true };
 }
 
-SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity) {
+SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, float firstSize, float secondSize, float velocity) const {
     vec2<float> difference(0.0f);
     vec2<float> timings(
         -std::numeric_limits<float>::infinity(),

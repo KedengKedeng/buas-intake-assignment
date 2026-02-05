@@ -1,13 +1,13 @@
 #pragma once
 #include "scene.hpp"
-#include "cookingCauldron.hpp"
 #include "inventory.hpp"
+#include "cauldron.hpp"
 
 class CookingScene : public Scene {
 public:
 	CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory);
 
-	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
+	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 
 	void subscribe() override;
 	void unsubscribe() override;

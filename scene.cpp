@@ -37,9 +37,9 @@ void Scene::unsubscribe() {
 	keyboardInput_.clearKeysDown();
 }
 
-vec2<float> Scene::objectsCollideWithBounds(Object& object, vec2<float>& velocity) {
+vec2<float> Scene::objectsCollideWithBounds(const Object& object, vec2<float> velocity) const {
 	// check if object has collider functionality
-	Collider* collider = dynamic_cast<Collider*>(&object);
+	const Collider* const collider = dynamic_cast<const Collider* const>(&object);
 	if (collider == nullptr) return vec2(0.0f);
 
 	auto collisionVec = velocity;
@@ -65,9 +65,9 @@ vec2<float> Scene::objectsCollideWithBounds(Object& object, vec2<float>& velocit
 	return collisionVec;
 }
 
-void Scene::interactionCheck(Object& object) {
+void Scene::interactionCheck(const Object& object) {
 	// check if object has interactable functionality
-	Interactable* interactor = dynamic_cast<Interactable*>(&object);
+	const Interactable* const interactor = dynamic_cast<const Interactable*>(&object);
 	if (interactor == nullptr || !interactor->isInteractor()) return;
 
 	for (auto& [id, object2] : objects_) {

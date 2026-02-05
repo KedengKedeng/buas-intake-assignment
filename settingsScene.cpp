@@ -28,6 +28,6 @@ SettingsScene::SettingsScene(Tmpl8::Surface* surface) : Scene(surface) {
 	insertObject(modal);
 }
 
-void SettingsScene::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void SettingsScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	Scene::draw(surface, offset);
 }

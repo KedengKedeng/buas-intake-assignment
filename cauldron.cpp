@@ -31,7 +31,7 @@ void Cauldron::addTemp(float delta) {
 	temp += delta;
 }
 
-float Cauldron::getTemp() {
+float Cauldron::getTemp() const {
 	return temp;
 }
 
@@ -41,6 +41,6 @@ void Cauldron::reset() {
 	amountToStir = 0;
 }
 
-std::vector<std::shared_ptr<Item>>& Cauldron::getItems() {
+const std::vector<std::shared_ptr<Item>>& Cauldron::getItems() const {
 	return items_;
 }

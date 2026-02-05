@@ -2,7 +2,7 @@
 #include "collider.hpp"
 
 // return the min and max of the position as the user of the function most choose which they want
-Rect2<float> Collider::getColliderPos() {
+Rect2<float> Collider::getColliderPos() const {
 	vec2 minPos(std::numeric_limits<float>::infinity());
 	vec2 maxPos(-std::numeric_limits<float>::infinity());
 
@@ -18,7 +18,7 @@ Rect2<float> Collider::getColliderPos() {
 }
 
 // same as above but for size
-Rect2<float> Collider::getColliderSize() {
+Rect2<float> Collider::getColliderSize() const {
 	vec2 minSize(std::numeric_limits<float>::infinity());
 	vec2 maxSize(-std::numeric_limits<float>::infinity());
 
@@ -37,7 +37,7 @@ void Collider::addCollider(const BoundingBox& box) {
 	collidingBoxes_.push_back(box);
 }
 
-vec2<float> Collider::swept(Collider& other, vec2<float>& velocity, vec2<float>& at, vec2<float>& otherAt) {
+vec2<float> Collider::swept(Collider& other, vec2<float> velocity, vec2<float> at, vec2<float> otherAt) const {
 	auto collisionVec = velocity;
 
 	for (auto& box : collidingBoxes_) {

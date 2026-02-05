@@ -9,7 +9,7 @@ class DrawDispatcher : public SubscriptionManager {
 public:
 	void subscribe() override;
 
-	void draw(Tmpl8::Surface* surface, const vec2<float>& offset);
+	void draw(Tmpl8::Surface* surface, vec2<float> offset) const;
 private:
-	std::unordered_map<int64_t, std::function<void(Tmpl8::Surface*, const vec2<float>&)>> toDraw = {};
+	std::unordered_map<int64_t, std::function<void(Tmpl8::Surface*, vec2<float>)>> toDraw = {};
 };

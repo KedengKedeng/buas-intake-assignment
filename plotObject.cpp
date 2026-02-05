@@ -7,8 +7,8 @@
 
 PlotObject::PlotObject(
 	int64_t id, 
-	const vec2<float>& pos, 
-	const vec2<float>& size, 
+	vec2<float> pos, 
+	vec2<float> size, 
 	std::shared_ptr<Plot> plot, 
 	std::shared_ptr<Inventory> inventory,
 	std::shared_ptr<Husbandry> husbandry
@@ -38,7 +38,7 @@ void PlotObject::addAnimal() {
 	plot_->addCreature();
 }
 
-void PlotObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void PlotObject::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	surface->Box(pos, pos + getSize(), 0xff0000ff);
 }
@@ -66,7 +66,7 @@ void PlotObject::subscribe() {
 	}));
 
 	addSubscription(onInteractionStart.subscribe([this]() {
-		drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, const vec2<float>& offset) {
+		drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, vec2<float> offset) {
 			if (availableForPickup.size() == 0) return;
 
 			vec2 itemSizes(0.0f);

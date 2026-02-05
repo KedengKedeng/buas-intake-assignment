@@ -56,7 +56,7 @@ PlayScene::PlayScene(
 	floorTiles_.setSquare(Rect2<int>(-plotSpace.x, -plotSpace.y, roomSize.x + plotSpace.x, roomSize.y + plotSpace.y) / tileSize, tileTypes);
 }
 
-void PlayScene::createPlotObjects(std::shared_ptr<Husbandry> husbandry, const vec2<float>& pos) {
+void PlayScene::createPlotObjects(std::shared_ptr<Husbandry> husbandry, vec2<float> pos) {
 	auto& plots = husbandry->getPlots();
 	int plotsPerRow = static_cast<int>(ceil(plots.size() / 2.0f));
 	vec2 currentPos = pos;
@@ -72,14 +72,14 @@ void PlayScene::createPlotObjects(std::shared_ptr<Husbandry> husbandry, const ve
 	}
 }
 
-void PlayScene::createWorldBounds(const vec2<float>& pos, const vec2<float>& size) {
+void PlayScene::createWorldBounds(vec2<float> pos, vec2<float> size) {
 	insertObject(std::make_shared<Wall>(getRandomNum(), pos, vec2(1.0f, size.y)));
 	insertObject(std::make_shared<Wall>(getRandomNum(), pos, vec2(size.x, 1.0f)));
 	insertObject(std::make_shared<Wall>(getRandomNum(), vec2(pos.x, pos.y + size.y), vec2(size.x, 1.0f)));
 	insertObject(std::make_shared<Wall>(getRandomNum(), vec2(pos.x + size.x, pos.y), vec2(1.0f, size.y)));
 }
 
-void PlayScene::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void PlayScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	surface->Clear(0x00);
 
 	auto playerSize = player_.getColliderSize();

@@ -8,10 +8,10 @@
 
 class WorldCauldron : public Object, public Collider, public Interactable, public SubscriptionManager {
 public:
-	WorldCauldron(int64_t id, vec2<float>& pos, std::shared_ptr<Cauldron> cauldron);
+	WorldCauldron(int64_t id, vec2<float> pos, std::shared_ptr<Cauldron> cauldron);
 	~WorldCauldron();
 
-	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
+	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 	void process(float deltaTime) override;
 
 	void subscribe() override;
@@ -24,5 +24,5 @@ private:
 	void onInteractEnd();
 	bool isInteracting = false;
 
-	SpriteStack sprites_;
+	mutable SpriteStack sprites_;
 };

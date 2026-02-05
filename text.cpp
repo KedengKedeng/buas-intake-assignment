@@ -9,22 +9,22 @@ Text::Text(std::string& text, int fontSize, Tmpl8::Pixel color) :
 	text_(split(text, "\n")),
 	fontSize_(fontSize),
 	color_(color)
-{}
-
-int Text::getWidth() { 
-	size_t maxSize = 0;
-	for (auto& text : text_) if (text.size() > maxSize) maxSize = text.size();
-	return 6 * fontSize_ * static_cast<int>(maxSize); 
-}
-
-void Text::draw(Tmpl8::Surface* surface, vec2<float>& pos)
 {
 	if (!fontInitialized)
 	{
 		InitCharset();
 		fontInitialized = true;
 	}
+}
 
+int Text::getWidth() const { 
+	size_t maxSize = 0;
+	for (auto& text : text_) if (text.size() > maxSize) maxSize = text.size();
+	return 6 * fontSize_ * static_cast<int>(maxSize); 
+}
+
+void Text::draw(Tmpl8::Surface* surface, vec2<float> pos) const
+{
 	int width = getWidth();
 	int height = getHeight();
 

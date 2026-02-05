@@ -7,7 +7,7 @@
 const float cauldronSpriteScale = 2.5f;
 const float cauldronSpriteFrameRate = 0.005f;
 
-WorldCauldron::WorldCauldron(int64_t id, vec2<float>& pos, std::shared_ptr<Cauldron> cauldron) :
+WorldCauldron::WorldCauldron(int64_t id, vec2<float> pos, std::shared_ptr<Cauldron> cauldron) :
 	Object(id, pos, vec2(0.0f)),
 	Collider(),
 	Interactable(vec2(-10.0f), vec2(0.0f), false),
@@ -31,7 +31,7 @@ WorldCauldron::~WorldCauldron() {
 	onInteractEnd();
 }
 
-void WorldCauldron::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void WorldCauldron::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	int spriteNum = cauldron_->getItemCount() != 0;
 	if (cauldron_->getTemp() > 200) spriteNum += 2;
 	sprites_.setSprite(spriteNum);

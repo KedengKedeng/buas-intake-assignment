@@ -20,11 +20,11 @@ void AnimatedSprite::draw(Tmpl8::Surface* surface, float x, float y) {
 
 void AnimatedSprite::drawScaled(Tmpl8::Surface* surface, float x, float y, float scale) {
 	setFrame(static_cast<unsigned int>(frameRate_ * time_));
-	Sprite& currentSprite = sheet_->getSprite(currentFrame_);
+	const Sprite& currentSprite = sheet_->getSprite(currentFrame_);
 	currentSprite.drawScaled(surface, x, y, scale * scale_);
 }
 
-float AnimatedSprite::duration() {
+float AnimatedSprite::duration() const {
 	return maxFrames_ / frameRate_;
 }
 

@@ -13,10 +13,10 @@ public:
 		tileSize_(vec2(sheet->getWidth(), sheet->getHeight()) * scale)
 	{}
 
-	void setTile(vec2<int>& pos, TilemapType tile) { tiles_[pos] = tile; }
+	void setTile(vec2<int> pos, TilemapType tile) { tiles_[pos] = tile; }
 
 	// set a square within the tilemap where each tile is randomly picked from the given set
-	void setSquare(Rect2<int>& rect, std::vector<TilemapType>& tiles){
+	void setSquare(const Rect2<int>& rect, const std::vector<TilemapType>& tiles){
 		float posX = rect.x * tileSize_.x;
 		for (int x = 0; x < rect.width; x++) {
 			float posY = rect.y * tileSize_.y;
@@ -29,7 +29,7 @@ public:
 		}
 	}
 
-	void draw(Tmpl8::Surface* surface, vec2<float>& offset) {
+	void draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 		for (auto& [pos, tile] : tiles_) {
 			Sprite sprite = spriteSheet_->getSprite(static_cast<int>(tile));
 			sprite.drawScaled(surface, pos.x + offset.x, pos.y + offset.y, scale_);

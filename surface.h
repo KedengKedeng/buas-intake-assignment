@@ -92,7 +92,7 @@ public:
 	void Clear( Pixel a_Color );
 
 	template<Arithmatic T>
-	void Line(vec2<T>& pos_, vec2<T>& pos2_, Pixel color) {
+	void Line(vec2<T> pos_, vec2<T> pos2_, Pixel color) {
 		// clip (Cohen-Sutherland, https://en.wikipedia.org/wiki/Cohen%E2%80%93Sutherland_algorithm)
 		// make sure given positions are converted to floats
 		vec2<float> pos(pos_.x, pos_.y);
@@ -144,7 +144,7 @@ public:
 	void ScaleColor( unsigned int a_Scale );
 
 	template<Arithmatic T>
-	void Box( vec2<T>& pos, vec2<T>& pos2, Pixel color ) {
+	void Box( vec2<T> pos, vec2<T> pos2, Pixel color ) {
 		Line(pos, vec2(pos2.x, pos.y), color);
 		Line(vec2(pos2.x, pos.y), pos2, color);
 		Line(vec2(pos.x, pos2.y), pos2, color);
@@ -152,7 +152,7 @@ public:
 	}
 
 	template<Arithmatic T>
-	void Bar(vec2<T>& pos, vec2<T>& pos2, Pixel color) {
+	void Bar(vec2<T> pos, vec2<T> pos2, Pixel color) {
 		BoundsCheckResult result = checkBounds(
 			static_cast<int>(floor(pos.x)),
 			static_cast<int>(floor(pos.y)),

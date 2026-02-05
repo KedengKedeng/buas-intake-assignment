@@ -2,7 +2,7 @@
 #include "objectSignals.hpp"
 #include "spriteRepository.hpp"
 
-Blower::Blower(int64_t id, vec2<float>& pos) :
+Blower::Blower(int64_t id, vec2<float> pos) :
 	Object(id, pos, vec2(0.0f)),
 	Interactable(),
 	SubscriptionManager(),
@@ -11,7 +11,7 @@ Blower::Blower(int64_t id, vec2<float>& pos) :
 {
 	interactionBox_.setSize(vec2<float>(sprites_->getWidth(), sprites_->getHeight()));
 
-	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
+	mouseHandler_.setInteractionCheck([this](vec2<float> pos) {
 		return getInteractableBoundsAt(getPos()).isInBounds(pos);
 	});
 
@@ -37,7 +37,7 @@ void Blower::addBlowerPosition(float delta) {
 	blowedSignal.emit(blowerPosition - oldBlowerPos);
 };
 
-void Blower::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void Blower::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	int frame = static_cast<int>(floor(blowerPosition / 25));
 	auto pos = getPos() + offset;
 	sprites_->getSprite(frame).drawScaled(surface, pos.x, pos.y, 0.4f);

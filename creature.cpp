@@ -1,7 +1,7 @@
 #include "creature.hpp"
 #include "random.hpp"
 
-Creature::Creature(int64_t id, vec2<float>& pos, std::shared_ptr<CreatureType> creatureType) :
+Creature::Creature(int64_t id, vec2<float> pos, std::shared_ptr<CreatureType> creatureType) :
 	CharacterObject(
 		id, 
 		pos, 
@@ -11,9 +11,10 @@ Creature::Creature(int64_t id, vec2<float>& pos, std::shared_ptr<CreatureType> c
 		creatureType->walkLeft,
 		creatureType->walkRight,
 		false
-	), creatureType_(creatureType) 
+	), 
+	creatureType_(creatureType) 
 {
-	velocity = { 3.0f, 3.0f };
+	velocity = vec2(3.0f);
 }
 
 void Creature::process(float deltaTime) {
@@ -29,11 +30,11 @@ void Creature::process(float deltaTime) {
 
 // let creatures just wander around randomly
 void Creature::changeState() {
-	CreatureState newType = static_cast<CreatureState>(getRandomNum() % static_cast<int>(CreatureState::IDLE));
+	CreatureState newState = static_cast<CreatureState>(getRandomNum() % static_cast<int>(CreatureState::IDLE));
 	timePassed = 0;
 	timeUntilStateChange = static_cast<float>(getRandomNum() % 1200 + 300);
 
-	switch (newType) {
+	switch (newState) {
 		case CreatureState::WALK_LEFT:
 			addDelta(vec2<int8_t>(-1, 0));
 			setLookingDirection(LookingDirections::LEFT);

@@ -2,10 +2,10 @@
 
 ObjectContainer::ObjectContainer(
 	int64_t id,
-	vec2<float>& pos,
-	vec2<float>& size,
+	vec2<float> pos,
+	vec2<float> size,
 	Justification justification,
-	vec2<float>& gap,
+	vec2<float> gap,
 	bool scrollable
 )
 	: Object(id, pos, size),
@@ -16,7 +16,7 @@ ObjectContainer::ObjectContainer(
 	scrollbar_(0, pos + vec2(size.x, 0.0f), vec2(20.0f, size.y), size, [this](vec2<float> offset) {scrollOffset = offset; })
 { };
 
-void ObjectContainer::setPos(vec2<float>& pos) {
+void ObjectContainer::setPos(vec2<float> pos) {
 	vec2 delta = getPos() - pos;
 	for (auto& [id, object] : objects_)
 		object->setPos(object->getPos() + delta);
@@ -24,7 +24,7 @@ void ObjectContainer::setPos(vec2<float>& pos) {
 	spreadObjects();
 }
 
-void ObjectContainer::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void ObjectContainer::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	if (scrollable_) {
 		// use another surface to contain everything within the context
 		// of the container

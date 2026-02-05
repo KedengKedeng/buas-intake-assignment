@@ -9,15 +9,15 @@ public:
 	SpriteSheet(const SpriteList& sprites);
 	SpriteSheet(std::shared_ptr<Tmpl8::Surface> surface, int columns, int rows);
 
-	int getRows() { return rows_; }
-	int getColumns() { return columns_; }
-	int getSpriteCount() { return static_cast<int>(sprites_.size()); }
+	int getRows() const { return rows_; }
+	int getColumns() const { return columns_; }
+	int getSpriteCount() const { return static_cast<int>(sprites_.size()); }
 
-	Sprite& getSprite(int row, int column);
-	Sprite& getSprite(int index);
+	const Sprite& getSprite(int row, int column) const;
+	const Sprite& getSprite(int index) const;
 
-	float getWidth() { return sprites_[0].getWidth(); }
-	float getHeight() { return sprites_[0].getHeight(); }
+	float getWidth() const { return sprites_[0].getWidth(); }
+	float getHeight() const { return sprites_[0].getHeight(); }
 
 	SpriteList::iterator begin() { return sprites_.begin(); }
 	SpriteList::iterator end() { return sprites_.end(); }

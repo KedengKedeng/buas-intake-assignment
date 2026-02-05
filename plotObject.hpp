@@ -12,8 +12,8 @@ class PlotObject : public Object, public Interactable, public Collider, public S
 public:
 	PlotObject(
 		int64_t id, 
-		const vec2<float>& pos, 
-		const vec2<float>& size, 
+		vec2<float> pos, 
+		vec2<float> size, 
 		std::shared_ptr<Plot> plot, 
 		std::shared_ptr<Inventory> inventory, 
 		std::shared_ptr<Husbandry> husbandry
@@ -22,7 +22,7 @@ public:
 
 	void addAnimal();
 
-	void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
+	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 	void process(float deltaTime) override;
 
 	void subscribe() override;

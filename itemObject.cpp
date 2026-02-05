@@ -3,13 +3,13 @@
 #include "itemSignals.hpp"
 #include "objectSignals.hpp"
 
-ItemObject::ItemObject(int64_t id, vec2<float>& pos, std::shared_ptr<Item> item) :
+ItemObject::ItemObject(int64_t id, vec2<float> pos, std::shared_ptr<Item> item) :
 	Object(id, pos, vec2(0.0f)),
 	item_(item), 
 	Interactable(vec2(-10.0f), vec2(item->sprite.getWidth(), item->sprite.getHeight()) + 10, false) 
 {}
 
-void ItemObject::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void ItemObject::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	item_->sprite.draw(surface, pos.x, pos.y + drawOffset);
 };

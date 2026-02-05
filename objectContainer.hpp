@@ -16,17 +16,17 @@ class ObjectContainer : public Object, public SubscriptionManager {
 public:
 	ObjectContainer(
 		int64_t id,
-		vec2<float>& pos,
-		vec2<float>& size,
+		vec2<float> pos,
+		vec2<float> size,
 		Justification justification,
-		vec2<float>& gap,
+		vec2<float> gap,
 		bool scrollable = false
 	);
 
 	// containers also need to update the positions of their children
-	void setPos(vec2<float>& pos) override;
+	void setPos(vec2<float> pos) override;
 
-	virtual void draw(Tmpl8::Surface* surface, const vec2<float>& offset) override;
+	virtual void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 	virtual void process(float deltaTime) override;
 
 	virtual void insertObject(std::shared_ptr<Object> object);
@@ -35,7 +35,7 @@ public:
 	void clearObjects() { objects_.clear(); }
 
 	template<typename T>
-	std::shared_ptr<T> getObject(int64_t id) { return std::dynamic_pointer_cast<T>(objects_[id]); }
+	std::shared_ptr<T> getObject(int64_t id) const { return std::dynamic_pointer_cast<T>(objects_.at(id)); }
 	virtual std::unordered_map<int64_t, std::shared_ptr<Object>>::iterator begin() { return objects_.begin(); }
 	virtual std::unordered_map<int64_t, std::shared_ptr<Object>>::iterator end() { return objects_.end(); }
 

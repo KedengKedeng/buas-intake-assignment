@@ -10,4 +10,4 @@ Signal<> blowerInteracted{};
 Signal<> blowerInteractionEnded{};
 Signal<float> blowedSignal{};
 
-Signal<vec2<float>&, vec2<float>&, Object&> requestMove{};
+Signal<vec2<float>, vec2<float>, Object&> requestMove{};

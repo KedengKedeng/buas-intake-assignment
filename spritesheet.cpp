@@ -1,7 +1,7 @@
 #include "spritesheet.hpp"
 
 SpriteSheet::SpriteSheet(const SpriteList& sprites) :
-	sprites_(std::move(sprites)),
+	sprites_(sprites),
 	rows_(static_cast<int>(sprites_.size())),
 	columns_(1)
 {}
@@ -27,10 +27,10 @@ SpriteSheet::SpriteSheet(std::shared_ptr<Tmpl8::Surface> surface, int columns, i
 	}
 }
 
-Sprite& SpriteSheet::getSprite(int row, int column) {
+const Sprite& SpriteSheet::getSprite(int row, int column) const {
 	return sprites_.at(row * column);
 }
 
-Sprite& SpriteSheet::getSprite(int index) {
+const Sprite& SpriteSheet::getSprite(int index) const {
 	return sprites_.at(index);
 }

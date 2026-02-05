@@ -1,7 +1,13 @@
 #include "scrollbar.hpp"
 #include "boundingBox.hpp"
 
-Scrollbar::Scrollbar(int64_t id, vec2<float>& pos, vec2<float>& size, vec2<float>& parentSize, std::function<void(vec2<float>)> onDrag) :
+Scrollbar::Scrollbar(
+	int64_t id, 
+	vec2<float> pos, 
+	vec2<float> size, 
+	vec2<float> parentSize, 
+	std::function<void(vec2<float>)> onDrag
+) :
 	Object(id, pos, size),
 	mouseHandler_(),
 	parentSize_(parentSize),
@@ -27,7 +33,7 @@ void Scrollbar::setParentSize(vec2<float>& size) {
 	thumbPos_ = getPos().y;
 }
 
-void Scrollbar::draw(Tmpl8::Surface* surface, const vec2<float>& offset) {
+void Scrollbar::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	auto size = getSize();
 	surface->Bar(pos, pos + size, 0xffb6b8ae);
@@ -48,7 +54,7 @@ void Scrollbar::unsubscribe() {
 	mouseHandler_.unsubscribe();
 }
 
-float Scrollbar::getThumbSize() {
+float Scrollbar::getThumbSize() const {
 	auto size = getSize();
 	return size.y * (size.y / parentSize_.y);
 }

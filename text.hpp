@@ -8,11 +8,11 @@ class Text {
 public:
 	Text(std::string& text, int fontScale, Tmpl8::Pixel color);
 
-	int getWidth();
-	int getLineWidth(std::string& text) { return 6 * fontSize_ * static_cast<int>(text.size()); }
-	int getHeight() { return 6 * fontSize_ * static_cast<int>(text_.size()); }
+	int getWidth() const;
+	int getLineWidth(const std::string& text) const { return 6 * fontSize_ * static_cast<int>(text.size()); }
+	int getHeight() const { return 6 * fontSize_ * static_cast<int>(text_.size()); }
 
-	void draw(Tmpl8::Surface*, vec2<float>& pos);
+	void draw(Tmpl8::Surface*, vec2<float> pos) const;
 private:
 	std::vector<std::string> text_;
 	int fontSize_;
