@@ -7,7 +7,7 @@ Blower::Blower(int64_t id, vec2<float> pos) :
 	Interactable(),
 	SubscriptionManager(),
 	mouseHandler_(), 
-	sprites_(spriteRepository.getSheet("blower"))
+	sprites_(spriteRepository().getSheet(SpriteSheets::Blower))
 {
 	interactionBox_.setSize(vec2<float>(sprites_->getWidth(), sprites_->getHeight()));
 

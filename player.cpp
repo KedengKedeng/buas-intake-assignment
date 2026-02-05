@@ -11,10 +11,10 @@ Player::Player(int64_t id, vec2<float> pos) :
 		id,
 		pos,
 		vec2(0.0f),
-		AnimatedSprite(spriteRepository.getSheet("playeridleleft"), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepository.getSheet("playeridleright"), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepository.getSheet("playerwalkleft"), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepository.getSheet("playerwalkright"), playerSpriteFrameRate, playerSpriteScale),
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::PlayerIdleLeft), playerSpriteFrameRate, playerSpriteScale),
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::PlayerIdleRight), playerSpriteFrameRate, playerSpriteScale),
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::PlayerWalkLeft), playerSpriteFrameRate, playerSpriteScale),
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::PlayerWalkRight), playerSpriteFrameRate, playerSpriteScale),
 		true
 	) {
 	addCollider(BoundingBox(vec2(0.0f), vec2(getTextureWidth(), getTextureHeight())));

@@ -358,7 +358,6 @@
     <ClInclude Include="settingsScene.hpp" />
     <ClInclude Include="signal.hpp" />
     <ClInclude Include="sprite.hpp" />
-    <ClInclude Include="spriteList.hpp" />
     <ClInclude Include="spriteRepository.hpp" />
     <ClInclude Include="startScene.hpp" />
     <ClInclude Include="surface.h" />

@@ -10,7 +10,7 @@ Spoon::Spoon(int64_t id, vec2<float> pos) :
 	Collider(),
 	Interactable(vec2(0.0f), vec2(0.0f), true),
 	mouseHandler(), 
-	sprite_(spriteRepository.get("spoon", 0.4)) 
+	sprite_(spriteRepository().get(Sprites::Spoon, 0.4))
 {
 	addCollider(BoundingBox(vec2(20.0f), vec2(sprite_.getWidth(), sprite_.getHeight()) - 40));
 	interactionBox_.setPos(vec2(20.0f));

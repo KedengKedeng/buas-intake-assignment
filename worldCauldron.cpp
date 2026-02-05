@@ -13,10 +13,10 @@ WorldCauldron::WorldCauldron(int64_t id, vec2<float> pos, std::shared_ptr<Cauldr
 	Interactable(vec2(-10.0f), vec2(0.0f), false),
 	cauldron_(cauldron),
 	sprites_(std::vector<AnimatedSprite>({
-		AnimatedSprite(std::make_shared<SpriteSheet>(std::vector<Sprite>{spriteRepository.get("emptycauldron", cauldronSpriteScale)}), cauldronSpriteFrameRate),
-		AnimatedSprite(spriteRepository.getSheet("filledcauldron"), cauldronSpriteFrameRate, cauldronSpriteScale),
-		AnimatedSprite(spriteRepository.getSheet("emptyburningcauldron"), cauldronSpriteFrameRate, cauldronSpriteScale),
-		AnimatedSprite(spriteRepository.getSheet("filledburningcauldron"), cauldronSpriteFrameRate, cauldronSpriteScale)
+		AnimatedSprite(std::make_shared<SpriteSheet>(std::vector<Sprite>{spriteRepository().get(Sprites::EmptyCauldron, cauldronSpriteScale)}), cauldronSpriteFrameRate),
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::FilledCauldron), cauldronSpriteFrameRate, cauldronSpriteScale),
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::EmptyBurningCauldron), cauldronSpriteFrameRate, cauldronSpriteScale),
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::FilledBurningCauldron), cauldronSpriteFrameRate, cauldronSpriteScale)
 	}))
 {
 	addCollider(BoundingBox(vec2(0.0f), vec2(sprites_.getWidth(), sprites_.getHeight())));

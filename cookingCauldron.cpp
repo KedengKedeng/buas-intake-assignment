@@ -4,10 +4,10 @@
 
 CookingCauldron::CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron) : 
 	Object(id, vec2(0.0f), vec2(0.0f)), 
-	cauldronFront(spriteRepository.get("cauldroncloseupfront", 0.5)), 
-	cauldronBack(spriteRepository.get("cauldroncloseupback", 0.5)),
-	cauldronInside(AnimatedSprite(spriteRepository.getSheet("cauldroncloseupfilled"), 0.005f, 0.5)),
-	fire(AnimatedSprite(spriteRepository.getSheet("cauldroncloseupfire"), 0.005f, 0.4)),
+	cauldronFront(spriteRepository().get(Sprites::CauldronCloseupFront, 0.5)),
+	cauldronBack(spriteRepository().get(Sprites::CauldronCloseupBack, 0.5)),
+	cauldronInside(AnimatedSprite(spriteRepository().getSheet(SpriteSheets::CauldronCloseupFilled), 0.005f, 0.5)),
+	fire(AnimatedSprite(spriteRepository().getSheet(SpriteSheets::CauldronCloseupFire), 0.005f, 0.4)),
 	cauldron_(cauldron)
 {
 	setPos(vec2(cauldronFront.getWidth() / 2, cauldronFront.getHeight()));

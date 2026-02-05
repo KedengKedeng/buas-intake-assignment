@@ -6,10 +6,11 @@ CreatureTypeRepository::CreatureTypeRepository() {
 	const float playerInteractionOffset = 10.0f;
 	const float playerSpriteScale = 2;
 	const float playerSpriteFrameRate = 0.005f;
-	auto playerIdleLeft = AnimatedSprite(spriteRepository.getSheet("blueslimeidleleft"), playerSpriteFrameRate, playerSpriteScale);
-	auto playerIdleRight = AnimatedSprite(spriteRepository.getSheet("blueslimeidleright"), playerSpriteFrameRate, playerSpriteScale);
-	auto playerWalkLeft = AnimatedSprite(spriteRepository.getSheet("blueslimewalkleft"), playerSpriteFrameRate, playerSpriteScale);
-	auto playerWalkRight = AnimatedSprite(spriteRepository.getSheet("blueslimewalkright"), playerSpriteFrameRate, playerSpriteScale);
+	auto spriteRepo = spriteRepository();
+	auto playerIdleLeft = AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeIdleLeft), playerSpriteFrameRate, playerSpriteScale);
+	auto playerIdleRight = AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeIdleRight), playerSpriteFrameRate, playerSpriteScale);
+	auto playerWalkLeft = AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeWalkLeft), playerSpriteFrameRate, playerSpriteScale);
+	auto playerWalkRight = AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeWalkRight), playerSpriteFrameRate, playerSpriteScale);
 
 	auto item = itemRepository.get("testItem2");
 	insert(CreatureTypes::BlueSlime, std::make_shared<CreatureType>(

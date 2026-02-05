@@ -31,7 +31,7 @@ PlayScene::PlayScene(
 	inventory_(inventory), 
 	husbandry_(husbandry),
 	wallet_(wallet),
-	floorTiles_(spriteRepository.getSheet("floor"), floorScale)
+	floorTiles_(spriteRepository().getSheet(SpriteSheets::Floor), floorScale)
 {
 	keyboardInput_.registerHandler(KeyFunctions::WalkLeft, []() {return std::make_unique<MoveCommand>(vec2<int8_t>(-1, 0)); });
 	keyboardInput_.registerHandler(KeyFunctions::WalkUp, []() {return std::make_unique<MoveCommand>(vec2<int8_t>(0, -1)); });
