@@ -1,15 +1,47 @@
 #pragma once
 #include <map>
-#include <string>
 #include <memory>
 #include "surface.h"
 
-class SurfaceRepository {
-public:
-	void insert(const std::string& name, std::shared_ptr<Tmpl8::Surface> surface) { registry_.insert({ name, surface }); }
-	std::shared_ptr<Tmpl8::Surface> get(const std::string& name) { return registry_.at(name); }
-private:
-	std::map<std::string, std::shared_ptr<Tmpl8::Surface>> registry_ = {};
+enum class Surfaces {
+	WaterBottle,
+
+	PlayerIdleLeft,
+	PlayerIdleRight,
+	PlayerWalkLeft,
+	PlayerWalkRight,
+
+	BlueSlimeIdleLeft,
+	BlueSlimeIdleRight,
+	BlueSlimeWalkLeft,
+	BlueSlimeWalkRight,
+
+	EmptyCauldron,
+	EmptyBurningCauldron,
+	FilledCauldron,
+	FilledBurningCauldron,
+	CauldronCloseupFront,
+	CauldronCloseupBack,
+	CauldronCloseupFire,
+	CauldronCloseupFilled,
+
+	Spoon,
+	Blower,
+
+	Floor
 };
 
-extern SurfaceRepository surfaceRepository;
+class SurfaceRepository {
+public:
+	SurfaceRepository();
+
+	void insert(Surfaces identifier, std::shared_ptr<Tmpl8::Surface> surface) { registry_.insert({ identifier, surface }); }
+	std::shared_ptr<Tmpl8::Surface> get(Surfaces surface) { return registry_.at(surface); }
+private:
+	std::map<Surfaces, std::shared_ptr<Tmpl8::Surface>> registry_ = {};
+};
+
+static SurfaceRepository& surfaceRepository() {
+	static SurfaceRepository repo;
+	return repo;
+}

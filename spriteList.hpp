@@ -4,32 +4,32 @@
 
 // registers all used assets in the game to a list for lookup later
 void setupSpriteList() {
-	spriteRepository.insert("waterbottle", Sprite(surfaceRepository.get("waterbottle")));
-	spriteRepository.insert("spoon", Sprite(surfaceRepository.get("spoon")));
-	spriteRepository.insert("test", Sprite(surfaceRepository.get("test")));
+	auto& repo = surfaceRepository();
+	spriteRepository.insert("waterbottle", Sprite(repo.get(Surfaces::WaterBottle)));
+	spriteRepository.insert("spoon", Sprite(repo.get(Surfaces::Spoon)));
 
 	//player
-	spriteRepository.insertSheet("playeridleleft", SpriteSheet(surfaceRepository.get("playeridleleft"), 1, 3));
-	spriteRepository.insertSheet("playeridleright", SpriteSheet(surfaceRepository.get("playeridleright"), 1, 3));
-	spriteRepository.insertSheet("playerwalkleft", SpriteSheet(surfaceRepository.get("playerwalkleft"), 1, 4));
-	spriteRepository.insertSheet("playerwalkright", SpriteSheet(surfaceRepository.get("playerwalkright"), 1, 4));
+	spriteRepository.insertSheet("playeridleleft", SpriteSheet(repo.get(Surfaces::PlayerIdleLeft), 1, 3));
+	spriteRepository.insertSheet("playeridleright", SpriteSheet(repo.get(Surfaces::PlayerIdleRight), 1, 3));
+	spriteRepository.insertSheet("playerwalkleft", SpriteSheet(repo.get(Surfaces::PlayerWalkLeft), 1, 4));
+	spriteRepository.insertSheet("playerwalkright", SpriteSheet(repo.get(Surfaces::PlayerWalkRight), 1, 4));
 
 	//animals
-	spriteRepository.insertSheet("blueslimeidleleft", SpriteSheet(surfaceRepository.get("blueslimeidleleft"), 1, 3));
-	spriteRepository.insertSheet("blueslimeidleright", SpriteSheet(surfaceRepository.get("blueslimeidleright"), 1, 3));
-	spriteRepository.insertSheet("blueslimewalkleft", SpriteSheet(surfaceRepository.get("blueslimewalkleft"), 1, 3));
-	spriteRepository.insertSheet("blueslimewalkright", SpriteSheet(surfaceRepository.get("blueslimewalkright"), 1, 3));
+	spriteRepository.insertSheet("blueslimeidleleft", SpriteSheet(repo.get(Surfaces::BlueSlimeIdleLeft), 1, 3));
+	spriteRepository.insertSheet("blueslimeidleright", SpriteSheet(repo.get(Surfaces::BlueSlimeIdleRight), 1, 3));
+	spriteRepository.insertSheet("blueslimewalkleft", SpriteSheet(repo.get(Surfaces::BlueSlimeWalkLeft), 1, 3));
+	spriteRepository.insertSheet("blueslimewalkright", SpriteSheet(repo.get(Surfaces::BlueSlimeWalkRight), 1, 3));
 
 	//cauldron
-	spriteRepository.insertSheet("emptyburningcauldron", SpriteSheet(surfaceRepository.get("emptyburningcauldron"), 1, 8));
-	spriteRepository.insertSheet("filledcauldron", SpriteSheet(surfaceRepository.get("filledcauldron"), 1, 8));
-	spriteRepository.insertSheet("filledburningcauldron", SpriteSheet(surfaceRepository.get("filledburningcauldron"), 1, 8));
-	spriteRepository.insertSheet("cauldroncloseupfire", SpriteSheet(surfaceRepository.get("cauldroncloseupfire"), 1, 6));
-	spriteRepository.insertSheet("cauldroncloseupfilled", SpriteSheet(surfaceRepository.get("cauldroncloseupfilled"), 1, 8));
-	spriteRepository.insert("emptycauldron", Sprite(surfaceRepository.get("emptycauldron")));
-	spriteRepository.insert("cauldroncloseupfront", Sprite(surfaceRepository.get("cauldroncloseupfront")));
-	spriteRepository.insert("cauldroncloseupback", Sprite(surfaceRepository.get("cauldroncloseupback")));
+	spriteRepository.insertSheet("emptyburningcauldron", SpriteSheet(repo.get(Surfaces::EmptyBurningCauldron), 1, 8));
+	spriteRepository.insertSheet("filledcauldron", SpriteSheet(repo.get(Surfaces::FilledCauldron), 1, 8));
+	spriteRepository.insertSheet("filledburningcauldron", SpriteSheet(repo.get(Surfaces::FilledBurningCauldron), 1, 8));
+	spriteRepository.insertSheet("cauldroncloseupfire", SpriteSheet(repo.get(Surfaces::CauldronCloseupFire), 1, 6));
+	spriteRepository.insertSheet("cauldroncloseupfilled", SpriteSheet(repo.get(Surfaces::CauldronCloseupFilled), 1, 8));
+	spriteRepository.insert("emptycauldron", Sprite(repo.get(Surfaces::EmptyCauldron)));
+	spriteRepository.insert("cauldroncloseupfront", Sprite(repo.get(Surfaces::CauldronCloseupFront)));
+	spriteRepository.insert("cauldroncloseupback", Sprite(repo.get(Surfaces::CauldronCloseupBack)));
 
-	spriteRepository.insertSheet("blower", SpriteSheet(surfaceRepository.get("blower"), 1, 4));
-	spriteRepository.insertSheet("floor", SpriteSheet(surfaceRepository.get("floor"), 2, 2));
+	spriteRepository.insertSheet("blower", SpriteSheet(repo.get(Surfaces::Blower), 1, 4));
+	spriteRepository.insertSheet("floor", SpriteSheet(repo.get(Surfaces::Floor), 2, 2));
 }

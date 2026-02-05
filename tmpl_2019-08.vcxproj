@@ -324,7 +324,6 @@
     <ClInclude Include="countingStorage.hpp" />
     <ClInclude Include="string.hpp" />
     <ClInclude Include="subscriptionManager.hpp" />
-    <ClInclude Include="surfaceList.hpp" />
     <ClInclude Include="surfaceRepository.hpp" />
     <ClInclude Include="text.hpp" />
     <ClInclude Include="tilemap.hpp" />

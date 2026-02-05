@@ -9,7 +9,6 @@
 #include "sceneSignals.hpp"
 #include "itemList.hpp"
 #include "spriteList.hpp"
-#include "surfaceList.hpp"
 #include "inventory.hpp"
 #include "husbandry.hpp"
 #include "cauldron.hpp"
@@ -23,7 +22,6 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
-		setupSurfaceList();
 		setupSpriteList();
 		setupItemList();
 		setupRecipeList();
