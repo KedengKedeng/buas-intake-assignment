@@ -4,7 +4,6 @@
 #include "worldCauldron.hpp"
 #include "itemObject.hpp"
 #include "itemSignals.hpp"
-#include "keyboardSignals.hpp"
 #include "sceneSignals.hpp"
 #include "moveCommand.hpp"
 #include "interactionCommand.hpp"
@@ -131,10 +130,6 @@ void PlayScene::subscribe() {
 			object.setPos(newPos);
 
 		interactionCheck(object);
-	}));
-
-	addSubscription(escapePressed.subscribe([]() {
-		stackScene.emit(Scenes::SettingsMenu);
 	}));
 
 	addSubscription(cauldronInteracted.subscribe([this]() {

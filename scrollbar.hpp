@@ -1,10 +1,9 @@
 #pragma once
 #include "object.hpp"
-#include "mouseHandler.hpp"
-#include "subscriptionManager.hpp"
+#include "clickable.hpp"
 #include <functional>
 
-class Scrollbar : public Object, public SubscriptionManager {
+class Scrollbar : public Object, public Clickable {
 public:
 	Scrollbar(
 		int64_t id, 
@@ -16,10 +15,9 @@ public:
 	
 	void setParentSize(vec2<float>& size);
 
-	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
+	void onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<float> delta) override;
 
-	void subscribe() override;
-	void unsubscribe() override;
+	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 private:
 	float getThumbSize() const;
 
@@ -28,6 +26,5 @@ private:
 	float thumbPos_;
 	float thumbSize_;
 
-	MouseHandler mouseHandler_;
 	std::function<void(vec2<float>)> onDrag_;
 };

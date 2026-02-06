@@ -45,13 +45,13 @@ void InventoryScene::process(float deltaTime) {
 	int itemCount = std::max(static_cast<int>(ceil(inventory_->getItemTypeCount() / maxItemsOnRow)), 3);
 	if (itemCount != drawRows) {
 		drawRows = itemCount;
-		auto container = getObject<Modal>(0);
-		container->clearObjects();
+		auto modal = getObject<Modal>(0);
+		modal->clearObjects();
 
 		int64_t id = 0;
 		for (int x = 0; x < drawRows; x++) {
-			container->insertObject(std::make_shared<ObjectContainer>(id, vec2(0.0f), vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL, vec2(10.0f, 0.0f)));
-			auto horizontalContainer = container->getInnerObject<ObjectContainer>(id);
+			modal->insertObject(std::make_shared<ObjectContainer>(id, vec2(0.0f), vec2(380.0f, inventorySlotSize.y), Justification::HORIZONTAL, vec2(10.0f, 0.0f)));
+			auto horizontalContainer = modal->getInnerObject<ObjectContainer>(id);
 
 			for (int y = 0; y < maxItemsOnRow; y++) {
 				horizontalContainer->insertObject(std::make_shared<InventorySlot>(
@@ -60,8 +60,8 @@ void InventoryScene::process(float deltaTime) {
 					inventorySlotSize, 
 					nullptr, 
 					0,
-					[this, container](InventorySlot* slot, vec2<float>& pos) {
-						BoundingBox containerBounds(container->getPos(), container->getSize());
+					[this, modal](InventorySlot* slot, vec2<float>& pos) {
+						BoundingBox containerBounds(modal->getPos(), modal->getSize());
 						// drop item when user drags it out of the bounds of the modal
 						if (!containerBounds.isInBounds(pos)) {
 							auto item = slot->getItem();

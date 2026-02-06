@@ -9,29 +9,31 @@ Spoon::Spoon(int64_t id, vec2<float> pos) :
 	Object(id, pos, vec2(0.0f)),
 	Collider(),
 	Interactable(vec2(0.0f), vec2(0.0f), true),
-	mouseHandler(), 
 	sprite_(spriteRepository().get(Sprites::Spoon, 0.4))
 {
-	addCollider(BoundingBox(vec2(20.0f), vec2(sprite_.getWidth(), sprite_.getHeight()) - 40));
-	interactionBox_.setPos(vec2(20.0f));
-	interactionBox_.setSize(vec2(sprite_.getWidth(), sprite_.getHeight()) - 40);
-
-	mouseHandler.setInteractionCheck([this](vec2<float>& pos) {
-		return interactionBox_.at(getPos()).isInBounds(pos);
-	});
-
-	mouseHandler.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
-		requestMove.emit(getPos(), delta, *this);
-	});
-
-	mouseHandler.setOnMouseDown([this]() {
-		velocity = { 0, 0 };
-	});
-
-	mouseHandler.setOnMouseUp([this]() {
-		velocity = spoonVelocity;
-	});
+	auto size = vec2<float>(sprite_.getWidth(), sprite_.getHeight());
+	setSize(size);
+	addCollider(BoundingBox(vec2(0.0f), size));
+	interactionBox_.setSize(size);
 }
+
+void Spoon::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
+	Clickable::onMouseDown(pos, screenPos);
+
+	velocity = { 0, 0 };
+};
+
+void Spoon::onMouseUp(vec2<float> pos, vec2<float> screenPos) {
+	Clickable::onMouseUp(pos, screenPos);
+
+	velocity = spoonVelocity;
+};
+
+void Spoon::onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<float> delta) {
+	Clickable::onMouseDrag(pos, screenPos, delta);
+
+	requestMove.emit(getPos(), delta, *this);
+};
 
 void Spoon::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
@@ -40,14 +42,4 @@ void Spoon::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 
 void Spoon::process(float deltaTime) {
 	if (velocity.x || velocity.y) requestMove.emit(getPos(), velocity, *this);
-}
-
-void Spoon::subscribe() {
-	mouseHandler.subscribe();
-}
-
-void Spoon::unsubscribe() {
-	SubscriptionManager::unsubscribe();
-
-	mouseHandler.unsubscribe();
 }

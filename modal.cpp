@@ -1,4 +1,5 @@
 #include "modal.hpp"
+#include "boundingBox.hpp"
 
 vec2 BUTTON_SIZE(10.0f);
 
@@ -10,8 +11,9 @@ Modal::Modal(
 	Justification justification, 
 	vec2<float> gap, 
 	bool scrollable
-)
-	: ObjectContainer(id, pos, size, Justification::VERTICAL, gap), 
+) : 
+	Object(id, pos, size), 
+	Clickable(true),
 	exitButton(0, onExitHandler, "X", vec2(pos.x + size.x - BUTTON_SIZE.x, pos.y), BUTTON_SIZE),
 	innerContainer_(0, pos + BUTTON_SIZE, size - BUTTON_SIZE, justification, gap, scrollable)
 {}
@@ -19,6 +21,19 @@ Modal::Modal(
 vec2<float> Modal::getPadding() const {
 	return BUTTON_SIZE;
 }
+
+void Modal::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
+	innerContainer_.onMouseDown(pos, screenPos);
+	if (BoundingBox(exitButton.getPos(), exitButton.getSize()).isInBounds(pos)) exitButton.onMouseDown(pos, screenPos);
+};
+
+void Modal::onMouseUp(vec2<float> pos, vec2<float> screenPos) {
+	innerContainer_.onMouseUp(pos, screenPos);
+};
+
+void Modal::onMouseMove(vec2<float> pos, vec2<float> screenPos, vec2<float> delta) {
+	innerContainer_.onMouseMove(pos, screenPos, delta);
+};
 
 void Modal::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	surface->Bar(vec2(0.0f), vec2<float>(surface->GetWidth(), surface->GetHeight()), 0x40000000);
@@ -35,15 +50,13 @@ void Modal::process(float deltaTime) {
 }
 
 void Modal::subscribe() {
-	ObjectContainer::subscribe();
+	SubscriptionManager::subscribe();
 
-	exitButton.subscribe();
 	innerContainer_.subscribe();
 }
 
 void Modal::unsubscribe() {
-	ObjectContainer::unsubscribe();
+	SubscriptionManager::unsubscribe();
 
-	exitButton.unsubscribe();
 	innerContainer_.unsubscribe();
 }

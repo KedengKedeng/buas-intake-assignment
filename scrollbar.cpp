@@ -9,28 +9,23 @@ Scrollbar::Scrollbar(
 	std::function<void(vec2<float>)> onDrag
 ) :
 	Object(id, pos, size),
-	mouseHandler_(),
 	parentSize_(parentSize),
 	thumbPos_(0),
 	thumbSize_(getThumbSize()),
 	onDrag_(onDrag)
-{
-	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
-		return BoundingBox(getPos(), getSize()).isInBounds(pos);
-	});
-
-	mouseHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
-		auto objectPos = getPos();
-		auto objectSize = getSize();
-		thumbPos_ = std::max(std::min(pos.y, objectPos.y + objectSize.y - thumbSize_), objectPos.y);
-		onDrag_(vec2(0.0f, (thumbPos_ - objectPos.y) / objectSize.y * parentSize_.y));
-	});
-}
+{}
 
 void Scrollbar::setParentSize(vec2<float>& size) {
 	parentSize_ = size;
 	thumbSize_ = getThumbSize();
 	thumbPos_ = getPos().y;
+}
+
+void Scrollbar::onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<float> delta) {
+	auto objectPos = getPos();
+	auto objectSize = getSize();
+	thumbPos_ = std::max(std::min(pos.y, objectPos.y + objectSize.y - thumbSize_), objectPos.y);
+	onDrag_(vec2(0.0f, (thumbPos_ - objectPos.y) / objectSize.y * parentSize_.y));
 }
 
 void Scrollbar::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
@@ -40,18 +35,6 @@ void Scrollbar::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 
 	vec2 thumbPos = vec2(pos.x, thumbPos_ + offset.y);
 	surface->Bar(thumbPos, thumbPos + vec2(size.x, thumbSize_), 0xff000000);
-}
-
-void Scrollbar::subscribe() {
-	SubscriptionManager::subscribe();
-
-	mouseHandler_.subscribe();
-}
-
-void Scrollbar::unsubscribe() {
-	SubscriptionManager::unsubscribe();
-
-	mouseHandler_.unsubscribe();
 }
 
 float Scrollbar::getThumbSize() const {

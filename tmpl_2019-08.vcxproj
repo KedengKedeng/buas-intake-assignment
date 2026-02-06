@@ -233,7 +233,6 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="cauldron.cpp" />
     <ClCompile Include="characterObject.cpp" />
-    <ClCompile Include="clickable.cpp" />
     <ClCompile Include="collider.cpp" />
     <ClCompile Include="cookingCauldron.cpp" />
     <ClCompile Include="cookingScene.cpp" />
@@ -243,7 +242,6 @@
     <ClCompile Include="inventoryScene.cpp" />
     <ClCompile Include="inventorySlot.cpp" />
     <ClCompile Include="modal.cpp" />
-    <ClCompile Include="mouseHandler.cpp" />
     <ClCompile Include="plot.cpp" />
     <ClCompile Include="plotObject.cpp" />
     <ClCompile Include="recipeBook.cpp" />
@@ -267,9 +265,6 @@
     <ClCompile Include="itemRepository.cpp" />
     <ClCompile Include="itemSignals.cpp" />
     <ClCompile Include="keyboardInput.cpp" />
-    <ClCompile Include="keyboardSignals.cpp" />
-    <ClCompile Include="mouseInput.cpp" />
-    <ClCompile Include="mouseSignals.cpp" />
     <ClCompile Include="objectSignals.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSignals.cpp" />
@@ -314,7 +309,6 @@
     <ClInclude Include="cookingScene.hpp" />
     <ClInclude Include="inventoryScene.hpp" />
     <ClInclude Include="invisibleBarrier.hpp" />
-    <ClInclude Include="mouseHandler.hpp" />
     <ClInclude Include="modal.hpp" />
     <ClInclude Include="scenes.hpp" />
     <ClInclude Include="scrollbar.hpp" />
@@ -341,11 +335,6 @@
     <ClInclude Include="itemSignals.hpp" />
     <ClInclude Include="itemsRepository.hpp" />
     <ClInclude Include="keyboardInput.hpp" />
-    <ClInclude Include="keyboardSignals.hpp" />
-    <ClInclude Include="mouseInput.hpp" />
-    <ClInclude Include="mousePressedCommand.hpp" />
-    <ClInclude Include="mouseReleasedCommand.hpp" />
-    <ClInclude Include="mouseSignals.hpp" />
     <ClInclude Include="moveCommand.hpp" />
     <ClInclude Include="object.hpp" />
     <ClInclude Include="objectSignals.hpp" />

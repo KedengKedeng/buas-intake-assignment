@@ -24,8 +24,6 @@ namespace Tmpl8
 		setupItemList();
 		setupRecipeList();
 
-		mouseInput = MouseInput();
-
 		std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
 		std::shared_ptr<Husbandry> husbandry = std::make_shared<Husbandry>();
 		std::shared_ptr<Cauldron> cauldron = std::make_shared<Cauldron>();

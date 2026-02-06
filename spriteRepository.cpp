@@ -5,7 +5,8 @@ SpriteRepository::SpriteRepository() {
 	auto& repo = surfaceRepository();
 
 	insert(Sprites::WaterBottle, Sprite(repo.get(Surfaces::WaterBottle)));
-	insert(Sprites::Spoon, Sprite(repo.get(Surfaces::Spoon)));
+	auto spoonSurface = repo.get(Surfaces::Spoon);
+	insert(Sprites::Spoon, Sprite(spoonSurface, Rect2(20, 20, spoonSurface->GetWidth() - 40, spoonSurface->GetHeight() - 40)));
 
 	//player
 	insertSheet(SpriteSheets::PlayerIdleLeft, SpriteSheet(repo.get(Surfaces::PlayerIdleLeft), 1, 3));

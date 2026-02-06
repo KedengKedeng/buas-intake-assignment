@@ -1,5 +1,4 @@
 #include "animalShopItem.hpp"
-#include "boundingBox.hpp"
 #include <format>
 
 AnimalShopItem::AnimalShopItem(
@@ -10,23 +9,14 @@ AnimalShopItem::AnimalShopItem(
 	std::shared_ptr<Wallet> wallet,
 	std::shared_ptr<Husbandry> husbandry
 ) :
-	ObjectContainer(id, pos, size, Justification::HORIZONTAL, vec2(0.0f, 10.0f)),
-	Clickable([this]() {
-		printf(type_->name.c_str());
-		bool success = wallet_->requestPayment(type_->price);
-		if (success) husbandry_->add(type_->name);
-	}),
+	Object(id, pos, size),
 	type_(type),
 	text_(type->name, 2, 0xff000000),
 	priceText_(std::format("cost: {}", type->price), 2, 0xff000000),
 	animalSprite_(type->idleRight),
 	wallet_(wallet),
 	husbandry_(husbandry)
-{
-	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
-		return BoundingBox(getPos(), getSize()).isInBounds(pos);
-	});
-}
+{}
 
 void AnimalShopItem::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	int padding = 20;
@@ -50,15 +40,15 @@ void AnimalShopItem::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	if (wallet_->getCurrency() < type_->price) surface->Bar(pos, pos + size, 0x50000000);
 }
 
-void AnimalShopItem::process(float deltaTime) {
-	ObjectContainer::process(deltaTime);
+void AnimalShopItem::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
+	Clickable::onMouseDown(pos, screenPos);
 
-	animalSprite_.process(deltaTime);
+	bool success = wallet_->requestPayment(type_->price);
+	if (success) husbandry_->add(type_->name);
 }
 
-void AnimalShopItem::subscribe() {
-	ObjectContainer::subscribe();
+void AnimalShopItem::process(float deltaTime) {
+	Object::process(deltaTime);
 
-	mouseHandler_.subscribe();
-	addSubscription([this]() {mouseHandler_.unsubscribe(); });
+	animalSprite_.process(deltaTime);
 }

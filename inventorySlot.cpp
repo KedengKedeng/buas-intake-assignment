@@ -1,6 +1,5 @@
 #include "inventorySlot.hpp"
 #include "text.hpp"
-#include "boundingBox.hpp"
 #include "uiSignals.hpp"
 #include <format>
 
@@ -11,34 +10,38 @@ InventorySlot::InventorySlot(
 	std::shared_ptr<Item> item, 
 	int amount, 
 	std::function<void(InventorySlot*, vec2<float>)> onDragEndHandler
-)
-	: Object(id, pos, size), mouseHandler_(){
-	mouseHandler_.setInteractionCheck([this](vec2<float>& pos) {
-		return BoundingBox(getPos(), getSize()).isInBounds(pos);
+) : 
+	Object(id, pos, size),
+	onDragEndHandler_(onDragEndHandler)
+{}
+
+void InventorySlot::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
+	Clickable::onMouseDown(pos, screenPos);
+
+	dragPos = screenPos;
+	dragging = true;
+
+	drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, vec2<float> offset) {
+		if (item_ == nullptr) return;
+
+		vec2 itemPos = dragPos + offset + (getSize() - vec2(item_->sprite.getWidth(), item_->sprite.getHeight()) / 2) / 2;
+		item_->sprite.drawScaled(surface, itemPos.x, itemPos.y, 0.5f);
 	});
+};
 
-	mouseHandler_.setOnMouseDown([this]() {
-		dragPos = getPos();
-		dragging = true;
+void InventorySlot::onMouseUp(vec2<float> pos, vec2<float> screenPos) {
+	Clickable::onMouseUp(pos, screenPos);
 
-		drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, vec2<float> offset) {
-			if (item_ == nullptr) return;
+	onDragEndHandler_(this, dragPos);
+	dragging = false;
+	removeDrawOnTop.emit(getId());
+};
 
-			vec2 itemPos = dragPos + offset + (getSize() - vec2(item_->sprite.getWidth(), item_->sprite.getHeight()) / 2) / 2;
-			item_->sprite.drawScaled(surface, itemPos.x, itemPos.y, 0.5f);
-		});
-	});
+void InventorySlot::onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<float> delta) {
+	Clickable::onMouseDrag(pos, screenPos, delta);
 
-	mouseHandler_.setOnMouseDrag([this](vec2<float>& pos, vec2<float>& delta) {
-		dragPos += delta;
-	});
-
-	mouseHandler_.setOnMouseUp([this, onDragEndHandler]() {
-		onDragEndHandler(this, dragPos);
-		dragging = false;
-		removeDrawOnTop.emit(getId());
-	});
-}
+	dragPos += delta;
+};
 
 void InventorySlot::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
@@ -51,12 +54,4 @@ void InventorySlot::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 		item_->sprite.drawScaled(surface, itemPos.x, itemPos.y, 0.5f);
 		Text(std::format("x{}", amount_), 1, 0xffffffff).draw(surface, vec2(pos.x + 10, pos.y + size.y - 10));
 	}
-}
-
-void InventorySlot::subscribe() {
-	mouseHandler_.subscribe();
-}
-
-void InventorySlot::unsubscribe() {
-	mouseHandler_.unsubscribe();
 }

@@ -37,7 +37,7 @@ CookingScene::CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> ca
 	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, surfaceHeight), vec2<float>(surfaceWidth, 1)));
 
 	// insert main interactable objects
-	insertObject(std::make_shared<Spoon>(0, cookingCauldron->getPos() + vec2(cookingCauldron->getSize().x, -50.0f) / 2));
+	insertObject(std::make_shared<Spoon>(0, cookingCauldron->getPos() + vec2(cookingCauldron->getSize().x, -200.0f) / 2));
 	insertObject(std::make_shared<Blower>(1, cookingCauldron->getPos() + vec2(500, 180)));
 	insertObject(cookingCauldron);
 }

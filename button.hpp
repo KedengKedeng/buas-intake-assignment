@@ -3,11 +3,10 @@
 #include "object.hpp"
 #include "vec2.hpp"
 #include "text.hpp"
-#include "subscriptionManager.hpp"
 #include "clickable.hpp"
 #include <functional>
 
-class Button : public Object, public SubscriptionManager, public Clickable {
+class Button : public Object, public Clickable {
 public:
 	Button(
 		int64_t id,
@@ -20,11 +19,12 @@ public:
 		Tmpl8::Pixel borderColor = 0xff000000
 	);
 
+	void onMouseDown(vec2<float> pos, vec2<float> screenPos) override;
+
 	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 	void process(float deltaTime) override {}
-
-	void subscribe() override;
 private:
+	std::function<void()> handler_;
 	int borderWidth_;
 	Tmpl8::Pixel color_;
 	Tmpl8::Pixel borderColor_;

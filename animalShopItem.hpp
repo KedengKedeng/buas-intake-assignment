@@ -1,12 +1,12 @@
 #pragma once
-#include "objectContainer.hpp"
+#include "object.hpp"
+#include "clickable.hpp"
 #include "creatureType.hpp"
 #include "text.hpp"
 #include "wallet.hpp"
 #include "husbandry.hpp"
-#include "clickable.hpp"
 
-class AnimalShopItem : public ObjectContainer, public Clickable {
+class AnimalShopItem : public Object, public Clickable {
 public:
 	AnimalShopItem(
 		int64_t id, 
@@ -17,10 +17,10 @@ public:
 		std::shared_ptr<Husbandry> husbandry
 	);
 
+	void onMouseDown(vec2<float> pos, vec2<float> screenPos) override;
+
 	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 	void process(float deltaTime) override;
-
-	void subscribe() override;
 private:
 	std::shared_ptr<CreatureType> type_;
 	Text text_;

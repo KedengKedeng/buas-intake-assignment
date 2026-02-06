@@ -4,7 +4,7 @@
 
 class SubscriptionManager {
 public:
-	~SubscriptionManager();
+	virtual ~SubscriptionManager();
 
 	virtual void subscribe() {};
 	virtual void unsubscribe();
