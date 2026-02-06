@@ -16,10 +16,11 @@ collision:
 
 general c++:
 - https://en.cppreference.com
+- Effective C++ by Scott Meyers
 
 DrawScaled function bugs (no clip checking, not taking current frame into account):
 - Jeramiah van Oosten
 
 art and assets:
-- Minecraft (test item water bottle)
+- Minecraft (water bottle)
 - Solariouse

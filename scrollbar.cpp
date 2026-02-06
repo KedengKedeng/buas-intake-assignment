@@ -1,5 +1,4 @@
 #include "scrollbar.hpp"
-#include "boundingBox.hpp"
 
 Scrollbar::Scrollbar(
 	int64_t id, 

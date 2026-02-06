@@ -108,7 +108,7 @@ void ObjectContainer::onMouseMove(vec2<float> pos, vec2<float> screenPos, vec2<f
 		if (clickable->getMouseDown()) clickable->onMouseDrag(pos - offset, screenPos, delta);
 	}
 
-	if (scrollable_ && scrollbar_.getMouseDown()) scrollbar_.onMouseDrag(pos - offset, screenPos, delta);
+	if (scrollable_ && scrollbar_.getMouseDown()) scrollbar_.onMouseDrag(pos, screenPos, delta);
 };
 
 void ObjectContainer::subscribe() {

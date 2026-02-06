@@ -356,7 +356,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="sources.txt" />
-    <Text Include="todo.txt" />
     <Text Include="_readme.txt" />
   </ItemGroup>
   <ItemGroup>
