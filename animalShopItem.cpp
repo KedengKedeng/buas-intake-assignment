@@ -12,6 +12,7 @@ AnimalShopItem::AnimalShopItem(
 ) :
 	ObjectContainer(id, pos, size, Justification::HORIZONTAL, vec2(0.0f, 10.0f)),
 	Clickable([this]() {
+		printf(type_->name.c_str());
 		bool success = wallet_->requestPayment(type_->price);
 		if (success) husbandry_->add(type_->name);
 	}),

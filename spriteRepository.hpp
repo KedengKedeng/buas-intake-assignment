@@ -1,6 +1,5 @@
 #pragma once
 #include <map>
-#include <string>
 #include <memory>
 #include "sprite.hpp"
 #include "spritesheet.hpp"
@@ -24,6 +23,26 @@ enum class SpriteSheets {
 	BlueSlimeIdleRight,
 	BlueSlimeWalkLeft,
 	BlueSlimeWalkRight,
+	GreenSlimeIdleLeft,
+	GreenSlimeIdleRight,
+	GreenSlimeWalkLeft,
+	GreenSlimeWalkRight,
+	IceDragonIdleLeft,
+	IceDragonIdleRight,
+	IceDragonWalkLeft,
+	IceDragonWalkRight,
+	WindDragonIdleLeft,
+	WindDragonIdleRight,
+	WindDragonWalkLeft,
+	WindDragonWalkRight,
+	EarthDragonIdleLeft,
+	EarthDragonIdleRight,
+	EarthDragonWalkLeft,
+	EarthDragonWalkRight,
+	FireDragonIdleLeft,
+	FireDragonIdleRight,
+	FireDragonWalkLeft,
+	FireDragonWalkRight,
 
 	EmptyBurningCauldron,
 	FilledCauldron,
@@ -40,7 +59,7 @@ public:
 	SpriteRepository();
 
 	void insert(Sprites name, Sprite& sprite) { registry_.insert({ name, std::move(sprite) }); }
-	void insertSheet(SpriteSheets name, SpriteSheet& sheet) { sheetRegistry_.insert({ name, std::make_shared<SpriteSheet>(std::move(sheet)) }); }
+	void insertSheet(SpriteSheets name, SpriteSheet& sheet) { sheetRegistry_.insert({ name, std::make_shared<SpriteSheet>(sheet) }); }
 	Sprite get(Sprites name, float scale = 1.0f) { return Sprite(registry_.at(name), scale); }
 	std::shared_ptr<SpriteSheet> getSheet(SpriteSheets name) { return sheetRegistry_.at(name); }
 private:
