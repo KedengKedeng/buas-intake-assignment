@@ -1,20 +1,13 @@
 #pragma once
-#include "surface.h"
 #include "animatedSprite.hpp"
+#include "items.hpp"
 #include <string>
 
-enum class ItemTypes {
-	Animal,
-	Plant,
-	Fungi,
-	Product
-};
-
 struct Item {
-	Item(ItemTypes itemType, const std::string& name, AnimatedSprite& sprite):
-		itemType(itemType), name(name), sprite(sprite){};
+	Item(Items id, const std::string& name, AnimatedSprite& sprite):
+		id(id), name(name), sprite(sprite){};
 
-	ItemTypes itemType;
+	Items id;
 	std::string name;
 	AnimatedSprite sprite;
 };

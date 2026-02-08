@@ -1,10 +1,12 @@
 #pragma once
 #include "animatedSprite.hpp"
 #include "item.hpp"
+#include "creatureTypes.hpp"
 #include <string>
 
 struct CreatureType {
 	CreatureType(
+		CreatureTypes id,
 		const std::string& name, 
 		int price, 
 		std::shared_ptr<Item> producedItem,
@@ -14,6 +16,7 @@ struct CreatureType {
 		const AnimatedSprite& walkLeft, 
 		const AnimatedSprite& walkRight
 	) :
+		id(id),
 		name(name), 
 		price(price), 
 		producedItem(producedItem),
@@ -24,6 +27,7 @@ struct CreatureType {
 		walkRight(walkRight) 
 	{ }
 
+	CreatureTypes id;
 	std::string name;
 	int price;
 	std::shared_ptr<Item> producedItem;

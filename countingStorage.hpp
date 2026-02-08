@@ -1,15 +1,26 @@
 #pragma once
 #include <map>
-#include <string>
 
+template<typename T>
 class CountingStorage {
 public:
-	void add(const std::string& itemName);
-	void remove(const std::string& itemName);
-	int get(const std::string& itemName) const;
+	void CountingStorage::add(const T& name) {
+		count[name]++;
+	}
 
-	std::map<std::string, int>::iterator begin() { return count.begin(); }
-	std::map<std::string, int>::iterator end() { return count.end(); }
+	void remove(const T& name) {
+		if (!count.count(name) || !count[name]) return;
+		count[name]--;
+		if (!count[name]) count.erase(name);
+	}
+
+	int get(const T& name) const {
+		if (!count.count(name)) return 0;
+		return count.at(name);
+	}
+
+	std::map<T, int>::iterator begin() { return count.begin(); }
+	std::map<T, int>::iterator end() { return count.end(); }
 protected:
-	std::map<std::string, int> count = {};
+	std::map<T, int> count = {};
 };

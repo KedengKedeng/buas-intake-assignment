@@ -44,7 +44,7 @@ void AnimalShopItem::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
 	Clickable::onMouseDown(pos, screenPos);
 
 	bool success = wallet_->requestPayment(type_->price);
-	if (success) husbandry_->add(type_->name);
+	if (success) husbandry_->add(type_->id);
 }
 
 void AnimalShopItem::process(float deltaTime) {

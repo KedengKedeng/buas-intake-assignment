@@ -1,15 +1,19 @@
 #pragma once
 #include <map>
-#include <string>
 #include <memory>
 #include "item.hpp"
 
 class ItemRepository {
 public:
-	void insert(std::shared_ptr<Item> item) { registry_.insert({item->name, item}); }
-	std::shared_ptr<Item> get(const std::string& name) { return registry_[name]; }
+	ItemRepository();
+
+	void insert(std::shared_ptr<Item> item) { registry_.insert({ item->id, item }); }
+	std::shared_ptr<Item> get(Items item) { return registry_.at(item); }
 private:
-	std::map<std::string, std::shared_ptr<Item>> registry_ = {};
+	std::map<Items, std::shared_ptr<Item>> registry_ = {};
 };
 
-extern ItemRepository itemRepository;
+static ItemRepository& itemRepository() {
+	static ItemRepository repo;
+	return repo;
+}

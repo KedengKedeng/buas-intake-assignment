@@ -16,7 +16,7 @@ CookingScene::CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> ca
 	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<ChangeSceneCommand>(Scenes::Play); });
 	keyboardInput_.registerHandler(KeyFunctions::ResetCauldron, [this]() {
 		auto& items = cauldron_->getItems();
-		for (auto& item : items) inventory_->add(item->name);
+		for (auto& item : items) inventory_->add(item->id);
 		cauldron_->reset();
 		return std::make_unique<Command>();
 	});

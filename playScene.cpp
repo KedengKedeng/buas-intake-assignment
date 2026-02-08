@@ -107,7 +107,7 @@ void PlayScene::subscribe() {
 	player_.subscribe();
 
 	addSubscription(itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
-		inventory_->add(item->name);
+		inventory_->add(item->id);
 	}));
 
 	addSubscription(itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {

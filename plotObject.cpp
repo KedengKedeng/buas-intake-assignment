@@ -54,16 +54,16 @@ void PlotObject::subscribe() {
 	addSubscription(interactionSignal.subscribe([this]() {
 		if (isInteracting) {
 			if (availableForPickup) {
-				std::string itemName = plot_->getType()->producedItem->name;
-				for (int x = 0; x < availableForPickup; x++) inventory_->add(itemName);
+				Items itemId = plot_->getType()->producedItem->id;
+				for (int x = 0; x < availableForPickup; x++) inventory_->add(itemId);
 				availableForPickup = 0;
 				return;
 			}
 			
-			std::string typeName = plot_->getType()->name;
-			if (husbandry_->get(typeName)) {
+			CreatureTypes creatureId = plot_->getType()->id;
+			if (husbandry_->get(creatureId)) {
 				addAnimal();
-				husbandry_->remove(typeName);
+				husbandry_->remove(creatureId);
 			}
 		}
 	}));

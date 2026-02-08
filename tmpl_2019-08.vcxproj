@@ -236,7 +236,6 @@
     <ClCompile Include="collider.cpp" />
     <ClCompile Include="cookingCauldron.cpp" />
     <ClCompile Include="cookingScene.cpp" />
-    <ClCompile Include="countingStorage.cpp" />
     <ClCompile Include="creature.cpp" />
     <ClCompile Include="creatureTypeRepository.cpp" />
     <ClCompile Include="inventoryScene.cpp" />
@@ -291,14 +290,16 @@
     <ClInclude Include="characterObject.hpp" />
     <ClInclude Include="clickable.hpp" />
     <ClInclude Include="collider.hpp" />
-    <ClInclude Include="creatureTypeRepository.hpp" />
     <ClInclude Include="creature.hpp" />
     <ClInclude Include="creatureType.hpp" />
+    <ClInclude Include="creatureTypeRepository.hpp" />
+    <ClInclude Include="creatureTypes.hpp" />
     <ClInclude Include="customerType.hpp" />
     <ClInclude Include="husbandry.hpp" />
     <ClInclude Include="interactable.hpp" />
     <ClInclude Include="inventory.hpp" />
     <ClInclude Include="inventorySlot.hpp" />
+    <ClInclude Include="items.hpp" />
     <ClInclude Include="numbers.hpp" />
     <ClInclude Include="plot.hpp" />
     <ClInclude Include="plotObject.hpp" />

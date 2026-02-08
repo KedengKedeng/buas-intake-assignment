@@ -26,8 +26,7 @@ void InventoryScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 			auto slot = std::dynamic_pointer_cast<InventorySlot>(inventorySlot->second);
 
 			if (items != inventory_->end()) {
-				std::string itemName = const_cast<std::string&>(items->first);
-				std::shared_ptr<Item> item_ = itemRepository.get(itemName);
+				std::shared_ptr<Item> item_ = itemRepository().get(items->first);
 				slot->setItem(item_, items->second);
 				items++;
 				continue;
@@ -67,7 +66,7 @@ void InventoryScene::process(float deltaTime) {
 							auto item = slot->getItem();
 							if (item == nullptr) return;
 							pushToSceneQueue.emit(Scenes::Play, [item]() { itemDroppedFromInventory.emit(item); });
-							inventory_->remove(item->name);
+							inventory_->remove(item->id);
 						}
 					}
 				));

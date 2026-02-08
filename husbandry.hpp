@@ -2,7 +2,7 @@
 #include "plot.hpp"
 #include "countingStorage.hpp"
 
-class Husbandry : public CountingStorage {
+class Husbandry : public CountingStorage<CreatureTypes> {
 public:
 	Husbandry() : CountingStorage() {};
 

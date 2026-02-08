@@ -3,80 +3,85 @@
 #include "itemsRepository.hpp"
 
 CreatureTypeRepository::CreatureTypeRepository() {
-	const float playerInteractionOffset = 10.0f;
-	const float playerSpriteScale = 2;
-	const float playerSpriteFrameRate = 0.005f;
+	const float scale = 2;
+	const float frameRate = 0.005f;
 	auto spriteRepo = spriteRepository();
 
-	insert(CreatureTypes::BlueSlime, std::make_shared<CreatureType>(
+	insert(std::make_shared<CreatureType>(
+		CreatureTypes::BlueSlime,
 		"Blue Slime",
 		0,
-		itemRepository.get("Blue Slime"),
+		itemRepository().get(Items::BlueSlime),
 		10.0f,
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeIdleLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeIdleRight), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeWalkLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeWalkRight), playerSpriteFrameRate, playerSpriteScale)
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeIdleLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeIdleRight), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeWalkLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeWalkRight), frameRate, scale)
 	));
 
-	insert(CreatureTypes::GreenSlime, std::make_shared<CreatureType>(
+	insert(std::make_shared<CreatureType>(
+		CreatureTypes::GreenSlime,
 		"Green Slime",
 		0,
-		itemRepository.get("Green Slime"),
+		itemRepository().get(Items::GreenSlime),
 		10.0f,
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeIdleLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeIdleRight), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeWalkLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeWalkRight), playerSpriteFrameRate, playerSpriteScale)
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeIdleLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeIdleRight), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeWalkLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeWalkRight), frameRate, scale)
 	));
 
-	insert(CreatureTypes::IceDragon, std::make_shared<CreatureType>(
+	insert(std::make_shared<CreatureType>(
+		CreatureTypes::IceDragon,
 		"Ice Dragon",
 		0,
-		itemRepository.get("Ice Gem"),
+		itemRepository().get(Items::IceGem),
 		10.0f,
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonIdleLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonIdleRight), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonWalkLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonWalkRight), playerSpriteFrameRate, playerSpriteScale)
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonIdleLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonIdleRight), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonWalkLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonWalkRight), frameRate, scale)
 	));
 
-	insert(CreatureTypes::WindDragon, std::make_shared<CreatureType>(
+	insert(std::make_shared<CreatureType>(
+		CreatureTypes::WindDragon,
 		"Wind Dragon",
 		0,
-		itemRepository.get("Wind Gem"),
+		itemRepository().get(Items::WindGem),
 		10.0f,
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonIdleLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonIdleRight), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonWalkLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonWalkRight), playerSpriteFrameRate, playerSpriteScale)
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonIdleLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonIdleRight), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonWalkLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonWalkRight), frameRate, scale)
 	));
 
-	insert(CreatureTypes::EarthDragon, std::make_shared<CreatureType>(
+	insert(std::make_shared<CreatureType>(
+		CreatureTypes::EarthDragon,
 		"Earth Dragon",
 		0,
-		itemRepository.get("Earth Gem"),
+		itemRepository().get(Items::EarthGem),
 		10.0f,
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonIdleLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonIdleRight), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonWalkLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonWalkRight), playerSpriteFrameRate, playerSpriteScale)
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonIdleLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonIdleRight), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonWalkLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonWalkRight), frameRate, scale)
 	));
 
-	insert(CreatureTypes::FireDragon, std::make_shared<CreatureType>(
+	insert(std::make_shared<CreatureType>(
+		CreatureTypes::FireDragon,
 		"Fire Dragon",
 		0,
-		itemRepository.get("Fire Gem"),
+		itemRepository().get(Items::FireGem),
 		10.0f,
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonIdleLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonIdleRight), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonWalkLeft), playerSpriteFrameRate, playerSpriteScale),
-		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonWalkRight), playerSpriteFrameRate, playerSpriteScale)
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonIdleLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonIdleRight), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonWalkLeft), frameRate, scale),
+		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonWalkRight), frameRate, scale)
 	));
 }
 
-void CreatureTypeRepository::insert(CreatureTypes identifier, std::shared_ptr<CreatureType> creatureType) {
-	registry_.insert({ identifier, creatureType }); 
+void CreatureTypeRepository::insert(std::shared_ptr<CreatureType> creatureType) {
+	registry_.insert({ creatureType->id, creatureType }); 
 }
 
 std::shared_ptr<CreatureType> CreatureTypeRepository::get(CreatureTypes type) { 

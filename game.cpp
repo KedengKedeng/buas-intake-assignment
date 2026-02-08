@@ -21,7 +21,6 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
-		setupItemList();
 		setupRecipeList();
 
 		std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
