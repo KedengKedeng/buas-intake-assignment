@@ -259,7 +259,9 @@
     <ClCompile Include="wallet.cpp" />
     <ClCompile Include="worldCauldron.cpp" />
     <ClCompile Include="objectContainer.cpp" />
-    <ClCompile Include="game.cpp" />
+    <ClCompile Include="game.cpp">
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level3</WarningLevel>
+    </ClCompile>
     <ClCompile Include="interactionCommand.hpp" />
     <ClCompile Include="interactionSignal.cpp" />
     <ClCompile Include="itemObject.cpp" />

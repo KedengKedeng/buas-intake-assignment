@@ -27,13 +27,13 @@ struct CreatureType {
 		walkRight(walkRight) 
 	{ }
 
-	CreatureTypes id;
 	std::string name;
-	int price;
-	std::shared_ptr<Item> producedItem;
-	float timeToProduce;
 	AnimatedSprite idleLeft;
 	AnimatedSprite idleRight;
 	AnimatedSprite walkLeft;
 	AnimatedSprite walkRight;
+	std::shared_ptr<Item> producedItem;
+	CreatureTypes id;
+	int price;
+	float timeToProduce;
 };

@@ -21,7 +21,7 @@ public:
 
 	void setFrame(unsigned int index);
 private:
-	const std::shared_ptr<SpriteSheet> sheet_;
+	std::shared_ptr<SpriteSheet> sheet_;
 
 	unsigned int currentFrame_;
 	unsigned int maxFrames_;

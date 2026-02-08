@@ -22,8 +22,8 @@ public:
 	Signal<> onInteractionStart{};
 	Signal<> onInteractionEnd{};
 protected:
-	bool isInteractor_;
 	BoundingBox interactionBox_;
+	bool isInteractor_;
 
 	bool isInteracting = false;
 };

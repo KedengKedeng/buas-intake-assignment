@@ -53,15 +53,11 @@ inline Pixel AddBlend( Pixel a_Color1, Pixel a_Color2 )
 // subtractive blending
 inline Pixel SubBlend( Pixel a_Color1, Pixel a_Color2 )
 {
-	int red = (a_Color1 & RedMask) - (a_Color2 & RedMask);
-	int green = (a_Color1 & GreenMask) - (a_Color2 & GreenMask);
-	int blue = (a_Color1 & BlueMask) - (a_Color2 & BlueMask);
-	int alpha = (a_Color1 & AlphaMask) - (a_Color2 & AlphaMask);
-	if (red < 0) red = 0;
-	if (green < 0) green = 0;
-	if (blue < 0) blue = 0;
-	if (alpha < 0) alpha = 0;
-	return static_cast<Pixel>(red + green + blue + alpha);
+	Pixel red = (a_Color1 & RedMask) - (a_Color2 & RedMask);
+	Pixel green = (a_Color1 & GreenMask) - (a_Color2 & GreenMask);
+	Pixel blue = (a_Color1 & BlueMask) - (a_Color2 & BlueMask);
+	Pixel alpha = (a_Color1 & AlphaMask) - (a_Color2 & AlphaMask);
+	return red + green + blue + alpha;
 }
 
 struct BoundsCheckResult {

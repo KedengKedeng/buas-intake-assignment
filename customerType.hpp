@@ -20,10 +20,10 @@ struct CustomerType {
 		walkRight(walkRight)
 	{}
 
-	CustomerTypes id;
 	std::string name;
 	AnimatedSprite idleLeft;
 	AnimatedSprite idleRight;
 	AnimatedSprite walkLeft;
 	AnimatedSprite walkRight;
+	CustomerTypes id;
 };

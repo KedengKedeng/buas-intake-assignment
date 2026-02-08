@@ -41,6 +41,8 @@ void InventoryScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 }
 
 void InventoryScene::process(float deltaTime) {
+	Scene::process(deltaTime);
+
 	int itemCount = std::max(static_cast<int>(ceil(inventory_->getItemTypeCount() / maxItemsOnRow)), 3);
 	if (itemCount != drawRows) {
 		drawRows = itemCount;
@@ -56,8 +58,7 @@ void InventoryScene::process(float deltaTime) {
 				horizontalContainer->insertObject(std::make_shared<InventorySlot>(
 					id, 
 					vec2(0.0f), 
-					inventorySlotSize, 
-					nullptr, 
+					inventorySlotSize,
 					0,
 					[this, modal](InventorySlot* slot, vec2<float>& pos) {
 						BoundingBox containerBounds(modal->getPos(), modal->getSize());

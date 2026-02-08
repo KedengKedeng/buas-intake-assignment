@@ -6,14 +6,19 @@
 InventorySlot::InventorySlot(
 	int64_t id, 
 	vec2<float> pos, 
-	vec2<float> size, 
-	std::shared_ptr<Item> item, 
+	vec2<float> size,
 	int amount, 
 	std::function<void(InventorySlot*, vec2<float>)> onDragEndHandler
 ) : 
 	Object(id, pos, size),
 	onDragEndHandler_(onDragEndHandler)
 {}
+
+void InventorySlot::setItem(std::shared_ptr<Item> item, int amount) {
+	if (item != nullptr && item_ != item) itemSprite_ = std::make_shared<AnimatedSprite>(item->sprite);
+	item_ = item;
+	amount_ = amount;
+}
 
 void InventorySlot::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
 	Clickable::onMouseDown(pos, screenPos);
@@ -51,7 +56,12 @@ void InventorySlot::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 
 	if (item_ != nullptr && !dragging) {
 		vec2 itemPos = pos + (size - vec2(item_->sprite.getWidth(), item_->sprite.getHeight())) / 2;
-		item_->sprite.draw(surface, itemPos.x, itemPos.y);
-		Text(std::format("x{}", amount_), 1, 0xff000000).draw(surface, vec2(pos.x + 10, pos.y + size.y - 10));
+		itemSprite_->draw(surface, itemPos.x, itemPos.y);
+		Text amount(std::format("x{}", amount_), 1, 0xff000000);
+		amount.draw(surface, vec2(pos.x + (size.x - amount.getWidth()) / 2, pos.y + size.y - 10));
 	}
+}
+
+void InventorySlot::process(float deltaTime) {
+	if (item_ != nullptr) itemSprite_->process(deltaTime);
 }

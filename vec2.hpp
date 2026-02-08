@@ -55,10 +55,10 @@ public:
 	bool operator != (const vec2<U>& a) const { return x != a.x || y != a.y; }
 
 	template<Arithmatic U>
-	const bool operator==(const vec2<U>& o) const { return x == o.x && y == o.y; }
+	bool operator==(const vec2<U>& o) const { return x == o.x && y == o.y; }
 
 	template<Arithmatic U>
-	const bool operator<(const vec2<U>& o) const { return x < o.x || (x == o.x && y < o.y); }
+	bool operator<(const vec2<U>& o) const { return x < o.x || (x == o.x && y < o.y); }
 
 	float length() { return sqrtf(x * x + y * y); }
 	float sqrLentgh() { return x * x + y * y; }
