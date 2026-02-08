@@ -30,10 +30,10 @@ void Creature::process(float deltaTime) {
 
 // let creatures just wander around randomly
 void Creature::changeState() {
-	CreatureState newState = static_cast<CreatureState>(getRandomNum() % static_cast<int>(CreatureState::IDLE));
+	CreatureState newState = CreatureState(getRandomNum() % static_cast<int>(CreatureState::LAST));
 	timePassed = 0;
 	timeUntilStateChange = static_cast<float>(getRandomNum() % 1200 + 300);
-
+	
 	switch (newState) {
 		case CreatureState::WALK_LEFT:
 			addDelta(vec2<int8_t>(-1, 0));
@@ -49,7 +49,7 @@ void Creature::changeState() {
 		case CreatureState::WALK_DOWN:
 			addDelta(vec2<int8_t>(0, 1));
 			break;
-	default:
-		break;
+		default:
+			break;
 	}
 }

@@ -1,7 +1,15 @@
 #include "customerObject.hpp"
 #include "uiSignals.hpp"
+#include "interactionSignal.hpp"
 
-CustomerObject::CustomerObject(int64_t id, vec2<float> pos, std::shared_ptr<CustomerType> type, std::shared_ptr<Item> neededItem) :
+CustomerObject::CustomerObject(
+	int64_t id, 
+	vec2<float> pos, 
+	std::shared_ptr<CustomerType> type, 
+	std::shared_ptr<Item> neededItem, 
+	std::shared_ptr<Wallet> wallet, 
+	std::shared_ptr<Inventory> inventory
+) :
 	CharacterObject(
 		id,
 		pos,
@@ -13,7 +21,9 @@ CustomerObject::CustomerObject(int64_t id, vec2<float> pos, std::shared_ptr<Cust
 		false
 	),
 	itemSprite(neededItem->sprite),
-	neededItem_(neededItem)
+	neededItem_(neededItem),
+	wallet_(wallet),
+	inventory_(inventory)
 {}
 
 void CustomerObject::process(float deltaTime) {
@@ -23,6 +33,13 @@ void CustomerObject::process(float deltaTime) {
 }
 
 void CustomerObject::subscribe() {
+	addSubscription(interactionSignal.subscribe([this]() {
+		if (isInteracting && inventory_->get(neededItem_->id)) {
+			inventory_->remove(neededItem_->id);
+			wallet_->addCurrency(neededItem_->value);
+		}
+	}));
+
 	addSubscription(onInteractionStart.subscribe([this]() {
 		drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, vec2<float> offset) {
 			float spriteScale = 1.5f;

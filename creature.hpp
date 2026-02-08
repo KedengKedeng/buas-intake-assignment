@@ -7,7 +7,9 @@ enum class CreatureState {
 	WALK_RIGHT,
 	WALK_UP,
 	WALK_DOWN,
-	IDLE
+	IDLE,
+
+	LAST
 };
 
 class Creature : public CharacterObject {
