@@ -24,8 +24,8 @@ void InventorySlot::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
 	drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, vec2<float> offset) {
 		if (item_ == nullptr) return;
 
-		vec2 itemPos = dragPos + offset + (getSize() - vec2(item_->sprite.getWidth(), item_->sprite.getHeight()) / 2) / 2;
-		item_->sprite.drawScaled(surface, itemPos.x, itemPos.y, 0.5f);
+		vec2 itemPos = dragPos + offset + (getSize() - vec2(item_->sprite.getWidth(), item_->sprite.getHeight())) / 2;
+		item_->sprite.draw(surface, itemPos.x, itemPos.y);
 	});
 };
 
@@ -50,8 +50,8 @@ void InventorySlot::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	surface->Box(pos, pos + size, 0xff000000);
 
 	if (item_ != nullptr && !dragging) {
-		vec2 itemPos = pos + (size - vec2(item_->sprite.getWidth(), item_->sprite.getHeight()) / 2) / 2;
-		item_->sprite.drawScaled(surface, itemPos.x, itemPos.y, 0.5f);
-		Text(std::format("x{}", amount_), 1, 0xffffffff).draw(surface, vec2(pos.x + 10, pos.y + size.y - 10));
+		vec2 itemPos = pos + (size - vec2(item_->sprite.getWidth(), item_->sprite.getHeight())) / 2;
+		item_->sprite.draw(surface, itemPos.x, itemPos.y);
+		Text(std::format("x{}", amount_), 1, 0xff000000).draw(surface, vec2(pos.x + 10, pos.y + size.y - 10));
 	}
 }

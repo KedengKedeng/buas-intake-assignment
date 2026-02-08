@@ -18,7 +18,8 @@ PlotObject::PlotObject(
 	Collider(),
 	plot_(plot),
 	inventory_(inventory),
-	husbandry_(husbandry)
+	husbandry_(husbandry),
+	producedItemSprite(plot->getType()->producedItem->sprite)
 {
 	addCollider(BoundingBox(vec2(0.0f), vec2(1.0f, size.y - 1)));
 	addCollider(BoundingBox(vec2(0.0f), vec2(size.x - 1, 1.0f)));
@@ -45,15 +46,17 @@ void PlotObject::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 
 void PlotObject::process(float deltaTime) {
 	std::shared_ptr<Item> producedItem = plot_->progressProduction(deltaTime / 1000);
-	if (producedItem != nullptr) availableForPickup[producedItem]++;
+	if (producedItem != nullptr) availableForPickup++;
+	producedItemSprite.process(deltaTime);
 }
 
 void PlotObject::subscribe() {
 	addSubscription(interactionSignal.subscribe([this]() {
 		if (isInteracting) {
-			if (availableForPickup.size() != 0) {
-				for (auto& [item, count] : availableForPickup) for (int x = 0; x < count; x++) inventory_->add(item->name);
-				availableForPickup.clear();
+			if (availableForPickup) {
+				std::string itemName = plot_->getType()->producedItem->name;
+				for (int x = 0; x < availableForPickup; x++) inventory_->add(itemName);
+				availableForPickup = 0;
 				return;
 			}
 			
@@ -67,19 +70,15 @@ void PlotObject::subscribe() {
 
 	addSubscription(onInteractionStart.subscribe([this]() {
 		drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, vec2<float> offset) {
-			if (availableForPickup.size() == 0) return;
+			if (!availableForPickup) return;
 
-			vec2 itemSizes(0.0f);
-			for (auto& [item, count] : availableForPickup) itemSizes += vec2<float>(item->sprite.getWidth() + 10, 0.0f);
-			itemSizes.y += availableForPickup.begin()->first->sprite.getHeight();
+			float spriteScale = 1.5f;
+			vec2 itemSize = vec2<float>(producedItemSprite.getWidth(), producedItemSprite.getHeight()) * spriteScale;
 
-			auto pos = getPos() + (getSize() - itemSizes) / 2 + offset;
-			surface->Bar(pos - 10, pos + itemSizes + 10, 0xffffffff);
+			auto pos = getPos() + (getSize() - itemSize) / 2 + offset;
+			surface->Bar(pos - 10, pos + itemSize + 10, 0xffffffff);
 
-			for (auto& [item, count] : availableForPickup) {
-				item->sprite.draw(surface, pos.x, pos.y);
-				pos += vec2<float>(item->sprite.getWidth() + 10, 0.0f);
-			}
+			producedItemSprite.drawScaled(surface, pos.x, pos.y, spriteScale);
 		});
 	}));
 

@@ -6,7 +6,7 @@
 #include "subscriptionManager.hpp"
 #include "inventory.hpp"
 #include "husbandry.hpp"
-#include <map>
+#include "spriteRepository.hpp"
 
 class PlotObject : public Object, public Interactable, public Collider, public SubscriptionManager {
 public:
@@ -32,5 +32,6 @@ private:
 	std::shared_ptr<Inventory> inventory_;
 	std::shared_ptr<Husbandry> husbandry_;
 
-	std::map<std::shared_ptr<Item>, int> availableForPickup = {};
+	AnimatedSprite producedItemSprite;
+	int availableForPickup = 0;
 };

@@ -14,6 +14,12 @@ SpriteRepository::SpriteRepository() {
 	insertSheet(SpriteSheets::PlayerWalkLeft, SpriteSheet(repo.get(Surfaces::PlayerWalkLeft), 1, 4));
 	insertSheet(SpriteSheets::PlayerWalkRight, SpriteSheet(repo.get(Surfaces::PlayerWalkRight), 1, 4));
 
+	//customers
+	insertSheet(SpriteSheets::PenguinIdleLeft, SpriteSheet(repo.get(Surfaces::PenguinIdleLeft), 1, 3));
+	insertSheet(SpriteSheets::PenguinIdleRight, SpriteSheet(repo.get(Surfaces::PenguinIdleRight), 1, 3));
+	insertSheet(SpriteSheets::PenguinWalkLeft, SpriteSheet(repo.get(Surfaces::PenguinWalkLeft), 1, 4));
+	insertSheet(SpriteSheets::PenguinWalkRight, SpriteSheet(repo.get(Surfaces::PenguinWalkRight), 1, 4));
+
 	//animals
 	insertSheet(SpriteSheets::BlueSlimeIdleLeft, SpriteSheet(repo.get(Surfaces::BlueSlimeIdleLeft), 1, 3));
 	insertSheet(SpriteSheets::BlueSlimeIdleRight, SpriteSheet(repo.get(Surfaces::BlueSlimeIdleRight), 1, 3));
@@ -39,6 +45,14 @@ SpriteRepository::SpriteRepository() {
 	insertSheet(SpriteSheets::FireDragonIdleRight, SpriteSheet(repo.get(Surfaces::FireDragonIdleRight), 1, 3));
 	insertSheet(SpriteSheets::FireDragonWalkLeft, SpriteSheet(repo.get(Surfaces::FireDragonWalkLeft), 1, 4));
 	insertSheet(SpriteSheets::FireDragonWalkRight, SpriteSheet(repo.get(Surfaces::FireDragonWalkRight), 1, 4));
+
+	//items
+	insert(Sprites::BlueSlime, Sprite(repo.get(Surfaces::BlueSlime)));
+	insert(Sprites::GreenSlime, Sprite(repo.get(Surfaces::GreenSlime)));
+	insertSheet(SpriteSheets::IceGem, SpriteSheet(repo.get(Surfaces::IceGem), 1, 4));
+	insertSheet(SpriteSheets::WindGem, SpriteSheet(repo.get(Surfaces::WindGem), 1, 4));
+	insertSheet(SpriteSheets::EarthGem, SpriteSheet(repo.get(Surfaces::EarthGem), 1, 4));
+	insertSheet(SpriteSheets::FireGem, SpriteSheet(repo.get(Surfaces::FireGem), 1, 4));
 
 	//cauldron
 	insertSheet(SpriteSheets::EmptyBurningCauldron, SpriteSheet(repo.get(Surfaces::EmptyBurningCauldron), 1, 8));

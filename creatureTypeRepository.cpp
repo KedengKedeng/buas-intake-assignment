@@ -8,11 +8,10 @@ CreatureTypeRepository::CreatureTypeRepository() {
 	const float playerSpriteFrameRate = 0.005f;
 	auto spriteRepo = spriteRepository();
 
-	auto item = itemRepository.get("testItem2");
 	insert(CreatureTypes::BlueSlime, std::make_shared<CreatureType>(
 		"Blue Slime",
 		0,
-		item,
+		itemRepository.get("Blue Slime"),
 		10.0f,
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeIdleLeft), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::BlueSlimeIdleRight), playerSpriteFrameRate, playerSpriteScale),
@@ -23,7 +22,7 @@ CreatureTypeRepository::CreatureTypeRepository() {
 	insert(CreatureTypes::GreenSlime, std::make_shared<CreatureType>(
 		"Green Slime",
 		0,
-		item,
+		itemRepository.get("Green Slime"),
 		10.0f,
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeIdleLeft), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::GreenSlimeIdleRight), playerSpriteFrameRate, playerSpriteScale),
@@ -34,7 +33,7 @@ CreatureTypeRepository::CreatureTypeRepository() {
 	insert(CreatureTypes::IceDragon, std::make_shared<CreatureType>(
 		"Ice Dragon",
 		0,
-		item,
+		itemRepository.get("Ice Gem"),
 		10.0f,
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonIdleLeft), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::IceDragonIdleRight), playerSpriteFrameRate, playerSpriteScale),
@@ -45,7 +44,7 @@ CreatureTypeRepository::CreatureTypeRepository() {
 	insert(CreatureTypes::WindDragon, std::make_shared<CreatureType>(
 		"Wind Dragon",
 		0,
-		item,
+		itemRepository.get("Wind Gem"),
 		10.0f,
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonIdleLeft), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::WindDragonIdleRight), playerSpriteFrameRate, playerSpriteScale),
@@ -56,7 +55,7 @@ CreatureTypeRepository::CreatureTypeRepository() {
 	insert(CreatureTypes::EarthDragon, std::make_shared<CreatureType>(
 		"Earth Dragon",
 		0,
-		item,
+		itemRepository.get("Earth Gem"),
 		10.0f,
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonIdleLeft), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::EarthDragonIdleRight), playerSpriteFrameRate, playerSpriteScale),
@@ -67,7 +66,7 @@ CreatureTypeRepository::CreatureTypeRepository() {
 	insert(CreatureTypes::FireDragon, std::make_shared<CreatureType>(
 		"Fire Dragon",
 		0,
-		item,
+		itemRepository.get("Fire Gem"),
 		10.0f,
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonIdleLeft), playerSpriteFrameRate, playerSpriteScale),
 		AnimatedSprite(spriteRepo.getSheet(SpriteSheets::FireDragonIdleRight), playerSpriteFrameRate, playerSpriteScale),

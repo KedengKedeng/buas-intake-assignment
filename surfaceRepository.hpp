@@ -11,6 +11,11 @@ enum class Surfaces {
 	PlayerWalkLeft,
 	PlayerWalkRight,
 
+	PenguinIdleLeft,
+	PenguinIdleRight,
+	PenguinWalkLeft,
+	PenguinWalkRight,
+
 	BlueSlimeIdleLeft,
 	BlueSlimeIdleRight,
 	BlueSlimeWalkLeft,
@@ -35,6 +40,13 @@ enum class Surfaces {
 	FireDragonIdleRight,
 	FireDragonWalkLeft,
 	FireDragonWalkRight,
+
+	BlueSlime,
+	GreenSlime,
+	IceGem,
+	WindGem,
+	EarthGem,
+	FireGem,
 
 	EmptyCauldron,
 	EmptyBurningCauldron,

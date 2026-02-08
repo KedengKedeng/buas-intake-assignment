@@ -294,6 +294,7 @@
     <ClInclude Include="creatureTypeRepository.hpp" />
     <ClInclude Include="creature.hpp" />
     <ClInclude Include="creatureType.hpp" />
+    <ClInclude Include="customerType.hpp" />
     <ClInclude Include="husbandry.hpp" />
     <ClInclude Include="interactable.hpp" />
     <ClInclude Include="inventory.hpp" />

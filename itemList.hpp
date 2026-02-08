@@ -4,24 +4,42 @@
 #include "recipeBook.hpp"
 
 void setupItemList() {
-	auto bottleSprite = AnimatedSprite(std::make_shared<SpriteSheet>(
-		std::vector<Sprite>{ spriteRepository().get(Sprites::WaterBottle, 0.3f) }),
-		20.0f, 
-		1.0f
-	);
 	itemRepository.insert(std::make_shared<Item>(
 		ItemTypes::Animal,
-		"testItem",
-		bottleSprite
+		"Blue Slime",
+		AnimatedSprite(std::make_shared<SpriteSheet>(std::vector<Sprite>{ spriteRepository().get(Sprites::BlueSlime, 1.0f) }), 0.0f, 1.0f)
 	));
 
 	itemRepository.insert(std::make_shared<Item>(
 		ItemTypes::Animal,
-		"testItem2",
-		bottleSprite
+		"Green Slime",
+		AnimatedSprite(std::make_shared<SpriteSheet>(std::vector<Sprite>{ spriteRepository().get(Sprites::GreenSlime, 1.0f) }), 0.0f, 1.0f)
 	));
 
-	const float playerInteractionOffset = 10.0f;
+	itemRepository.insert(std::make_shared<Item>(
+		ItemTypes::Animal,
+		"Ice Gem",
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::IceGem), 0.002f, 1.0f)
+	));
+
+	itemRepository.insert(std::make_shared<Item>(
+		ItemTypes::Animal,
+		"Wind Gem",
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::WindGem), 0.002f, 1.0f)
+	));
+
+	itemRepository.insert(std::make_shared<Item>(
+		ItemTypes::Animal,
+		"Earth Gem",
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::EarthGem), 0.002f, 1.0f)
+	));
+
+	itemRepository.insert(std::make_shared<Item>(
+		ItemTypes::Animal,
+		"Fire Gem",
+		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::FireGem), 0.002f, 1.0f)
+	));
+
 	const float playerSpriteScale = 2;
 	const float playerSpriteFrameRate = 0.005f;
 	auto playerIdleLeft = AnimatedSprite(spriteRepository().getSheet(SpriteSheets::PlayerIdleLeft), playerSpriteFrameRate, playerSpriteScale);
@@ -34,7 +52,7 @@ void setupItemList() {
 }
 
 void setupRecipeList() {
-	auto bottleItem = itemRepository.get("testItem2");
+	auto bottleItem = itemRepository.get("Blue Slime");
 	auto playerItem = itemRepository.get("testItem3");
 
 	recipeBook.addRecipe({bottleItem, bottleItem}, playerItem);

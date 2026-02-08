@@ -10,6 +10,12 @@ SurfaceRepository::SurfaceRepository() {
 	insert(Surfaces::PlayerWalkLeft, std::make_shared<Tmpl8::Surface>("assets/characters/playerwalkleft.png"));
 	insert(Surfaces::PlayerWalkRight, std::make_shared<Tmpl8::Surface>("assets/characters/playerwalkright.png"));
 
+	//customers
+	insert(Surfaces::PenguinIdleLeft, std::make_shared<Tmpl8::Surface>("assets/characters/penguinidleleft.png"));
+	insert(Surfaces::PenguinIdleRight, std::make_shared<Tmpl8::Surface>("assets/characters/penguinidleright.png"));
+	insert(Surfaces::PenguinWalkLeft, std::make_shared<Tmpl8::Surface>("assets/characters/penguinwalkleft.png"));
+	insert(Surfaces::PenguinWalkRight, std::make_shared<Tmpl8::Surface>("assets/characters/penguinwalkright.png"));
+
 	//animals
 	insert(Surfaces::BlueSlimeIdleLeft, std::make_shared<Tmpl8::Surface>("assets/animals/blueslimeidleleft.png"));
 	insert(Surfaces::BlueSlimeIdleRight, std::make_shared<Tmpl8::Surface>("assets/animals/blueslimeidleright.png"));
@@ -35,6 +41,15 @@ SurfaceRepository::SurfaceRepository() {
 	insert(Surfaces::FireDragonIdleRight, std::make_shared<Tmpl8::Surface>("assets/animals/firedragonidleright.png"));
 	insert(Surfaces::FireDragonWalkLeft, std::make_shared<Tmpl8::Surface>("assets/animals/firedragonwalkleft.png"));
 	insert(Surfaces::FireDragonWalkRight, std::make_shared<Tmpl8::Surface>("assets/animals/firedragonwalkright.png"));
+
+	//items
+	insert(Surfaces::BlueSlime, std::make_shared<Tmpl8::Surface>("assets/items/blueslime.png"));
+	insert(Surfaces::GreenSlime, std::make_shared<Tmpl8::Surface>("assets/items/greenslime.png"));
+	insert(Surfaces::IceGem, std::make_shared<Tmpl8::Surface>("assets/items/icegem.png"));
+	insert(Surfaces::WindGem, std::make_shared<Tmpl8::Surface>("assets/items/windgem.png"));
+	insert(Surfaces::EarthGem, std::make_shared<Tmpl8::Surface>("assets/items/earthgem.png"));
+	insert(Surfaces::FireGem, std::make_shared<Tmpl8::Surface>("assets/items/firegem.png"));
+
 
 	//cauldron
 	insert(Surfaces::EmptyCauldron, std::make_shared<Tmpl8::Surface>("assets/cauldron/emptycauldron.png"));

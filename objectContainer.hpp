@@ -26,7 +26,6 @@ public:
 
 	// containers also need to update the positions of their children
 	void setPos(vec2<float> pos) override;
-	vec2<float> getSize() const override;
 
 	virtual void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 	virtual void process(float deltaTime) override;

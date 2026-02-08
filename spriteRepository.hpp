@@ -8,6 +8,9 @@ enum class Sprites {
 	WaterBottle,
 	Spoon,
 
+	BlueSlime,
+	GreenSlime,
+
 	EmptyCauldron,
 	CauldronCloseupFront,
 	CauldronCloseupBack
@@ -18,6 +21,11 @@ enum class SpriteSheets {
 	PlayerIdleRight,
 	PlayerWalkLeft,
 	PlayerWalkRight,
+
+	PenguinIdleLeft,
+	PenguinIdleRight,
+	PenguinWalkLeft,
+	PenguinWalkRight,
 
 	BlueSlimeIdleLeft,
 	BlueSlimeIdleRight,
@@ -43,6 +51,11 @@ enum class SpriteSheets {
 	FireDragonIdleRight,
 	FireDragonWalkLeft,
 	FireDragonWalkRight,
+
+	IceGem,
+	WindGem,
+	EarthGem,
+	FireGem,
 
 	EmptyBurningCauldron,
 	FilledCauldron,

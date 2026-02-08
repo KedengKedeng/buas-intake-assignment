@@ -14,6 +14,7 @@ public:
 	void subscribe() override;
 private:
 	const std::shared_ptr<Item> item_;
+	mutable AnimatedSprite itemSprite;
 
 	// TODO: randomize?
 	float drawOffset = 0;

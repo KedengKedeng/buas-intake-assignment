@@ -26,11 +26,6 @@ void ObjectContainer::setPos(vec2<float> pos) {
 	spreadObjects();
 }
 
-vec2<float> ObjectContainer::getSize() const {
-	if (scrollable_) return Object::getSize() + vec2(scrollbar_.getSize().x, 0.0f);
-	return Object::getSize();
-}
-
 void ObjectContainer::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	if (scrollable_) {
 		// use another surface to contain everything within the context

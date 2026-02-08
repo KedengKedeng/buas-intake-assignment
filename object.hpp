@@ -12,9 +12,9 @@ public:
 	int64_t getId() const { return id_; }
 
 	virtual void setPos(vec2<float> pos) { pos_ = pos; }
-	virtual vec2<float> getPos() const { return pos_; }
+	vec2<float> getPos() const { return pos_; }
 	virtual void setSize(vec2<float> size) { size_ = size; }
-	virtual vec2<float> getSize() const { return size_; }
+	vec2<float> getSize() const { return size_; }
 
 	virtual void draw(Tmpl8::Surface* surface, vec2<float> offset) const = 0;
 	virtual void process(float deltaTime) {};
