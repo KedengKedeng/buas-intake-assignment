@@ -91,10 +91,6 @@ void CookingScene::subscribe() {
 	// Only subscribe if the blower is being interacted with
 	if (trackBlowerMovement)
 		blowedSignalUnsub = blowedSignal.subscribe([this](float delta) {cauldron_->addTemp(delta); });
-}
 
-void CookingScene::unsubscribe() {
-	Scene::unsubscribe();
-
-	blowedSignalUnsub();
+	addSubscription([this]() {blowedSignalUnsub(); });
 }

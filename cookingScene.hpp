@@ -10,7 +10,6 @@ public:
 	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
 
 	void subscribe() override;
-	void unsubscribe() override;
 private:
 	std::shared_ptr<Cauldron> cauldron_;
 

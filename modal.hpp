@@ -14,6 +14,8 @@ public:
 		bool scrollable = false
 	);
 
+	~Modal();
+
 	void insertObject(std::shared_ptr<Object> object) { innerContainer_.insertObject(std::move(object)); }
 	void clearObjects() { innerContainer_.clearObjects(); }
 

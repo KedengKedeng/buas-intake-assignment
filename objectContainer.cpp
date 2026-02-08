@@ -18,6 +18,10 @@ ObjectContainer::ObjectContainer(
 	scrollbar_(0, pos + vec2(size.x, 0.0f), vec2(20.0f, size.y), size, [this](vec2<float> offset) {scrollOffset = offset; })
 { };
 
+ObjectContainer::~ObjectContainer() {
+	unsubscribe();
+}
+
 void ObjectContainer::setPos(vec2<float> pos) {
 	vec2 delta = getPos() - pos;
 	for (auto& [id, object] : objects_)

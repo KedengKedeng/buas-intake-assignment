@@ -18,6 +18,10 @@ Modal::Modal(
 	innerContainer_(0, pos + BUTTON_SIZE, size - BUTTON_SIZE, justification, gap, scrollable)
 {}
 
+Modal::~Modal() {
+	unsubscribe();
+}
+
 vec2<float> Modal::getPadding() const {
 	return BUTTON_SIZE;
 }

@@ -24,6 +24,8 @@ public:
 		bool scrollable = false
 	);
 
+	~ObjectContainer();
+
 	// containers also need to update the positions of their children
 	void setPos(vec2<float> pos) override;
 
