@@ -322,12 +322,14 @@
     <ClInclude Include="scenes.hpp" />
     <ClInclude Include="scrollbar.hpp" />
     <ClInclude Include="spoon.hpp" />
+    <ClInclude Include="sprites.hpp" />
     <ClInclude Include="spritesheet.hpp" />
     <ClInclude Include="spriteStack.hpp" />
     <ClInclude Include="countingStorage.hpp" />
     <ClInclude Include="string.hpp" />
     <ClInclude Include="subscriptionManager.hpp" />
     <ClInclude Include="surfaceRepository.hpp" />
+    <ClInclude Include="surfaces.hpp" />
     <ClInclude Include="text.hpp" />
     <ClInclude Include="tilemap.hpp" />
     <ClInclude Include="drawDispatcher.hpp" />
