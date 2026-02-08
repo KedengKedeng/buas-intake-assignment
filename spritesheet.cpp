@@ -27,6 +27,10 @@ SpriteSheet::SpriteSheet(std::shared_ptr<Tmpl8::Surface> surface, int columns, i
 	}
 }
 
+SpriteSheet::SpriteSheet(const Sprite& sprite) :
+	SpriteSheet(std::vector<Sprite>{sprite})
+{}
+
 const Sprite& SpriteSheet::getSprite(int row, int column) const {
 	return sprites_.at(row * column);
 }

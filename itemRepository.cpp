@@ -5,13 +5,13 @@ ItemRepository::ItemRepository() {
 	insert(std::make_shared<Item>(
 		Items::BlueSlime,
 		"Blue Slime",
-		AnimatedSprite(std::make_shared<SpriteSheet>(std::vector<Sprite>{ spriteRepository().get(Sprites::BlueSlime, 1.0f) }), 0.0f, 1.0f)
+		AnimatedSprite(std::make_shared<SpriteSheet>(spriteRepository().get(Sprites::BlueSlime, 1.0f)), 0.0f, 1.0f)
 	));
 
 	insert(std::make_shared<Item>(
 		Items::GreenSlime,
 		"Green Slime",
-		AnimatedSprite(std::make_shared<SpriteSheet>(std::vector<Sprite>{ spriteRepository().get(Sprites::GreenSlime, 1.0f) }), 0.0f, 1.0f)
+		AnimatedSprite(std::make_shared<SpriteSheet>(spriteRepository().get(Sprites::GreenSlime, 1.0f)), 0.0f, 1.0f)
 	));
 
 	insert(std::make_shared<Item>(
@@ -38,13 +38,10 @@ ItemRepository::ItemRepository() {
 		AnimatedSprite(spriteRepository().getSheet(SpriteSheets::FireGem), 0.002f, 1.0f)
 	));
 
-	const float playerSpriteScale = 2;
-	const float playerSpriteFrameRate = 0.005f;
-	auto playerIdleLeft = AnimatedSprite(spriteRepository().getSheet(SpriteSheets::PlayerIdleLeft), playerSpriteFrameRate, playerSpriteScale);
-
+	auto playerIdleLeft = AnimatedSprite(spriteRepository().getSheet(SpriteSheets::PlayerIdleLeft), 0.005f, 2);
 	insert(std::make_shared<Item>(
 		Items::Test,
-		"testItem3",
+		"testItem",
 		playerIdleLeft
 	));
 }

@@ -8,6 +8,7 @@ class SpriteSheet {
 public:
 	SpriteSheet(const SpriteList& sprites);
 	SpriteSheet(std::shared_ptr<Tmpl8::Surface> surface, int columns, int rows);
+	SpriteSheet(const Sprite& sprite);
 
 	int getRows() const { return rows_; }
 	int getColumns() const { return columns_; }

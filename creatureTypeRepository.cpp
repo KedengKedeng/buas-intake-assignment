@@ -3,8 +3,8 @@
 #include "itemsRepository.hpp"
 
 CreatureTypeRepository::CreatureTypeRepository() {
-	const float scale = 2;
-	const float frameRate = 0.005f;
+	constexpr float scale = 2;
+	constexpr float frameRate = 0.005f;
 	auto spriteRepo = spriteRepository();
 
 	insert(std::make_shared<CreatureType>(

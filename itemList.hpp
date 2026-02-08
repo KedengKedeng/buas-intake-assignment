@@ -3,8 +3,8 @@
 #include "recipeBook.hpp"
 
 void setupRecipeList() {
-	auto bottleItem = itemRepository().get(Items::BlueSlime);
-	auto playerItem = itemRepository().get(Items::Test);
+	auto slimeItem = itemRepository().get(Items::BlueSlime);
+	auto testItem = itemRepository().get(Items::Test);
 
-	recipeBook.addRecipe({bottleItem, bottleItem}, playerItem);
+	recipeBook.addRecipe({slimeItem, slimeItem}, testItem);
 }

@@ -11,6 +11,8 @@
 #include "spriteRepository.hpp"
 #include "plotObject.hpp"
 #include "text.hpp"
+#include "customerObject.hpp"
+#include "customerTypeRepository.hpp"
 #include <format>
 
 const float floorScale = 1.5f;
@@ -50,6 +52,7 @@ PlayScene::PlayScene(
 
 	// interactable objects
 	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2(surface->GetWidth() / 2.0f, surface->GetHeight() / 2.0f), cauldron));
+	insertObject(std::make_shared<CustomerObject>(getRandomNum(), vec2(50.0f), customerTypeRepository().get(CustomerTypes::Penguin), itemRepository().get(Items::Test)));
 
 	std::vector<FloorTiles> tileTypes { FloorTiles::Ground1, FloorTiles::Ground2, FloorTiles::Ground3, FloorTiles::Ground4 };
 	floorTiles_.setSquare(Rect2<int>(-plotSpace.x, -plotSpace.y, roomSize.x + plotSpace.x, roomSize.y + plotSpace.y) / tileSize, tileTypes);

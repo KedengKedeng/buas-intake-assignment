@@ -238,6 +238,8 @@
     <ClCompile Include="cookingScene.cpp" />
     <ClCompile Include="creature.cpp" />
     <ClCompile Include="creatureTypeRepository.cpp" />
+    <ClCompile Include="customerObject.cpp" />
+    <ClCompile Include="customerTypeRepository.cpp" />
     <ClCompile Include="inventoryScene.cpp" />
     <ClCompile Include="inventorySlot.cpp" />
     <ClCompile Include="modal.cpp" />
@@ -267,7 +269,9 @@
     <ClCompile Include="objectSignals.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerSignals.cpp" />
-    <ClCompile Include="playScene.cpp" />
+    <ClCompile Include="playScene.cpp">
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level3</WarningLevel>
+    </ClCompile>
     <ClCompile Include="random.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="sceneSignals.cpp" />
@@ -294,7 +298,10 @@
     <ClInclude Include="creatureType.hpp" />
     <ClInclude Include="creatureTypeRepository.hpp" />
     <ClInclude Include="creatureTypes.hpp" />
+    <ClInclude Include="customerObject.hpp" />
     <ClInclude Include="customerType.hpp" />
+    <ClInclude Include="customerTypeRepository.hpp" />
+    <ClInclude Include="customerTypes.hpp" />
     <ClInclude Include="husbandry.hpp" />
     <ClInclude Include="interactable.hpp" />
     <ClInclude Include="inventory.hpp" />
