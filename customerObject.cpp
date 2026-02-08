@@ -28,7 +28,7 @@ void CustomerObject::subscribe() {
 			float spriteScale = 1.5f;
 			vec2 itemSize = vec2<float>(itemSprite.getWidth(), itemSprite.getHeight()) * spriteScale;
 
-			auto pos = getPos() - vec2((getSize().x - itemSize.x) / 2, itemSize.y + 20) + offset;
+			auto pos = getPos() - vec2(-(getSize().x - itemSize.x) / 2, itemSize.y + 20) + offset;
 			surface->Bar(pos - 10, pos + itemSize + 10, 0xffffffff);
 
 			itemSprite.drawScaled(surface, pos.x, pos.y, spriteScale);

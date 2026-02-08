@@ -1,9 +1,6 @@
 #include "surfaceRepository.hpp"
 
 SurfaceRepository::SurfaceRepository() {
-	// test surfaces
-	insert(Surfaces::WaterBottle, std::make_shared<Tmpl8::Surface>("assets/items/mcwaterbottle.png"));
-
 	//player
 	insert(Surfaces::PlayerIdleLeft, std::make_shared<Tmpl8::Surface>("assets/characters/playeridleleft.png"));
 	insert(Surfaces::PlayerIdleRight, std::make_shared<Tmpl8::Surface>("assets/characters/playeridleright.png"));
@@ -49,6 +46,28 @@ SurfaceRepository::SurfaceRepository() {
 	insert(Surfaces::WindGem, std::make_shared<Tmpl8::Surface>("assets/items/windgem.png"));
 	insert(Surfaces::EarthGem, std::make_shared<Tmpl8::Surface>("assets/items/earthgem.png"));
 	insert(Surfaces::FireGem, std::make_shared<Tmpl8::Surface>("assets/items/firegem.png"));
+
+	insert(Surfaces::SlipperyOrb, std::make_shared<Tmpl8::Surface>("assets/items/slipperyorb.png"));
+	insert(Surfaces::SlimeTape, std::make_shared<Tmpl8::Surface>("assets/items/slimetape.png"));
+	insert(Surfaces::RainBoots, std::make_shared<Tmpl8::Surface>("assets/items/rainboots.png"));
+	insert(Surfaces::GliderWings, std::make_shared<Tmpl8::Surface>("assets/items/gliderwings.png"));
+	insert(Surfaces::StoneWheel, std::make_shared<Tmpl8::Surface>("assets/items/stonewheel.png"));
+	insert(Surfaces::RocketBooster, std::make_shared<Tmpl8::Surface>("assets/items/rocketbooster.png"));
+	insert(Surfaces::StickyOrb, std::make_shared<Tmpl8::Surface>("assets/items/stickyorb.png"));
+	insert(Surfaces::BurnCream, std::make_shared<Tmpl8::Surface>("assets/items/burncream.png"));
+	insert(Surfaces::GrapplingHook, std::make_shared<Tmpl8::Surface>("assets/items/grapplinghook.png"));
+	insert(Surfaces::ClimbingGloves, std::make_shared<Tmpl8::Surface>("assets/items/climbinggloves.png"));
+	insert(Surfaces::StickyBomb, std::make_shared<Tmpl8::Surface>("assets/items/stickybomb.png"));
+	insert(Surfaces::StormInABottle, std::make_shared<Tmpl8::Surface>("assets/items/storminabottle.png"));
+	insert(Surfaces::WindCharge, std::make_shared<Tmpl8::Surface>("assets/items/windcharge.png"));
+	insert(Surfaces::ShipInABottle, std::make_shared<Tmpl8::Surface>("assets/items/shipinabottle.png"));
+	insert(Surfaces::LightningGem, std::make_shared<Tmpl8::Surface>("assets/items/lightninggem.png"));
+	insert(Surfaces::IceScates, std::make_shared<Tmpl8::Surface>("assets/items/icescates.png"));
+	insert(Surfaces::MuddyBlob, std::make_shared<Tmpl8::Surface>("assets/items/muddyblob.png"));
+	insert(Surfaces::ObsidianGem, std::make_shared<Tmpl8::Surface>("assets/items/obsidiangem.png"));
+	insert(Surfaces::ClayBall, std::make_shared<Tmpl8::Surface>("assets/items/clayball.png"));
+	insert(Surfaces::MagmaBall, std::make_shared<Tmpl8::Surface>("assets/items/magmaball.png"));
+	insert(Surfaces::FireCharge, std::make_shared<Tmpl8::Surface>("assets/items/firecharge.png"));
 
 
 	//cauldron

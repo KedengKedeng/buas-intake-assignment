@@ -9,7 +9,7 @@ public:
 	void insertItem(std::shared_ptr<Item> item);
 	size_t getItemCount() const { return items_.size(); }
 
-	void stir(float delta);
+	std::shared_ptr<Item> stir(float delta);
 	void addTemp(float delta);
 	float getTemp() const;
 

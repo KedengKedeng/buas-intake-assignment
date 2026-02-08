@@ -4,7 +4,6 @@
 SpriteRepository::SpriteRepository() {
 	auto& repo = surfaceRepository();
 
-	insert(Sprites::WaterBottle, Sprite(repo.get(Surfaces::WaterBottle)));
 	auto spoonSurface = repo.get(Surfaces::Spoon);
 	insert(Sprites::Spoon, Sprite(spoonSurface, Rect2(20, 20, spoonSurface->GetWidth() - 40, spoonSurface->GetHeight() - 40)));
 
@@ -53,6 +52,29 @@ SpriteRepository::SpriteRepository() {
 	insertSheet(SpriteSheets::WindGem, SpriteSheet(repo.get(Surfaces::WindGem), 1, 4));
 	insertSheet(SpriteSheets::EarthGem, SpriteSheet(repo.get(Surfaces::EarthGem), 1, 4));
 	insertSheet(SpriteSheets::FireGem, SpriteSheet(repo.get(Surfaces::FireGem), 1, 4));
+
+	insert(Sprites::SlipperyOrb, Sprite(repo.get(Surfaces::SlipperyOrb)));
+	insert(Sprites::SlimeTape, Sprite(repo.get(Surfaces::SlimeTape)));
+	insert(Sprites::RainBoots, Sprite(repo.get(Surfaces::RainBoots)));
+	insert(Sprites::GliderWings, Sprite(repo.get(Surfaces::GliderWings)));
+	insert(Sprites::StoneWheel, Sprite(repo.get(Surfaces::StoneWheel)));
+	insert(Sprites::RocketBooster, Sprite(repo.get(Surfaces::RocketBooster)));
+	insert(Sprites::StickyOrb, Sprite(repo.get(Surfaces::StickyOrb)));
+	insert(Sprites::BurnCream, Sprite(repo.get(Surfaces::BurnCream)));
+	insert(Sprites::GrapplingHook, Sprite(repo.get(Surfaces::GrapplingHook)));
+	insert(Sprites::ClimbingGloves, Sprite(repo.get(Surfaces::ClimbingGloves)));
+	insert(Sprites::StickyBomb, Sprite(repo.get(Surfaces::StickyBomb)));
+	insert(Sprites::StormInABottle, Sprite(repo.get(Surfaces::StormInABottle)));
+	insert(Sprites::WindCharge, Sprite(repo.get(Surfaces::WindCharge)));
+	insert(Sprites::ShipInABottle, Sprite(repo.get(Surfaces::ShipInABottle)));
+	insert(Sprites::LightningGem, Sprite(repo.get(Surfaces::LightningGem)));
+	insert(Sprites::SlipperyOrb, Sprite(repo.get(Surfaces::SlipperyOrb)));
+	insert(Sprites::IceScates, Sprite(repo.get(Surfaces::IceScates)));
+	insert(Sprites::MuddyBlob, Sprite(repo.get(Surfaces::MuddyBlob)));
+	insert(Sprites::ObsidianGem, Sprite(repo.get(Surfaces::ObsidianGem)));
+	insert(Sprites::ClayBall, Sprite(repo.get(Surfaces::ClayBall)));
+	insert(Sprites::MagmaBall, Sprite(repo.get(Surfaces::MagmaBall)));
+	insert(Sprites::FireCharge, Sprite(repo.get(Surfaces::FireCharge)));
 
 	//cauldron
 	insertSheet(SpriteSheets::EmptyBurningCauldron, SpriteSheet(repo.get(Surfaces::EmptyBurningCauldron), 1, 8));

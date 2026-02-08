@@ -4,8 +4,6 @@
 #include "surface.h"
 
 enum class Surfaces {
-	WaterBottle,
-
 	PlayerIdleLeft,
 	PlayerIdleRight,
 	PlayerWalkLeft,
@@ -47,6 +45,28 @@ enum class Surfaces {
 	WindGem,
 	EarthGem,
 	FireGem,
+
+	SlipperyOrb,
+	SlimeTape,
+	RainBoots,
+	GliderWings,
+	StoneWheel,
+	RocketBooster,
+	StickyOrb,
+	BurnCream,
+	GrapplingHook,
+	ClimbingGloves,
+	StickyBomb,
+	StormInABottle,
+	WindCharge,
+	ShipInABottle,
+	LightningGem,
+	IceScates,
+	MuddyBlob,
+	ObsidianGem,
+	ClayBall,
+	MagmaBall,
+	FireCharge,
 
 	EmptyCauldron,
 	EmptyBurningCauldron,

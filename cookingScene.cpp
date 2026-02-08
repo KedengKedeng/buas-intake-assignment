@@ -82,8 +82,10 @@ void CookingScene::subscribe() {
 
 		interactionCheck(object);
 
-		if (trackSpoonMovement && collides != vec2(0.0f)) 
-			cauldron_->stir(std::abs(collides.x));
+		if (trackSpoonMovement && collides != vec2(0.0f)) {
+			auto output = cauldron_->stir(std::abs(collides.x));
+			if (output != nullptr) inventory_->add(output->id);
+		}
 	}));
 
 	// Only subscribe if the blower is being interacted with

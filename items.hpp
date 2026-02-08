@@ -8,5 +8,25 @@ enum class Items {
 	EarthGem,
 	FireGem,
 
-	Test
+	SlipperyOrb,
+	SlimeTape,
+	RainBoots,
+	GliderWings,
+	StoneWheel,
+	RocketBooster,
+	StickyOrb,
+	BurnCream,
+	GrapplingHook,
+	ClimbingGloves,
+	StickyBomb,
+	StormInABottle,
+	WindCharge,
+	ShipInABottle,
+	LightningGem,
+	IceScates,
+	MuddyBlob,
+	ObsidianGem,
+	ClayBall,
+	MagmaBall,
+	FireCharge
 };
