@@ -25,6 +25,9 @@ public:
 
 	void calculateMove();
 
+	vec2<float> getVelocity() { return velocity_; }
+	void setVelocity(vec2<float> velocity) { velocity_ = velocity; }
+
 	void addDelta(vec2<int8_t> delta) { delta_ += delta; }
 	vec2<int8_t> getDelta() const { return delta_; }
 
@@ -36,8 +39,8 @@ public:
 protected:
 	float getTextureWidth() const { return sprites_.getWidth(); }
 	float getTextureHeight() const { return sprites_.getHeight(); }
-	vec2<float> velocity = { 6, 6 };
 private:
+	vec2<float> velocity_ = { 6, 6 };
 	vec2<int8_t> delta_ = { 0, 0 };
 
 	LookingDirections lookingDirection_ = LookingDirections::LEFT;
