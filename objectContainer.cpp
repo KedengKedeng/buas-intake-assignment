@@ -13,7 +13,7 @@ ObjectContainer::ObjectContainer(
 	Clickable(true),
 	justification_(justification), 
 	gap_(gap),
-	drawingSurface(std::make_shared<Tmpl8::Surface>(scrollable ? static_cast<int>(size.x) + 1 : 0, scrollable ? static_cast<int>(size.y) + 1 : 0)),
+	drawingSurface(Tmpl8::Surface(scrollable ? static_cast<int>(size.x) + 1 : 0, scrollable ? static_cast<int>(size.y) + 1 : 0)),
 	scrollable_(scrollable),
 	scrollbar_(0, pos + vec2(size.x, 0.0f), vec2(20.0f, size.y), size, [this](vec2<float> offset) {scrollOffset = offset; })
 { };
@@ -30,18 +30,18 @@ void ObjectContainer::setPos(vec2<float> pos) {
 	spreadObjects();
 }
 
-void ObjectContainer::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void ObjectContainer::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	if (scrollable_) {
 		// use another surface to contain everything within the context
 		// of the container
-		drawingSurface->Clear(0x00);
+		drawingSurface.Clear(0x00);
 
 		auto pos = getPos();
 
 		for (auto& [id, object] : objects_)
-			object->draw(drawingSurface.get(), offset - scrollOffset + 1);
+			object->draw(drawingSurface, offset - scrollOffset + 1);
 
-		drawingSurface->BlendCopyTo(surface, static_cast<int>(floor(pos.x)) - 1, static_cast<int>(floor(pos.y)) - 1);
+		drawingSurface.BlendCopyTo(surface, static_cast<int>(floor(pos.x)) - 1, static_cast<int>(floor(pos.y)) - 1);
 		scrollbar_.draw(surface, offset);
 	}
 	else {

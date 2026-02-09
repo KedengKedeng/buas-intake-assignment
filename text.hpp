@@ -12,7 +12,7 @@ public:
 	int getLineWidth(const std::string& text) const { return 6 * fontSize_ * static_cast<int>(text.size()); }
 	int getHeight() const { return 6 * fontSize_ * static_cast<int>(text_.size()); }
 
-	void draw(Tmpl8::Surface*, vec2<float> pos) const;
+	void draw(Tmpl8::Surface&, vec2<float> pos) const;
 private:
 	std::vector<std::string> text_;
 	int fontSize_;

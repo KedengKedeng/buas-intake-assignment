@@ -32,7 +32,7 @@ void CharacterObject::process(float deltaTime) {
 	calculateMove();
 }
 
-void CharacterObject::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void CharacterObject::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	if (delta_.x || delta_.y) sprites_.setSprite(static_cast<int>(lookingDirection_) + 2); // set to running animations
 	else sprites_.setSprite(static_cast<int>(lookingDirection_)); // set to idle animations
 

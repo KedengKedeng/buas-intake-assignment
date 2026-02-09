@@ -22,7 +22,7 @@ public:
 	void onMouseUp(vec2<float> pos, vec2<float> screenPos) override;
 	void onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<float> delta) override;
 
-	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
+	void draw(Tmpl8::Surface& surface, vec2<float> offset) const override;
 	void process(float deltaTime) override;
 private:
 	std::function<void(InventorySlot*, vec2<float>)> onDragEndHandler_;

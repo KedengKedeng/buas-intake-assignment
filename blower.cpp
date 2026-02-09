@@ -36,7 +36,7 @@ void Blower::onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<float> del
 	addBlowerPosition(delta.y / (100 / getSize().y));
 }
 
-void Blower::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void Blower::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	int frame = static_cast<int>(floor(blowerPosition / 25));
 	auto pos = getPos() + offset;
 	sprites_->getSprite(frame).drawScaled(surface, pos.x, pos.y, 0.4f);

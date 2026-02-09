@@ -31,7 +31,7 @@ WorldCauldron::~WorldCauldron() {
 	onInteractEnd();
 }
 
-void WorldCauldron::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void WorldCauldron::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	int spriteNum = cauldron_->getItemCount() != 0;
 	if (cauldron_->getTemp() > 200) spriteNum += 2;
 	sprites_.setSprite(spriteNum);

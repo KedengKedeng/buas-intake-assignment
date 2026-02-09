@@ -14,11 +14,11 @@ void AnimatedSprite::process(float deltaTime) {
 	if (time_ > duration()) time_ = 0.0f;
 }
 
-void AnimatedSprite::draw(Tmpl8::Surface* surface, float x, float y) {
+void AnimatedSprite::draw(Tmpl8::Surface& surface, float x, float y) {
 	drawScaled(surface, x, y, 1.0f);
 }
 
-void AnimatedSprite::drawScaled(Tmpl8::Surface* surface, float x, float y, float scale) {
+void AnimatedSprite::drawScaled(Tmpl8::Surface& surface, float x, float y, float scale) {
 	setFrame(static_cast<unsigned int>(frameRate_ * time_));
 	const Sprite& currentSprite = sheet_->getSprite(currentFrame_);
 	currentSprite.drawScaled(surface, x, y, scale * scale_);

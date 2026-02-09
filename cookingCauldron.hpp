@@ -10,9 +10,9 @@ class CookingCauldron : public Object, public Interactable, public Collider, pub
 public:
 	CookingCauldron(int64_t id, std::shared_ptr<Cauldron> cauldron);
 
-	void drawBack(Tmpl8::Surface* surface, vec2<float> offset) const;
-	void drawFront(Tmpl8::Surface* surface, vec2<float> offset) const;
-	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override {};
+	void drawBack(Tmpl8::Surface& surface, vec2<float> offset) const;
+	void drawFront(Tmpl8::Surface& surface, vec2<float> offset) const;
+	void draw(Tmpl8::Surface& surface, vec2<float> offset) const override {};
 	void process(float deltaTime) override;
 
 	void subscribe() override;

@@ -8,7 +8,7 @@ class Surface;
 class Game
 {
 public:
-	void SetTarget( Surface* surface ) { surface_ = surface; }
+	void SetTarget( Surface& surface ) { surface_ = surface; }
 	void Init();
 	void Shutdown();
 	void Tick( float deltaTime );
@@ -26,7 +26,7 @@ private:
 	vec2<float> lastMousePos = vec2(0.0f);
 	std::map<Scenes, std::shared_ptr<Scene>> scenes;
 	std::vector<std::shared_ptr<Scene>> currentScenes;
-	Surface* surface_;
+	Surface surface_ = Surface(0, 0);
 	std::queue<std::function<void()>> queue = {};
 };
 

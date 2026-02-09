@@ -23,11 +23,11 @@ void Button::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
 	handler_();
 }
 
-void Button::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void Button::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	auto size = getSize();
-	surface->Bar(pos, pos + size, borderColor_);
-	surface->Bar(
+	surface.Bar(pos, pos + size, borderColor_);
+	surface.Bar(
 		pos + borderWidth_,
 		pos + size - borderWidth_,
 		color_

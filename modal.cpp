@@ -39,10 +39,10 @@ void Modal::onMouseMove(vec2<float> pos, vec2<float> screenPos, vec2<float> delt
 	innerContainer_.onMouseMove(pos, screenPos, delta);
 };
 
-void Modal::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
-	surface->Bar(vec2(0.0f), vec2<float>(surface->GetWidth(), surface->GetHeight()), 0x40000000);
+void Modal::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
+	surface.Bar(vec2(0.0f), vec2<float>(surface.GetWidth(), surface.GetHeight()), 0x40000000);
 	auto pos = getPos();
-	surface->Bar(pos, pos + getSize(), 0xffffffff);
+	surface.Bar(pos, pos + getSize(), 0xffffffff);
 
 	exitButton.draw(surface, offset);
 	innerContainer_.draw(surface, offset);

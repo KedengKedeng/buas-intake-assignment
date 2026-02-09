@@ -16,7 +16,7 @@ public:
 	virtual void setSize(vec2<float> size) { size_ = size; }
 	vec2<float> getSize() const { return size_; }
 
-	virtual void draw(Tmpl8::Surface* surface, vec2<float> offset) const = 0;
+	virtual void draw(Tmpl8::Surface& surface, vec2<float> offset) const = 0;
 	virtual void process(float deltaTime) {};
 private:
 	int64_t id_;

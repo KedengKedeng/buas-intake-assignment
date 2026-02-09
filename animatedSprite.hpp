@@ -6,8 +6,8 @@ public:
 	AnimatedSprite(std::shared_ptr<SpriteSheet> sheet, float frameRate, float scale = 1.0f);
 
 	void process(float deltaTime);
-	void draw(Tmpl8::Surface* surface, float x, float y);
-	void drawScaled(Tmpl8::Surface* surface, float x, float y, float scale);
+	void draw(Tmpl8::Surface& surface, float x, float y);
+	void drawScaled(Tmpl8::Surface& surface, float x, float y, float scale);
 
 	void setFrameRate(float frameRate) { frameRate_ = frameRate; }
 	float getFrameRate() const { return frameRate_; }

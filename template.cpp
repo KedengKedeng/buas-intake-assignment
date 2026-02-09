@@ -258,7 +258,7 @@ int main( int argc, char **argv )
 #endif
 	int exitapp = 0;
 	game = new Game();
-	game->SetTarget( surface );
+	game->SetTarget( *surface );
 	timer t;
 	t.reset();
 	while (!exitapp) 

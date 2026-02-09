@@ -39,9 +39,9 @@ void PlotObject::addAnimal() {
 	plot_->addCreature();
 }
 
-void PlotObject::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void PlotObject::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
-	surface->Box(pos, pos + getSize(), 0xff0000ff);
+	surface.Box(pos, pos + getSize(), 0xff0000ff);
 }
 
 void PlotObject::process(float deltaTime) {
@@ -69,14 +69,14 @@ void PlotObject::subscribe() {
 	}));
 
 	addSubscription(onInteractionStart.subscribe([this]() {
-		drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, vec2<float> offset) {
+		drawOnTop.emit(getId(), [this](Tmpl8::Surface& surface, vec2<float> offset) {
 			if (!availableForPickup) return;
 
 			float spriteScale = 1.5f;
 			vec2 itemSize = vec2<float>(producedItemSprite.getWidth(), producedItemSprite.getHeight()) * spriteScale;
 
 			auto pos = getPos() + (getSize() - itemSize) / 2 + offset;
-			surface->Bar(pos - 10, pos + itemSize + 10, 0xffffffff);
+			surface.Bar(pos - 10, pos + itemSize + 10, 0xffffffff);
 
 			producedItemSprite.drawScaled(surface, pos.x, pos.y, spriteScale);
 		});

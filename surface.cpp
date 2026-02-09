@@ -97,10 +97,10 @@ void Surface::Clear( Pixel a_Color )
 	for ( int i = 0; i < s; i++ ) m_Buffer[i] = a_Color;
 }
 
-void Surface::Resize( Surface* a_Orig )
+void Surface::Resize( const Surface& a_Orig )
 {
-	Pixel* src = a_Orig->GetBuffer(), *dst = m_Buffer;
-	int u, v, owidth = a_Orig->GetWidth(), oheight = a_Orig->GetHeight();
+	Pixel* src = a_Orig.GetBuffer(), *dst = m_Buffer;
+	int u, v, owidth = a_Orig.GetWidth(), oheight = a_Orig.GetHeight();
 	int dx = (owidth << 10) / m_Width, dy = (oheight << 10) / m_Height;
 	for ( v = 0; v < m_Height; v++ )
 	{
@@ -139,18 +139,18 @@ void Surface::Plot( int x, int y, Pixel c )
 	if ((x >= 0) && (y >= 0) && (x < m_Width) && (y < m_Height)) m_Buffer[x + y * m_Pitch] = c;
 }
 
-void Surface::CopyTo( Surface* a_Dst, int a_X, int a_Y )
+void Surface::CopyTo( Surface& a_Dst, int a_X, int a_Y ) const
 {
-	Pixel* dst = a_Dst->GetBuffer();
+	Pixel* dst = a_Dst.GetBuffer();
 	Pixel* src = m_Buffer;
 	if ((src) && (dst)) 
 	{
 		int srcwidth = m_Width;
 		int srcheight = m_Height;
 		int srcpitch = m_Pitch;
-		int dstwidth = a_Dst->GetWidth();
-		int dstheight = a_Dst->GetHeight();
-		int dstpitch = a_Dst->GetPitch();
+		int dstwidth = a_Dst.GetWidth();
+		int dstheight = a_Dst.GetHeight();
+		int dstpitch = a_Dst.GetPitch();
 		if ((srcwidth + a_X) > dstwidth) srcwidth = dstwidth - a_X;
 		if ((srcheight + a_Y) > dstheight) srcheight = dstheight - a_Y;
 		if (a_X < 0) src -= a_X, srcwidth += a_X, a_X =0;
@@ -168,40 +168,37 @@ void Surface::CopyTo( Surface* a_Dst, int a_X, int a_Y )
 	}
 }
 
-void Surface::BlendCopyTo(Surface* a_Dst, int a_X, int a_Y)
+void Surface::BlendCopyTo(Surface& a_Dst, int a_X, int a_Y) const
 {
-	if (!m_Buffer || !a_Dst || !a_Dst->GetBuffer())
+	if (!m_Buffer || !a_Dst.GetBuffer())
 		return;
 
-	Pixel* dst = a_Dst->GetBuffer();
+	Pixel* dst = a_Dst.GetBuffer();
 	Pixel* src = m_Buffer;
 
 	int srcWidth = m_Width;
 	int srcHeight = m_Height;
-	int srcPitch = m_Pitch;        // in pixels
-	int dstWidth = a_Dst->GetWidth();
-	int dstHeight = a_Dst->GetHeight();
-	int dstPitch = a_Dst->GetPitch(); // in pixels
+	int srcPitch = m_Pitch;
+	int dstWidth = a_Dst.GetWidth();
+	int dstHeight = a_Dst.GetHeight();
+	int dstPitch = a_Dst.GetPitch();
 
-	// Clip width and height if overflowing destination
-	if (a_X < 0) { src += -a_X; srcWidth += a_X; a_X = 0; } // reduce width
+	if (a_X < 0) { src += -a_X; srcWidth += a_X; a_X = 0; }
 	if (a_Y < 0) { src += (-a_Y) * srcPitch; srcHeight += a_Y; a_Y = 0; }
 
 	if ((a_X + srcWidth) > dstWidth)  srcWidth = dstWidth - a_X;
 	if ((a_Y + srcHeight) > dstHeight) srcHeight = dstHeight - a_Y;
 
-	// Nothing to copy
 	if (srcWidth <= 0 || srcHeight <= 0)
 		return;
 
-	// Start at destination pixel
 	dst += a_X + a_Y * dstPitch;
 
 	for (int y = 0; y < srcHeight; ++y)
 	{
 		for (int x = 0; x < srcWidth; ++x)
 		{
-			dst[x] = blendAlpha(src[x], dst[x]); // Use corrected alpha blending
+			dst[x] = blendAlpha(src[x], dst[x]);
 		}
 		src += srcPitch;
 		dst += dstPitch;
@@ -217,109 +214,6 @@ void Surface::ScaleColor( unsigned int a_Scale )
 		unsigned int rb = (((c & (RedMask|BlueMask)) * a_Scale) >> 5) & (RedMask|BlueMask);
 		unsigned int g = (((c & GreenMask) * a_Scale) >> 5) & GreenMask;
 		m_Buffer[i] = rb + g;
-	}
-}
-
-Font::Font( char* a_File, char* a_Chars )
-{
-	m_Surface = new Surface( a_File );
-	Pixel* b = m_Surface->GetBuffer();
-	int w = m_Surface->GetWidth();
-	int h = m_Surface->GetHeight();
-	unsigned int charnr = 0, start = 0;
-	m_Trans = new int[256];
-	memset( m_Trans, 0, 1024 );
-	unsigned int i;
-	for ( i = 0; i < strlen( a_Chars ); i++ ) m_Trans[(unsigned char)a_Chars[i]] = i;
-	m_Offset = new int[strlen( a_Chars )];
-	m_Width = new int[strlen( a_Chars )];
-	m_Height = h;
-	m_CY1 = 0, m_CY2 = 1024;
-	int x, y;
-	bool lastempty = true;
-	for ( x = 0; x < w; x++ )
-	{
-		bool empty = true;
-		for ( y = 0; y < h; y++ ) if (*(b + x + y * w) & 0xffffff) 
-		{
-			if (lastempty) start = x;
-			empty = false;
-		}
-		if ((empty) && (!lastempty))
-		{
-			m_Width[charnr] = x - start;
-			m_Offset[charnr] = start;
-			if (++charnr == strlen( a_Chars )) break;
-		}
-		lastempty = empty;
-	}
-}
-
-Font::~Font()
-{
-	delete m_Surface;
-	delete m_Trans;
-	delete m_Width;
-	delete m_Offset;
-}
-
-int Font::Width( char* a_Text )
-{
-	int w = 0;
-	unsigned int i;
-	for ( i = 0; i < strlen( a_Text ); i++ )
-	{
-		unsigned char c = (unsigned char)a_Text[i];
-		if (c == 32) w += 4; 
-		else w += m_Width[m_Trans[c]] + 2;
-	}
-	return w;
-}
-
-void Font::Centre( Surface* a_Target, char* a_Text, int a_Y )
-{
-	int x = (a_Target->GetPitch() - Width( a_Text )) / 2;
-	Print( a_Target, a_Text, x, a_Y );
-}
- 
-void Font::Print( Surface* a_Target, char* a_Text, int a_X, int a_Y, bool clip )
-{
-	Pixel* b = a_Target->GetBuffer() + a_X + a_Y * a_Target->GetPitch();
-	Pixel* s = m_Surface->GetBuffer();
-	unsigned int i, cx;
-	int x, y;
-	if (((a_Y + m_Height) < m_CY1) || (a_Y > m_CY2)) return;
-	for ( cx = 0, i = 0; i < strlen( a_Text ); i++ )
-	{
-		if (a_Text[i] == ' ') cx += 4; else
-		{
-			int c = m_Trans[(unsigned char)a_Text[i]];
-			Pixel* t = s + m_Offset[c], *d = b + cx;
-			if (clip)
-			{
-				for ( y = 0; y < m_Height; y++ )
-				{
-					if (((a_Y + y) >= m_CY1) && ((a_Y + y) <= m_CY2))
-					{
-						for ( x = 0; x < m_Width[c]; x++ ) 
-							if ((t[x]) && ((x + (int)cx + a_X) < a_Target->GetPitch())) 
-								d[x] = AddBlend( t[x], d[x] );
-					}
-					t += m_Surface->GetPitch(), d += a_Target->GetPitch();
-				}
-			}
-			else
-			{
-				for ( y = 0; y < m_Height; y++ )
-				{
-					if (((a_Y + y) >= m_CY1) && ((a_Y + y) <= m_CY2))
-						for ( x = 0; x < m_Width[c]; x++ ) if (t[x]) d[x] = AddBlend( t[x], d[x] );
-					t += m_Surface->GetPitch(), d += a_Target->GetPitch();
-				}
-			}
-			cx += m_Width[c] + 2;
-			if ((int)(cx + a_X) >= a_Target->GetPitch()) break;
-		}
 	}
 }
 

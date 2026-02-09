@@ -25,9 +25,9 @@ public:
 	Sprite(std::shared_ptr<Tmpl8::Surface> a_Surface, float scale = 1.0f);
 	Sprite(const Sprite& other, float scale);
 
-	void draw(Tmpl8::Surface* surface, float x, float y) const;
-	void drawScaled(Tmpl8::Surface* surface, float x, float y, float scale) const;
-	void drawScaled(Tmpl8::Surface* target, float x, float y, float width, float height) const;
+	void draw(Tmpl8::Surface& surface, float x, float y) const;
+	void drawScaled(Tmpl8::Surface& surface, float x, float y, float scale) const;
+	void drawScaled(Tmpl8::Surface& target, float x, float y, float width, float height) const;
 
 	void setFlags(unsigned int flags) { flags_ = flags; }
 	unsigned int getFlags() const { return flags_; }

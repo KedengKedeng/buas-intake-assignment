@@ -9,5 +9,5 @@ public:
 		Collider(vec2(0.0f), size) 
 	{};
 
-	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
+	void draw(Tmpl8::Surface& surface, vec2<float> offset) const override;
 };

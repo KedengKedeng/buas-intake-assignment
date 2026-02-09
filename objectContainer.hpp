@@ -29,7 +29,7 @@ public:
 	// containers also need to update the positions of their children
 	void setPos(vec2<float> pos) override;
 
-	virtual void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
+	virtual void draw(Tmpl8::Surface& surface, vec2<float> offset) const override;
 	virtual void process(float deltaTime) override;
 
 	virtual void insertObject(std::shared_ptr<Object> object);
@@ -57,7 +57,7 @@ private:
 	vec2<float> gap_;
 	bool scrollable_;
 
-	std::shared_ptr<Tmpl8::Surface> drawingSurface;
+	mutable Tmpl8::Surface drawingSurface;
 	Scrollbar scrollbar_;
 	vec2<float> scrollOffset = vec2(0.0f);
 };

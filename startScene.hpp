@@ -3,5 +3,5 @@
 
 class StartScene : public Scene {
 public:
-	StartScene(Tmpl8::Surface* surface);
+	StartScene(Tmpl8::Surface& surface);
 };

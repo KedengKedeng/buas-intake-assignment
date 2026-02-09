@@ -91,7 +91,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		surface_->Clear(0xFF6495ED);
+		surface_.Clear(0xFF6495ED);
 
 		currentScenes[currentScenes.size() - 1]->process(deltaTime);
 

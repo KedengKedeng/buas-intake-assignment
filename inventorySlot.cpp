@@ -26,7 +26,7 @@ void InventorySlot::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
 	dragPos = screenPos;
 	dragging = true;
 
-	drawOnTop.emit(getId(), [this](Tmpl8::Surface* surface, vec2<float> offset) {
+	drawOnTop.emit(getId(), [this](Tmpl8::Surface& surface, vec2<float> offset) {
 		if (item_ == nullptr) return;
 
 		vec2 itemPos = dragPos + offset + (getSize() - vec2(item_->sprite.getWidth(), item_->sprite.getHeight())) / 2;
@@ -48,11 +48,11 @@ void InventorySlot::onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<flo
 	dragPos += delta;
 };
 
-void InventorySlot::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void InventorySlot::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	auto size = getSize();
 
-	surface->Box(pos, pos + size, 0xff000000);
+	surface.Box(pos, pos + size, 0xff000000);
 
 	if (item_ != nullptr && !dragging) {
 		vec2 itemPos = pos + (size - vec2(item_->sprite.getWidth(), item_->sprite.getHeight())) / 2;

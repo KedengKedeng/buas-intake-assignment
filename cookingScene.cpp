@@ -8,7 +8,7 @@
 #include "sceneCommands.hpp"
 #include "cookingCauldron.hpp"
 
-CookingScene::CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory) : 
+CookingScene::CookingScene(Tmpl8::Surface& surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory) : 
 	Scene(surface),
 	inventory_(inventory),
 	cauldron_(cauldron)
@@ -21,8 +21,8 @@ CookingScene::CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> ca
 		return std::make_unique<Command>();
 	});
 
-	int surfaceWidth = surface->GetWidth();
-	int surfaceHeight = surface->GetHeight();
+	int surfaceWidth = surface.GetWidth();
+	int surfaceHeight = surface.GetHeight();
 
 	std::shared_ptr<CookingCauldron> cookingCauldron = std::make_shared<CookingCauldron>(getRandomNum(), cauldron);
 
@@ -42,7 +42,7 @@ CookingScene::CookingScene(Tmpl8::Surface* surface, std::shared_ptr<Cauldron> ca
 	insertObject(cookingCauldron);
 }
 
-void CookingScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void CookingScene::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto cauldron = getObject<CookingCauldron>(cauldronId);
 	cauldron->drawBack(surface, offset);
 

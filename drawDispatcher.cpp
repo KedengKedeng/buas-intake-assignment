@@ -2,7 +2,7 @@
 #include "uiSignals.hpp"
 
 void DrawDispatcher::subscribe() {
-	addSubscription(drawOnTop.subscribe([this](int64_t id, std::function<void(Tmpl8::Surface*, vec2<float>)> drawFunc) {
+	addSubscription(drawOnTop.subscribe([this](int64_t id, std::function<void(Tmpl8::Surface&, vec2<float>)> drawFunc) {
 		toDraw[id] = drawFunc;
 	}));
 
@@ -11,6 +11,6 @@ void DrawDispatcher::subscribe() {
 	}));
 }
 
-void DrawDispatcher::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void DrawDispatcher::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	for (auto& [_, func] : toDraw) func(surface, offset);
 }

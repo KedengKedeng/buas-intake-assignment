@@ -27,13 +27,13 @@ void Scrollbar::onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<float> 
 	onDrag_(vec2(0.0f, (thumbPos_ - objectPos.y) / objectSize.y * parentSize_.y));
 }
 
-void Scrollbar::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void Scrollbar::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	auto size = getSize();
-	surface->Bar(pos, pos + size, 0xffb6b8ae);
+	surface.Bar(pos, pos + size, 0xffb6b8ae);
 
 	vec2 thumbPos = vec2(pos.x, thumbPos_ + offset.y);
-	surface->Bar(thumbPos, thumbPos + vec2(size.x, thumbSize_), 0xff000000);
+	surface.Bar(thumbPos, thumbPos + vec2(size.x, thumbSize_), 0xff000000);
 }
 
 float Scrollbar::getThumbSize() const {

@@ -32,7 +32,7 @@ public:
 	LookingDirections getLookingDirection() const { return lookingDirection_; }
 
 	void process(float deltaTime) override;
-	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
+	void draw(Tmpl8::Surface& surface, vec2<float> offset) const override;
 protected:
 	float getTextureWidth() const { return sprites_.getWidth(); }
 	float getTextureHeight() const { return sprites_.getHeight(); }

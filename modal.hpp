@@ -30,7 +30,7 @@ public:
 	virtual void onMouseUp(vec2<float> pos, vec2<float> screenPos) override;
 	virtual void onMouseMove(vec2<float> pos, vec2<float> screenPos, vec2<float> delta) override;
 
-	virtual void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
+	virtual void draw(Tmpl8::Surface& surface, vec2<float> offset) const override;
 	virtual void process(float deltaTime) override;
 
 	virtual void subscribe() override;

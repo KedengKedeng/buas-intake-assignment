@@ -18,14 +18,14 @@ AnimalShopItem::AnimalShopItem(
 	husbandry_(husbandry)
 {}
 
-void AnimalShopItem::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void AnimalShopItem::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	int padding = 20;
 	auto pos = getPos() + offset;
 	auto size = getSize();
-	surface->Bar(pos, pos + size, 0xffffffff);
-	surface->Box(pos, pos + size, 0xff000000);
+	surface.Bar(pos, pos + size, 0xffffffff);
+	surface.Box(pos, pos + size, 0xff000000);
 
-	surface->Bar(pos + 10, pos + vec2(size.y - 10), 0xff000000);
+	surface.Bar(pos + 10, pos + vec2(size.y - 10), 0xff000000);
 	vec2<float> spriteSize(animalSprite_.getWidth() * 0.75f, animalSprite_.getHeight() * 0.75f);
 	auto spritePos = pos + (vec2(size.y) - spriteSize) / 2;
 	animalSprite_.drawScaled(surface, spritePos.x, spritePos.y, 0.75f);
@@ -37,7 +37,7 @@ void AnimalShopItem::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	priceText_.draw(surface, pos + size - priceTextSize);
 
 	// grey out the item if it cant be bought
-	if (wallet_->getCurrency() < type_->price) surface->Bar(pos, pos + size, 0x50000000);
+	if (wallet_->getCurrency() < type_->price) surface.Bar(pos, pos + size, 0x50000000);
 }
 
 void AnimalShopItem::onMouseDown(vec2<float> pos, vec2<float> screenPos) {

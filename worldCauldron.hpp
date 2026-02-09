@@ -11,7 +11,7 @@ public:
 	WorldCauldron(int64_t id, vec2<float> pos, std::shared_ptr<Cauldron> cauldron);
 	~WorldCauldron();
 
-	void draw(Tmpl8::Surface* surface, vec2<float> offset) const override;
+	void draw(Tmpl8::Surface& surface, vec2<float> offset) const override;
 	void process(float deltaTime) override;
 
 	void subscribe() override;

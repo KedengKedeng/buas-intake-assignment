@@ -24,19 +24,19 @@ Sprite::Sprite(const Sprite& other, float scale):
 	surface_(other.surface_) 
 {}
 
-void Sprite::draw(Tmpl8::Surface* target, float x, float y) const
+void Sprite::draw(Tmpl8::Surface& target, float x, float y) const
 {
 	drawScaled(target, x, y, 1.0f);
 }
 
 // keeps aspect ratio
-void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float scale) const
+void Sprite::drawScaled(Tmpl8::Surface& target, float x, float y, float scale) const
 {
 	drawScaled(target, x, y, getWidth() * scale, getHeight() * scale);
 }
 
 // scales into any size
-void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float width, float height) const
+void Sprite::drawScaled(Tmpl8::Surface& target, float x, float y, float width, float height) const
 {
 	if (width == 0 || height == 0) return;
 
@@ -46,13 +46,13 @@ void Sprite::drawScaled(Tmpl8::Surface* target, float x, float y, float width, f
 	int x2 = static_cast<int>(floor(x + width));
 	int y2 = static_cast<int>(floor(y + height));
 
-	Tmpl8::BoundsCheckResult result = target->checkBounds(x1, y1, x2, y2, target->GetWidth(), target->GetHeight());
+	Tmpl8::BoundsCheckResult result = target.checkBounds(x1, y1, x2, y2, target.GetWidth(), target.GetHeight());
 	if (result.dontPrint) return;
 
 	Tmpl8::Pixel* spriteBuffer = getBuffer();
 
-	Tmpl8::Pixel* targetBuffer = target->GetBuffer();
-	int targetPitch = target->GetPitch();
+	Tmpl8::Pixel* targetBuffer = target.GetBuffer();
+	int targetPitch = target.GetPitch();
 
 	for (int ty = result.y; ty < result.y2; ty++)
 	{

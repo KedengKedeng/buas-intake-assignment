@@ -10,7 +10,7 @@ ItemObject::ItemObject(int64_t id, vec2<float> pos, std::shared_ptr<Item> item) 
 	itemSprite(item->sprite)
 {}
 
-void ItemObject::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void ItemObject::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	itemSprite.drawScaled(surface, pos.x, pos.y + drawOffset, 3.0f);
 };

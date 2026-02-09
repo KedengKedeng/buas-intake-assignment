@@ -35,7 +35,7 @@ void Spoon::onMouseDrag(vec2<float> pos, vec2<float> screenPos, vec2<float> delt
 	requestMove.emit(getPos(), delta, *this);
 };
 
-void Spoon::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void Spoon::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	sprite_.draw(surface, pos.x, pos.y);
 }

@@ -22,7 +22,7 @@ public:
 	std::vector<BoundingBox>::iterator end() { return collidingBoxes_.end(); }
 
 	// debug function
-	void drawColliders(Tmpl8::Surface* surface, const vec2<float>& offset);
+	void drawColliders(Tmpl8::Surface& surface, const vec2<float>& offset);
 
 	Signal<> onCollisionStart{};
 	Signal<> onCollisionEnd{};

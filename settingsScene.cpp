@@ -4,13 +4,13 @@
 #include "sceneCommands.hpp"
 #include "modal.hpp"
 
-SettingsScene::SettingsScene(Tmpl8::Surface* surface) : Scene(surface) {
+SettingsScene::SettingsScene(Tmpl8::Surface& surface) : Scene(surface) {
 	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<CloseSceneCommand>(); });
 
 	vec2<float> modalSize(100, 100);
 	auto modal = std::make_shared<Modal>(
 		0,
-		vec2<float>(surface->GetWidth(), surface->GetHeight()) / 2 - modalSize / 2,
+		vec2<float>(surface.GetWidth(), surface.GetHeight()) / 2 - modalSize / 2,
 		modalSize,
 		[]() {closeScene.emit(); },
 		Justification::VERTICAL,
@@ -28,6 +28,6 @@ SettingsScene::SettingsScene(Tmpl8::Surface* surface) : Scene(surface) {
 	insertObject(modal);
 }
 
-void SettingsScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void SettingsScene::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	Scene::draw(surface, offset);
 }

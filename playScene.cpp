@@ -21,7 +21,7 @@ const vec2<float> PLOT_SIZE = { tileSize * 8, tileSize * 8 };
 const vec2<float> PLOT_MARGINS = { tileSize * 3, tileSize * 3 };
 
 PlayScene::PlayScene(
-	Tmpl8::Surface* surface, 
+	Tmpl8::Surface& surface, 
 	std::shared_ptr<Inventory> inventory, 
 	std::shared_ptr<Husbandry> husbandry, 
 	std::shared_ptr<Cauldron> cauldron,
@@ -51,7 +51,7 @@ PlayScene::PlayScene(
 	createWorldBounds(-plotSpace, roomSize + plotSpace);
 
 	// interactable objects
-	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2(surface->GetWidth() / 2.0f, surface->GetHeight() / 2.0f), cauldron));
+	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2<float>(surface.GetWidth(), surface.GetHeight()) / 2.0f, cauldron));
 	insertObject(std::make_shared<CustomerObject>(getRandomNum(), vec2(30.0f), customerTypeRepository().get(CustomerTypes::Penguin), itemRepository().get(Items::SlipperyOrb), wallet_, inventory_));
 
 	std::vector<FloorTiles> tileTypes { FloorTiles::Ground1, FloorTiles::Ground2, FloorTiles::Ground3, FloorTiles::Ground4 };
@@ -81,11 +81,11 @@ void PlayScene::createWorldBounds(vec2<float> pos, vec2<float> size) {
 	insertObject(std::make_shared<Wall>(getRandomNum(), vec2(pos.x + size.x, pos.y), vec2(1.0f, size.y)));
 }
 
-void PlayScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
-	surface->Clear(0x00);
+void PlayScene::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
+	surface.Clear(0x00);
 
 	auto playerSize = player_.getColliderSize();
-	auto drawOffset = player_.getPos() - (vec2(surface->GetWidth(), surface->GetHeight()) - vec2(playerSize.width, playerSize.height)) / 2;
+	auto drawOffset = player_.getPos() - (vec2(surface.GetWidth(), surface.GetHeight()) - vec2(playerSize.width, playerSize.height)) / 2;
 
 	floorTiles_.draw(surface, -drawOffset);
 	Scene::draw(surface, -drawOffset);
@@ -94,7 +94,7 @@ void PlayScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
 	drawDispatcher_.draw(surface, -drawOffset);
 
 	Text walletText(std::format("money: {}", wallet_->getCurrency()), 2, 0xff000000);
-	surface->Bar(vec2(0.0f), vec2<float>(walletText.getWidth(), walletText.getHeight()), 0xffffffff);
+	surface.Bar(vec2(0.0f), vec2<float>(walletText.getWidth(), walletText.getHeight()), 0xffffffff);
 	walletText.draw(surface, vec2(0.0f));
 }
 

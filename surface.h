@@ -77,11 +77,11 @@ public:
 	Surface( const std::string& a_File );
 	~Surface();
 	// member data access
-	Pixel* GetBuffer() { return m_Buffer; }
+	Pixel* GetBuffer() const { return m_Buffer; }
 	void SetBuffer( Pixel* a_Buffer ) { m_Buffer = a_Buffer; }
-	int GetWidth() { return m_Width; }
-	int GetHeight() { return m_Height; }
-	int GetPitch() { return m_Pitch; }
+	int GetWidth() const { return m_Width; }
+	int GetHeight() const { return m_Height; }
+	int GetPitch() const { return m_Pitch; }
 	void SetPitch( int a_Pitch ) { m_Pitch = a_Pitch; }
 
 	// Special operations
@@ -135,8 +135,8 @@ public:
 
 	void Plot( int x, int y, Pixel c );
 	void LoadImage( const char* a_File );
-	void CopyTo( Surface* a_Dst, int a_X, int a_Y );
-	void BlendCopyTo( Surface* a_Dst, int a_X, int a_Y );
+	void CopyTo( Surface& a_Dst, int a_X, int a_Y ) const;
+	void BlendCopyTo( Surface& a_Dst, int a_X, int a_Y ) const;
 	void ScaleColor( unsigned int a_Scale );
 
 	template<Arithmatic T>
@@ -168,7 +168,7 @@ public:
 		}
 	}
 
-	void Resize( Surface* a_Orig );
+	void Resize(const Surface& a_Orig );
 
 	BoundsCheckResult checkBounds(int x1, int y1, int x2, int y2, int targetWidth, int targetHeight);
 private:
@@ -177,22 +177,6 @@ private:
 	int m_Width{0}, m_Height{0};
 	int m_Pitch{0};
 	int m_Flags{0};
-};
-
-class Font
-{
-public:
-	Font();
-	Font( char* a_File, char* a_Chars );
-	~Font();
-	void Print( Surface* a_Target, char* a_Text, int a_X, int a_Y, bool clip = false );
-	void Centre( Surface* a_Target, char* a_Text, int a_Y );
-	int Width( char* a_Text );
-	int Height() { return m_Surface->GetHeight(); }
-	void YClip( int y1, int y2 ) { m_CY1 = y1; m_CY2 = y2; }
-private:
-	Surface* m_Surface;
-	int* m_Offset, *m_Width, *m_Trans, m_Height, m_CY1, m_CY2;
 };
 
 }; // namespace Tmpl8

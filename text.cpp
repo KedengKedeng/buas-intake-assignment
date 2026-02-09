@@ -23,7 +23,7 @@ int Text::getWidth() const {
 	return 6 * fontSize_ * static_cast<int>(maxSize); 
 }
 
-void Text::draw(Tmpl8::Surface* surface, vec2<float> pos) const
+void Text::draw(Tmpl8::Surface& surface, vec2<float> pos) const
 {
 	int width = getWidth();
 	int height = getHeight();
@@ -31,19 +31,19 @@ void Text::draw(Tmpl8::Surface* surface, vec2<float> pos) const
 	int startX = static_cast<int>(floor(pos.x));
 	int startY = static_cast<int>(floor(pos.y));
 
-	auto result = surface->checkBounds(
+	auto result = surface.checkBounds(
 		startX,
 		startY,
 		startX + width,
 		startY + height,
-		surface->GetWidth(),
-		surface->GetHeight()
+		surface.GetWidth(),
+		surface.GetHeight()
 	);
 
 	if (result.dontPrint) return;
 
-	int pitch = surface->GetPitch();
-	Tmpl8::Pixel* buffer = surface->GetBuffer();
+	int pitch = surface.GetPitch();
+	Tmpl8::Pixel* buffer = surface.GetBuffer();
 
 	int penY = startY;
 

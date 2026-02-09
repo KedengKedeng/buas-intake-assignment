@@ -29,7 +29,7 @@ public:
 		}
 	}
 
-	void draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+	void draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 		for (auto& [pos, tile] : tiles_) {
 			Sprite sprite = spriteSheet_->getSprite(static_cast<int>(tile));
 			sprite.drawScaled(surface, pos.x + offset.x, pos.y + offset.y, scale_);

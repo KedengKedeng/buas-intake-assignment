@@ -7,17 +7,17 @@
 #include "itemSignals.hpp"
 #include "boundingBox.hpp"
 
-InventoryScene::InventoryScene(Tmpl8::Surface* surface, std::shared_ptr<Inventory> inventory) 
+InventoryScene::InventoryScene(Tmpl8::Surface& surface, std::shared_ptr<Inventory> inventory) 
 	: Scene(surface), inventory_(inventory) {
 	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<CloseSceneCommand>(); });
 
 	vec2 size( 400.0f, 300.0f );
-	insertObject(std::make_shared<Modal>(0, vec2<float>(surface->GetWidth(), surface->GetHeight()) / 2 - size / 2, size, []() {
+	insertObject(std::make_shared<Modal>(0, vec2<float>(surface.GetWidth(), surface.GetHeight()) / 2 - size / 2, size, []() {
 		closeScene.emit();
 	}, Justification::VERTICAL, vec2(10.0f), true));
 }
 
-void InventoryScene::draw(Tmpl8::Surface* surface, vec2<float> offset) const {
+void InventoryScene::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto modal = getObject<Modal>(0);
 	auto items = inventory_->begin();
 	for (auto containers = modal->begin(); containers != modal->end(); containers++) {
