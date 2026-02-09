@@ -8,8 +8,8 @@
 #include "sceneCommands.hpp"
 #include "cookingCauldron.hpp"
 
-CookingScene::CookingScene(Tmpl8::Surface& surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory) : 
-	Scene(surface),
+CookingScene::CookingScene(int width, int height, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory) : 
+	Scene(width, height),
 	inventory_(inventory),
 	cauldron_(cauldron)
 {
@@ -21,20 +21,17 @@ CookingScene::CookingScene(Tmpl8::Surface& surface, std::shared_ptr<Cauldron> ca
 		return std::make_unique<Command>();
 	});
 
-	int surfaceWidth = surface.GetWidth();
-	int surfaceHeight = surface.GetHeight();
-
 	std::shared_ptr<CookingCauldron> cookingCauldron = std::make_shared<CookingCauldron>(getRandomNum(), cauldron);
 
 	// get a reference of the cauldron for operations on it specifically later
 	cauldronId = cookingCauldron->getId();
 
-	cookingCauldron->setPos(vec2<float>(surfaceWidth / 2 - 100, surfaceHeight) - cookingCauldron->getPos());
+	cookingCauldron->setPos(vec2<float>(width / 2 - 100, height) - cookingCauldron->getPos());
 
 	// scene edge collision walls
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2(0.0f), vec2<float>(1, surfaceHeight)));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(surfaceWidth, 0), vec2<float>(1, surfaceHeight)));
-	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, surfaceHeight), vec2<float>(surfaceWidth, 1)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2(0.0f), vec2<float>(1, height)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(width, 0), vec2<float>(1, height)));
+	insertObject(std::make_shared<InvisibleBarrier>(getRandomNum(), vec2<float>(0, height), vec2<float>(width, 1)));
 
 	// insert main interactable objects
 	insertObject(std::make_shared<Spoon>(0, cookingCauldron->getPos() + vec2(cookingCauldron->getSize().x, -200.0f) / 2));

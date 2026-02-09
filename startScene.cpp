@@ -4,7 +4,7 @@
 #include "sceneCommands.hpp"
 #include "random.hpp"
 
-StartScene::StartScene(Tmpl8::Surface& surface) : Scene(surface) {
+StartScene::StartScene(int width, int height) : Scene(width, height) {
 	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<StackSceneCommand>(Scenes::SettingsMenu); });
 
 	vec2<float> containerSize(70, 75);
@@ -12,7 +12,7 @@ StartScene::StartScene(Tmpl8::Surface& surface) : Scene(surface) {
 
 	auto container = std::make_shared<ObjectContainer>(
 		getRandomNum(),
-		(vec2<float>(surface.GetWidth(), surface.GetHeight()) - containerSize) / 2,
+		(vec2<float>(width, height) - containerSize) / 2,
 		containerSize,
 		Justification::VERTICAL,
 		vec2(0.0f, 10.0f)

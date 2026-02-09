@@ -5,15 +5,15 @@
 #include "creatureTypeRepository.hpp"
 #include "animalShopItem.hpp"
 
-AnimalShopScene::AnimalShopScene(Tmpl8::Surface& surface, std::shared_ptr<Wallet> wallet, std::shared_ptr<Husbandry> husbandry) :
-	Scene(surface),
+AnimalShopScene::AnimalShopScene(int width, int height, std::shared_ptr<Wallet> wallet, std::shared_ptr<Husbandry> husbandry) :
+	Scene(width, height),
 	wallet_(wallet),
 	husbandry_(husbandry)
 {
 	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<CloseSceneCommand>(); });
 
 	vec2 modalSize = vec2(400.0f, 400.0f);
-	vec2 modalPos = (vec2<float>(surface.GetWidth(), surface.GetHeight()) - modalSize) / 2;
+	vec2 modalPos = (vec2<float>(width, height) - modalSize) / 2;
 	std::shared_ptr<Modal> modal = std::make_shared<Modal>(
 		0, 
 		modalPos, 

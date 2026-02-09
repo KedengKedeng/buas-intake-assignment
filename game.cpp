@@ -32,12 +32,14 @@ namespace Tmpl8
 			husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository().get(CreatureTypes(x))));
 
 		// init all scenes
-		scenes[Scenes::TitleMenu] = std::make_shared<StartScene>(surface_);
-		scenes[Scenes::Play] = std::make_shared<PlayScene>(surface_, inventory, husbandry, cauldron, wallet);
-		scenes[Scenes::SettingsMenu] = std::make_shared<SettingsScene>(surface_);
-		scenes[Scenes::Cooking] = std::make_shared<CookingScene>(surface_, cauldron, inventory);
-		scenes[Scenes::Inventory] = std::make_shared<InventoryScene>(surface_, inventory);
-		scenes[Scenes::AnimalShop] = std::make_shared<AnimalShopScene>(surface_, wallet, husbandry);
+		int width = surface_.GetWidth();
+		int height = surface_.GetHeight();
+		scenes[Scenes::TitleMenu] = std::make_shared<StartScene>(width, height);
+		scenes[Scenes::Play] = std::make_shared<PlayScene>(width, height, inventory, husbandry, cauldron, wallet);
+		scenes[Scenes::SettingsMenu] = std::make_shared<SettingsScene>(width, height);
+		scenes[Scenes::Cooking] = std::make_shared<CookingScene>(width, height, cauldron, inventory);
+		scenes[Scenes::Inventory] = std::make_shared<InventoryScene>(width, height, inventory);
+		scenes[Scenes::AnimalShop] = std::make_shared<AnimalShopScene>(width, height, wallet, husbandry);
 
 		// set title menu as start scene
 		currentScenes.push_back(scenes[Scenes::TitleMenu]);

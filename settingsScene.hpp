@@ -3,7 +3,7 @@
 
 class SettingsScene : public Scene {
 public:
-	SettingsScene(Tmpl8::Surface& surface);
+	SettingsScene(int width, int height);
 
 	void draw(Tmpl8::Surface& surface, vec2<float> offset) const override;
 };

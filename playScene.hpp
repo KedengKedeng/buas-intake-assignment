@@ -16,7 +16,14 @@ enum class FloorTiles {
 
 class PlayScene : public Scene {
 public:
-	PlayScene(Tmpl8::Surface& surface, std::shared_ptr<Inventory> inventory, std::shared_ptr<Husbandry> husbandry, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Wallet> wallet);
+	PlayScene(
+		int width, 
+		int height, 
+		std::shared_ptr<Inventory> inventory, 
+		std::shared_ptr<Husbandry> husbandry, 
+		std::shared_ptr<Cauldron> cauldron, 
+		std::shared_ptr<Wallet> wallet
+	);
 
 	void createPlotObjects(std::shared_ptr<Husbandry> husbandry, vec2<float> pos);
 	void createWorldBounds(vec2<float> pos, vec2<float> size);

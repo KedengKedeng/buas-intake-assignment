@@ -5,7 +5,7 @@
 
 class CookingScene : public Scene {
 public:
-	CookingScene(Tmpl8::Surface& surface, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory);
+	CookingScene(int width, int height, std::shared_ptr<Cauldron> cauldron, std::shared_ptr<Inventory> inventory);
 
 	void draw(Tmpl8::Surface& surface, vec2<float> offset) const override;
 

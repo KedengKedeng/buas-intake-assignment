@@ -21,13 +21,14 @@ const vec2<float> PLOT_SIZE = { tileSize * 8, tileSize * 8 };
 const vec2<float> PLOT_MARGINS = { tileSize * 3, tileSize * 3 };
 
 PlayScene::PlayScene(
-	Tmpl8::Surface& surface, 
-	std::shared_ptr<Inventory> inventory, 
-	std::shared_ptr<Husbandry> husbandry, 
+	int width,
+	int height,
+	std::shared_ptr<Inventory> inventory,
+	std::shared_ptr<Husbandry> husbandry,
 	std::shared_ptr<Cauldron> cauldron,
 	std::shared_ptr<Wallet> wallet
-) :
-	Scene(surface), 
+)  :
+	Scene(width, height), 
 	player_(0, vec2(100.0f)), 
 	inventory_(inventory), 
 	husbandry_(husbandry),
@@ -51,7 +52,7 @@ PlayScene::PlayScene(
 	createWorldBounds(-plotSpace, roomSize + plotSpace);
 
 	// interactable objects
-	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2<float>(surface.GetWidth(), surface.GetHeight()) / 2.0f, cauldron));
+	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2<float>(width, height) / 2.0f, cauldron));
 	insertObject(std::make_shared<CustomerObject>(getRandomNum(), vec2(30.0f), customerTypeRepository().get(CustomerTypes::Penguin), itemRepository().get(Items::SlipperyOrb), wallet_, inventory_));
 
 	std::vector<FloorTiles> tileTypes { FloorTiles::Ground1, FloorTiles::Ground2, FloorTiles::Ground3, FloorTiles::Ground4 };
