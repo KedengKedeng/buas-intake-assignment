@@ -94,7 +94,7 @@ void PlayScene::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 
 	drawDispatcher_.draw(surface, -drawOffset);
 
-	Text walletText(std::format("money: {}", wallet_->getCurrency()), 2, 0xff000000);
+	Text walletText(std::format("dabloons: {}", wallet_->getCurrency()), 2, 0xff000000);
 	surface.Bar(vec2(0.0f), vec2<float>(walletText.getWidth(), walletText.getHeight()), 0xffffffff);
 	walletText.draw(surface, vec2(0.0f));
 }
