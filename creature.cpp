@@ -14,7 +14,7 @@ Creature::Creature(int64_t id, vec2<float> pos, std::shared_ptr<CreatureType> cr
 	), 
 	creatureType_(creatureType) 
 {
-	setVelocity(vec2(3.0f));
+	setVelocity(vec2(60.0f));
 }
 
 void Creature::process(float deltaTime) {

@@ -17,19 +17,19 @@ CharacterObject::CharacterObject(
 	sprites_(std::vector<AnimatedSprite>({idleLeft, idleRight, walkLeft, walkRight}))
 {}
 
-void CharacterObject::calculateMove() {
+void CharacterObject::calculateMove(float deltaTime) {
 	// Make movement in each direction a lower speed
 	// when diagonal movement is detected.
 	float sidewardsPenalty = std::sqrt(static_cast<float>(std::max(std::abs(delta_.x) + std::abs(delta_.y), 1)));
 
-	vec2<float> calculatedVelocity = velocity_ / sidewardsPenalty * delta_;
+	vec2<float> calculatedVelocity = (velocity_ / deltaTime)  / sidewardsPenalty * delta_;
 
 	requestMove.emit(getPos(), calculatedVelocity, *this);
 }
 
 void CharacterObject::process(float deltaTime) {
 	sprites_.process(deltaTime);
-	calculateMove();
+	calculateMove(deltaTime);
 }
 
 void CharacterObject::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
