@@ -44,6 +44,7 @@ void PlotObject::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
 	auto size = getSize();
 	surface.Box(pos, pos + size, 0xff0000ff);
+	//drawColliders(surface, pos);
 
 	float signScale = 3.0f;
 	vec2 signSize = vec2(signSprite_.getWidth(), signSprite_.getHeight()) * signScale;

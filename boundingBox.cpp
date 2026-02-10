@@ -62,13 +62,14 @@ SweptAxisResult BoundingBox::getSweptTimings(float firstPos, float secondPos, fl
     }
     else {
         // do slightly different swept checks based on if the collision is forwards or backwards.
+        // if the +1 is not added the 2 bounding boxes will go to the same position.
         if (velocity > 0.0f) {
-            difference.x = secondPos - (firstPos + firstSize);
-            difference.y = (secondPos + secondSize) - firstPos;
+            difference.x = secondPos - (firstPos + firstSize + 1);
+            difference.y = (secondPos + secondSize) - firstPos + 1;
         }
         else {
-            difference.x = (secondPos + secondSize) - firstPos;
-            difference.y = secondPos - (firstPos + firstSize);
+            difference.x = (secondPos + secondSize) - firstPos + 1;
+            difference.y = secondPos - (firstPos + firstSize + 1);
         }
         timings = difference / velocity;
     }

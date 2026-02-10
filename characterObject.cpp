@@ -38,4 +38,5 @@ void CharacterObject::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 
 	auto pos = getPos() + offset;
 	sprites_.draw(surface, pos.x, pos.y);
+	//drawColliders(surface, pos);
 }
