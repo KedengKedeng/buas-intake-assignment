@@ -4,7 +4,7 @@
 template<typename T>
 class CountingStorage {
 public:
-	void CountingStorage::add(const T& name) {
+	void insert(const T& name) {
 		count[name]++;
 	}
 

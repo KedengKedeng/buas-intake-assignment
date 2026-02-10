@@ -207,6 +207,8 @@
       </BrowseInformation>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ConformanceMode>false</ConformanceMode>
     </ClCompile>
     <Link>
       <AdditionalDependencies>winmm.lib;advapi32.lib;user32.lib;sdl2.lib;sdl2main.lib;opengl32.lib;freeimage.lib</AdditionalDependencies>
@@ -242,6 +244,7 @@
     <ClCompile Include="customerTypeRepository.cpp" />
     <ClCompile Include="inventoryScene.cpp" />
     <ClCompile Include="inventorySlot.cpp" />
+    <ClCompile Include="itemLog.cpp" />
     <ClCompile Include="modal.cpp" />
     <ClCompile Include="plot.cpp" />
     <ClCompile Include="plotObject.cpp" />
@@ -308,6 +311,7 @@
     <ClInclude Include="interactable.hpp" />
     <ClInclude Include="inventory.hpp" />
     <ClInclude Include="inventorySlot.hpp" />
+    <ClInclude Include="itemLog.hpp" />
     <ClInclude Include="items.hpp" />
     <ClInclude Include="numbers.hpp" />
     <ClInclude Include="plot.hpp" />

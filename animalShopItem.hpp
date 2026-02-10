@@ -5,6 +5,7 @@
 #include "text.hpp"
 #include "wallet.hpp"
 #include "husbandry.hpp"
+#include "itemLog.hpp"
 
 class AnimalShopItem : public Object, public Clickable {
 public:
@@ -14,7 +15,8 @@ public:
 		vec2<float> size, 
 		std::shared_ptr<CreatureType> type, 
 		std::shared_ptr<Wallet> wallet, 
-		std::shared_ptr<Husbandry> husbandry
+		std::shared_ptr<Husbandry> husbandry,
+		std::shared_ptr<ItemLog> itemLog
 	);
 
 	void onMouseDown(vec2<float> pos, vec2<float> screenPos) override;
@@ -29,4 +31,5 @@ private:
 
 	std::shared_ptr<Wallet> wallet_;
 	std::shared_ptr<Husbandry> husbandry_;
+	std::shared_ptr<ItemLog> itemLog_;
 };

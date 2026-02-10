@@ -55,7 +55,7 @@ void PlotObject::subscribe() {
 		if (isInteracting) {
 			if (availableForPickup) {
 				Items itemId = plot_->getType()->producedItem->id;
-				for (int x = 0; x < availableForPickup; x++) inventory_->add(itemId);
+				for (int x = 0; x < availableForPickup; x++) inventory_->insert(itemId);
 				availableForPickup = 0;
 				return;
 			}

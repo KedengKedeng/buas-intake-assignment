@@ -13,6 +13,7 @@
 #include "cauldron.hpp"
 #include "wallet.hpp"
 #include "creatureTypeRepository.hpp"
+#include "itemLog.hpp"
 
 namespace Tmpl8
 {
@@ -27,6 +28,9 @@ namespace Tmpl8
 		std::shared_ptr<Husbandry> husbandry = std::make_shared<Husbandry>();
 		std::shared_ptr<Cauldron> cauldron = std::make_shared<Cauldron>();
 		std::shared_ptr<Wallet> wallet = std::make_shared<Wallet>();
+		std::shared_ptr<ItemLog> itemLog = std::make_shared<ItemLog>();
+		// if we dont log this at the start customers cant ask for any items at all
+		itemLog->logItem(Items::BlueSlime);
 
 		for (int x = static_cast<int>(CreatureTypes::FIRST); x != static_cast<int>(CreatureTypes::LAST); x++)
 			husbandry->addPlot(std::make_shared<Plot>(creatureTypeRepository().get(CreatureTypes(x))));
@@ -35,11 +39,11 @@ namespace Tmpl8
 		int width = surface_.GetWidth();
 		int height = surface_.GetHeight();
 		scenes[Scenes::TitleMenu] = std::make_shared<StartScene>(width, height);
-		scenes[Scenes::Play] = std::make_shared<PlayScene>(width, height, inventory, husbandry, cauldron, wallet);
+		scenes[Scenes::Play] = std::make_shared<PlayScene>(width, height, inventory, husbandry, cauldron, wallet, itemLog);
 		scenes[Scenes::SettingsMenu] = std::make_shared<SettingsScene>(width, height);
 		scenes[Scenes::Cooking] = std::make_shared<CookingScene>(width, height, cauldron, inventory);
 		scenes[Scenes::Inventory] = std::make_shared<InventoryScene>(width, height, inventory);
-		scenes[Scenes::AnimalShop] = std::make_shared<AnimalShopScene>(width, height, wallet, husbandry);
+		scenes[Scenes::AnimalShop] = std::make_shared<AnimalShopScene>(width, height, wallet, husbandry, itemLog);
 
 		// set title menu as start scene
 		currentScenes.push_back(scenes[Scenes::TitleMenu]);

@@ -26,7 +26,8 @@ PlayScene::PlayScene(
 	std::shared_ptr<Inventory> inventory,
 	std::shared_ptr<Husbandry> husbandry,
 	std::shared_ptr<Cauldron> cauldron,
-	std::shared_ptr<Wallet> wallet
+	std::shared_ptr<Wallet> wallet,
+	std::shared_ptr<ItemLog> itemLog
 )  :
 	Scene(width, height), 
 	player_(0, vec2(100.0f)), 
@@ -53,7 +54,7 @@ PlayScene::PlayScene(
 
 	// interactable objects
 	insertObject(std::make_shared<WorldCauldron>(getRandomNum(), vec2<float>(width, height) / 2.0f, cauldron));
-	insertObject(std::make_shared<CustomerObject>(getRandomNum(), vec2(30.0f), customerTypeRepository().get(CustomerTypes::Penguin), itemRepository().get(Items::SlipperyOrb), wallet_, inventory_));
+	insertObject(std::make_shared<CustomerObject>(getRandomNum(), vec2(30.0f), customerTypeRepository().get(CustomerTypes::Penguin), wallet_, inventory_, itemLog));
 
 	std::vector<FloorTiles> tileTypes { FloorTiles::Ground1, FloorTiles::Ground2, FloorTiles::Ground3, FloorTiles::Ground4 };
 	floorTiles_.setSquare(Rect2<int>(-plotSpace.x, -plotSpace.y, roomSize.x + plotSpace.x, roomSize.y + plotSpace.y) / tileSize, tileTypes);
@@ -111,7 +112,7 @@ void PlayScene::subscribe() {
 	player_.subscribe();
 
 	addSubscription(itemPickedUp.subscribe([this](std::shared_ptr<Item> item) {
-		inventory_->add(item->id);
+		inventory_->insert(item->id);
 	}));
 
 	addSubscription(itemDroppedFromInventory.subscribe([this](std::shared_ptr<Item> item) {

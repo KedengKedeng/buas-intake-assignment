@@ -5,10 +5,17 @@
 #include "creatureTypeRepository.hpp"
 #include "animalShopItem.hpp"
 
-AnimalShopScene::AnimalShopScene(int width, int height, std::shared_ptr<Wallet> wallet, std::shared_ptr<Husbandry> husbandry) :
+AnimalShopScene::AnimalShopScene(
+	int width, 
+	int height, 
+	std::shared_ptr<Wallet> wallet, 
+	std::shared_ptr<Husbandry> husbandry,
+	std::shared_ptr<ItemLog> itemLog
+) :
 	Scene(width, height),
 	wallet_(wallet),
-	husbandry_(husbandry)
+	husbandry_(husbandry),
+	itemLog_(itemLog)
 {
 	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<CloseSceneCommand>(); });
 
@@ -33,7 +40,8 @@ AnimalShopScene::AnimalShopScene(int width, int height, std::shared_ptr<Wallet> 
 			vec2(modalSize.x - modal->getPadding().x * 2, 100.0f), 
 			it->second, 
 			wallet_, 
-			husbandry_
+			husbandry_,
+			itemLog_
 		));
 		id++;
 	}

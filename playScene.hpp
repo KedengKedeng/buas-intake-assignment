@@ -6,6 +6,7 @@
 #include "tilemap.hpp"
 #include "cauldron.hpp"
 #include "wallet.hpp"
+#include "itemLog.hpp"
 
 enum class FloorTiles {
 	Ground1,
@@ -22,7 +23,8 @@ public:
 		std::shared_ptr<Inventory> inventory, 
 		std::shared_ptr<Husbandry> husbandry, 
 		std::shared_ptr<Cauldron> cauldron, 
-		std::shared_ptr<Wallet> wallet
+		std::shared_ptr<Wallet> wallet,
+		std::shared_ptr<ItemLog> itemLog
 	);
 
 	void createPlotObjects(std::shared_ptr<Husbandry> husbandry, vec2<float> pos);

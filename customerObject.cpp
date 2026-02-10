@@ -1,14 +1,15 @@
 #include "customerObject.hpp"
 #include "uiSignals.hpp"
 #include "interactionSignal.hpp"
+#include "recipeBook.hpp"
 
 CustomerObject::CustomerObject(
 	int64_t id, 
 	vec2<float> pos, 
 	std::shared_ptr<CustomerType> type, 
-	std::shared_ptr<Item> neededItem, 
 	std::shared_ptr<Wallet> wallet, 
-	std::shared_ptr<Inventory> inventory
+	std::shared_ptr<Inventory> inventory,
+	std::shared_ptr<ItemLog> itemLog
 ) :
 	CharacterObject(
 		id,
@@ -20,11 +21,19 @@ CustomerObject::CustomerObject(
 		type->walkRight,
 		false
 	),
-	itemSprite(neededItem->sprite),
-	neededItem_(neededItem),
+	neededItem_(getRandomItem()),
+	itemSprite(neededItem_->sprite),
 	wallet_(wallet),
-	inventory_(inventory)
+	inventory_(inventory),
+	itemLog_(itemLog)
 {}
+
+std::shared_ptr<Item> CustomerObject::getRandomItem() const {
+	auto item1 = itemRepository().get(itemLog_->getRandomLogged());
+	auto item2 = itemRepository().get(itemLog_->getRandomLogged());
+
+	return recipeBook.lookup({item1, item2});
+}
 
 void CustomerObject::process(float deltaTime) {
 	CharacterObject::process(deltaTime);
@@ -37,6 +46,9 @@ void CustomerObject::subscribe() {
 		if (isInteracting && inventory_->get(neededItem_->id)) {
 			inventory_->remove(neededItem_->id);
 			wallet_->addCurrency(neededItem_->value);
+
+			neededItem_ = getRandomItem();
+			itemSprite = neededItem_->sprite;
 		}
 	}));
 

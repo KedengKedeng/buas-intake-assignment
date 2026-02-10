@@ -7,7 +7,8 @@ AnimalShopItem::AnimalShopItem(
 	vec2<float> size, 
 	std::shared_ptr<CreatureType> type, 
 	std::shared_ptr<Wallet> wallet,
-	std::shared_ptr<Husbandry> husbandry
+	std::shared_ptr<Husbandry> husbandry,
+	std::shared_ptr<ItemLog> itemLog
 ) :
 	Object(id, pos, size),
 	type_(type),
@@ -15,7 +16,8 @@ AnimalShopItem::AnimalShopItem(
 	priceText_(std::format("cost: {}", type->price), 2, 0xff000000),
 	animalSprite_(type->idleRight),
 	wallet_(wallet),
-	husbandry_(husbandry)
+	husbandry_(husbandry),
+	itemLog_(itemLog)
 {}
 
 void AnimalShopItem::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
@@ -44,7 +46,10 @@ void AnimalShopItem::onMouseDown(vec2<float> pos, vec2<float> screenPos) {
 	Clickable::onMouseDown(pos, screenPos);
 
 	bool success = wallet_->requestPayment(type_->price);
-	if (success) husbandry_->add(type_->id);
+	if (success) {
+		husbandry_->insert(type_->id);
+		itemLog_->logItem(type_->producedItem->id);
+	}
 }
 
 void AnimalShopItem::process(float deltaTime) {

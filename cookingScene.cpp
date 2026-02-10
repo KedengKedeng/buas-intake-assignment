@@ -16,7 +16,7 @@ CookingScene::CookingScene(int width, int height, std::shared_ptr<Cauldron> caul
 	keyboardInput_.registerHandler(KeyFunctions::Escape, []() {return std::make_unique<ChangeSceneCommand>(Scenes::Play); });
 	keyboardInput_.registerHandler(KeyFunctions::ResetCauldron, [this]() {
 		auto& items = cauldron_->getItems();
-		for (auto& item : items) inventory_->add(item->id);
+		for (auto& item : items) inventory_->insert(item->id);
 		cauldron_->reset();
 		return std::make_unique<Command>();
 	});
@@ -81,7 +81,7 @@ void CookingScene::subscribe() {
 
 		if (trackSpoonMovement && collides != vec2(0.0f)) {
 			auto output = cauldron_->stir(std::abs(collides.x));
-			if (output != nullptr) inventory_->add(output->id);
+			if (output != nullptr) inventory_->insert(output->id);
 		}
 	}));
 
