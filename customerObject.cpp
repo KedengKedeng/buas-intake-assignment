@@ -32,7 +32,7 @@ std::shared_ptr<Item> CustomerObject::getRandomItem() const {
 	auto item1 = itemRepository().get(itemLog_->getRandomLogged());
 	auto item2 = itemRepository().get(itemLog_->getRandomLogged());
 
-	return recipeBook.lookup({item1, item2});
+	return recipeBook.lookup({item1, item2}).value_or(itemRepository().get(Items::SlipperyOrb));
 }
 
 void CustomerObject::process(float deltaTime) {

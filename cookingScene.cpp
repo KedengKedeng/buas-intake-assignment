@@ -81,7 +81,7 @@ void CookingScene::subscribe() {
 
 		if (trackSpoonMovement && collides != vec2(0.0f)) {
 			auto output = cauldron_->stir(std::abs(collides.x));
-			if (output != nullptr) inventory_->insert(output->id);
+			if (output) inventory_->insert(output.value()->id);
 		}
 	}));
 

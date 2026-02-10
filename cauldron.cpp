@@ -6,18 +6,18 @@ void Cauldron::insertItem(std::shared_ptr<Item> item) {
 	amountToStir += 1000;
 }
 
-std::shared_ptr<Item> Cauldron::stir(float delta) {
-	if (items_.size() == 0 || temp < 200) return nullptr;
+std::optional<std::shared_ptr<Item>> Cauldron::stir(float delta) {
+	if (items_.size() == 0 || temp < 200) return std::nullopt;
 
 	amountToStir -= delta;
 
-	if (amountToStir > 0) return nullptr;
+	if (amountToStir > 0) return std::nullopt;
 
 	auto output = recipeBook.lookup(items_);
 
-	if (output == nullptr) {
+	if (!output) {
 		amountToStir += 1000 * items_.size();
-		return nullptr;
+		return std::nullopt;
 	}
 
 	amountToStir = 0;

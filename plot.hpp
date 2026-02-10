@@ -1,5 +1,6 @@
 #pragma once
-#include "creature.hpp"
+#include "creatureType.hpp"
+#include <optional>
 
 class Plot {
 public:
@@ -11,7 +12,7 @@ public:
 	void addCreature() { amount_++; }
 	int getAmount() const { return amount_; }
 
-	std::shared_ptr<Item> progressProduction(float timePassed);
+	std::optional<std::shared_ptr<Item>> progressProduction(float timePassed);
 private:
 	float productionTimePassed = 0;
 	std::shared_ptr<CreatureType> creatureType_;

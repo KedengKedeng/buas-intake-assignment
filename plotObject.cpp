@@ -45,8 +45,8 @@ void PlotObject::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 }
 
 void PlotObject::process(float deltaTime) {
-	std::shared_ptr<Item> producedItem = plot_->progressProduction(deltaTime / 1000);
-	if (producedItem != nullptr) availableForPickup++;
+	auto producedItem = plot_->progressProduction(deltaTime / 1000);
+	if (producedItem) availableForPickup++;
 	producedItemSprite.process(deltaTime);
 }
 

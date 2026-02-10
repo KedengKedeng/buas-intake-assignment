@@ -1,7 +1,7 @@
 #include "plot.hpp"
 
-std::shared_ptr<Item> Plot::progressProduction(float timePassed) {
-	if (amount_ == 0) return nullptr;
+std::optional<std::shared_ptr<Item>> Plot::progressProduction(float timePassed) {
+	if (amount_ == 0) return std::nullopt;
 
 	productionTimePassed += timePassed;
 	// produce faster with more animals
@@ -11,5 +11,5 @@ std::shared_ptr<Item> Plot::progressProduction(float timePassed) {
 		return creatureType_->producedItem;
 	}
 
-	return nullptr;
+	return std::nullopt;
 }

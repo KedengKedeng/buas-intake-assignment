@@ -1,6 +1,7 @@
 #pragma once
 #include "item.hpp"
 #include <vector>
+#include <optional>
 
 class Cauldron {
 public:
@@ -9,7 +10,7 @@ public:
 	void insertItem(std::shared_ptr<Item> item);
 	size_t getItemCount() const { return items_.size(); }
 
-	std::shared_ptr<Item> stir(float delta);
+	std::optional<std::shared_ptr<Item>> stir(float delta);
 	void addTemp(float delta);
 	float getTemp() const;
 

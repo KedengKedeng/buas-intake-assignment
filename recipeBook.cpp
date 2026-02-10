@@ -5,10 +5,10 @@ void RecipeBook::addRecipe(const std::vector<std::shared_ptr<Item>>& input, std:
 	recipes_[hashedRecipe] = output;
 }
 
-std::shared_ptr<Item> RecipeBook::lookup(const std::vector<std::shared_ptr<Item>>& items) const {
+std::optional<std::shared_ptr<Item>> RecipeBook::lookup(const std::vector<std::shared_ptr<Item>>& items) const {
 	std::string hashed = hashRecipe(items);
 	if (recipes_.count(hashed)) return recipes_.at(hashed);
-	return nullptr;
+	return std::nullopt;
 }
 
 std::string RecipeBook::hashRecipe(const std::vector<std::shared_ptr<Item>>& recipe) const {
