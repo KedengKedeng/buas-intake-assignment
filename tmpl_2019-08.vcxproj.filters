@@ -8,25 +8,13 @@
     <ClCompile Include="template.cpp">
       <Filter>core\template code</Filter>
     </ClCompile>
-    <ClCompile Include="playScreen.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
     <ClCompile Include="keyboardInput.cpp">
       <Filter>core\input\keyboard</Filter>
     </ClCompile>
     <ClCompile Include="boundingBox.cpp">
       <Filter>systems\collision</Filter>
     </ClCompile>
-    <ClCompile Include="mouseInput.cpp">
-      <Filter>core\input\mouse</Filter>
-    </ClCompile>
-    <ClCompile Include="mouseSignals.cpp">
-      <Filter>gameplay\signals</Filter>
-    </ClCompile>
     <ClCompile Include="playerSignals.cpp">
-      <Filter>gameplay\signals</Filter>
-    </ClCompile>
-    <ClCompile Include="screenSignals.cpp">
       <Filter>gameplay\signals</Filter>
     </ClCompile>
     <ClCompile Include="player.cpp">
@@ -56,23 +44,11 @@
     <ClCompile Include="objectSignals.cpp">
       <Filter>gameplay\signals</Filter>
     </ClCompile>
-    <ClCompile Include="screen.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
     <ClCompile Include="random.cpp">
       <Filter>core\util</Filter>
     </ClCompile>
-    <ClCompile Include="settingsScreen.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="keyboardSignals.cpp">
-      <Filter>gameplay\signals</Filter>
-    </ClCompile>
     <ClCompile Include="worldCauldron.cpp">
       <Filter>gameplay\world objects\cauldron</Filter>
-    </ClCompile>
-    <ClCompile Include="cookingScreen.cpp">
-      <Filter>ui\screens</Filter>
     </ClCompile>
     <ClCompile Include="cookingCauldron.cpp">
       <Filter>gameplay\world objects\cauldron</Filter>
@@ -86,17 +62,11 @@
     <ClCompile Include="blower.cpp">
       <Filter>gameplay\world objects</Filter>
     </ClCompile>
-    <ClCompile Include="inventoryScreen.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
     <ClCompile Include="inventorySlot.cpp">
       <Filter>ui\components</Filter>
     </ClCompile>
     <ClCompile Include="creatureTypeRepository.cpp">
       <Filter>gameplay\creaturetypes</Filter>
-    </ClCompile>
-    <ClCompile Include="countingStorage.cpp">
-      <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="surfaceRepository.cpp">
       <Filter>gameplay\sprites</Filter>
@@ -131,9 +101,6 @@
     <ClCompile Include="uiSignals.cpp">
       <Filter>gameplay\signals</Filter>
     </ClCompile>
-    <ClCompile Include="tooltip.cpp">
-      <Filter>ui\components\tooltip</Filter>
-    </ClCompile>
     <ClCompile Include="characterObject.cpp">
       <Filter>gameplay\world objects</Filter>
     </ClCompile>
@@ -142,15 +109,6 @@
     </ClCompile>
     <ClCompile Include="wallet.cpp">
       <Filter>systems\currency</Filter>
-    </ClCompile>
-    <ClCompile Include="animalShopScreen.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="startScreen.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="container.cpp">
-      <Filter>ui\components\containers</Filter>
     </ClCompile>
     <ClCompile Include="modal.cpp">
       <Filter>ui\components\containers</Filter>
@@ -161,23 +119,53 @@
     <ClCompile Include="button.cpp">
       <Filter>ui\components\clickables</Filter>
     </ClCompile>
-    <ClCompile Include="clickable.cpp">
-      <Filter>ui\components\clickables</Filter>
-    </ClCompile>
-    <ClCompile Include="mouseHandler.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
     <ClCompile Include="animalShopItem.cpp">
       <Filter>ui\components\clickables</Filter>
     </ClCompile>
     <ClCompile Include="drawDispatcher.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="textureTooltip.cpp">
-      <Filter>ui\components\tooltip</Filter>
-    </ClCompile>
     <ClCompile Include="plot.cpp">
       <Filter>systems\husbandry</Filter>
+    </ClCompile>
+    <ClCompile Include="animalShopScene.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="cookingScene.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="customerObject.cpp">
+      <Filter>gameplay\world objects</Filter>
+    </ClCompile>
+    <ClCompile Include="customerTypeRepository.cpp">
+      <Filter>gameplay\customertypes</Filter>
+    </ClCompile>
+    <ClCompile Include="inventoryScene.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="playScene.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="settingsScene.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="startScene.cpp">
+      <Filter>ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="objectContainer.cpp">
+      <Filter>ui\components\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="recipeBook.cpp">
+      <Filter>systems\cooking</Filter>
+    </ClCompile>
+    <ClCompile Include="itemLog.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="sceneSignals.cpp">
+      <Filter>gameplay\signals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +176,6 @@
     <ClInclude Include="template.h">
       <Filter>core\template code</Filter>
     </ClInclude>
-    <ClInclude Include="screen.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
     <ClInclude Include="keyboardInput.hpp">
       <Filter>core\input\keyboard</Filter>
     </ClInclude>
@@ -199,9 +184,6 @@
     </ClInclude>
     <ClInclude Include="moveCommand.hpp">
       <Filter>core\input\commands</Filter>
-    </ClInclude>
-    <ClInclude Include="playScreen.hpp">
-      <Filter>ui\screens</Filter>
     </ClInclude>
     <ClInclude Include="playerSignals.hpp">
       <Filter>gameplay\signals</Filter>
@@ -212,26 +194,8 @@
     <ClInclude Include="boundingBox.hpp">
       <Filter>systems\collision</Filter>
     </ClInclude>
-    <ClInclude Include="mouseInput.hpp">
-      <Filter>core\input\mouse</Filter>
-    </ClInclude>
-    <ClInclude Include="mouseSignals.hpp">
-      <Filter>gameplay\signals</Filter>
-    </ClInclude>
-    <ClInclude Include="mousePressedCommand.hpp">
-      <Filter>core\input\commands</Filter>
-    </ClInclude>
-    <ClInclude Include="mouseReleasedCommand.hpp">
-      <Filter>core\input\commands</Filter>
-    </ClInclude>
-    <ClInclude Include="screenSignals.hpp">
-      <Filter>gameplay\signals</Filter>
-    </ClInclude>
     <ClInclude Include="wall.hpp">
       <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="startScreen.hpp">
-      <Filter>ui\screens</Filter>
     </ClInclude>
     <ClInclude Include="item.hpp">
       <Filter>gameplay\items</Filter>
@@ -248,9 +212,6 @@
     <ClInclude Include="itemList.hpp">
       <Filter>gameplay\items</Filter>
     </ClInclude>
-    <ClInclude Include="spriteList.hpp">
-      <Filter>gameplay\sprites</Filter>
-    </ClInclude>
     <ClInclude Include="random.hpp">
       <Filter>core\util</Filter>
     </ClInclude>
@@ -266,20 +227,11 @@
     <ClInclude Include="terminatableSignal.hpp">
       <Filter>gameplay\signals</Filter>
     </ClInclude>
-    <ClInclude Include="settingsScreen.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="keyboardSignals.hpp">
-      <Filter>gameplay\signals</Filter>
-    </ClInclude>
     <ClInclude Include="worldCauldron.hpp">
       <Filter>gameplay\world objects\cauldron</Filter>
     </ClInclude>
     <ClInclude Include="cauldron.hpp">
       <Filter>gameplay\world objects\cauldron</Filter>
-    </ClInclude>
-    <ClInclude Include="cookingScreen.hpp">
-      <Filter>ui\screens</Filter>
     </ClInclude>
     <ClInclude Include="cookingCauldron.hpp">
       <Filter>gameplay\world objects\cauldron</Filter>
@@ -296,15 +248,6 @@
     <ClInclude Include="blower.hpp">
       <Filter>gameplay\world objects</Filter>
     </ClInclude>
-    <ClInclude Include="screens.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="inventoryScreen.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="screenCommands.hpp">
-      <Filter>core\input\commands</Filter>
-    </ClInclude>
     <ClInclude Include="inventory.hpp">
       <Filter>systems</Filter>
     </ClInclude>
@@ -317,9 +260,6 @@
     <ClInclude Include="creatureType.hpp">
       <Filter>gameplay\creaturetypes</Filter>
     </ClInclude>
-    <ClInclude Include="creatureTypeList.hpp">
-      <Filter>gameplay\creaturetypes</Filter>
-    </ClInclude>
     <ClInclude Include="husbandry.hpp">
       <Filter>systems\husbandry</Filter>
     </ClInclude>
@@ -330,9 +270,6 @@
       <Filter>systems</Filter>
     </ClInclude>
     <ClInclude Include="surfaceRepository.hpp">
-      <Filter>gameplay\sprites</Filter>
-    </ClInclude>
-    <ClInclude Include="surfaceList.hpp">
       <Filter>gameplay\sprites</Filter>
     </ClInclude>
     <ClInclude Include="rect2.hpp">
@@ -383,9 +320,6 @@
     <ClInclude Include="uiSignals.hpp">
       <Filter>gameplay\signals</Filter>
     </ClInclude>
-    <ClInclude Include="tooltip.hpp">
-      <Filter>ui\components\tooltip</Filter>
-    </ClInclude>
     <ClInclude Include="characterObject.hpp">
       <Filter>gameplay\world objects</Filter>
     </ClInclude>
@@ -394,12 +328,6 @@
     </ClInclude>
     <ClInclude Include="wallet.hpp">
       <Filter>systems\currency</Filter>
-    </ClInclude>
-    <ClInclude Include="animalShopScreen.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="container.hpp">
-      <Filter>ui\components\containers</Filter>
     </ClInclude>
     <ClInclude Include="modal.hpp">
       <Filter>ui\components\containers</Filter>
@@ -413,17 +341,74 @@
     <ClInclude Include="clickable.hpp">
       <Filter>ui\components\clickables</Filter>
     </ClInclude>
-    <ClInclude Include="mouseHandler.hpp">
-      <Filter>systems</Filter>
-    </ClInclude>
     <ClInclude Include="animalShopItem.hpp">
       <Filter>ui\components\clickables</Filter>
     </ClInclude>
     <ClInclude Include="drawDispatcher.hpp">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="textureTooltip.hpp">
-      <Filter>ui\components\tooltip</Filter>
+    <ClInclude Include="animalShopScene.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="cookingScene.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="creatureTypes.hpp">
+      <Filter>gameplay\creaturetypes</Filter>
+    </ClInclude>
+    <ClInclude Include="customerObject.hpp">
+      <Filter>gameplay\world objects</Filter>
+    </ClInclude>
+    <ClInclude Include="customerType.hpp">
+      <Filter>gameplay\creaturetypes</Filter>
+    </ClInclude>
+    <ClInclude Include="customerTypeRepository.hpp">
+      <Filter>gameplay\customertypes</Filter>
+    </ClInclude>
+    <ClInclude Include="customerTypes.hpp">
+      <Filter>gameplay\customertypes</Filter>
+    </ClInclude>
+    <ClInclude Include="inventoryScene.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="playScene.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="settingsScene.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="startScene.hpp">
+      <Filter>ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="objectContainer.hpp">
+      <Filter>ui\components\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="items.hpp">
+      <Filter>gameplay\items</Filter>
+    </ClInclude>
+    <ClInclude Include="recipeBook.hpp">
+      <Filter>systems\cooking</Filter>
+    </ClInclude>
+    <ClInclude Include="itemLog.hpp">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneSignals.hpp">
+      <Filter>gameplay\signals</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneCommands.hpp">
+      <Filter>core\input\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="sprites.hpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="surfaces.hpp">
+      <Filter>gameplay\sprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -496,9 +481,6 @@
     <Filter Include="gameplay\signals">
       <UniqueIdentifier>{41334dba-d772-49e7-ab29-8518734ccd3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ui\components\tooltip">
-      <UniqueIdentifier>{acb8e0f7-070c-4113-a844-340a4433e1c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="gameplay\world objects">
       <UniqueIdentifier>{87c7c49a-e04e-4594-9e91-442fa62993a1}</UniqueIdentifier>
     </Filter>
@@ -517,12 +499,17 @@
     <Filter Include="ui\components\clickables">
       <UniqueIdentifier>{fb775c4d-7c69-4f8a-a144-7ecce2608786}</UniqueIdentifier>
     </Filter>
+    <Filter Include="gameplay\customertypes">
+      <UniqueIdentifier>{0d13a39c-2b91-4795-ba45-6721cafa5fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="systems\cooking">
+      <UniqueIdentifier>{e0d80745-5cba-4717-b97c-cab2726dc455}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="_readme.txt">
       <Filter>core\template code</Filter>
     </Text>
-    <Text Include="todo.txt" />
     <Text Include="sources.txt" />
   </ItemGroup>
   <ItemGroup>
