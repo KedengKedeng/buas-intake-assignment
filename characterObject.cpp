@@ -22,7 +22,7 @@ void CharacterObject::calculateMove(float deltaTime) {
 	// when diagonal movement is detected.
 	float sidewardsPenalty = std::sqrt(static_cast<float>(std::max(std::abs(delta_.x) + std::abs(delta_.y), 1)));
 
-	vec2<float> calculatedVelocity = (velocity_ / deltaTime)  / sidewardsPenalty * delta_;
+	vec2<float> calculatedVelocity = (velocity_ * deltaTime)  / sidewardsPenalty * delta_;
 
 	requestMove.emit(getPos(), calculatedVelocity, *this);
 }
