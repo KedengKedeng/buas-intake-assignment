@@ -83,5 +83,7 @@ SurfaceRepository::SurfaceRepository() {
 	insert(Surfaces::Spoon, std::make_shared<Tmpl8::Surface>("assets/spoon.png"));
 	insert(Surfaces::Blower, std::make_shared<Tmpl8::Surface>("assets/blower.png"));
 
+	insert(Surfaces::Sign, std::make_shared<Tmpl8::Surface>("assets/sign.png"));
+
 	insert(Surfaces::Floor, std::make_shared<Tmpl8::Surface>("assets/floor.png"));
 }

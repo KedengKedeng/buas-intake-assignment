@@ -30,7 +30,9 @@ enum class Sprites {
 
 	EmptyCauldron,
 	CauldronCloseupFront,
-	CauldronCloseupBack
+	CauldronCloseupBack,
+
+	Sign
 };
 
 enum class SpriteSheets {

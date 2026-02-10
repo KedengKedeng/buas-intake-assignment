@@ -32,6 +32,8 @@ private:
 	std::shared_ptr<Inventory> inventory_;
 	std::shared_ptr<Husbandry> husbandry_;
 
+	Sprite signSprite_;
+
 	AnimatedSprite producedItemSprite;
 	int availableForPickup = 0;
 };

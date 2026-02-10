@@ -14,7 +14,7 @@ constexpr int GreenMask = 0x00ff0000;
 constexpr int BlueMask = 0x0000ff00;
 constexpr int AlphaMask = 0x000000ff;
 
-typedef uint32_t Pixel; // unsigned int is assumed to be 32-bit, which seems a safe assumption.
+typedef uint32_t Pixel;
 
 inline Pixel blendAlpha(Pixel fg, Pixel bg) {
 	uint32_t srcA = (fg >> 24) & 0xFF;

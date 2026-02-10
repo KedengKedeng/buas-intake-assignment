@@ -87,5 +87,6 @@ SpriteRepository::SpriteRepository() {
 	insert(Sprites::CauldronCloseupBack, Sprite(repo.get(Surfaces::CauldronCloseupBack)));
 
 	insertSheet(SpriteSheets::Blower, SpriteSheet(repo.get(Surfaces::Blower), 1, 4));
+	insert(Sprites::Sign, Sprite(repo.get(Surfaces::Sign)));
 	insertSheet(SpriteSheets::Floor, SpriteSheet(repo.get(Surfaces::Floor), 2, 2));
 }

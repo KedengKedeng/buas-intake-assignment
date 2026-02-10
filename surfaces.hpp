@@ -77,5 +77,7 @@ enum class Surfaces {
 	Spoon,
 	Blower,
 
+	Sign,
+
 	Floor
 };

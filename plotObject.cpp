@@ -19,7 +19,8 @@ PlotObject::PlotObject(
 	plot_(plot),
 	inventory_(inventory),
 	husbandry_(husbandry),
-	producedItemSprite(plot->getType()->producedItem->sprite)
+	producedItemSprite(plot->getType()->producedItem->sprite),
+	signSprite_(SpriteRepository().get(Sprites::Sign))
 {
 	addCollider(BoundingBox(vec2(0.0f), vec2(1.0f, size.y - 1)));
 	addCollider(BoundingBox(vec2(0.0f), vec2(size.x - 1, 1.0f)));
@@ -41,7 +42,19 @@ void PlotObject::addAnimal() {
 
 void PlotObject::draw(Tmpl8::Surface& surface, vec2<float> offset) const {
 	auto pos = getPos() + offset;
-	surface.Box(pos, pos + getSize(), 0xff0000ff);
+	auto size = getSize();
+	surface.Box(pos, pos + size, 0xff0000ff);
+
+	float signScale = 3.0f;
+	vec2 signSize = vec2(signSprite_.getWidth(), signSprite_.getHeight()) * signScale;
+	vec2 signPos = pos + vec2((size.x - signSize.x) / 2, size.y);
+	signSprite_.drawScaled(surface, signPos.x, signPos.y, signScale);
+
+	auto creatureType = plot_->getType();
+	float creatureScale = 0.35f;
+	auto creatureSize = vec2(creatureType->idleRight.getWidth(), creatureType->idleRight.getHeight()) * creatureScale;
+	auto creaturePos = signPos + vec2(signSize.x - creatureSize.x, signSize.y / 1.30f - creatureSize.y) / 2;
+	creatureType->idleRight.drawScaled(surface, creaturePos.x, creaturePos.y, creatureScale);
 }
 
 void PlotObject::process(float deltaTime) {
