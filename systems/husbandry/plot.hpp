@@ -1,5 +1,7 @@
 #pragma once
 #include "creatureType.hpp"
+#include "item.hpp"
+#include <memory>
 #include <optional>
 
 class Plot {

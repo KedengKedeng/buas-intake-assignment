@@ -1,6 +1,5 @@
 #include "spoon.hpp"
 #include "objectSignals.hpp"
-#include "sprite.hpp"
 #include "spriteRepository.hpp"
 
 vec2<float> spoonVelocity( 0.0f, 7.0f );

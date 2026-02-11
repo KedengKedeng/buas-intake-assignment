@@ -2,421 +2,418 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="surface.cpp">
-      <Filter>core\template code</Filter>
+    <ClCompile Include="core\tmpl8\surface.cpp">
+      <Filter>core\tmpl8</Filter>
     </ClCompile>
-    <ClCompile Include="template.cpp">
-      <Filter>core\template code</Filter>
+    <ClCompile Include="core\tmpl8\template.cpp">
+      <Filter>core\tmpl8</Filter>
     </ClCompile>
-    <ClCompile Include="keyboardInput.cpp">
-      <Filter>core\input\keyboard</Filter>
-    </ClCompile>
-    <ClCompile Include="boundingBox.cpp">
-      <Filter>systems\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="playerSignals.cpp">
-      <Filter>gameplay\signals</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClCompile>
-    <ClCompile Include="wall.cpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClCompile>
-    <ClCompile Include="itemRepository.cpp">
-      <Filter>gameplay\items</Filter>
-    </ClCompile>
-    <ClCompile Include="itemObject.cpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClCompile>
-    <ClCompile Include="spriteRepository.cpp">
-      <Filter>gameplay\sprites</Filter>
-    </ClCompile>
-    <ClCompile Include="interactionCommand.hpp">
-      <Filter>core\input\commands</Filter>
-    </ClCompile>
-    <ClCompile Include="interactionSignal.cpp">
-      <Filter>gameplay\signals</Filter>
-    </ClCompile>
-    <ClCompile Include="itemSignals.cpp">
-      <Filter>gameplay\signals</Filter>
-    </ClCompile>
-    <ClCompile Include="objectSignals.cpp">
-      <Filter>gameplay\signals</Filter>
-    </ClCompile>
-    <ClCompile Include="random.cpp">
+    <ClCompile Include="core\util\random.cpp">
       <Filter>core\util</Filter>
     </ClCompile>
-    <ClCompile Include="worldCauldron.cpp">
-      <Filter>gameplay\world objects\cauldron</Filter>
+    <ClCompile Include="core\util\string.cpp">
+      <Filter>core\util</Filter>
     </ClCompile>
-    <ClCompile Include="cookingCauldron.cpp">
-      <Filter>gameplay\world objects\cauldron</Filter>
-    </ClCompile>
-    <ClCompile Include="spoon.cpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClCompile>
-    <ClCompile Include="cauldron.cpp">
-      <Filter>gameplay\world objects\cauldron</Filter>
-    </ClCompile>
-    <ClCompile Include="blower.cpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClCompile>
-    <ClCompile Include="inventorySlot.cpp">
-      <Filter>ui\components</Filter>
-    </ClCompile>
-    <ClCompile Include="creatureTypeRepository.cpp">
-      <Filter>gameplay\creaturetypes</Filter>
-    </ClCompile>
-    <ClCompile Include="surfaceRepository.cpp">
-      <Filter>gameplay\sprites</Filter>
-    </ClCompile>
-    <ClCompile Include="animatedSprite.cpp">
-      <Filter>core\rendering\sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="sprite.cpp">
-      <Filter>core\rendering\sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="spritesheet.cpp">
-      <Filter>core\rendering\sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="spriteStack.cpp">
-      <Filter>core\rendering\sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="text.cpp">
+    <ClCompile Include="core\rendering\text.cpp">
       <Filter>core\rendering</Filter>
     </ClCompile>
-    <ClCompile Include="string.cpp">
-      <Filter>core\util</Filter>
+    <ClCompile Include="core\rendering\sprite\animatedSprite.cpp">
+      <Filter>core\rendering\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="creature.cpp">
-      <Filter>gameplay\world objects\husbandry</Filter>
+    <ClCompile Include="core\rendering\sprite\sprite.cpp">
+      <Filter>core\rendering\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="plotObject.cpp">
-      <Filter>gameplay\world objects\husbandry</Filter>
+    <ClCompile Include="core\rendering\sprite\spritesheet.cpp">
+      <Filter>core\rendering\sprite</Filter>
     </ClCompile>
-    <ClCompile Include="collider.cpp">
+    <ClCompile Include="core\rendering\sprite\spriteStack.cpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="core\input\keyboard\keyboardInput.cpp">
+      <Filter>core\input\keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\clickables\animalShopItem.cpp">
+      <Filter>ui\clickables</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\clickables\button.cpp">
+      <Filter>ui\clickables</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\containers\modal.cpp">
+      <Filter>ui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\containers\objectContainer.cpp">
+      <Filter>ui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\inventorySlot.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\scrollbar.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\animalShopScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\cookingScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\inventoryScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\playScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\scene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\settingsScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\startScene.cpp">
+      <Filter>scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\collision\boundingBox.cpp">
       <Filter>systems\collision</Filter>
     </ClCompile>
-    <ClCompile Include="uiSignals.cpp">
-      <Filter>gameplay\signals</Filter>
+    <ClCompile Include="systems\collision\collider.cpp">
+      <Filter>systems\collision</Filter>
     </ClCompile>
-    <ClCompile Include="characterObject.cpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClCompile>
-    <ClCompile Include="subscriptionManager.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
-    <ClCompile Include="wallet.cpp">
-      <Filter>systems\currency</Filter>
-    </ClCompile>
-    <ClCompile Include="modal.cpp">
-      <Filter>ui\components\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="scrollbar.cpp">
-      <Filter>ui\components</Filter>
-    </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>ui\components\clickables</Filter>
-    </ClCompile>
-    <ClCompile Include="animalShopItem.cpp">
-      <Filter>ui\components\clickables</Filter>
-    </ClCompile>
-    <ClCompile Include="drawDispatcher.cpp">
-      <Filter>systems</Filter>
-    </ClCompile>
-    <ClCompile Include="plot.cpp">
-      <Filter>systems\husbandry</Filter>
-    </ClCompile>
-    <ClCompile Include="animalShopScene.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="cookingScene.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="customerObject.cpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClCompile>
-    <ClCompile Include="customerTypeRepository.cpp">
-      <Filter>gameplay\customertypes</Filter>
-    </ClCompile>
-    <ClCompile Include="inventoryScene.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="playScene.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="scene.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="settingsScene.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="startScene.cpp">
-      <Filter>ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="objectContainer.cpp">
-      <Filter>ui\components\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="recipeBook.cpp">
+    <ClCompile Include="systems\cooking\itemLog.cpp">
       <Filter>systems\cooking</Filter>
     </ClCompile>
-    <ClCompile Include="itemLog.cpp">
+    <ClCompile Include="systems\cooking\recipeBook.cpp">
+      <Filter>systems\cooking</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\currency\wallet.cpp">
+      <Filter>systems\currency</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\husbandry\plot.cpp">
+      <Filter>systems\husbandry</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\drawDispatcher.cpp">
       <Filter>systems</Filter>
     </ClCompile>
-    <ClCompile Include="sceneSignals.cpp">
+    <ClCompile Include="systems\subscriptionManager.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\cauldron\cauldron.cpp">
+      <Filter>gameplay\objects\cauldron</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\cauldron\cookingCauldron.cpp">
+      <Filter>gameplay\objects\cauldron</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\cauldron\worldCauldron.cpp">
+      <Filter>gameplay\objects\cauldron</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\husbandry\creature.cpp">
+      <Filter>gameplay\objects\husbandry</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\husbandry\plotObject.cpp">
+      <Filter>gameplay\objects\husbandry</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\blower.cpp">
+      <Filter>gameplay\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\characterObject.cpp">
+      <Filter>gameplay\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\customerObject.cpp">
+      <Filter>gameplay\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\itemObject.cpp">
+      <Filter>gameplay\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\player.cpp">
+      <Filter>gameplay\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\spoon.cpp">
+      <Filter>gameplay\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\objects\wall.cpp">
+      <Filter>gameplay\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\sprites\spriteRepository.cpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\sprites\surfaceRepository.cpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\signals\interactionSignal.cpp">
       <Filter>gameplay\signals</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\signals\itemSignals.cpp">
+      <Filter>gameplay\signals</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\signals\objectSignals.cpp">
+      <Filter>gameplay\signals</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\signals\playerSignals.cpp">
+      <Filter>gameplay\signals</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\signals\sceneSignals.cpp">
+      <Filter>gameplay\signals</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\signals\uiSignals.cpp">
+      <Filter>gameplay\signals</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\items\itemRepository.cpp">
+      <Filter>gameplay\items</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\customertypes\customerTypeRepository.cpp">
+      <Filter>gameplay\customertypes</Filter>
+    </ClCompile>
+    <ClCompile Include="gameplay\creaturetypes\creatureTypeRepository.cpp">
+      <Filter>gameplay\creaturetypes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
-    <ClInclude Include="surface.h">
-      <Filter>core\template code</Filter>
+    <ClInclude Include="core\tmpl8\surface.h">
+      <Filter>core\tmpl8</Filter>
     </ClInclude>
-    <ClInclude Include="template.h">
-      <Filter>core\template code</Filter>
+    <ClInclude Include="core\tmpl8\template.h">
+      <Filter>core\tmpl8</Filter>
     </ClInclude>
-    <ClInclude Include="keyboardInput.hpp">
+    <ClInclude Include="core\util\random.hpp">
+      <Filter>core\util</Filter>
+    </ClInclude>
+    <ClInclude Include="core\util\string.hpp">
+      <Filter>core\util</Filter>
+    </ClInclude>
+    <ClInclude Include="core\types\numbers.hpp">
+      <Filter>core\types</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\text.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\tilemap.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\sprite\animatedSprite.hpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\sprite\sprite.hpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\sprite\spritesheet.hpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\sprite\spriteStack.hpp">
+      <Filter>core\rendering\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="core\input\keyboard\keyboardInput.hpp">
       <Filter>core\input\keyboard</Filter>
     </ClInclude>
-    <ClInclude Include="command.hpp">
+    <ClInclude Include="core\input\commands\command.hpp">
       <Filter>core\input\commands</Filter>
     </ClInclude>
-    <ClInclude Include="moveCommand.hpp">
+    <ClInclude Include="core\input\commands\interactionCommand.hpp">
       <Filter>core\input\commands</Filter>
     </ClInclude>
-    <ClInclude Include="playerSignals.hpp">
-      <Filter>gameplay\signals</Filter>
+    <ClInclude Include="core\input\commands\moveCommand.hpp">
+      <Filter>core\input\commands</Filter>
     </ClInclude>
-    <ClInclude Include="signal.hpp">
-      <Filter>gameplay\signals</Filter>
+    <ClInclude Include="core\input\commands\sceneCommands.hpp">
+      <Filter>core\input\commands</Filter>
     </ClInclude>
-    <ClInclude Include="boundingBox.hpp">
-      <Filter>systems\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="wall.hpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="item.hpp">
-      <Filter>gameplay\items</Filter>
-    </ClInclude>
-    <ClInclude Include="itemsRepository.hpp">
-      <Filter>gameplay\items</Filter>
-    </ClInclude>
-    <ClInclude Include="itemObject.hpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="spriteRepository.hpp">
-      <Filter>gameplay\sprites</Filter>
-    </ClInclude>
-    <ClInclude Include="itemList.hpp">
-      <Filter>gameplay\items</Filter>
-    </ClInclude>
-    <ClInclude Include="random.hpp">
-      <Filter>core\util</Filter>
-    </ClInclude>
-    <ClInclude Include="interactionSignal.hpp">
-      <Filter>gameplay\signals</Filter>
-    </ClInclude>
-    <ClInclude Include="itemSignals.hpp">
-      <Filter>gameplay\signals</Filter>
-    </ClInclude>
-    <ClInclude Include="objectSignals.hpp">
-      <Filter>gameplay\signals</Filter>
-    </ClInclude>
-    <ClInclude Include="terminatableSignal.hpp">
-      <Filter>gameplay\signals</Filter>
-    </ClInclude>
-    <ClInclude Include="worldCauldron.hpp">
-      <Filter>gameplay\world objects\cauldron</Filter>
-    </ClInclude>
-    <ClInclude Include="cauldron.hpp">
-      <Filter>gameplay\world objects\cauldron</Filter>
-    </ClInclude>
-    <ClInclude Include="cookingCauldron.hpp">
-      <Filter>gameplay\world objects\cauldron</Filter>
-    </ClInclude>
-    <ClInclude Include="player.hpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="spoon.hpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="invisibleBarrier.hpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="blower.hpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="inventory.hpp">
-      <Filter>systems</Filter>
-    </ClInclude>
-    <ClInclude Include="inventorySlot.hpp">
-      <Filter>ui\components</Filter>
-    </ClInclude>
-    <ClInclude Include="creatureTypeRepository.hpp">
-      <Filter>gameplay\creaturetypes</Filter>
-    </ClInclude>
-    <ClInclude Include="creatureType.hpp">
-      <Filter>gameplay\creaturetypes</Filter>
-    </ClInclude>
-    <ClInclude Include="husbandry.hpp">
-      <Filter>systems\husbandry</Filter>
-    </ClInclude>
-    <ClInclude Include="plot.hpp">
-      <Filter>systems\husbandry</Filter>
-    </ClInclude>
-    <ClInclude Include="countingStorage.hpp">
-      <Filter>systems</Filter>
-    </ClInclude>
-    <ClInclude Include="surfaceRepository.hpp">
-      <Filter>gameplay\sprites</Filter>
-    </ClInclude>
-    <ClInclude Include="rect2.hpp">
+    <ClInclude Include="core\math\rect2.hpp">
       <Filter>core\math</Filter>
     </ClInclude>
-    <ClInclude Include="collider.hpp">
-      <Filter>systems\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="interactable.hpp">
-      <Filter>systems\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="tilemap.hpp">
-      <Filter>core\rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="vec2.hpp">
+    <ClInclude Include="core\math\vec2.hpp">
       <Filter>core\math</Filter>
     </ClInclude>
-    <ClInclude Include="numbers.hpp">
-      <Filter>core\types\concepts</Filter>
+    <ClInclude Include="ui\clickables\animalShopItem.hpp">
+      <Filter>ui\clickables</Filter>
     </ClInclude>
-    <ClInclude Include="text.hpp">
-      <Filter>core\rendering</Filter>
+    <ClInclude Include="ui\clickables\button.hpp">
+      <Filter>ui\clickables</Filter>
     </ClInclude>
-    <ClInclude Include="animatedSprite.hpp">
-      <Filter>core\rendering\sprite</Filter>
+    <ClInclude Include="ui\clickables\clickable.hpp">
+      <Filter>ui\clickables</Filter>
     </ClInclude>
-    <ClInclude Include="sprite.hpp">
-      <Filter>core\rendering\sprite</Filter>
+    <ClInclude Include="ui\containers\modal.hpp">
+      <Filter>ui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="spritesheet.hpp">
-      <Filter>core\rendering\sprite</Filter>
+    <ClInclude Include="ui\containers\objectContainer.hpp">
+      <Filter>ui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="spriteStack.hpp">
-      <Filter>core\rendering\sprite</Filter>
+    <ClInclude Include="ui\inventorySlot.hpp">
+      <Filter>ui</Filter>
     </ClInclude>
-    <ClInclude Include="string.hpp">
-      <Filter>core\util</Filter>
+    <ClInclude Include="ui\scrollbar.hpp">
+      <Filter>ui</Filter>
     </ClInclude>
-    <ClInclude Include="plotObject.hpp">
-      <Filter>gameplay\world objects\husbandry</Filter>
+    <ClInclude Include="scenes\animalShopScene.hpp">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="creature.hpp">
-      <Filter>gameplay\world objects\husbandry</Filter>
+    <ClInclude Include="scenes\cookingScene.hpp">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="object.hpp">
-      <Filter>systems</Filter>
+    <ClInclude Include="scenes\inventoryScene.hpp">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="uiSignals.hpp">
-      <Filter>gameplay\signals</Filter>
+    <ClInclude Include="scenes\playScene.hpp">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="characterObject.hpp">
-      <Filter>gameplay\world objects</Filter>
+    <ClInclude Include="scenes\scene.hpp">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="subscriptionManager.hpp">
-      <Filter>systems</Filter>
+    <ClInclude Include="scenes\scenes.hpp">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="wallet.hpp">
-      <Filter>systems\currency</Filter>
+    <ClInclude Include="scenes\settingsScene.hpp">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="modal.hpp">
-      <Filter>ui\components\containers</Filter>
+    <ClInclude Include="scenes\startScene.hpp">
+      <Filter>scenes</Filter>
     </ClInclude>
-    <ClInclude Include="scrollbar.hpp">
-      <Filter>ui\components</Filter>
+    <ClInclude Include="systems\collision\boundingBox.hpp">
+      <Filter>systems\collision</Filter>
     </ClInclude>
-    <ClInclude Include="button.hpp">
-      <Filter>ui\components\clickables</Filter>
+    <ClInclude Include="systems\collision\collider.hpp">
+      <Filter>systems\collision</Filter>
     </ClInclude>
-    <ClInclude Include="clickable.hpp">
-      <Filter>ui\components\clickables</Filter>
+    <ClInclude Include="systems\collision\interactable.hpp">
+      <Filter>systems\collision</Filter>
     </ClInclude>
-    <ClInclude Include="animalShopItem.hpp">
-      <Filter>ui\components\clickables</Filter>
-    </ClInclude>
-    <ClInclude Include="drawDispatcher.hpp">
-      <Filter>systems</Filter>
-    </ClInclude>
-    <ClInclude Include="animalShopScene.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="cookingScene.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="creatureTypes.hpp">
-      <Filter>gameplay\creaturetypes</Filter>
-    </ClInclude>
-    <ClInclude Include="customerObject.hpp">
-      <Filter>gameplay\world objects</Filter>
-    </ClInclude>
-    <ClInclude Include="customerType.hpp">
-      <Filter>gameplay\creaturetypes</Filter>
-    </ClInclude>
-    <ClInclude Include="customerTypeRepository.hpp">
-      <Filter>gameplay\customertypes</Filter>
-    </ClInclude>
-    <ClInclude Include="customerTypes.hpp">
-      <Filter>gameplay\customertypes</Filter>
-    </ClInclude>
-    <ClInclude Include="inventoryScene.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="playScene.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="scene.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="scenes.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="settingsScene.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="startScene.hpp">
-      <Filter>ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="objectContainer.hpp">
-      <Filter>ui\components\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="items.hpp">
-      <Filter>gameplay\items</Filter>
-    </ClInclude>
-    <ClInclude Include="recipeBook.hpp">
+    <ClInclude Include="systems\cooking\itemLog.hpp">
       <Filter>systems\cooking</Filter>
     </ClInclude>
-    <ClInclude Include="itemLog.hpp">
+    <ClInclude Include="systems\cooking\recipeBook.hpp">
+      <Filter>systems\cooking</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\currency\wallet.hpp">
+      <Filter>systems\currency</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\husbandry\husbandry.hpp">
+      <Filter>systems\husbandry</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\husbandry\plot.hpp">
+      <Filter>systems\husbandry</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\countingStorage.hpp">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="sceneSignals.hpp">
+    <ClInclude Include="systems\drawDispatcher.hpp">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\inventory.hpp">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\object.hpp">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\subscriptionManager.hpp">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\cauldron\cauldron.hpp">
+      <Filter>gameplay\objects\cauldron</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\cauldron\cookingCauldron.hpp">
+      <Filter>gameplay\objects\cauldron</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\cauldron\worldCauldron.hpp">
+      <Filter>gameplay\objects\cauldron</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\husbandry\creature.hpp">
+      <Filter>gameplay\objects\husbandry</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\husbandry\plotObject.hpp">
+      <Filter>gameplay\objects\husbandry</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\blower.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\characterObject.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\customerObject.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\invisibleBarrier.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\itemObject.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\player.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\spoon.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\objects\wall.hpp">
+      <Filter>gameplay\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\sprites\spriteRepository.hpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\sprites\sprites.hpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\sprites\surfaceRepository.hpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\sprites\surfaces.hpp">
+      <Filter>gameplay\sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\signals\interactionSignal.hpp">
       <Filter>gameplay\signals</Filter>
     </ClInclude>
-    <ClInclude Include="sceneCommands.hpp">
-      <Filter>core\input\commands</Filter>
+    <ClInclude Include="gameplay\signals\itemSignals.hpp">
+      <Filter>gameplay\signals</Filter>
     </ClInclude>
-    <ClInclude Include="sprites.hpp">
-      <Filter>gameplay\sprites</Filter>
+    <ClInclude Include="gameplay\signals\objectSignals.hpp">
+      <Filter>gameplay\signals</Filter>
     </ClInclude>
-    <ClInclude Include="surfaces.hpp">
-      <Filter>gameplay\sprites</Filter>
+    <ClInclude Include="gameplay\signals\playerSignals.hpp">
+      <Filter>gameplay\signals</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\signals\sceneSignals.hpp">
+      <Filter>gameplay\signals</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\signals\signal.hpp">
+      <Filter>gameplay\signals</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\signals\terminatableSignal.hpp">
+      <Filter>gameplay\signals</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\signals\uiSignals.hpp">
+      <Filter>gameplay\signals</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\items\item.hpp">
+      <Filter>gameplay\items</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\items\itemList.hpp">
+      <Filter>gameplay\items</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\items\items.hpp">
+      <Filter>gameplay\items</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\items\itemsRepository.hpp">
+      <Filter>gameplay\items</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\customertypes\customerType.hpp">
+      <Filter>gameplay\customertypes</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\customertypes\customerTypeRepository.hpp">
+      <Filter>gameplay\customertypes</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\customertypes\customerTypes.hpp">
+      <Filter>gameplay\customertypes</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\creaturetypes\creatureType.hpp">
+      <Filter>gameplay\creaturetypes</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\creaturetypes\creatureTypeRepository.hpp">
+      <Filter>gameplay\creaturetypes</Filter>
+    </ClInclude>
+    <ClInclude Include="gameplay\creaturetypes\creatureTypes.hpp">
+      <Filter>gameplay\creaturetypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ui">
       <UniqueIdentifier>{0addb362-fc74-43a8-9f28-ea4e09f94dda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ui\screens">
-      <UniqueIdentifier>{2ad15876-c853-4b87-a567-340cce7c51bf}</UniqueIdentifier>
     </Filter>
     <Filter Include="core">
       <UniqueIdentifier>{9482d17b-2523-4521-92b4-1b3b7ce96612}</UniqueIdentifier>
@@ -429,12 +426,6 @@
     </Filter>
     <Filter Include="core\input\commands">
       <UniqueIdentifier>{9876e609-8017-487d-8e7c-8860352a1dd0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\input\mouse">
-      <UniqueIdentifier>{4588dd8c-1bca-4a6e-abd2-fb0851143d84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\template code">
-      <UniqueIdentifier>{bf32dd6e-4be7-4889-8ac6-49e7ee163c40}</UniqueIdentifier>
     </Filter>
     <Filter Include="core\util">
       <UniqueIdentifier>{2619b8e0-ccb1-4002-aafc-d9f0aa1eadde}</UniqueIdentifier>
@@ -450,9 +441,6 @@
     </Filter>
     <Filter Include="systems\collision">
       <UniqueIdentifier>{2de750f0-e8e2-4f3d-bdd7-23ef42d349f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ui\components">
-      <UniqueIdentifier>{37f7fe36-17bd-4008-bdb7-35c6672cd2b8}</UniqueIdentifier>
     </Filter>
     <Filter Include="gameplay\creaturetypes">
       <UniqueIdentifier>{2b8b7f85-5a83-480f-9880-fe2fde0daa96}</UniqueIdentifier>
@@ -472,32 +460,14 @@
     <Filter Include="core\types">
       <UniqueIdentifier>{7731ee56-6e1e-4db2-8983-27ef4ba39ab7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="core\types\concepts">
-      <UniqueIdentifier>{ee324986-04dd-44db-aa3a-6afe0a87df56}</UniqueIdentifier>
-    </Filter>
     <Filter Include="core\rendering\sprite">
       <UniqueIdentifier>{070c0153-b20c-4862-84ce-e0eebc3c0684}</UniqueIdentifier>
     </Filter>
     <Filter Include="gameplay\signals">
       <UniqueIdentifier>{41334dba-d772-49e7-ab29-8518734ccd3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="gameplay\world objects">
-      <UniqueIdentifier>{87c7c49a-e04e-4594-9e91-442fa62993a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="gameplay\world objects\cauldron">
-      <UniqueIdentifier>{20cba432-7740-4170-ab0e-f2260c4316bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="gameplay\world objects\husbandry">
-      <UniqueIdentifier>{24c5cfee-532e-4825-b7a9-40117c49e2bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="systems\currency">
       <UniqueIdentifier>{e19a5421-aee2-4d3b-aca7-5373ac90b392}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ui\components\containers">
-      <UniqueIdentifier>{72aff4de-3f84-4f93-a448-8126cbc3cdb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ui\components\clickables">
-      <UniqueIdentifier>{fb775c4d-7c69-4f8a-a144-7ecce2608786}</UniqueIdentifier>
     </Filter>
     <Filter Include="gameplay\customertypes">
       <UniqueIdentifier>{0d13a39c-2b91-4795-ba45-6721cafa5fae}</UniqueIdentifier>
@@ -505,12 +475,33 @@
     <Filter Include="systems\cooking">
       <UniqueIdentifier>{e0d80745-5cba-4717-b97c-cab2726dc455}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\tmpl8">
+      <UniqueIdentifier>{bf32dd6e-4be7-4889-8ac6-49e7ee163c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\clickables">
+      <UniqueIdentifier>{fb775c4d-7c69-4f8a-a144-7ecce2608786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\containers">
+      <UniqueIdentifier>{72aff4de-3f84-4f93-a448-8126cbc3cdb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scenes">
+      <UniqueIdentifier>{a4e751d9-e75a-4215-b53d-a115467db53c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameplay\objects">
+      <UniqueIdentifier>{87c7c49a-e04e-4594-9e91-442fa62993a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameplay\objects\cauldron">
+      <UniqueIdentifier>{20cba432-7740-4170-ab0e-f2260c4316bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gameplay\objects\husbandry">
+      <UniqueIdentifier>{24c5cfee-532e-4825-b7a9-40117c49e2bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="_readme.txt">
-      <Filter>core\template code</Filter>
-    </Text>
     <Text Include="sources.txt" />
+    <Text Include="core\tmpl8\_readme.txt">
+      <Filter>core\tmpl8</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.md" />

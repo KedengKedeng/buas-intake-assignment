@@ -1,7 +1,6 @@
 #pragma once
 #include "spritesheet.hpp"
 #include "random.hpp"
-#include "vec2.hpp"
 #include <map>
 
 template<typename TilemapType>

@@ -3,7 +3,6 @@
 
 #pragma once
 #include <string>
-#include "numbers.hpp"
 #include "vec2.hpp"
 #include "template.h"
 

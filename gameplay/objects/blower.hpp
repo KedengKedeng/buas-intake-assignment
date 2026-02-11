@@ -1,6 +1,6 @@
 #pragma once
 #include "object.hpp"
-#include "spritesheet.hpp"
+#include "spriteStack.hpp"
 #include "vec2.hpp"
 #include "clickable.hpp"
 

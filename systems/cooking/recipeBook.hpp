@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <string>
 #include "item.hpp"
+#include <memory>
 #include <optional>
 
 class RecipeBook {

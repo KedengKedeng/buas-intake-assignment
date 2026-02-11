@@ -1,5 +1,11 @@
 #include "game.h"
-#include "surface.h"
+#include "itemList.hpp"
+#include "inventory.hpp"
+#include "husbandry.hpp"
+#include "cauldron.hpp"
+#include "wallet.hpp"
+#include "itemLog.hpp"
+#include "creatureTypeRepository.hpp"
 #include "playScene.hpp"
 #include "startScene.hpp"
 #include "settingsScene.hpp"
@@ -7,13 +13,7 @@
 #include "inventoryScene.hpp"
 #include "animalShopScene.hpp"
 #include "sceneSignals.hpp"
-#include "itemList.hpp"
-#include "inventory.hpp"
-#include "husbandry.hpp"
-#include "cauldron.hpp"
-#include "wallet.hpp"
-#include "creatureTypeRepository.hpp"
-#include "itemLog.hpp"
+
 
 namespace Tmpl8
 {

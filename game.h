@@ -1,6 +1,12 @@
 #pragma once
 #include "scene.hpp"
 #include "scenes.hpp"
+#include "surface.h"
+#include "vec2.hpp"
+#include <vector>
+#include <queue>
+#include <map>
+#include <memory>
 
 namespace Tmpl8 {
 

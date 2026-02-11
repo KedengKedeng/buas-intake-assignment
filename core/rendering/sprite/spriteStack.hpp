@@ -1,6 +1,5 @@
 #pragma once
 #include "animatedSprite.hpp"
-#include "template.h"
 #include <vector>
 
 class SpriteStack {

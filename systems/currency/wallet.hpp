@@ -1,5 +1,4 @@
 #pragma once
-#include "signal.hpp"
 
 class Wallet {
 public:
