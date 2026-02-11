@@ -22,10 +22,10 @@ PlotObject::PlotObject(
 	producedItemSprite(plot->getType()->producedItem->sprite),
 	signSprite_(SpriteRepository().get(Sprites::Sign))
 {
-	addCollider(BoundingBox(vec2(0.0f), vec2(1.0f, size.y - 1)));
-	addCollider(BoundingBox(vec2(0.0f), vec2(size.x - 1, 1.0f)));
-	addCollider(BoundingBox(vec2(0.0f, size.y - 1), vec2(size.x - 1, 1.0f)));
-	addCollider(BoundingBox(vec2(size.x - 1, 0.0f), vec2(1.0f, size.y - 1)));
+	addCollider(BoundingBox(vec2(0.0f), vec2(1.0f, size.y)));
+	addCollider(BoundingBox(vec2(0.0f), vec2(size.x, 1.0f)));
+	addCollider(BoundingBox(vec2(0.0f, size.y), vec2(size.x, 1.0f)));
+	addCollider(BoundingBox(vec2(size.x, 0.0f), vec2(1.0f, size.y)));
 }
 
 PlotObject::~PlotObject() {
